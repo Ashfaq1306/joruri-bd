@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": null,
+  "howToFill": "Do not edit by hand. Fill the spreadsheets in tool/ and run tool/import_places.dart (see README).",
+  "pharmacies": []
+}

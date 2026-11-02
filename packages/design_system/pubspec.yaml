@@ -1,0 +1,15 @@
+name: joruri_design_system
+description: Design tokens, theme and shared widgets for JORURI BD apps (mobile and admin).
+version: 0.3.0
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^5.0.0

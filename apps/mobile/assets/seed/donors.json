@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": null,
+  "howToFill": "Do not edit by hand. Put donors in a spreadsheet and run: dart run tool/import_donors.dart donors.csv",
+  "donors": []
+}

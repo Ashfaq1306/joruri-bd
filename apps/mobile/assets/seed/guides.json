@@ -1,0 +1,474 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-10-07.1",
+  "reviewNote": "Draft guides are based on widely published first-aid guidance and MUST be reviewed and signed off by a licensed clinician before release. Pending guides have no content yet.",
+  "guides": [
+    {
+      "id": "heart-emergency",
+      "kind": "firstAid",
+      "icon": "heart",
+      "title": {
+        "en": "Heart emergency",
+        "bn": "হৃদরোগের জরুরি অবস্থা"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "stroke",
+      "kind": "firstAid",
+      "icon": "stroke",
+      "title": {
+        "en": "Stroke warning signs",
+        "bn": "স্ট্রোকের সতর্ক লক্ষণ"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "unconscious",
+      "kind": "firstAid",
+      "icon": "unconscious",
+      "title": {
+        "en": "Unconscious person",
+        "bn": "অচেতন ব্যক্তি"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "choking",
+      "kind": "firstAid",
+      "icon": "choking",
+      "title": {
+        "en": "Choking (adults and children over 1)",
+        "bn": "শ্বাসনালিতে কিছু আটকে যাওয়া (প্রাপ্তবয়স্ক ও ১ বছরের বেশি শিশু)"
+      },
+      "reviewStatus": "draft",
+      "doNow": {
+        "en": [
+          "Ask: \"Are you choking?\" If they can cough, tell them to keep coughing.",
+          "If they cannot cough, speak or breathe: lean them forward and give up to 5 firm blows between the shoulder blades with the heel of your hand.",
+          "If that does not work: stand behind them, put a fist just above the belly button, hold it with your other hand, and pull sharply in and up, up to 5 times.",
+          "Keep alternating 5 back blows and 5 abdominal thrusts. Call 999.",
+          "If they become unconscious, call 999 and start CPR if you are trained."
+        ],
+        "bn": [
+          "জিজ্ঞেস করুন: \"গলায় কিছু আটকেছে?\" কাশতে পারলে কাশতে থাকতে বলুন।",
+          "কাশতে, কথা বলতে বা শ্বাস নিতে না পারলে: সামনে ঝুঁকিয়ে দুই কাঁধের হাড়ের মাঝখানে হাতের তালুর গোড়া দিয়ে সর্বোচ্চ ৫ বার জোরে চাপড় দিন।",
+          "তাতে কাজ না হলে: পেছনে দাঁড়িয়ে নাভির একটু ওপরে এক হাতের মুঠি রাখুন, অন্য হাতে মুঠিটি ধরে ভেতরে ও ওপরের দিকে জোরে টানুন, সর্বোচ্চ ৫ বার।",
+          "পালা করে ৫ বার পিঠে চাপড় ও ৫ বার পেটে চাপ দিতে থাকুন। ৯৯৯-এ কল করুন।",
+          "অজ্ঞান হয়ে গেলে ৯৯৯-এ কল করুন এবং প্রশিক্ষণ থাকলে সিপিআর শুরু করুন।"
+        ]
+      },
+      "doNot": {
+        "en": [
+          "Do not put your fingers blindly into their mouth.",
+          "Do not give water or food while they are choking.",
+          "Do not use abdominal thrusts on babies under 1 year or on pregnant women. Call 999 and follow the operator."
+        ],
+        "bn": [
+          "না দেখে মুখের ভেতরে আঙুল ঢোকাবেন না।",
+          "আটকে থাকা অবস্থায় পানি বা খাবার দেবেন না।",
+          "১ বছরের কম বয়সী শিশু বা গর্ভবতী নারীর পেটে চাপ দেবেন না। ৯৯৯-এ কল করে অপারেটরের নির্দেশনা মানুন।"
+        ]
+      },
+      "getHelp": {
+        "en": [
+          "Anyone who needed abdominal thrusts must see a doctor, even if they feel fine.",
+          "If the blockage does not clear quickly."
+        ],
+        "bn": [
+          "যাঁর পেটে চাপ দিতে হয়েছে, ভালো বোধ করলেও তাঁকে অবশ্যই ডাক্তার দেখাতে হবে।",
+          "আটকে থাকা জিনিস দ্রুত বের না হলে।"
+        ]
+      },
+      "whoToContact": {
+        "en": "999 for an ambulance.",
+        "bn": "অ্যাম্বুলেন্সের জন্য ৯৯৯।"
+      },
+      "callNumbers": [
+        "999"
+      ]
+    },
+    {
+      "id": "severe-bleeding",
+      "kind": "firstAid",
+      "icon": "bleeding",
+      "title": {
+        "en": "Severe bleeding",
+        "bn": "গুরুতর রক্তক্ষরণ"
+      },
+      "reviewStatus": "draft",
+      "doNow": {
+        "en": [
+          "Call 999, or ask someone nearby to call.",
+          "Press firmly on the wound with a clean cloth. If you have nothing, use your hand.",
+          "Keep pressing without stopping. If blood soaks through, do not lift the cloth; put more cloth on top and keep pressing.",
+          "Help the person lie down and keep them warm.",
+          "If you can, cover your hand with gloves or a plastic bag."
+        ],
+        "bn": [
+          "৯৯৯-এ কল করুন, অথবা কাছের কাউকে কল করতে বলুন।",
+          "পরিষ্কার কাপড় দিয়ে ক্ষতস্থানে জোরে চেপে ধরুন। কিছু না থাকলে হাত দিয়েই চাপুন।",
+          "না থেমে চাপ দিতে থাকুন। কাপড় রক্তে ভিজে গেলে তুলবেন না; ওপরে আরেকটি কাপড় দিয়ে চাপ দিতে থাকুন।",
+          "আহত ব্যক্তিকে শুইয়ে দিন এবং গরম রাখুন।",
+          "সম্ভব হলে হাতে গ্লাভস বা প্লাস্টিকের ব্যাগ পরে নিন।"
+        ]
+      },
+      "doNot": {
+        "en": [
+          "Do not pull out an object stuck in the wound. Press around it instead.",
+          "Do not put ash, mud, toothpaste, herbs or powder on the wound.",
+          "Do not give the person food or drink."
+        ],
+        "bn": [
+          "ক্ষতে কিছু গেঁথে থাকলে টেনে বের করবেন না। তার চারপাশে চাপ দিন।",
+          "ক্ষতে ছাই, মাটি, টুথপেস্ট, লতাপাতা বা পাউডার লাগাবেন না।",
+          "আহত ব্যক্তিকে কিছু খেতে বা পান করতে দেবেন না।"
+        ]
+      },
+      "getHelp": {
+        "en": [
+          "Always, if blood is spurting or flowing heavily.",
+          "If bleeding has not stopped after 10 minutes of firm pressure.",
+          "If the person is pale, cold, sweaty, confused or breathing fast. These are signs of shock."
+        ],
+        "bn": [
+          "রক্ত ফিনকি দিয়ে বা অনেক বেশি পড়লে সবসময়।",
+          "১০ মিনিট জোরে চাপ দেওয়ার পরও রক্ত না থামলে।",
+          "আহত ব্যক্তি ফ্যাকাশে, ঠান্ডা, ঘর্মাক্ত বা বিভ্রান্ত হলে, অথবা দ্রুত শ্বাস নিলে। এগুলো শকের লক্ষণ।"
+        ]
+      },
+      "whoToContact": {
+        "en": "999 for an ambulance, then the nearest hospital emergency department.",
+        "bn": "অ্যাম্বুলেন্সের জন্য ৯৯৯, তারপর নিকটতম হাসপাতালের জরুরি বিভাগ।"
+      },
+      "callNumbers": [
+        "999"
+      ]
+    },
+    {
+      "id": "burn",
+      "kind": "firstAid",
+      "icon": "burn",
+      "title": {
+        "en": "Burns",
+        "bn": "পুড়ে যাওয়া"
+      },
+      "reviewStatus": "draft",
+      "doNow": {
+        "en": [
+          "Move the person away from the heat. If clothes are burning, have them roll on the ground or smother the flames with a thick cloth.",
+          "Cool the burn under cool running water (not ice) for 20 minutes.",
+          "Remove rings, watches and tight clothing near the burn before it swells, unless they are stuck to the skin.",
+          "Cover the burn loosely with clean plastic wrap or a clean cloth that does not shed fibres.",
+          "Keep the rest of the body warm."
+        ],
+        "bn": [
+          "আগুন বা গরম জিনিস থেকে সরিয়ে নিন। কাপড়ে আগুন লাগলে মাটিতে গড়াগড়ি দিতে বলুন বা মোটা কাপড় দিয়ে আগুন চাপা দিন।",
+          "পোড়া জায়গা ২০ মিনিট ধরে ঠান্ডা প্রবহমান পানির নিচে রাখুন (বরফ নয়)।",
+          "ফুলে যাওয়ার আগে পোড়ার কাছের আংটি, ঘড়ি ও আঁটসাঁট কাপড় খুলে ফেলুন, তবে চামড়ায় লেগে থাকলে নয়।",
+          "পরিষ্কার প্লাস্টিক র‍্যাপ বা আঁশ ছাড়ে না এমন পরিষ্কার কাপড় দিয়ে আলতো করে ঢেকে দিন।",
+          "শরীরের বাকি অংশ গরম রাখুন।"
+        ]
+      },
+      "doNot": {
+        "en": [
+          "Do not use ice or ice water.",
+          "Do not put toothpaste, butter, oil, egg or any home remedy on the burn.",
+          "Do not burst blisters.",
+          "Do not pull off clothing that is stuck to the burn."
+        ],
+        "bn": [
+          "বরফ বা বরফ-পানি ব্যবহার করবেন না।",
+          "টুথপেস্ট, মাখন, তেল, ডিম বা কোনো ঘরোয়া টোটকা লাগাবেন না।",
+          "ফোসকা গলাবেন না।",
+          "পোড়া জায়গায় লেগে থাকা কাপড় টেনে খুলবেন না।"
+        ]
+      },
+      "getHelp": {
+        "en": [
+          "Burns bigger than the injured person's palm.",
+          "Burns on the face, hands, feet, genitals or across a joint.",
+          "Deep burns that look white, brown or black, or burns that do not hurt.",
+          "Electrical or chemical burns, smoke breathed in, and any burn on a child or an older person."
+        ],
+        "bn": [
+          "আহত ব্যক্তির হাতের তালুর চেয়ে বড় পোড়া।",
+          "মুখ, হাত, পা, যৌনাঙ্গ বা অস্থিসন্ধিতে পোড়া।",
+          "সাদা, বাদামি বা কালো দেখায় এমন গভীর পোড়া, অথবা যে পোড়ায় ব্যথা নেই।",
+          "বিদ্যুৎ বা রাসায়নিকে পোড়া, ধোঁয়া শ্বাসে নেওয়া, এবং শিশু বা বয়স্ক কারও যেকোনো পোড়া।"
+        ]
+      },
+      "whoToContact": {
+        "en": "999 for an ambulance or the fire service.",
+        "bn": "অ্যাম্বুলেন্স বা ফায়ার সার্ভিসের জন্য ৯৯৯।"
+      },
+      "callNumbers": [
+        "999"
+      ]
+    },
+    {
+      "id": "fracture",
+      "kind": "firstAid",
+      "icon": "fracture",
+      "title": {
+        "en": "Broken bone",
+        "bn": "হাড় ভাঙা"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "electric-shock",
+      "kind": "firstAid",
+      "icon": "electric",
+      "title": {
+        "en": "Electric shock",
+        "bn": "বিদ্যুৎস্পৃষ্ট হওয়া"
+      },
+      "reviewStatus": "draft",
+      "doNow": {
+        "en": [
+          "Do not touch the person until the power is off. Switch off at the main switch or pull the plug.",
+          "If you cannot switch it off, stand on something dry and push the source away with dry wood or plastic, never metal.",
+          "Call 999.",
+          "Check whether they are breathing. If not, start CPR if you are trained.",
+          "Once the power is off, cool any burns with running water."
+        ],
+        "bn": [
+          "বিদ্যুৎ বন্ধ না হওয়া পর্যন্ত ব্যক্তিকে ছোঁবেন না। মেইন সুইচ বন্ধ করুন বা প্লাগ খুলে ফেলুন।",
+          "বন্ধ করা না গেলে শুকনো কিছুর ওপর দাঁড়িয়ে শুকনো কাঠ বা প্লাস্টিক দিয়ে বিদ্যুতের উৎস সরিয়ে দিন, কখনো ধাতব কিছু দিয়ে নয়।",
+          "৯৯৯-এ কল করুন।",
+          "শ্বাস নিচ্ছে কি না দেখুন। না নিলে প্রশিক্ষণ থাকলে সিপিআর শুরু করুন।",
+          "বিদ্যুৎ বন্ধ হওয়ার পর পোড়া জায়গা প্রবহমান পানিতে ঠান্ডা করুন।"
+        ]
+      },
+      "doNot": {
+        "en": [
+          "Do not touch the person with bare hands while they are still in contact with the power.",
+          "Do not use anything wet or made of metal.",
+          "Do not go near fallen high-voltage power lines. Stay far away and call 999."
+        ],
+        "bn": [
+          "বিদ্যুতের সংস্পর্শে থাকা অবস্থায় খালি হাতে ছোঁবেন না।",
+          "ভেজা বা ধাতব কিছু ব্যবহার করবেন না।",
+          "ছিঁড়ে পড়া উচ্চ-ভোল্টেজ তারের কাছে যাবেন না। দূরে থাকুন এবং ৯৯৯-এ কল করুন।"
+        ]
+      },
+      "getHelp": {
+        "en": [
+          "Every electric shock that caused a burn, unconsciousness, confusion, chest pain or an irregular heartbeat.",
+          "Any shock from high voltage or lightning."
+        ],
+        "bn": [
+          "যে বিদ্যুৎস্পৃষ্টতায় পোড়া, অজ্ঞান হওয়া, বিভ্রান্তি, বুকে ব্যথা বা অনিয়মিত হৃৎস্পন্দন হয়েছে।",
+          "উচ্চ-ভোল্টেজ বা বজ্রপাতে আঘাত।"
+        ]
+      },
+      "whoToContact": {
+        "en": "999 for an ambulance.",
+        "bn": "অ্যাম্বুলেন্সের জন্য ৯৯৯।"
+      },
+      "callNumbers": [
+        "999"
+      ]
+    },
+    {
+      "id": "drowning",
+      "kind": "firstAid",
+      "icon": "drowning",
+      "title": {
+        "en": "Drowning",
+        "bn": "পানিতে ডোবা"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "snake-bite",
+      "kind": "firstAid",
+      "icon": "snake",
+      "title": {
+        "en": "Snake bite",
+        "bn": "সাপে কাটা"
+      },
+      "reviewStatus": "draft",
+      "doNow": {
+        "en": [
+          "Move away from the snake.",
+          "Keep the person calm and as still as possible. Movement spreads venom.",
+          "Keep the bitten arm or leg still. You can loosely tie it to something rigid so it cannot move.",
+          "Remove rings, bangles, watches and tight clothing near the bite.",
+          "Take the person to the nearest government hospital immediately. Antivenom is the only treatment. Note the time of the bite."
+        ],
+        "bn": [
+          "সাপের কাছ থেকে সরে যান।",
+          "আক্রান্ত ব্যক্তিকে শান্ত ও যতটা সম্ভব স্থির রাখুন। নড়াচড়ায় বিষ ছড়ায়।",
+          "কামড়ানো হাত বা পা স্থির রাখুন। নড়াচড়া বন্ধ করতে শক্ত কিছুর সঙ্গে আলগাভাবে বাঁধতে পারেন।",
+          "কামড়ের কাছের আংটি, চুড়ি, ঘড়ি ও আঁটসাঁট কাপড় খুলে ফেলুন।",
+          "দেরি না করে নিকটতম সরকারি হাসপাতালে নিন। অ্যান্টিভেনমই একমাত্র চিকিৎসা। কামড়ের সময়টি মনে রাখুন।"
+        ]
+      },
+      "doNot": {
+        "en": [
+          "Do not cut, suck or burn the bite.",
+          "Do not tie a tight rope or band around the limb.",
+          "Do not put herbs, chemicals or ice on the bite.",
+          "Do not take the person to an ojha or traditional healer. It wastes time that can save a life.",
+          "Do not try to catch or kill the snake."
+        ],
+        "bn": [
+          "কামড়ের জায়গা কাটবেন না, চুষবেন না বা পোড়াবেন না।",
+          "হাত বা পায়ে শক্ত করে দড়ি বা বাঁধন দেবেন না।",
+          "কামড়ের জায়গায় লতাপাতা, রাসায়নিক বা বরফ লাগাবেন না।",
+          "ওঝা বা কবিরাজের কাছে নেবেন না। এতে জীবন বাঁচানোর মূল্যবান সময় নষ্ট হয়।",
+          "সাপ ধরার বা মারার চেষ্টা করবেন না।"
+        ]
+      },
+      "getHelp": {
+        "en": [
+          "Every snake bite needs a hospital, even with no pain or swelling at first. Some bites cause symptoms hours later.",
+          "Urgently if there are drooping eyelids, trouble swallowing or breathing, bleeding or vomiting."
+        ],
+        "bn": [
+          "প্রতিটি সাপে কাটার ক্ষেত্রেই হাসপাতালে যেতে হবে, শুরুতে ব্যথা বা ফোলা না থাকলেও। কিছু কামড়ের লক্ষণ কয়েক ঘণ্টা পরে দেখা দেয়।",
+          "চোখের পাতা ঝুলে পড়া, গিলতে বা শ্বাস নিতে কষ্ট, রক্তপাত বা বমি হলে অবিলম্বে।"
+        ]
+      },
+      "whoToContact": {
+        "en": "999, then the nearest government hospital that has antivenom.",
+        "bn": "৯৯৯, তারপর অ্যান্টিভেনম আছে এমন নিকটতম সরকারি হাসপাতাল।"
+      },
+      "callNumbers": [
+        "999"
+      ]
+    },
+    {
+      "id": "animal-bite",
+      "kind": "firstAid",
+      "icon": "animal",
+      "title": {
+        "en": "Animal bite",
+        "bn": "প্রাণীর কামড়"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "poisoning",
+      "kind": "firstAid",
+      "icon": "poison",
+      "title": {
+        "en": "Poisoning",
+        "bn": "বিষক্রিয়া"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "seizure",
+      "kind": "firstAid",
+      "icon": "seizure",
+      "title": {
+        "en": "Seizure (fits)",
+        "bn": "খিঁচুনি"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "road-accident",
+      "kind": "firstAid",
+      "icon": "road",
+      "title": {
+        "en": "Road accident",
+        "bn": "সড়ক দুর্ঘটনা"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "fire",
+      "kind": "firstAid",
+      "icon": "fire",
+      "title": {
+        "en": "Fire",
+        "bn": "আগুন"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "gas-leak",
+      "kind": "firstAid",
+      "icon": "gas",
+      "title": {
+        "en": "Gas leak",
+        "bn": "গ্যাস লিক"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "building-collapse",
+      "kind": "firstAid",
+      "icon": "collapse",
+      "title": {
+        "en": "Building collapse",
+        "bn": "ভবন ধস"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "flood",
+      "kind": "disaster",
+      "icon": "flood",
+      "title": {
+        "en": "Flood",
+        "bn": "বন্যা"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "cyclone",
+      "kind": "disaster",
+      "icon": "cyclone",
+      "title": {
+        "en": "Cyclone",
+        "bn": "ঘূর্ণিঝড়"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "earthquake",
+      "kind": "disaster",
+      "icon": "earthquake",
+      "title": {
+        "en": "Earthquake",
+        "bn": "ভূমিকম্প"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "lightning",
+      "kind": "disaster",
+      "icon": "lightning",
+      "title": {
+        "en": "Lightning",
+        "bn": "বজ্রপাত"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "landslide",
+      "kind": "disaster",
+      "icon": "landslide",
+      "title": {
+        "en": "Landslide",
+        "bn": "ভূমিধস"
+      },
+      "reviewStatus": "pending"
+    },
+    {
+      "id": "severe-storm",
+      "kind": "disaster",
+      "icon": "storm",
+      "title": {
+        "en": "Severe storm",
+        "bn": "তীব্র ঝড়"
+      },
+      "reviewStatus": "pending"
+    }
+  ]
+}

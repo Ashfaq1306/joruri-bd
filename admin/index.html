@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joruri BD · Admin</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--green:#006A4E;--green-weak:#e3f2ec;--red:#C8102E;--ink:#14211C;--muted:#5a6a63;--line:#dde5e1;--bg:#f4f7f5;--card:#fff;
+  font-family:'Hind Siliguri',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg)}
+h1{font-size:24px;margin:0 0 16px}h1 small{color:var(--muted);font-weight:500;font-size:16px}h2{margin:0 0 12px}h3{margin:0 0 6px}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:10px;padding:7px 14px}
+button.primary{background:var(--green);border-color:var(--green);color:#fff;font-weight:600}
+button.danger{color:var(--red)}button.link{border:0;background:none;color:var(--green);padding:0}
+input,select,textarea{font:inherit;width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#fff}
+textarea.mono{font-family:ui-monospace,Consolas,monospace;font-size:13px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(0,106,78,.12)}
+.layout{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.side{background:#0f1f19;color:#fff;padding:18px 12px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.brand{display:flex;gap:10px;align-items:center;margin:0 6px 18px}.brand img{width:38px;height:38px;border-radius:11px;background:#fff;padding:4px}
+.brand small{display:block;opacity:.7}
+.navbtn{background:none;border:0;color:#cfe;text-align:left;padding:9px 12px;border-radius:10px}.navbtn.on,.navbtn:hover{background:rgba(255,255,255,.1);color:#fff}
+.who{margin-top:auto;padding:10px 8px;border-top:1px solid rgba(255,255,255,.1)}.who small{display:block;opacity:.7;word-break:break-all}.who .link{color:#9fe6c8}
+.main{padding:26px 30px;max-width:1200px}
+.head{display:flex;gap:12px;align-items:center;margin-bottom:12px}.head h1{margin:0;flex:1}.head input{max-width:260px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:12px 0;box-shadow:0 6px 18px -12px rgba(16,48,38,.25)}
+.card.bad{border-color:#f3b3bd;background:#fff5f6}.card.ok{border-color:#a6dcc4;background:#f3fbf7}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.stat{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:16px;border-radius:16px;text-align:left;background:#fff;box-shadow:0 6px 18px -12px rgba(16,48,38,.25)}
+.stat b{font-size:30px;color:var(--green)}.stat small{color:var(--muted)}
+.tablewrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;font-size:15px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f8faf9;font-size:13px;color:var(--muted);font-weight:600}tr.muted td{color:#9aa7a1}
+td.actions{white-space:nowrap;text-align:right}td.actions button{margin-left:6px}
+.overlay{position:fixed;inset:0;background:rgba(8,20,16,.45);display:flex;justify-content:center;align-items:flex-start;padding:30px;overflow:auto;z-index:10}
+.editor{background:#fff;border-radius:18px;padding:22px;width:min(760px,100%);display:flex;flex-direction:column;gap:10px}
+.field{display:flex;flex-direction:column;gap:4px;font-size:14px;font-weight:600;color:var(--muted)}
+.field.check{flex-direction:row;align-items:center;gap:8px;color:var(--ink)}.field.check input{width:auto}
+.field.bi .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field.bi label{display:flex;flex-direction:column;gap:4px;font-weight:500}
+.row{display:flex;justify-content:flex-end;gap:10px;margin-top:6px}
+.err{color:var(--red);font-weight:600}.warn{color:#9a5b00}.hint{color:var(--muted)}.center{text-align:center}
+.login{max-width:400px;margin:10vh auto;display:flex;flex-direction:column;gap:12px}.login .logo{width:84px;align-self:center}.login h1{text-align:center}
+.login label{display:flex;flex-direction:column;gap:4px;font-weight:600;color:var(--muted)}
+.login details summary{cursor:pointer;color:var(--green);font-weight:600;margin:4px 0 8px}.stack{display:flex;flex-direction:column;gap:10px}
+.login .card{margin:0}
+.toast{position:fixed;right:20px;bottom:20px;background:#13261f;color:#fff;padding:12px 16px;border-radius:12px;z-index:20}.toast.bad{background:var(--red)}
+code{background:#eef3f0;padding:2px 6px;border-radius:6px}
+@media (max-width:760px){.layout{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap}.who{margin:0}.main{padding:16px}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="backend-firebase.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

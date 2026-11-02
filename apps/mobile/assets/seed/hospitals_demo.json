@@ -1,0 +1,1396 @@
+{
+  "schemaVersion": 1,
+  "note": "DEMO ONLY. Fictional places and prices. Numbers start with 010, which no operator uses. Turn off with AppConfig.showDemoPlaces before release.",
+  "hospitals": [
+    {
+      "id": "demo-h1",
+      "name": "Demo Shapla General Hospital",
+      "districtId": "dhaka",
+      "area": "Mirpur",
+      "address": "Mirpur, demo address",
+      "phone": "01000000001",
+      "emergencyPhone": "01000010001",
+      "emergency": true,
+      "bloodBank": true,
+      "ambulance": true,
+      "icu": true,
+      "open24h": true,
+      "pricesCheckedOn": "2026-10-01",
+      "tests": [
+        {
+          "name": "CBC (Complete Blood Count)",
+          "aliases": [
+            "CBC",
+            "Complete Blood Count",
+            "সিবিসি",
+            "রক্ত পরীক্ষা"
+          ]
+        },
+        {
+          "name": "Blood sugar (fasting / random)",
+          "aliases": [
+            "RBS",
+            "FBS",
+            "Sugar",
+            "সুগার",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 150
+        },
+        {
+          "name": "HbA1c",
+          "aliases": [
+            "এইচবিএওয়ানসি",
+            "Diabetes",
+            "ডায়াবেটিস"
+          ]
+        },
+        {
+          "name": "Lipid profile",
+          "aliases": [
+            "Cholesterol",
+            "কোলেস্টেরল",
+            "লিপিড"
+          ],
+          "priceBdt": 950
+        },
+        {
+          "name": "Serum creatinine",
+          "aliases": [
+            "Kidney",
+            "কিডনি",
+            "ক্রিয়েটিনিন"
+          ],
+          "priceBdt": 500
+        },
+        {
+          "name": "Urine R/E",
+          "aliases": [
+            "Urine",
+            "প্রস্রাব",
+            "ইউরিন"
+          ],
+          "priceBdt": 350
+        },
+        {
+          "name": "X-ray chest (PA view)",
+          "aliases": [
+            "X-ray",
+            "Xray",
+            "এক্স-রে",
+            "এক্সরে"
+          ],
+          "priceBdt": 650
+        },
+        {
+          "name": "ECG",
+          "aliases": [
+            "EKG",
+            "ইসিজি"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "Ultrasound whole abdomen",
+          "aliases": [
+            "USG",
+            "Ultrasonogram",
+            "আল্ট্রাসনোগ্রাম",
+            "আল্ট্রাসাউন্ড"
+          ],
+          "priceBdt": 2100
+        },
+        {
+          "name": "Dengue NS1 antigen",
+          "aliases": [
+            "Dengue",
+            "ডেঙ্গু",
+            "NS1"
+          ],
+          "priceBdt": 350
+        },
+        {
+          "name": "TSH (thyroid)",
+          "aliases": [
+            "Thyroid",
+            "থাইরয়েড"
+          ],
+          "priceBdt": 1000
+        },
+        {
+          "name": "Echocardiogram",
+          "aliases": [
+            "Echo",
+            "ইকো",
+            "ইকোকার্ডিওগ্রাম"
+          ],
+          "priceBdt": 2850
+        },
+        {
+          "name": "CT scan (brain)",
+          "aliases": [
+            "CT",
+            "সিটি স্ক্যান"
+          ],
+          "priceBdt": 5350
+        },
+        {
+          "name": "MRI (brain)",
+          "aliases": [
+            "MRI",
+            "এমআরআই"
+          ],
+          "priceBdt": 8700
+        }
+      ],
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-h2",
+      "name": "Demo Padma Medical Centre",
+      "districtId": "dhaka",
+      "area": "Dhanmondi",
+      "address": "Dhanmondi, demo address",
+      "phone": "01000000002",
+      "emergencyPhone": "01000010002",
+      "emergency": true,
+      "bloodBank": false,
+      "ambulance": true,
+      "icu": true,
+      "open24h": true,
+      "pricesCheckedOn": "2026-10-01",
+      "tests": [
+        {
+          "name": "CBC (Complete Blood Count)",
+          "aliases": [
+            "CBC",
+            "Complete Blood Count",
+            "সিবিসি",
+            "রক্ত পরীক্ষা"
+          ],
+          "priceBdt": 350
+        },
+        {
+          "name": "Blood sugar (fasting / random)",
+          "aliases": [
+            "RBS",
+            "FBS",
+            "Sugar",
+            "সুগার",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 200
+        },
+        {
+          "name": "HbA1c",
+          "aliases": [
+            "এইচবিএওয়ানসি",
+            "Diabetes",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 900
+        },
+        {
+          "name": "Lipid profile",
+          "aliases": [
+            "Cholesterol",
+            "কোলেস্টেরল",
+            "লিপিড"
+          ],
+          "priceBdt": 950
+        },
+        {
+          "name": "Serum creatinine",
+          "aliases": [
+            "Kidney",
+            "কিডনি",
+            "ক্রিয়েটিনিন"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "Urine R/E",
+          "aliases": [
+            "Urine",
+            "প্রস্রাব",
+            "ইউরিন"
+          ]
+        },
+        {
+          "name": "X-ray chest (PA view)",
+          "aliases": [
+            "X-ray",
+            "Xray",
+            "এক্স-রে",
+            "এক্সরে"
+          ]
+        },
+        {
+          "name": "ECG",
+          "aliases": [
+            "EKG",
+            "ইসিজি"
+          ],
+          "priceBdt": 350
+        },
+        {
+          "name": "Ultrasound whole abdomen",
+          "aliases": [
+            "USG",
+            "Ultrasonogram",
+            "আল্ট্রাসনোগ্রাম",
+            "আল্ট্রাসাউন্ড"
+          ],
+          "priceBdt": 1250
+        },
+        {
+          "name": "Dengue NS1 antigen",
+          "aliases": [
+            "Dengue",
+            "ডেঙ্গু",
+            "NS1"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "TSH (thyroid)",
+          "aliases": [
+            "Thyroid",
+            "থাইরয়েড"
+          ],
+          "priceBdt": 1000
+        },
+        {
+          "name": "Echocardiogram",
+          "aliases": [
+            "Echo",
+            "ইকো",
+            "ইকোকার্ডিওগ্রাম"
+          ],
+          "priceBdt": 2750
+        },
+        {
+          "name": "CT scan (brain)",
+          "aliases": [
+            "CT",
+            "সিটি স্ক্যান"
+          ],
+          "priceBdt": 4450
+        },
+        {
+          "name": "MRI (brain)",
+          "aliases": [
+            "MRI",
+            "এমআরআই"
+          ]
+        }
+      ],
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-h3",
+      "name": "Demo Meghna Diagnostic & Hospital",
+      "districtId": "dhaka",
+      "area": "Uttara",
+      "address": "Uttara, demo address",
+      "phone": "01000000003",
+      "emergencyPhone": "01000010003",
+      "emergency": true,
+      "bloodBank": true,
+      "ambulance": false,
+      "icu": false,
+      "open24h": true,
+      "pricesCheckedOn": "2026-10-01",
+      "tests": [
+        {
+          "name": "CBC (Complete Blood Count)",
+          "aliases": [
+            "CBC",
+            "Complete Blood Count",
+            "সিবিসি",
+            "রক্ত পরীক্ষা"
+          ],
+          "priceBdt": 650
+        },
+        {
+          "name": "Blood sugar (fasting / random)",
+          "aliases": [
+            "RBS",
+            "FBS",
+            "Sugar",
+            "সুগার",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 200
+        },
+        {
+          "name": "HbA1c",
+          "aliases": [
+            "এইচবিএওয়ানসি",
+            "Diabetes",
+            "ডায়াবেটিস"
+          ]
+        },
+        {
+          "name": "Lipid profile",
+          "aliases": [
+            "Cholesterol",
+            "কোলেস্টেরল",
+            "লিপিড"
+          ],
+          "priceBdt": 1200
+        },
+        {
+          "name": "Serum creatinine",
+          "aliases": [
+            "Kidney",
+            "কিডনি",
+            "ক্রিয়েটিনিন"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "Urine R/E",
+          "aliases": [
+            "Urine",
+            "প্রস্রাব",
+            "ইউরিন"
+          ],
+          "priceBdt": 400
+        },
+        {
+          "name": "X-ray chest (PA view)",
+          "aliases": [
+            "X-ray",
+            "Xray",
+            "এক্স-রে",
+            "এক্সরে"
+          ],
+          "priceBdt": 550
+        },
+        {
+          "name": "ECG",
+          "aliases": [
+            "EKG",
+            "ইসিজি"
+          ],
+          "priceBdt": 400
+        },
+        {
+          "name": "Ultrasound whole abdomen",
+          "aliases": [
+            "USG",
+            "Ultrasonogram",
+            "আল্ট্রাসনোগ্রাম",
+            "আল্ট্রাসাউন্ড"
+          ],
+          "priceBdt": 1200
+        },
+        {
+          "name": "Dengue NS1 antigen",
+          "aliases": [
+            "Dengue",
+            "ডেঙ্গু",
+            "NS1"
+          ],
+          "priceBdt": 500
+        },
+        {
+          "name": "TSH (thyroid)",
+          "aliases": [
+            "Thyroid",
+            "থাইরয়েড"
+          ],
+          "priceBdt": 1200
+        },
+        {
+          "name": "Echocardiogram",
+          "aliases": [
+            "Echo",
+            "ইকো",
+            "ইকোকার্ডিওগ্রাম"
+          ]
+        },
+        {
+          "name": "CT scan (brain)",
+          "aliases": [
+            "CT",
+            "সিটি স্ক্যান"
+          ],
+          "priceBdt": 6500
+        },
+        {
+          "name": "MRI (brain)",
+          "aliases": [
+            "MRI",
+            "এমআরআই"
+          ],
+          "priceBdt": 9650
+        }
+      ],
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-h4",
+      "name": "Demo Jamuna Clinic",
+      "districtId": "dhaka",
+      "area": "Badda",
+      "address": "Badda, demo address",
+      "phone": "01000000004",
+      "emergency": false,
+      "bloodBank": false,
+      "ambulance": false,
+      "icu": false,
+      "open24h": false,
+      "pricesCheckedOn": "2026-10-01",
+      "tests": [
+        {
+          "name": "CBC (Complete Blood Count)",
+          "aliases": [
+            "CBC",
+            "Complete Blood Count",
+            "সিবিসি",
+            "রক্ত পরীক্ষা"
+          ],
+          "priceBdt": 350
+        },
+        {
+          "name": "HbA1c",
+          "aliases": [
+            "এইচবিএওয়ানসি",
+            "Diabetes",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 1200
+        },
+        {
+          "name": "Lipid profile",
+          "aliases": [
+            "Cholesterol",
+            "কোলেস্টেরল",
+            "লিপিড"
+          ],
+          "priceBdt": 1250
+        },
+        {
+          "name": "Serum creatinine",
+          "aliases": [
+            "Kidney",
+            "কিডনি",
+            "ক্রিয়েটিনিন"
+          ],
+          "priceBdt": 500
+        },
+        {
+          "name": "Urine R/E",
+          "aliases": [
+            "Urine",
+            "প্রস্রাব",
+            "ইউরিন"
+          ],
+          "priceBdt": 250
+        },
+        {
+          "name": "X-ray chest (PA view)",
+          "aliases": [
+            "X-ray",
+            "Xray",
+            "এক্স-রে",
+            "এক্সরে"
+          ],
+          "priceBdt": 750
+        },
+        {
+          "name": "ECG",
+          "aliases": [
+            "EKG",
+            "ইসিজি"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "MRI (brain)",
+          "aliases": [
+            "MRI",
+            "এমআরআই"
+          ],
+          "priceBdt": 11250
+        }
+      ],
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-h5",
+      "name": "Demo Karnaphuli Hospital",
+      "districtId": "chattogram",
+      "area": "Agrabad",
+      "address": "Agrabad, demo address",
+      "phone": "01000000005",
+      "emergencyPhone": "01000010005",
+      "emergency": true,
+      "bloodBank": true,
+      "ambulance": true,
+      "icu": true,
+      "open24h": true,
+      "pricesCheckedOn": "2026-10-01",
+      "tests": [
+        {
+          "name": "CBC (Complete Blood Count)",
+          "aliases": [
+            "CBC",
+            "Complete Blood Count",
+            "সিবিসি",
+            "রক্ত পরীক্ষা"
+          ],
+          "priceBdt": 400
+        },
+        {
+          "name": "Blood sugar (fasting / random)",
+          "aliases": [
+            "RBS",
+            "FBS",
+            "Sugar",
+            "সুগার",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 250
+        },
+        {
+          "name": "HbA1c",
+          "aliases": [
+            "এইচবিএওয়ানসি",
+            "Diabetes",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 1400
+        },
+        {
+          "name": "Lipid profile",
+          "aliases": [
+            "Cholesterol",
+            "কোলেস্টেরল",
+            "লিপিড"
+          ],
+          "priceBdt": 1250
+        },
+        {
+          "name": "Serum creatinine",
+          "aliases": [
+            "Kidney",
+            "কিডনি",
+            "ক্রিয়েটিনিন"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "Urine R/E",
+          "aliases": [
+            "Urine",
+            "প্রস্রাব",
+            "ইউরিন"
+          ]
+        },
+        {
+          "name": "X-ray chest (PA view)",
+          "aliases": [
+            "X-ray",
+            "Xray",
+            "এক্স-রে",
+            "এক্সরে"
+          ],
+          "priceBdt": 500
+        },
+        {
+          "name": "ECG",
+          "aliases": [
+            "EKG",
+            "ইসিজি"
+          ],
+          "priceBdt": 400
+        },
+        {
+          "name": "Ultrasound whole abdomen",
+          "aliases": [
+            "USG",
+            "Ultrasonogram",
+            "আল্ট্রাসনোগ্রাম",
+            "আল্ট্রাসাউন্ড"
+          ],
+          "priceBdt": 2050
+        },
+        {
+          "name": "Dengue NS1 antigen",
+          "aliases": [
+            "Dengue",
+            "ডেঙ্গু",
+            "NS1"
+          ],
+          "priceBdt": 350
+        },
+        {
+          "name": "TSH (thyroid)",
+          "aliases": [
+            "Thyroid",
+            "থাইরয়েড"
+          ],
+          "priceBdt": 750
+        },
+        {
+          "name": "Echocardiogram",
+          "aliases": [
+            "Echo",
+            "ইকো",
+            "ইকোকার্ডিওগ্রাম"
+          ],
+          "priceBdt": 2600
+        },
+        {
+          "name": "CT scan (brain)",
+          "aliases": [
+            "CT",
+            "সিটি স্ক্যান"
+          ],
+          "priceBdt": 5350
+        },
+        {
+          "name": "MRI (brain)",
+          "aliases": [
+            "MRI",
+            "এমআরআই"
+          ],
+          "priceBdt": 11550
+        }
+      ],
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-h6",
+      "name": "Demo Halda Medical",
+      "districtId": "chattogram",
+      "area": "Panchlaish",
+      "address": "Panchlaish, demo address",
+      "phone": "01000000006",
+      "emergencyPhone": "01000010006",
+      "emergency": true,
+      "bloodBank": false,
+      "ambulance": true,
+      "icu": false,
+      "open24h": false,
+      "pricesCheckedOn": "2026-10-01",
+      "tests": [
+        {
+          "name": "CBC (Complete Blood Count)",
+          "aliases": [
+            "CBC",
+            "Complete Blood Count",
+            "সিবিসি",
+            "রক্ত পরীক্ষা"
+          ],
+          "priceBdt": 350
+        },
+        {
+          "name": "Blood sugar (fasting / random)",
+          "aliases": [
+            "RBS",
+            "FBS",
+            "Sugar",
+            "সুগার",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 200
+        },
+        {
+          "name": "HbA1c",
+          "aliases": [
+            "এইচবিএওয়ানসি",
+            "Diabetes",
+            "ডায়াবেটিস"
+          ]
+        },
+        {
+          "name": "Lipid profile",
+          "aliases": [
+            "Cholesterol",
+            "কোলেস্টেরল",
+            "লিপিড"
+          ],
+          "priceBdt": 1100
+        },
+        {
+          "name": "Serum creatinine",
+          "aliases": [
+            "Kidney",
+            "কিডনি",
+            "ক্রিয়েটিনিন"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "Urine R/E",
+          "aliases": [
+            "Urine",
+            "প্রস্রাব",
+            "ইউরিন"
+          ],
+          "priceBdt": 400
+        },
+        {
+          "name": "X-ray chest (PA view)",
+          "aliases": [
+            "X-ray",
+            "Xray",
+            "এক্স-রে",
+            "এক্সরে"
+          ],
+          "priceBdt": 650
+        },
+        {
+          "name": "ECG",
+          "aliases": [
+            "EKG",
+            "ইসিজি"
+          ],
+          "priceBdt": 500
+        },
+        {
+          "name": "Ultrasound whole abdomen",
+          "aliases": [
+            "USG",
+            "Ultrasonogram",
+            "আল্ট্রাসনোগ্রাম",
+            "আল্ট্রাসাউন্ড"
+          ],
+          "priceBdt": 1250
+        },
+        {
+          "name": "Dengue NS1 antigen",
+          "aliases": [
+            "Dengue",
+            "ডেঙ্গু",
+            "NS1"
+          ]
+        },
+        {
+          "name": "TSH (thyroid)",
+          "aliases": [
+            "Thyroid",
+            "থাইরয়েড"
+          ],
+          "priceBdt": 1050
+        },
+        {
+          "name": "Echocardiogram",
+          "aliases": [
+            "Echo",
+            "ইকো",
+            "ইকোকার্ডিওগ্রাম"
+          ],
+          "priceBdt": 1850
+        },
+        {
+          "name": "CT scan (brain)",
+          "aliases": [
+            "CT",
+            "সিটি স্ক্যান"
+          ],
+          "priceBdt": 4950
+        },
+        {
+          "name": "MRI (brain)",
+          "aliases": [
+            "MRI",
+            "এমআরআই"
+          ],
+          "priceBdt": 8250
+        }
+      ],
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-h7",
+      "name": "Demo Surma Hospital",
+      "districtId": "sylhet",
+      "area": "Zindabazar",
+      "address": "Zindabazar, demo address",
+      "phone": "01000000007",
+      "emergencyPhone": "01000010007",
+      "emergency": true,
+      "bloodBank": true,
+      "ambulance": true,
+      "icu": false,
+      "open24h": true,
+      "pricesCheckedOn": "2026-10-01",
+      "tests": [
+        {
+          "name": "CBC (Complete Blood Count)",
+          "aliases": [
+            "CBC",
+            "Complete Blood Count",
+            "সিবিসি",
+            "রক্ত পরীক্ষা"
+          ],
+          "priceBdt": 650
+        },
+        {
+          "name": "Blood sugar (fasting / random)",
+          "aliases": [
+            "RBS",
+            "FBS",
+            "Sugar",
+            "সুগার",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 150
+        },
+        {
+          "name": "HbA1c",
+          "aliases": [
+            "এইচবিএওয়ানসি",
+            "Diabetes",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 1250
+        },
+        {
+          "name": "Lipid profile",
+          "aliases": [
+            "Cholesterol",
+            "কোলেস্টেরল",
+            "লিপিড"
+          ],
+          "priceBdt": 1250
+        },
+        {
+          "name": "Serum creatinine",
+          "aliases": [
+            "Kidney",
+            "কিডনি",
+            "ক্রিয়েটিনিন"
+          ],
+          "priceBdt": 500
+        },
+        {
+          "name": "Urine R/E",
+          "aliases": [
+            "Urine",
+            "প্রস্রাব",
+            "ইউরিন"
+          ],
+          "priceBdt": 200
+        },
+        {
+          "name": "X-ray chest (PA view)",
+          "aliases": [
+            "X-ray",
+            "Xray",
+            "এক্স-রে",
+            "এক্সরে"
+          ],
+          "priceBdt": 700
+        },
+        {
+          "name": "ECG",
+          "aliases": [
+            "EKG",
+            "ইসিজি"
+          ],
+          "priceBdt": 500
+        },
+        {
+          "name": "Ultrasound whole abdomen",
+          "aliases": [
+            "USG",
+            "Ultrasonogram",
+            "আল্ট্রাসনোগ্রাম",
+            "আল্ট্রাসাউন্ড"
+          ],
+          "priceBdt": 2000
+        },
+        {
+          "name": "Dengue NS1 antigen",
+          "aliases": [
+            "Dengue",
+            "ডেঙ্গু",
+            "NS1"
+          ],
+          "priceBdt": 300
+        },
+        {
+          "name": "TSH (thyroid)",
+          "aliases": [
+            "Thyroid",
+            "থাইরয়েড"
+          ],
+          "priceBdt": 700
+        },
+        {
+          "name": "Echocardiogram",
+          "aliases": [
+            "Echo",
+            "ইকো",
+            "ইকোকার্ডিওগ্রাম"
+          ],
+          "priceBdt": 2400
+        },
+        {
+          "name": "CT scan (brain)",
+          "aliases": [
+            "CT",
+            "সিটি স্ক্যান"
+          ],
+          "priceBdt": 5600
+        },
+        {
+          "name": "MRI (brain)",
+          "aliases": [
+            "MRI",
+            "এমআরআই"
+          ],
+          "priceBdt": 11250
+        }
+      ],
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-h8",
+      "name": "Demo Barind Medical",
+      "districtId": "rajshahi",
+      "area": "Uposhohor",
+      "address": "Uposhohor, demo address",
+      "phone": "01000000008",
+      "emergencyPhone": "01000010008",
+      "emergency": true,
+      "bloodBank": false,
+      "ambulance": true,
+      "icu": false,
+      "open24h": true,
+      "pricesCheckedOn": "2026-10-01",
+      "tests": [
+        {
+          "name": "CBC (Complete Blood Count)",
+          "aliases": [
+            "CBC",
+            "Complete Blood Count",
+            "সিবিসি",
+            "রক্ত পরীক্ষা"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "Blood sugar (fasting / random)",
+          "aliases": [
+            "RBS",
+            "FBS",
+            "Sugar",
+            "সুগার",
+            "ডায়াবেটিস"
+          ]
+        },
+        {
+          "name": "HbA1c",
+          "aliases": [
+            "এইচবিএওয়ানসি",
+            "Diabetes",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 1250
+        },
+        {
+          "name": "Lipid profile",
+          "aliases": [
+            "Cholesterol",
+            "কোলেস্টেরল",
+            "লিপিড"
+          ],
+          "priceBdt": 1000
+        },
+        {
+          "name": "Serum creatinine",
+          "aliases": [
+            "Kidney",
+            "কিডনি",
+            "ক্রিয়েটিনিন"
+          ],
+          "priceBdt": 550
+        },
+        {
+          "name": "Urine R/E",
+          "aliases": [
+            "Urine",
+            "প্রস্রাব",
+            "ইউরিন"
+          ],
+          "priceBdt": 400
+        },
+        {
+          "name": "X-ray chest (PA view)",
+          "aliases": [
+            "X-ray",
+            "Xray",
+            "এক্স-রে",
+            "এক্সরে"
+          ],
+          "priceBdt": 650
+        },
+        {
+          "name": "ECG",
+          "aliases": [
+            "EKG",
+            "ইসিজি"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "Ultrasound whole abdomen",
+          "aliases": [
+            "USG",
+            "Ultrasonogram",
+            "আল্ট্রাসনোগ্রাম",
+            "আল্ট্রাসাউন্ড"
+          ],
+          "priceBdt": 2500
+        },
+        {
+          "name": "Dengue NS1 antigen",
+          "aliases": [
+            "Dengue",
+            "ডেঙ্গু",
+            "NS1"
+          ],
+          "priceBdt": 400
+        },
+        {
+          "name": "TSH (thyroid)",
+          "aliases": [
+            "Thyroid",
+            "থাইরয়েড"
+          ],
+          "priceBdt": 850
+        },
+        {
+          "name": "Echocardiogram",
+          "aliases": [
+            "Echo",
+            "ইকো",
+            "ইকোকার্ডিওগ্রাম"
+          ],
+          "priceBdt": 2500
+        },
+        {
+          "name": "CT scan (brain)",
+          "aliases": [
+            "CT",
+            "সিটি স্ক্যান"
+          ],
+          "priceBdt": 6050
+        },
+        {
+          "name": "MRI (brain)",
+          "aliases": [
+            "MRI",
+            "এমআরআই"
+          ],
+          "priceBdt": 11750
+        }
+      ],
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-h9",
+      "name": "Demo Rupsha General",
+      "districtId": "khulna",
+      "area": "Sonadanga",
+      "address": "Sonadanga, demo address",
+      "phone": "01000000009",
+      "emergencyPhone": "01000010009",
+      "emergency": true,
+      "bloodBank": true,
+      "ambulance": false,
+      "icu": true,
+      "open24h": true,
+      "pricesCheckedOn": "2026-10-01",
+      "tests": [
+        {
+          "name": "CBC (Complete Blood Count)",
+          "aliases": [
+            "CBC",
+            "Complete Blood Count",
+            "সিবিসি",
+            "রক্ত পরীক্ষা"
+          ],
+          "priceBdt": 400
+        },
+        {
+          "name": "Blood sugar (fasting / random)",
+          "aliases": [
+            "RBS",
+            "FBS",
+            "Sugar",
+            "সুগার",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 150
+        },
+        {
+          "name": "HbA1c",
+          "aliases": [
+            "এইচবিএওয়ানসি",
+            "Diabetes",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 1100
+        },
+        {
+          "name": "Lipid profile",
+          "aliases": [
+            "Cholesterol",
+            "কোলেস্টেরল",
+            "লিপিড"
+          ],
+          "priceBdt": 1200
+        },
+        {
+          "name": "Serum creatinine",
+          "aliases": [
+            "Kidney",
+            "কিডনি",
+            "ক্রিয়েটিনিন"
+          ],
+          "priceBdt": 600
+        },
+        {
+          "name": "Urine R/E",
+          "aliases": [
+            "Urine",
+            "প্রস্রাব",
+            "ইউরিন"
+          ],
+          "priceBdt": 300
+        },
+        {
+          "name": "X-ray chest (PA view)",
+          "aliases": [
+            "X-ray",
+            "Xray",
+            "এক্স-রে",
+            "এক্সরে"
+          ],
+          "priceBdt": 400
+        },
+        {
+          "name": "ECG",
+          "aliases": [
+            "EKG",
+            "ইসিজি"
+          ],
+          "priceBdt": 300
+        },
+        {
+          "name": "Ultrasound whole abdomen",
+          "aliases": [
+            "USG",
+            "Ultrasonogram",
+            "আল্ট্রাসনোগ্রাম",
+            "আল্ট্রাসাউন্ড"
+          ],
+          "priceBdt": 2000
+        },
+        {
+          "name": "Dengue NS1 antigen",
+          "aliases": [
+            "Dengue",
+            "ডেঙ্গু",
+            "NS1"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "TSH (thyroid)",
+          "aliases": [
+            "Thyroid",
+            "থাইরয়েড"
+          ]
+        },
+        {
+          "name": "Echocardiogram",
+          "aliases": [
+            "Echo",
+            "ইকো",
+            "ইকোকার্ডিওগ্রাম"
+          ],
+          "priceBdt": 2450
+        },
+        {
+          "name": "CT scan (brain)",
+          "aliases": [
+            "CT",
+            "সিটি স্ক্যান"
+          ]
+        },
+        {
+          "name": "MRI (brain)",
+          "aliases": [
+            "MRI",
+            "এমআরআই"
+          ],
+          "priceBdt": 7800
+        }
+      ],
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-h10",
+      "name": "Demo Turag Hospital",
+      "districtId": "gazipur",
+      "area": "Tongi",
+      "address": "Tongi, demo address",
+      "phone": "01000000010",
+      "emergencyPhone": "01000010010",
+      "emergency": true,
+      "bloodBank": false,
+      "ambulance": true,
+      "icu": false,
+      "open24h": true,
+      "pricesCheckedOn": "2026-10-01",
+      "tests": [
+        {
+          "name": "CBC (Complete Blood Count)",
+          "aliases": [
+            "CBC",
+            "Complete Blood Count",
+            "সিবিসি",
+            "রক্ত পরীক্ষা"
+          ],
+          "priceBdt": 350
+        },
+        {
+          "name": "Blood sugar (fasting / random)",
+          "aliases": [
+            "RBS",
+            "FBS",
+            "Sugar",
+            "সুগার",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 250
+        },
+        {
+          "name": "HbA1c",
+          "aliases": [
+            "এইচবিএওয়ানসি",
+            "Diabetes",
+            "ডায়াবেটিস"
+          ],
+          "priceBdt": 1050
+        },
+        {
+          "name": "Lipid profile",
+          "aliases": [
+            "Cholesterol",
+            "কোলেস্টেরল",
+            "লিপিড"
+          ],
+          "priceBdt": 1300
+        },
+        {
+          "name": "Serum creatinine",
+          "aliases": [
+            "Kidney",
+            "কিডনি",
+            "ক্রিয়েটিনিন"
+          ],
+          "priceBdt": 600
+        },
+        {
+          "name": "Urine R/E",
+          "aliases": [
+            "Urine",
+            "প্রস্রাব",
+            "ইউরিন"
+          ],
+          "priceBdt": 250
+        },
+        {
+          "name": "X-ray chest (PA view)",
+          "aliases": [
+            "X-ray",
+            "Xray",
+            "এক্স-রে",
+            "এক্সরে"
+          ]
+        },
+        {
+          "name": "ECG",
+          "aliases": [
+            "EKG",
+            "ইসিজি"
+          ],
+          "priceBdt": 600
+        },
+        {
+          "name": "Ultrasound whole abdomen",
+          "aliases": [
+            "USG",
+            "Ultrasonogram",
+            "আল্ট্রাসনোগ্রাম",
+            "আল্ট্রাসাউন্ড"
+          ],
+          "priceBdt": 2350
+        },
+        {
+          "name": "Dengue NS1 antigen",
+          "aliases": [
+            "Dengue",
+            "ডেঙ্গু",
+            "NS1"
+          ],
+          "priceBdt": 450
+        },
+        {
+          "name": "TSH (thyroid)",
+          "aliases": [
+            "Thyroid",
+            "থাইরয়েড"
+          ],
+          "priceBdt": 1100
+        },
+        {
+          "name": "Echocardiogram",
+          "aliases": [
+            "Echo",
+            "ইকো",
+            "ইকোকার্ডিওগ্রাম"
+          ],
+          "priceBdt": 3050
+        },
+        {
+          "name": "CT scan (brain)",
+          "aliases": [
+            "CT",
+            "সিটি স্ক্যান"
+          ],
+          "priceBdt": 5750
+        },
+        {
+          "name": "MRI (brain)",
+          "aliases": [
+            "MRI",
+            "এমআরআই"
+          ],
+          "priceBdt": 9000
+        }
+      ],
+      "verified": false,
+      "demo": true
+    }
+  ]
+}

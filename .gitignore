@@ -1,0 +1,49 @@
+# Dart and Flutter generated files
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub/
+.pub-cache/
+
+# Keep pubspec.lock files tracked for reproducible builds
+
+# IDE files
+*.iml
+.idea/
+.vscode/
+
+# Android generated files and signing secrets
+android/.gradle/
+android/local.properties
+*.keystore
+*.jks
+key.properties
+
+# Firebase private configuration
+google-services.json
+GoogleService-Info.plist
+*service-account*.json
+*serviceAccount*.json
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Firebase generated files
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Nested Android generated files
+**/.gradle/
+**/local.properties

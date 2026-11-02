@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-10-27.1",
+  "numbers": [
+    {
+      "id": "bd-999",
+      "number": "999",
+      "category": "national",
+      "alsoCovers": [
+        "police",
+        "fire",
+        "ambulance"
+      ],
+      "name": {
+        "en": "National Emergency Service",
+        "bn": "জাতীয় জরুরি সেবা"
+      },
+      "description": {
+        "en": "Police, fire service and ambulance. Toll-free, 24 hours, works with zero balance. The ambulance itself is not free.",
+        "bn": "পুলিশ, ফায়ার সার্ভিস ও অ্যাম্বুলেন্স। টোল-ফ্রি, ২৪ ঘণ্টা, ব্যালেন্স না থাকলেও কল করা যায়। অ্যাম্বুলেন্স সেবা নিজে বিনা মূল্যে নয়।"
+      },
+      "verification": {
+        "status": "unverified",
+        "sourceName": "Bangladesh Police — Hot Line Number",
+        "sourceUrl": "https://www.police.gov.bd/en/hot_line_number",
+        "checkedOn": "2026-10-27",
+        "note": "Official directory confirms the hotline number and service label. Full description and operating details still require review before marking verified."
+      }
+    },
+    {
+      "id": "bd-109",
+      "number": "109",
+      "category": "womenChildren",
+      "name": {
+        "en": "National helpline: violence against women and children",
+        "bn": "নারী ও শিশু নির্যাতন প্রতিরোধে জাতীয় হেল্পলাইন"
+      },
+      "description": {
+        "en": "Toll-free, 24 hours. Rescue, legal and psychosocial support, and child marriage prevention.",
+        "bn": "টোল-ফ্রি, ২৪ ঘণ্টা। উদ্ধার, আইনি ও মনো-সামাজিক সহায়তা এবং বাল্যবিবাহ প্রতিরোধ।"
+      },
+      "verification": {
+        "status": "unverified",
+        "sourceName": "Bangladesh Police — Hot Line Number",
+        "sourceUrl": "https://www.police.gov.bd/en/hot_line_number",
+        "checkedOn": "2026-10-27",
+        "note": "Official directory confirms the hotline number and service label. Full description and operating details still require review before marking verified."
+      }
+    },
+    {
+      "id": "bd-1098",
+      "number": "1098",
+      "category": "womenChildren",
+      "name": {
+        "en": "Child Helpline",
+        "bn": "চাইল্ড হেল্পলাইন"
+      },
+      "description": {
+        "en": "For children, and for anyone worried about a child. Run by the Department of Social Services.",
+        "bn": "শিশুদের জন্য, এবং কোনো শিশুকে নিয়ে উদ্বিগ্ন যে কারও জন্য। সমাজসেবা অধিদফতর পরিচালিত।"
+      },
+      "verification": {
+        "status": "unverified",
+        "sourceName": "Bangladesh Police — Hot Line Number",
+        "sourceUrl": "https://www.police.gov.bd/en/hot_line_number",
+        "checkedOn": "2026-10-27",
+        "note": "Official directory confirms the hotline number and service label. Full description and operating details still require review before marking verified."
+      }
+    },
+    {
+      "id": "bd-16263",
+      "number": "16263",
+      "category": "health",
+      "name": {
+        "en": "Shastho Batayon, national health call centre",
+        "bn": "স্বাস্থ্য বাতায়ন, জাতীয় স্বাস্থ্য কল সেন্টার"
+      },
+      "description": {
+        "en": "Health advice by phone from the Directorate General of Health Services. Not an ambulance service.",
+        "bn": "স্বাস্থ্য অধিদপ্তরের ফোনে স্বাস্থ্য পরামর্শ। এটি অ্যাম্বুলেন্স সেবা নয়।"
+      },
+      "verification": {
+        "status": "unverified",
+        "sourceName": "Prothom Alo",
+        "sourceUrl": "https://en.prothomalo.com/bangladesh/coronavirus-where-to-call-if-you-need-emergency-services",
+        "checkedOn": "2026-10-07",
+        "note": "Found in a public source on 2026-10-07. A person must confirm it before release."
+      }
+    },
+    {
+      "id": "bd-333",
+      "number": "333",
+      "category": "government",
+      "name": {
+        "en": "National call centre for government information and services",
+        "bn": "সরকারি তথ্য ও সেবার জাতীয় কল সেন্টার"
+      },
+      "description": {
+        "en": "Information about government services and help with social problems. Not an emergency line.",
+        "bn": "সরকারি সেবা সম্পর্কে তথ্য এবং সামাজিক সমস্যায় সহায়তা। এটি জরুরি লাইন নয়।"
+      },
+      "verification": {
+        "status": "unverified",
+        "sourceName": "Bangladesh Police — Hot Line Number",
+        "sourceUrl": "https://www.police.gov.bd/en/hot_line_number",
+        "checkedOn": "2026-10-27",
+        "note": "Official directory confirms the hotline number and service label. Full description and operating details still require review before marking verified."
+      }
+    },
+    {
+      "id": "bd-102",
+      "number": "102",
+      "category": "fire",
+      "name": {
+        "en": "Fire Service",
+        "bn": "ফায়ার সার্ভিস"
+      },
+      "description": {
+        "en": "Fire Service hotline. Confirm service availability and any additional details with an official source before marking verified.",
+        "bn": "ফায়ার সার্ভিস হটলাইন। যাচাইকৃত হিসেবে চিহ্নিত করার আগে সেবার প্রাপ্যতা ও অতিরিক্ত তথ্য সরকারি উৎস থেকে নিশ্চিত করুন।"
+      },
+      "verification": {
+        "status": "unverified",
+        "sourceName": "Bangladesh Police — Hot Line Number",
+        "sourceUrl": "https://www.police.gov.bd/en/hot_line_number",
+        "checkedOn": "2026-10-27",
+        "note": "Official directory confirms the hotline number and service label. Full description and operating details still require review before marking verified."
+      }
+    }
+  ]
+}

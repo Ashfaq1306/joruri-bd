@@ -1,0 +1,9 @@
+{
+  "hosting": {
+    "public": "admin",
+    "ignore": ["firebase.json", "**/.*", "**/*.md"],
+    "headers": [
+      { "source": "**", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+// These are the rules currently LIVE in production (everything locked).
+// Kept here so an accidental `firebase deploy` changes nothing.
+// The proposed replacement is firestore.rules.PROPOSED-NOT-DEPLOYED;
+// see firebase/RULES_PROPOSAL.md before adopting it.
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

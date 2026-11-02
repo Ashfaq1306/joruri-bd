@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "note": "DEMO ONLY. Fictional places and prices. Numbers start with 010, which no operator uses. Turn off with AppConfig.showDemoPlaces before release.",
+  "pharmacies": [
+    {
+      "id": "demo-p1",
+      "name": "Demo Shuborno Pharmacy",
+      "districtId": "dhaka",
+      "area": "Mirpur",
+      "address": "Mirpur, demo address",
+      "phone": "01000020001",
+      "open24h": true,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p2",
+      "name": "Demo Shanti Pharmacy",
+      "districtId": "dhaka",
+      "area": "Dhanmondi",
+      "address": "Dhanmondi, demo address",
+      "phone": "01000020002",
+      "open24h": true,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p3",
+      "name": "Demo Nirapad Medicine Corner",
+      "districtId": "dhaka",
+      "area": "Uttara",
+      "address": "Uttara, demo address",
+      "phone": "01000020003",
+      "open24h": false,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p4",
+      "name": "Demo Seba Pharmacy",
+      "districtId": "dhaka",
+      "area": "Badda",
+      "address": "Badda, demo address",
+      "phone": "01000020004",
+      "open24h": false,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p5",
+      "name": "Demo Ma Pharmacy",
+      "districtId": "dhaka",
+      "area": "Mohammadpur",
+      "address": "Mohammadpur, demo address",
+      "phone": "01000020005",
+      "open24h": true,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p6",
+      "name": "Demo Chattala Drug House",
+      "districtId": "chattogram",
+      "area": "Agrabad",
+      "address": "Agrabad, demo address",
+      "phone": "01000020006",
+      "open24h": true,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p7",
+      "name": "Demo Port City Pharma",
+      "districtId": "chattogram",
+      "area": "Halishahar",
+      "address": "Halishahar, demo address",
+      "phone": "01000020007",
+      "open24h": false,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p8",
+      "name": "Demo Shahjalal Pharmacy",
+      "districtId": "sylhet",
+      "area": "Zindabazar",
+      "address": "Zindabazar, demo address",
+      "phone": "01000020008",
+      "open24h": true,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p9",
+      "name": "Demo Padma Drug",
+      "districtId": "rajshahi",
+      "area": "Shaheb Bazar",
+      "address": "Shaheb Bazar, demo address",
+      "phone": "01000020009",
+      "open24h": false,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p10",
+      "name": "Demo Rupsha Pharmacy",
+      "districtId": "khulna",
+      "area": "Sonadanga",
+      "address": "Sonadanga, demo address",
+      "phone": "01000020010",
+      "open24h": true,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p11",
+      "name": "Demo Tongi Medicine Hall",
+      "districtId": "gazipur",
+      "area": "Tongi",
+      "address": "Tongi, demo address",
+      "phone": "01000020011",
+      "open24h": false,
+      "verified": false,
+      "demo": true
+    },
+    {
+      "id": "demo-p12",
+      "name": "Demo Gomti Pharmacy",
+      "districtId": "cumilla",
+      "area": "Kandirpar",
+      "address": "Kandirpar, demo address",
+      "phone": "01000020012",
+      "open24h": true,
+      "verified": false,
+      "demo": true
+    }
+  ]
+}
