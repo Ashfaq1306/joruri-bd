@@ -1,8 +1,6 @@
 /// App-wide constants. Values that admins will tune later move to remote
 /// settings in Phase 4; everything here works with no network.
 abstract final class AppConfig {
-  static const appVersion = '0.3.0 (Phase 3)';
-
   /// Bangladesh National Emergency Service: police, fire service, ambulance.
   /// Toll-free call, 24 hours. Source: see assets/seed/emergency_numbers.json.
   static const nationalEmergencyNumber = '999';

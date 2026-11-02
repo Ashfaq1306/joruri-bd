@@ -28,7 +28,7 @@ class PhoneService {
     try {
       var status = await Permission.phone.status;
       if (!status.isGranted) status = await Permission.phone.request();
-      if (!status.isGranted) return dial(number);
+      if (!status.isGranted) return await dial(number);
       await AndroidIntent(
         action: 'android.intent.action.CALL',
         data: Uri(scheme: 'tel', path: number).toString(),

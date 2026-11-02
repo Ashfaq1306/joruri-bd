@@ -2,7 +2,11 @@
 
 Bangladesh emergency response companion. *Help when every second matters.*
 
-This repository contains the app (emergency core works **fully offline and without an account**), the **admin website** (`admin/`) and the **online backend** (`firebase/`). To switch on automatic updates and live donors, follow **[SETUP_ONLINE.md](SETUP_ONLINE.md)**. Sign-in uses **Google** in the app and on the admin website (free Spark plan). `firebase.json` is **hosting-only**; the live Firestore rules stay locked and the proposal in `firebase/RULES_PROPOSAL.md` is **not deployed**. Latest changes: `CHANGES_DONOR_SYNC.md`. Until then the app runs on its built-in data.
+This repository contains the app (emergency core works **fully offline and without an account**), the **admin panel** (`admin/`, live at <https://joruri-bd.web.app>) and the **online backend** (`firebase/`). Everything changed on the admin panel — emergency numbers, hospitals and test prices, pharmacies, guides, announcements, blood donors, app-update notices — reaches every phone within seconds when online, and is kept on the phone for offline use.
+
+- **Get the app:** <https://joruri-bd.web.app/download/>
+- **Admin panel guide:** `admin/README.md` · **Backend and rules:** `firebase/README.md`
+- **Publishing a new app version:** `RELEASING.md` · **Setting up a computer:** `SETUP_ONLINE.md` · **Changes:** `CHANGELOG.md`
 
 ## What works now
 
@@ -31,9 +35,6 @@ You need the [Flutter SDK](https://docs.flutter.dev/get-started/install) (3.24 o
 
 ```bash
 cd apps/mobile
-
-# 1. Generate the android/ and ios/ folders (your lib/ files are not touched)
-flutter create . --org bd.joruri --project-name joruri_bd --platforms android,ios
 
 # 2. Add permissions, app name and minimum Android version
 dart run tool/setup.dart
@@ -90,7 +91,7 @@ joruri_bd/
 
 ## Updating information
 
-Once online (SETUP_ONLINE.md), use the **admin website**: every change reaches all phones automatically. The spreadsheet tools below remain for offline/bundled data.
+Use the **admin panel** (<https://joruri-bd.web.app>): every change reaches all phones automatically. The spreadsheet tools below remain for bulk data (the panel's **Import** page reads the same CSV files) and for the data built into the app.
 
 ## Adding your blood donors
 

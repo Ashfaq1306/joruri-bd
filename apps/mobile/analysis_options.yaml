@@ -9,3 +9,8 @@ linter:
 # Keep `dart format` at the project's existing line length.
 formatter:
   page_width: 120
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**

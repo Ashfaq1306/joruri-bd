@@ -30,12 +30,17 @@ class _HospitalDetailScreenState extends ConsumerState<HospitalDetailScreen> {
     final lang = s.languageCode;
     final theme = Theme.of(context);
     Hospital? hospital;
-    for (final h in ref.watch(hospitalsProvider).valueOrNull ?? const <Hospital>[]) {
+    final all = ref.watch(hospitalsProvider);
+    for (final h in all.valueOrNull ?? const <Hospital>[]) {
       if (h.id == widget.hospitalId) hospital = h;
     }
     final h = hospital;
     if (h == null) {
-      return Scaffold(appBar: GlassAppBar(), body: Center(child: Text(s.genericError)));
+      // Still reading the list: a spinner, not a false "something went wrong".
+      return Scaffold(
+        appBar: const GlassAppBar(),
+        body: Center(child: all.isLoading ? const CircularProgressIndicator() : Text(s.genericError)),
+      );
     }
     final phone = ref.read(phoneServiceProvider);
     final emergencyPhone = h.emergencyPhone;

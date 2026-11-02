@@ -341,6 +341,20 @@ abstract class AppStrings {
   String get syncRetry;
   String get liveListUnavailable;
   String get liveListBodyGoogle;
+
+  // App updates and announcements (managed on the admin website)
+  String get updateAvailable;
+  String get updateRequired;
+  String updateBody(String version);
+  String get updateRequiredBody;
+  String get updateDownload;
+  String get whatsNew;
+  String get checkForUpdates;
+  String get upToDate;
+  String get checking;
+  String get updatesCheckFailed;
+  String get downloadStarted;
+  String get openLink;
 }
 
 class _AppStringsDelegate extends LocalizationsDelegate<AppStrings> {

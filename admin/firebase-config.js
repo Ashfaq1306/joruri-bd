@@ -1,11 +1,11 @@
-// Paste your project's web settings here (Firebase console → Project settings
-// → General → "Your apps" → Web app → SDK setup and configuration → Config).
-// These values are not secret: access is controlled by the security rules.
+// Firebase web settings for project joruri-bd (web app "Joruri Admin").
+// These values are not secret: they only identify the project. Access is
+// controlled by Google sign-in and firebase/firestore.rules.
 export const firebaseConfig = {
-  apiKey: 'PASTE_API_KEY',
-  authDomain: 'PASTE_PROJECT_ID.firebaseapp.com',
-  projectId: 'PASTE_PROJECT_ID',
-  storageBucket: 'PASTE_PROJECT_ID.appspot.com',
-  messagingSenderId: 'PASTE_SENDER_ID',
-  appId: 'PASTE_APP_ID',
+  apiKey: 'AIzaSyDSFNEOoaUSAcsSdpGKthVxYNsuHeBCQ18',
+  authDomain: 'joruri-bd.firebaseapp.com',
+  projectId: 'joruri-bd',
+  storageBucket: 'joruri-bd.firebasestorage.app',
+  messagingSenderId: '309379921602',
+  appId: '1:309379921602:web:a187d8c9359eb8a04bed5b',
 };

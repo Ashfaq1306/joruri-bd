@@ -244,7 +244,7 @@ class StringsEn extends AppStrings {
 
   @override String get brandLine => 'Emergency companion';
   @override String get createAccount => 'Create your account';
-  @override String get accountWhy => 'So help reaches the right person. Saved on this phone for now; SMS-code (OTP) verification of your number comes with the online update.';
+  @override String get accountWhy => 'So help reaches the right person. Saved on this phone; sign in with Google later to appear in the online donor list.';
   @override String get fullName => 'Full name';
   @override String get mobileNumber => 'Mobile number';
   @override String get yourBloodGroup => 'Your blood group';
@@ -307,4 +307,17 @@ class StringsEn extends AppStrings {
   @override String get syncRetry => 'Try again';
   @override String get liveListUnavailable => 'The online donor list is not available right now. Showing donors saved in the app.';
   @override String get liveListBodyGoogle => 'Sign in to see every registered donor, always up to date.';
+
+  @override String get updateAvailable => 'Update available';
+  @override String get updateRequired => 'Please update the app';
+  @override String updateBody(String version) => 'Version $version is ready. Download it and tap Install.';
+  @override String get updateRequiredBody => 'This version is too old to receive important changes. SOS still works, but please update now.';
+  @override String get updateDownload => 'Download update';
+  @override String get whatsNew => "What's new";
+  @override String get checkForUpdates => 'Check for updates';
+  @override String get upToDate => 'You have the latest version.';
+  @override String get checking => 'Checking…';
+  @override String get updatesCheckFailed => 'Could not check right now. Connect to the internet and try again.';
+  @override String get downloadStarted => 'Downloading… open the file when it finishes, then tap Install.';
+  @override String get openLink => 'Open';
 }
