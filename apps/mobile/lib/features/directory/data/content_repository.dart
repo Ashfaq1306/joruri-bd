@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:joruri_core/joruri_core.dart';
 
-import 'package:joruri_bd/core/config/app_config.dart';
+import 'package:joruri_bd/core/remote/app_meta.dart';
 import 'package:joruri_bd/features/directory/data/content_cache.dart';
 
 /// Emergency content bundled inside the app, so it works on a phone that
@@ -39,21 +39,22 @@ class ContentRepository {
 final contentRepositoryProvider = Provider<ContentRepository>((ref) => ContentRepository(rootBundle));
 
 /// National number first, then by category. Unverified entries only appear
-/// while [AppConfig.showUnverifiedContent] is on, and always carry a label.
+/// while the admins allow it (App & updates page), and always carry a label.
 final emergencyNumbersProvider = FutureProvider<List<EmergencyNumber>>((ref) async {
   final cache = await ref.watch(cachedContentProvider.future);
   final all = parseSection(cache, 'numbers', EmergencyNumber.fromJson) ??
       await ref.watch(contentRepositoryProvider).numbers();
+  final showUnverified = ref.watch(showUnverifiedContentProvider);
   return all
-      .where((n) => n.verification.isVerified || AppConfig.showUnverifiedContent)
+      .where((n) => n.verification.isVerified || showUnverified)
       .toList(growable: false);
 });
 
 final guidesProvider = FutureProvider<List<Guide>>((ref) async {
   final cache = await ref.watch(cachedContentProvider.future);
   final all = parseSection(cache, 'guides', Guide.fromJson) ?? await ref.watch(contentRepositoryProvider).guides();
+  final showDrafts = ref.watch(showDraftGuidesProvider);
   return all
-      .where((g) =>
-          g.reviewStatus == ReviewStatus.approved || AppConfig.showDraftGuides)
+      .where((g) => g.reviewStatus == ReviewStatus.approved || showDrafts)
       .toList(growable: false);
 });

@@ -244,7 +244,7 @@ class StringsBn extends AppStrings {
 
   @override String get brandLine => 'জরুরি সহায়ক অ্যাপ';
   @override String get createAccount => 'আপনার অ্যাকাউন্ট তৈরি করুন';
-  @override String get accountWhy => 'যেন সাহায্য সঠিক মানুষের কাছে পৌঁছায়। আপাতত তথ্য এই ফোনেই থাকে; অনলাইন আপডেটে SMS কোড (OTP) দিয়ে নম্বর যাচাই হবে।';
+  @override String get accountWhy => 'যেন সাহায্য সঠিক মানুষের কাছে পৌঁছায়। তথ্য এই ফোনে থাকে; অনলাইন রক্তদাতা তালিকায় থাকতে পরে Google দিয়ে সাইন ইন করুন।';
   @override String get fullName => 'পুরো নাম';
   @override String get mobileNumber => 'মোবাইল নম্বর';
   @override String get yourBloodGroup => 'আপনার রক্তের গ্রুপ';
@@ -307,4 +307,17 @@ class StringsBn extends AppStrings {
   @override String get syncRetry => 'আবার চেষ্টা করুন';
   @override String get liveListUnavailable => 'অনলাইন রক্তদাতা তালিকা এই মুহূর্তে পাওয়া যাচ্ছে না। অ্যাপে থাকা রক্তদাতাদের দেখানো হচ্ছে।';
   @override String get liveListBodyGoogle => 'সাইন ইন করলে নিবন্ধিত সব রক্তদাতাকে দেখতে পাবেন, সবসময় হালনাগাদ।';
+
+  @override String get updateAvailable => 'নতুন সংস্করণ এসেছে';
+  @override String get updateRequired => 'অ্যাপটি হালনাগাদ করুন';
+  @override String updateBody(String version) => 'সংস্করণ $version প্রস্তুত। ডাউনলোড করে Install চাপুন।';
+  @override String get updateRequiredBody => 'এই সংস্করণটি অনেক পুরনো, জরুরি পরিবর্তনগুলো পাবে না। SOS কাজ করবে, তবে এখনই হালনাগাদ করুন।';
+  @override String get updateDownload => 'হালনাগাদ ডাউনলোড করুন';
+  @override String get whatsNew => 'নতুন যা আছে';
+  @override String get checkForUpdates => 'হালনাগাদ আছে কিনা দেখুন';
+  @override String get upToDate => 'আপনার কাছে সর্বশেষ সংস্করণ আছে।';
+  @override String get checking => 'দেখা হচ্ছে…';
+  @override String get updatesCheckFailed => 'এখন দেখা যাচ্ছে না। ইন্টারনেটে যুক্ত হয়ে আবার চেষ্টা করুন।';
+  @override String get downloadStarted => 'ডাউনলোড হচ্ছে… শেষ হলে ফাইলটি খুলে Install চাপুন।';
+  @override String get openLink => 'খুলুন';
 }

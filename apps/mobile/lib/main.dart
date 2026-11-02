@@ -47,7 +47,12 @@ Future<void> main() async {
     });
     // Check the admin website for new content now, and again whenever the
     // phone comes back online. Never blocks anything on screen.
-    Future<void>.delayed(const Duration(seconds: 2), () => container.read(contentSyncProvider).run());
+    // Also follow the website live, so an online phone gets a change within seconds.
+    Future<void>.delayed(const Duration(seconds: 2), () {
+      final sync = container.read(contentSyncProvider);
+      sync.run();
+      sync.watch();
+    });
     container.listen<AsyncValue<NetworkStatus>>(networkStatusProvider, (previous, next) {
       if (next.valueOrNull == NetworkStatus.online && previous?.valueOrNull != NetworkStatus.online) {
         container.read(contentSyncProvider).run();

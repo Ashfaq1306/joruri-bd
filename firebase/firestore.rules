@@ -1,13 +1,163 @@
-// These are the rules currently LIVE in production (everything locked).
-// Kept here so an accidental `firebase deploy` changes nothing.
-// The proposed replacement is firestore.rules.PROPOSED-NOT-DEPLOYED;
-// see firebase/RULES_PROPOSAL.md before adopting it.
+// ============================================================================
+//  JORURI BD — Firestore Security Rules (LIVE)
+//  Deploy: firebase deploy --only firestore:rules   (from the repo root)
+//  Anything not matched below is denied.
+// ============================================================================
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+
+    // ---------- helpers ----------
+    function signedIn() { return request.auth != null; }
+
+    function verifiedEmail() {
+      return signedIn() && request.auth.token.email_verified == true
+        && request.auth.token.email is string;
+    }
+    function myEmail() { return request.auth.token.email.lower(); }
+
+    // An admin is listed in /admins, either by Google e-mail (lower case,
+    // the normal way, managed on the admin website by an owner) or by UID
+    // (older entries created by hand in the console).
+    function isAdmin() {
+      return signedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        || (verifiedEmail() && exists(/databases/$(database)/documents/admins/$(myEmail())))
+      );
+    }
+    // Owners can also add and remove admins.
+    function isOwner() {
+      return verifiedEmail()
+        && exists(/databases/$(database)/documents/admins/$(myEmail()))
+        && get(/databases/$(database)/documents/admins/$(myEmail())).data.role == 'owner';
+    }
+
+    function isBloodGroup(v) { return v in ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']; }
+    function shortString(v, max) { return v is string && v.size() <= max; }
+    function isoString(v) { return v is string && v.size() <= 40; }
+
+    // ---------- app settings + content version: everyone reads ----------
+    // meta/content: {version} raised on every content change.
+    // meta/app: latest app version, download links, feature switches.
+    match /meta/{doc} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ---------- official content: everyone reads published items ----------
+    // The app always queries with where('published', '==', true); a query
+    // without that filter is refused for non-admins.
+    match /emergency_numbers/{id} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow write: if isAdmin();
+    }
+    match /guides/{id} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow write: if isAdmin();
+    }
+    match /hospitals/{id} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow write: if isAdmin();
+    }
+    match /pharmacies/{id} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow write: if isAdmin();
+    }
+    match /announcements/{id} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // ---------- blood donors ----------
+    match /donors/{id} {
+      // Listing: signed-in users only, and only consented + visible donors.
+      // Firestore refuses any query that could return other documents, so
+      // the app's where('shareConsent','==',true).where('hidden','==',false)
+      // filters are enforced here, on the server. Pages are capped at 300.
+      allow list: if signedIn()
+        && resource.data.shareConsent == true
+        && resource.data.hidden == false
+        && request.query.limit <= 300;
+      allow list: if isAdmin();
+
+      allow get: if isAdmin()
+        || (signedIn() && id == request.auth.uid)
+        || (signedIn() && resource.data.shareConsent == true && resource.data.hidden == false);
+
+      // Create: only your own listing, starting un-hidden and NOT verified.
+      allow create: if isAdmin() || (
+        signedIn() && id == request.auth.uid
+        && request.resource.data.keys().hasOnly(['id', 'uid', 'source', 'name', 'bloodGroup', 'phone', 'districtId',
+                                                 'area', 'available', 'shareConsent', 'lastDonation', 'hidden',
+                                                 'verified', 'createdAt', 'updatedAt'])
+        && request.resource.data.keys().hasAll(['uid', 'source', 'name', 'bloodGroup', 'phone', 'districtId',
+                                                'available', 'shareConsent', 'hidden', 'verified'])
+        && request.resource.data.id == request.auth.uid
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.source == 'app'
+        && request.resource.data.hidden == false
+        && request.resource.data.verified == false
+        && validOwnDonorFields(request.resource.data)
+      );
+
+      // Owner updates: ONLY these fields may change, so a user can never
+      // verify or un-hide themselves.
+      allow update: if isAdmin() || (
+        signedIn() && id == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['name', 'bloodGroup', 'phone', 'districtId', 'area', 'available', 'shareConsent',
+                       'lastDonation', 'updatedAt'])
+        && validOwnDonorFields(request.resource.data)
+      );
+
+      // Delete: admins, or the owner while NOT hidden by an admin.
+      allow delete: if isAdmin() || (signedIn() && id == request.auth.uid && resource.data.hidden == false);
+    }
+
+    function validOwnDonorFields(d) {
+      return shortString(d.name, 80) && d.name.size() > 0
+        && isBloodGroup(d.bloodGroup)
+        && d.phone is string && d.phone.matches('^[+]8801[3-9][0-9]{8}$')
+        && shortString(d.districtId, 40) && d.districtId.size() > 0
+        && shortString(d.get('area', ''), 80)
+        && d.available is bool
+        && d.shareConsent is bool
+        && (d.shareConsent == true || d.available == false)
+        && (!('lastDonation' in d) || isoString(d.lastDonation))
+        && (!('updatedAt' in d) || isoString(d.updatedAt));
+    }
+
+    // ---------- each person's private profile: owner only ----------
+    match /users/{uid} {
+      allow read, delete: if signedIn() && request.auth.uid == uid;
+      allow create, update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name', 'phone', 'bloodGroup', 'districtId', 'divisionId', 'area',
+                                                 'donor', 'available', 'consent', 'updatedAt'])
+        && shortString(request.resource.data.name, 80)
+        && isBloodGroup(request.resource.data.bloodGroup)
+        && shortString(request.resource.data.get('area', ''), 80);
+      allow read: if isAdmin();
+    }
+
+    // ---------- admin accounts ----------
+    // Document ID = lower-case Google e-mail (or a UID for old entries).
+    match /admins/{id} {
+      allow get: if signedIn() && (id == request.auth.uid || (verifiedEmail() && id == myEmail()));
+      allow read: if isAdmin();
+      allow create, update: if isOwner()
+        && request.resource.data.keys().hasOnly(['role', 'email', 'name', 'addedBy', 'addedAt'])
+        && request.resource.data.role in ['owner', 'editor']
+        && id == id.lower();
+      // An owner cannot remove themselves (avoids locking everyone out).
+      allow delete: if isOwner() && id != myEmail();
+    }
+
+    // ---------- activity log ----------
+    match /audit/{id} {
+      allow create: if isAdmin() && request.resource.data.keys().hasOnly(['action', 'collection', 'docId', 'summary', 'at', 'by']);
+      allow read: if isAdmin();
+      allow update, delete: if false; // the log cannot be changed or erased
     }
   }
 }

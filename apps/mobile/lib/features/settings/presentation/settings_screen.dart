@@ -10,6 +10,8 @@ import 'package:joruri_bd/core/config/app_config.dart';
 import 'package:joruri_bd/core/utils/digits.dart';
 import 'package:joruri_bd/features/contacts/presentation/contacts_controller.dart';
 import 'package:joruri_bd/core/firebase/google_auth.dart';
+import 'package:joruri_bd/core/remote/app_meta.dart';
+import 'package:joruri_bd/features/update/update_banner.dart';
 import 'package:joruri_bd/features/profile/data/profile_sync.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_card.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_controller.dart';
@@ -159,7 +161,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
 
           heading(s.about),
-          Text('${s.appName} · ${s.version} ${AppConfig.appVersion}', style: theme.textTheme.bodyMedium),
+          const _AboutSection(),
         ],
       ),
     );
@@ -262,6 +264,58 @@ class _ExtraLineFieldState extends ConsumerState<_ExtraLineField> {
         hintText: s.extraLineHint,
         border: const OutlineInputBorder(),
       ),
+    );
+  }
+}
+
+/// App version (from the installed package) and the update check.
+class _AboutSection extends ConsumerStatefulWidget {
+  const _AboutSection();
+
+  @override
+  ConsumerState<_AboutSection> createState() => _AboutSectionState();
+}
+
+class _AboutSectionState extends ConsumerState<_AboutSection> {
+  bool _checking = false;
+
+  Future<void> _check() async {
+    final s = context.s;
+    final messenger = ScaffoldMessenger.of(context);
+    setState(() => _checking = true);
+    final reached = await ref.read(refreshAppMetaProvider)();
+    // Give the live listener a moment to deliver the newest settings.
+    await Future<void>.delayed(const Duration(milliseconds: 600));
+    if (!mounted) return;
+    setState(() => _checking = false);
+    final update = ref.read(updateInfoProvider);
+    if (update != null) {
+      await downloadUpdate(context, update.meta);
+    } else {
+      messenger.showSnackBar(SnackBar(content: Text(reached ? s.upToDate : s.updatesCheckFailed)));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final s = context.s;
+    final theme = Theme.of(context);
+    final info = ref.watch(packageInfoProvider).valueOrNull;
+    final update = ref.watch(updateInfoProvider);
+    final version = info == null ? '' : '${info.version} (${baseBuildNumber(info.buildNumber)})';
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('${s.appName} · ${s.version} ${localizedDigits(version, s.languageCode)}', style: theme.textTheme.bodyMedium),
+        const SizedBox(height: JSpace.sm),
+        OutlinedButton.icon(
+          onPressed: _checking ? null : _check,
+          icon: _checking
+              ? const SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2))
+              : Icon(update != null ? Icons.download : Icons.system_update),
+          label: Text(_checking ? s.checking : (update != null ? s.updateDownload : s.checkForUpdates)),
+        ),
+      ],
     );
   }
 }

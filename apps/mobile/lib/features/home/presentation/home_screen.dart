@@ -6,10 +6,12 @@ import 'package:joruri_design_system/joruri_design_system.dart';
 import 'package:joruri_bd/app/providers.dart';
 import 'package:joruri_bd/core/config/app_config.dart';
 import 'package:joruri_bd/core/widgets/logo.dart';
+import 'package:joruri_bd/features/announcements/announcements.dart';
 import 'package:joruri_bd/features/contacts/presentation/contacts_controller.dart';
 import 'package:joruri_bd/features/home/presentation/network_pill.dart';
 import 'package:joruri_bd/features/settings/presentation/settings_controller.dart';
 import 'package:joruri_bd/features/toolkit/presentation/toolkit_controllers.dart';
+import 'package:joruri_bd/features/update/update_banner.dart';
 import 'package:joruri_bd/l10n/app_strings.dart';
 
 /// The most important screen: SOS first, then eight actions, then accident mode.
@@ -52,6 +54,8 @@ class _StandardHome extends ConsumerWidget {
           children: [
             const _SosPanel(diameter: JSize.sosButton),
             const SizedBox(height: JSpace.md),
+            const UpdateBanner(),
+            const AnnouncementsList(),
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -96,6 +100,8 @@ class _EasyHome extends ConsumerWidget {
           children: [
             const _SosPanel(diameter: JSize.sosButtonEasy),
             const SizedBox(height: JSpace.md),
+            const UpdateBanner(),
+            const AnnouncementsList(),
             BigActionButton(
               icon: Icons.call,
               label: s.callMyContact,
