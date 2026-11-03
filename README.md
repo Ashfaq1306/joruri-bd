@@ -26,7 +26,7 @@ This repository contains the app (emergency core works **fully offline and witho
 | Easy Mode | Very large buttons and text for older users |
 | Settings | Language, theme, Easy Mode, SOS options, message preview, permissions, privacy, delete my data |
 | Blood | Pick the blood group needed → every donor with that group, with their number and a Call button. Filter by division, district and area; optionally include other compatible groups. Works offline. |
-| Hospitals | List by division, district and area, with services (emergency, 24 hours, blood bank, ambulance, ICU) and call buttons. **Tests & prices** tab: search a test (English or Bangla, e.g. CBC, সিবিসি) and see every hospital that does it, cheapest first. Each hospital page lists all its tests and prices. |
+| Hospitals | **All 8,616 hospitals, clinics and blood banks registered with DGHS** (government, private, NGO), with Bangla names, phone numbers, address, map position and type. Search by name; filter by division, district, government/private, emergency, blood bank. **Tests & prices**: government user-fee chart for government hospitals (CBC, X-ray, ECG, ultrasound, CT, MRI …), cheapest first. Source and refresh scripts: `tools/dghs-import`. |
 | Pharmacy | Pharmacies by area, 24-hour ones first, with a Call button and a Google Maps fallback. |
 
 ## Run it (first time)

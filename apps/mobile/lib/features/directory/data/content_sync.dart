@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -69,7 +70,43 @@ class ContentSync {
       final prefs = _ref.read(sharedPreferencesProvider);
       if (version == 0 || version <= localVersion) return;
 
+      // The website packs every published list into a few large documents
+      // (snapshots/{collection}-{n}, listed in meta/content.chunks), so a
+      // phone needs ~10 reads instead of one per hospital. Older websites
+      // without chunks fall back to reading each collection.
+      final chunks = meta.data()?['chunks'];
+      // stamps: when each list last changed. A list whose stamp matches the
+      // phone's copy is not downloaded again (an announcement must not make
+      // every phone re-download 8,000 hospitals).
+      final stamps = meta.data()?['stamps'];
+      final old = await _ref.read(contentCacheProvider).read();
+      final oldStamps = old?['stamps'] is Map ? old!['stamps'] as Map : const {};
+      const cacheKey = {
+        'emergency_numbers': 'numbers', 'guides': 'guides', 'hospitals': 'hospitals',
+        'pharmacies': 'pharmacies', 'announcements': 'announcements',
+      };
       Future<List<Map<String, dynamic>>> published(String collection) async {
+        final count = chunks is Map ? (chunks[collection] as num?)?.toInt() : null;
+        final stamp = stamps is Map ? stamps[collection] : null;
+        final cached = old?[cacheKey[collection]];
+        if (count != null && stamp != null && stamp == oldStamps[collection] && cached is List) {
+          return [for (final x in cached) if (x is Map) Map<String, dynamic>.from(x)];
+        }
+        if (count != null) {
+          final parts = await Future.wait([
+            for (var i = 0; i < count; i++)
+              db.doc('snapshots/$collection-$i').get(server).timeout(const Duration(seconds: 40)),
+          ]);
+          final out = <Map<String, dynamic>>[];
+          for (final p in parts) {
+            final json = p.data()?['json'];
+            if (json is! String) throw StateError('snapshot $collection incomplete');
+            for (final item in jsonDecode(json) as List) {
+              if (item is Map) out.add(Map<String, dynamic>.from(item)..remove('published'));
+            }
+          }
+          return out;
+        }
         final snap = await db
             .collection(collection)
             .where('published', isEqualTo: true)
@@ -91,6 +128,7 @@ class ContentSync {
       final data = <String, dynamic>{
         'version': version,
         'updatedAt': _plain(meta.data()?['updatedAt']),
+        'stamps': stamps is Map ? {for (final e in stamps.entries) '${e.key}': _plain(e.value)} : const {},
         'numbers': lists[0],
         'guides': lists[1],
         'hospitals': lists[2],
@@ -100,7 +138,6 @@ class ContentSync {
       // Safety guard: never replace a working copy with one that has no
       // emergency numbers (a mistake on the website must not blank 999).
       if ((data['numbers'] as List).isEmpty) {
-        final old = await _ref.read(contentCacheProvider).read();
         data['numbers'] = old?['numbers'] ?? const [];
       }
       await _ref.read(contentCacheProvider).write(data);

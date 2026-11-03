@@ -100,14 +100,22 @@ const SCHEMAS = {
   },
   hospitals: {
     title: 'Hospitals, tests & prices', idFrom: (d) => slug(d.name) || 'h-' + Date.now(),
-    columns: [['Name', (d) => d.name], ['District', (d) => districtName(d.districtId)], ['Phone', (d) => d.phone],
-      ['Tests', (d) => (d.tests || []).length], ['On phones', (d) => d.published ? 'Yes' : 'Hidden']],
+    columns: [['Name', (d) => d.name], ['Type', (d) => d.kind || ''], ['District', (d) => districtName(d.districtId)], ['Area', (d) => d.area],
+      ['Phone', (d) => d.phone], ['Tests', (d) => (d.tests || []).length || (d.feeChart ? 'Govt fee chart' : 0)], ['On phones', (d) => d.published ? 'Yes' : 'Hidden']],
     fields: [
-      { k: 'name', label: 'Hospital name', required: true },
+      { k: 'name', label: 'Hospital name (English)', required: true },
+      { k: 'nameBn', label: 'Hospital name (বাংলা)' },
+      { k: 'kind', label: 'Type (e.g. Upazila Health Complex, Private Hospital / Clinic)' },
+      { k: 'kindBn', label: 'Type in Bangla' },
+      { k: 'government', label: 'Government hospital', type: 'checkbox' },
       { k: 'districtId', label: 'District', type: 'district', required: true },
-      { k: 'area', label: 'Area' }, { k: 'address', label: 'Address' },
-      { k: 'phone', label: 'Phone', type: 'phone', required: true },
+      { k: 'area', label: 'Area / upazila' }, { k: 'address', label: 'Address' },
+      { k: 'phone', label: 'Main phone', type: 'phone' },
+      { k: 'otherPhones', label: 'Other numbers (comma separated)', type: 'csv' },
       { k: 'emergencyPhone', label: 'Emergency phone', type: 'phone' },
+      { k: 'email', label: 'Email' }, { k: 'website', label: 'Website' },
+      { k: 'lat', label: 'Map latitude (e.g. 23.7258)', type: 'decimal' }, { k: 'lng', label: 'Map longitude (e.g. 90.3973)', type: 'decimal' },
+      { k: 'beds', label: 'Beds', type: 'number' },
       { k: 'emergency', label: 'Emergency department', type: 'checkbox' },
       { k: 'open24h', label: 'Open 24 hours', type: 'checkbox' },
       { k: 'bloodBank', label: 'Blood bank', type: 'checkbox' },
@@ -115,6 +123,7 @@ const SCHEMAS = {
       { k: 'icu', label: 'ICU', type: 'checkbox' },
       { k: 'tests', label: 'Tests and prices: one per line → Test name | other names separated by ; | price in taka | note', type: 'tests' },
       { k: 'pricesCheckedOn', label: 'Prices checked on', type: 'date' },
+      { k: 'source', label: 'Source of these details (e.g. DGHS Facility Registry, phone call on 2026-11-03)' },
       { k: 'verified', label: 'Checked by a person', type: 'checkbox' },
       { k: 'published', label: 'Show on phones', type: 'checkbox', default: true },
     ],
@@ -197,8 +206,14 @@ async function load(col, force) {
   return state.data[col];
 }
 async function afterContentChange(action, col, id, summary) {
-  if (CONTENT.includes(col)) await B().bumpContent();
+  if (CONTENT.includes(col)) await publishContent(false, [col]);
   await B().audit({ action, collection: col, docId: id || '', summary: summary || '' });
+}
+/** Rebuilds the packed copies phones download, from the lists on this page. */
+async function publishContent(fresh, cols = CONTENT) {
+  const lists = {};
+  for (const col of cols) lists[col] = (await load(col, fresh)).filter((x) => x.published);
+  await B().publishSnapshots(lists);
 }
 
 /* ---------- screens ---------- */
@@ -315,17 +330,19 @@ function accessCheckFailedScreen() {
 }
 
 async function dashboard() {
-  const [meta, appMeta, ...lists] = await Promise.all([B().getMeta('content'), B().getMeta('app'),
-    ...['emergency_numbers', 'hospitals', 'pharmacies', 'guides', 'donors', 'announcements'].map((c) => load(c, true))]);
-  const [numbers, hospitals, pharmacies, guides, donors, notices] = lists;
+  // Big lists are only counted on the server; small ones are read.
+  const [meta, appMeta, numbers, guides, notices, nHosp, nGovHosp, nPharm, nPharm24, nDonors, nAppDonors] = await Promise.all([
+    B().getMeta('content'), B().getMeta('app'), load('emergency_numbers'), load('guides'), load('announcements'),
+    B().count('hospitals'), B().count('hospitals', 'government', true), B().count('pharmacies'), B().count('pharmacies', 'open24h', true),
+    B().count('donors'), B().count('donors', 'source', 'app')]);
   const stat = (label, n, view, sub) => h('button', { class: 'stat', onclick: () => go(view) }, icon(view), h('b', {}, n), h('span', {}, label), sub ? h('small', {}, sub) : null);
   const unverified = numbers.filter((n) => n.verification?.status !== 'verified').length;
   const empty = guides.filter((g) => !(g.doNow?.en || []).length && !(g.doNow?.bn || []).length).length;
   const liveNotices = notices.filter((n) => n.published && !isExpired(n)).length;
   const todo = [
-    hospitals.length === 0 && ['hospitals', 'No hospitals yet: the Hospitals screen in the app is empty. Add them one by one or import the spreadsheet.'],
-    pharmacies.length === 0 && ['pharmacies', 'No pharmacies yet: the Pharmacy screen in the app is empty.'],
-    donors.length === 0 && ['donors', 'No blood donors yet. Add donors who agreed to share their number, or import the spreadsheet.'],
+    nHosp === 0 && ['hospitals', 'No hospitals yet: the Hospitals screen in the app is empty. Add them one by one or import the spreadsheet.'],
+    nPharm === 0 && ['pharmacies', 'No pharmacies yet: the Pharmacy screen in the app is empty.'],
+    nDonors === 0 && ['donors', 'No blood donors yet. Add donors who agreed to share their number, or import the spreadsheet.'],
     empty && ['guides', `${empty} guide(s) have no steps yet; the app shows them as "being written".`],
     unverified && ['emergency_numbers', `${unverified} emergency number(s) are not marked as checked; the app shows a "not yet verified" label.`],
     !appMeta.latestVersionCode && ['app', 'No app release is published yet, so phones are not told about updates.'],
@@ -336,10 +353,10 @@ async function dashboard() {
     h('div', { class: 'stats' },
       stat('Announcements', liveNotices, 'announcements', `${notices.length} total`),
       stat('Emergency numbers', numbers.length, 'emergency_numbers', unverified ? `${unverified} not checked yet` : 'all checked'),
-      stat('Hospitals', hospitals.length, 'hospitals', `${hospitals.reduce((a, x) => a + (x.tests || []).length, 0)} test prices`),
-      stat('Pharmacies', pharmacies.length, 'pharmacies', `${pharmacies.filter((p) => p.open24h).length} open 24 h`),
+      stat('Hospitals', nHosp, 'hospitals', `${nGovHosp} government`),
+      stat('Pharmacies', nPharm, 'pharmacies', `${nPharm24} open 24 h`),
       stat('Guides', guides.length, 'guides', `${guides.filter((g) => g.reviewStatus === 'approved').length} doctor-approved`),
-      stat('Blood donors', donors.length, 'donors', `${donors.filter((d) => d.source === 'app').length} signed up in the app`),
+      stat('Blood donors', nDonors, 'donors', `${nAppDonors} signed up in the app`),
       stat('App version', appMeta.latestVersionName || '—', 'app', appMeta.latestVersionCode ? `build ${appMeta.latestVersionCode}` : 'not published')),
     todo.length ? h('div', { class: 'card' }, h('h3', {}, 'To do'),
       h('ul', { class: 'todo' }, todo.map(([v, t]) => h('li', {}, h('button', { class: 'link', onclick: () => go(v) }, t))))) : null,
@@ -350,7 +367,9 @@ async function dashboard() {
 const fmtTime = (iso) => { try { return new Date(iso).toLocaleString(); } catch { return iso; } };
 async function pushNow() {
   try {
-    await B().bumpContent();
+    toast('Reading everything and sending it to phones…');
+    for (const col of CONTENT) delete state.data[col];
+    await publishContent(true);
     await B().audit({ action: 'push', collection: 'meta', docId: 'content', summary: 'Sent content to phones' });
     toast('Done. Online phones will refresh within seconds.'); render();
   } catch (err) { console.error(err); toast('Could not send: ' + (err.message || err), true); }
@@ -366,14 +385,16 @@ async function listScreen(col) {
   const tableWrap = h('div', { class: 'tablewrap' });
   function renderList() {
     const qq = state.search.toLowerCase();
-    const shown = sorted.filter((d) => !qq || JSON.stringify(d).toLowerCase().includes(qq));
+    const matching = sorted.filter((d) => !qq || JSON.stringify(d).toLowerCase().includes(qq));
+    const shown = matching.slice(0, 300);
     tableWrap.replaceChildren(h('table', {},
       h('thead', {}, h('tr', {}, schema.columns.map(([t]) => h('th', {}, t)), h('th', {}))),
       h('tbody', {}, shown.length ? shown.map((d) => h('tr', { class: d.hidden || d.published === false ? 'muted' : '' },
         schema.columns.map(([, f]) => h('td', {}, f(d) ?? '')),
         h('td', { class: 'actions' }, h('button', { onclick: () => openForm(col, d) }, 'Edit'),
           h('button', { class: 'danger', onclick: () => remove(col, d) }, 'Delete'))))
-        : h('tr', {}, h('td', { colspan: schema.columns.length + 1, class: 'center' }, 'Nothing here yet.')))));
+        : h('tr', {}, h('td', { colspan: schema.columns.length + 1, class: 'center' }, 'Nothing here yet.')))),
+      matching.length > shown.length ? h('p', { class: 'hint center' }, `Showing ${shown.length} of ${matching.length}. Type in the search box to find the rest.`) : null);
   }
   renderList();
   return h('div', {},
@@ -395,6 +416,7 @@ function field(f, value) {
       return h('option', { value: v, selected: v === value ? 'selected' : null }, label);
     })));
     case 'number': return wrap(h('input', { type: 'number', name, min: f.min ?? 0, step: 1, value: value ?? '' }));
+    case 'decimal': return wrap(h('input', { type: 'number', name, step: 'any', value: value ?? '' }));
     case 'district': {
       const sel = h('select', { name }, h('option', { value: '' }, '— choose —'),
         LOC.divisions.map((dv) => h('optgroup', { label: dv.en }, LOC.districts.filter((d) => d.divisionId === dv.id).map((d) => h('option', { value: d.id, selected: d.id === value ? 'selected' : null }, `${d.en} · ${d.bn}`)))));
@@ -426,6 +448,7 @@ function readForm(form, schema) {
     let v;
     switch (f.type) {
       case 'checkbox': v = val(f.k).checked; break;
+      case 'decimal': { const raw = val(f.k).value.trim(); v = raw === '' ? undefined : Number(raw); if (raw && !Number.isFinite(v)) problems.push(`${f.label}: not a number`); break; }
       case 'number': { const raw = val(f.k).value.trim(); v = raw === '' ? undefined : Number(raw); if (raw && !Number.isInteger(v)) problems.push(`${f.label}: must be a whole number`); break; }
       case 'csv': v = val(f.k).value.split(',').map((x) => x.trim()).filter(Boolean); break;
       case 'lines': v = lines(val(f.k).value); break;
@@ -473,9 +496,9 @@ function openForm(col, existing) {
     const btn = form.querySelector('#save'); btn.disabled = true; btn.textContent = 'Saving…';
     try {
       await B().set(col, id, doc);
-      await afterContentChange(existing ? 'edit' : 'add', col, id, doc.name?.en || doc.title?.en || doc.name || doc.number || '');
-      const list = state.data[col] || []; const i = list.findIndex((x) => x.id === id);
+      const list = state.data[col] || (state.data[col] = []); const i = list.findIndex((x) => x.id === id);
       if (i >= 0) list[i] = doc; else list.push(doc);
+      await afterContentChange(existing ? 'edit' : 'add', col, id, doc.name?.en || doc.title?.en || doc.name || doc.number || '');
       dialog.remove(); toast('Saved. Phones will update automatically.'); render();
     } catch (err) { console.error(err); errs.textContent = 'Could not save: ' + (err.message || err); btn.disabled = false; btn.textContent = 'Save'; }
   });
@@ -488,8 +511,8 @@ async function remove(col, d) {
   if (!confirm(`Delete "${label}"? Phones will remove it on their next update.`)) return;
   try {
     await B().del(col, d.id);
-    await afterContentChange('delete', col, d.id, String(label));
     state.data[col] = (state.data[col] || []).filter((x) => x.id !== d.id);
+    await afterContentChange('delete', col, d.id, String(label));
     toast('Deleted.'); render();
   } catch (err) { console.error(err); toast('Could not delete: ' + (err.message || err), true); }
 }
@@ -579,7 +602,8 @@ function importScreen() {
         await B().audit({ action: 'import', collection: b.col, docId: '', summary: `${b.items.length} items` });
         delete state.data[b.col];
       }
-      if (pending.some((b) => CONTENT.includes(b.col))) await B().bumpContent();
+      const changed = pending.map((b) => b.col).filter((c) => CONTENT.includes(c));
+      if (changed.length) await publishContent(true, [...new Set(changed)]);
       toast('Imported. Phones will update automatically.'); go('dashboard');
     } catch (err) { console.error(err); toast('Import failed: ' + (err.message || err), true); btn.disabled = false; btn.textContent = 'Import now'; }
   }

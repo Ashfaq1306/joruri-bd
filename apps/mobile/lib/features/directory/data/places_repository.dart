@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:joruri_core/joruri_core.dart';
@@ -16,10 +17,9 @@ class PlacesRepository {
 
   final AssetBundle _bundle;
 
-  Future<List<Hospital>> hospitals() async => [
-        ...await _load('assets/seed/hospitals.json', 'hospitals', Hospital.fromJson),
-        if (AppConfig.showDemoPlaces)
-          ...await _load('assets/seed/hospitals_demo.json', 'hospitals', Hospital.fromJson),
+  Future<List<Hospital>> hospitals([Hospital Function(Map<String, dynamic>) parse = Hospital.fromJson]) async => [
+        ...await _load('assets/seed/hospitals.json', 'hospitals', parse),
+        if (AppConfig.showDemoPlaces) ...await _load('assets/seed/hospitals_demo.json', 'hospitals', parse),
       ];
 
   Future<List<Pharmacy>> pharmacies() async => [
@@ -30,7 +30,7 @@ class PlacesRepository {
 
   Future<List<T>> _load<T>(String path, String key, T Function(Map<String, dynamic>) parse) async {
     try {
-      final json = jsonDecode(await _bundle.loadString(path)) as Map<String, dynamic>;
+      final json = await compute(_decodeMap, await _bundle.loadString(path));
       final out = <T>[];
       for (final item in (json[key] as List? ?? const [])) {
         try {
@@ -47,13 +47,37 @@ class PlacesRepository {
   }
 }
 
+Map<String, dynamic> _decodeMap(String text) => jsonDecode(text) as Map<String, dynamic>;
+
 final placesRepositoryProvider = Provider<PlacesRepository>((ref) => PlacesRepository(rootBundle));
 /// Hospitals published on the admin website when downloaded; otherwise the
 /// bundled list (plus demo data while that is switched on).
 final hospitalsProvider = FutureProvider<List<Hospital>>((ref) async {
   final cache = await ref.watch(cachedContentProvider.future);
-  return parseSection(cache, 'hospitals', Hospital.fromJson) ?? await ref.watch(placesRepositoryProvider).hospitals();
+  final charts = await ref.watch(feeChartsProvider.future);
+  Hospital parse(Map<String, dynamic> json) => Hospital.fromJson(withFeeChart(json, charts));
+  return parseSection(cache, 'hospitals', parse) ?? await ref.watch(placesRepositoryProvider).hospitals(parse);
 });
+
+/// Shared price lists (e.g. the government user-fee chart), so 700 hospitals
+/// do not each carry the same prices. A hospital with "feeChart" and no tests
+/// of its own gets the chart's tests.
+final feeChartsProvider = FutureProvider<Map<String, List<dynamic>>>((ref) async {
+  try {
+    final json = jsonDecode(await rootBundle.loadString('assets/seed/fee_charts.json')) as Map<String, dynamic>;
+    return {for (final e in json.entries) if (e.value is List) e.key: e.value as List};
+  } catch (e, s) {
+    AppLogger.error('Fee charts unreadable', e, s);
+    return const {};
+  }
+});
+
+Map<String, dynamic> withFeeChart(Map<String, dynamic> json, Map<String, List<dynamic>> charts) {
+  final chart = charts[json['feeChart']];
+  final own = json['tests'];
+  if (chart == null || (own is List && own.isNotEmpty)) return json;
+  return {...json, 'tests': chart};
+}
 final pharmaciesProvider = FutureProvider<List<Pharmacy>>((ref) async {
   final cache = await ref.watch(cachedContentProvider.future);
   return parseSection(cache, 'pharmacies', Pharmacy.fromJson) ?? await ref.watch(placesRepositoryProvider).pharmacies();

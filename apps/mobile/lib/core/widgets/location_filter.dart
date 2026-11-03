@@ -12,12 +12,16 @@ class LocationFilterFields extends StatefulWidget {
     required this.onDivision,
     required this.onDistrict,
     required this.onArea,
+    this.searchLabel,
   });
 
   final PlaceFilter filter;
   final ValueChanged<String?> onDivision;
   final ValueChanged<String?> onDistrict;
   final ValueChanged<String> onArea;
+
+  /// Label of the text box (default: area).
+  final String? searchLabel;
 
   @override
   State<LocationFilterFields> createState() => _LocationFilterFieldsState();
@@ -70,7 +74,7 @@ class _LocationFilterFieldsState extends State<LocationFilterFields> {
           controller: _area,
           onChanged: widget.onArea,
           decoration: InputDecoration(
-            labelText: s.searchArea,
+            labelText: widget.searchLabel ?? s.searchArea,
             prefixIcon: const Icon(Icons.place_outlined),
             border: const OutlineInputBorder(),
             isDense: true,

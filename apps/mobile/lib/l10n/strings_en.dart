@@ -320,4 +320,17 @@ class StringsEn extends AppStrings {
   @override String get updatesCheckFailed => 'Could not check right now. Connect to the internet and try again.';
   @override String get downloadStarted => 'Downloading… open the file when it finishes, then tap Install.';
   @override String get openLink => 'Open';
+
+  @override String get searchNameOrArea => 'Name or area, e.g. Dhaka Medical, Mirpur';
+  @override String get filterGovernment => 'Government';
+  @override String get filterPrivate => 'Private';
+  @override String beds(int n) => '$n beds';
+  @override String get otherNumbers => 'Other numbers';
+  @override String get noPhoneListed => 'No phone number listed. Try the map, or call 999 in an emergency.';
+  @override String get govFeeNote => 'Government fixed fee (Ministry of Health user-fee chart). Not every hospital does every test: call first.';
+  @override String get emailLabel => 'Email';
+  @override String get websiteLabel => 'Website';
+  @override String get directionsLabel => 'Directions';
+  @override String showingFirst(int shown, int total) => 'Showing $shown of $total. Choose a district or type a name to narrow the list.';
+  @override String get bloodBanksNearby => 'Blood banks and hospital blood units';
 }

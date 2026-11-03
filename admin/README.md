@@ -13,6 +13,8 @@ Plain web page (no build step) on Firebase Hosting. Sign in with your Google acc
 | Import & backup | Import the CSV templates in `apps/mobile/tool/` or the app's seed JSON; download a full JSON backup | as content |
 | Activity log | Every change, who made it; cannot be edited | — |
 
+Hospitals: 8,616 entries imported from the DGHS Facility Registry (IDs `dghs-<registry id>`). Edit any of them, add your own, or untick **Show on phones**. The list shows 300 rows at a time; use the search box.
+
 Phones keep everything they downloaded, so the app works offline. A mistake that would remove every emergency number is ignored by the app (it keeps the previous list).
 
 Deploy website changes: `firebase deploy --only hosting` from the repo root (or the release script with `--website-only`).

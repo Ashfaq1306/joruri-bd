@@ -12,6 +12,7 @@
 |---|---|---|
 | `meta/content` (version), `meta/app` (app version, switches) | Everyone | Admins |
 | `emergency_numbers`, `guides`, `hospitals`, `pharmacies`, `announcements` | Everyone, **published items only** | Admins |
+| `snapshots/{list}-{n}` (packed copies phones download) | Everyone | Admins (the website rebuilds them on every save) |
 | `donors` (list) | Signed-in users, only `shareConsent == true && hidden == false`, ≤ 300 per query | Owner of the listing (own fields only, cannot verify/un-hide themselves); admins |
 | `users/{uid}` | Owner, admins | Owner |
 | `admins/{gmail}` | Admins (everyone may check their own entry) | **Owners** only; an owner cannot remove themselves |
@@ -21,7 +22,7 @@ Admins are identified by their **verified Google e-mail** (document ID = lower-c
 
 ## How phones get updates
 
-The admin panel raises `meta/content.version` on every change. The app listens to that document live and downloads all published content when the number goes up, then saves it on the phone (works offline afterwards). `meta/app` is listened to the same way for update notices and switches.
+On every save the admin panel rebuilds the packed copy of that list (`snapshots/hospitals-0…5`, each ≤ 900 KB) and raises `meta/content.version`, recording the list's new stamp in `meta/content.stamps`. The app listens to that document live, downloads only lists whose stamp changed (~11 reads for everything, instead of one read per hospital), and saves them on the phone (works offline afterwards). Free plan limits: 50,000 reads and 20,000 writes per day. `meta/app` is listened to the same way for update notices and switches.
 
 ## Known limits
 

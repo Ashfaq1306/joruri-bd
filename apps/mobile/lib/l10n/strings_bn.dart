@@ -320,4 +320,17 @@ class StringsBn extends AppStrings {
   @override String get updatesCheckFailed => 'এখন দেখা যাচ্ছে না। ইন্টারনেটে যুক্ত হয়ে আবার চেষ্টা করুন।';
   @override String get downloadStarted => 'ডাউনলোড হচ্ছে… শেষ হলে ফাইলটি খুলে Install চাপুন।';
   @override String get openLink => 'খুলুন';
+
+  @override String get searchNameOrArea => 'নাম বা এলাকা, যেমন ঢাকা মেডিকেল, মিরপুর';
+  @override String get filterGovernment => 'সরকারি';
+  @override String get filterPrivate => 'বেসরকারি';
+  @override String beds(int n) => '$n শয্যা';
+  @override String get otherNumbers => 'অন্যান্য নম্বর';
+  @override String get noPhoneListed => 'কোনো ফোন নম্বর দেওয়া নেই। ম্যাপ দেখুন, জরুরি হলে ৯৯৯-এ কল করুন।';
+  @override String get govFeeNote => 'সরকার নির্ধারিত ফি (স্বাস্থ্য মন্ত্রণালয়ের ইউজার ফি তালিকা)। সব হাসপাতালে সব পরীক্ষা হয় না: আগে ফোন করে জেনে নিন।';
+  @override String get emailLabel => 'ইমেইল';
+  @override String get websiteLabel => 'ওয়েবসাইট';
+  @override String get directionsLabel => 'পথ দেখুন';
+  @override String showingFirst(int shown, int total) => '$total-এর মধ্যে $shown টি দেখানো হচ্ছে। জেলা বেছে নিন বা নাম লিখুন।';
+  @override String get bloodBanksNearby => 'ব্লাড ব্যাংক ও হাসপাতালের রক্ত বিভাগ';
 }
