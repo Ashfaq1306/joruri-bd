@@ -1,0 +1,352 @@
+{
+ "govt-basic": [
+  {
+   "name": "CBC (TC, DC, ESR, Hb)",
+   "aliases": [
+    "CBC",
+    "Complete Blood Count",
+    "সিবিসি",
+    "রক্ত পরীক্ষা",
+    "Hb",
+    "ESR",
+    "হিমোগ্লোবিন"
+   ],
+   "priceBdt": 150,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Blood sugar",
+   "aliases": [
+    "Sugar",
+    "Glucose",
+    "RBS",
+    "FBS",
+    "ব্লাড সুগার",
+    "ডায়াবেটিস",
+    "সুগার"
+   ],
+   "priceBdt": 60,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Serum creatinine",
+   "aliases": [
+    "Creatinine",
+    "Kidney",
+    "ক্রিয়েটিনিন",
+    "কিডনি"
+   ],
+   "priceBdt": 50,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Blood urea",
+   "aliases": [
+    "Urea",
+    "ইউরিয়া"
+   ],
+   "priceBdt": 50,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Serum bilirubin",
+   "aliases": [
+    "Bilirubin",
+    "Jaundice",
+    "বিলিরুবিন",
+    "জন্ডিস"
+   ],
+   "priceBdt": 60,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Lipid profile",
+   "aliases": [
+    "Cholesterol",
+    "Lipid",
+    "লিপিড প্রোফাইল",
+    "কোলেস্টেরল"
+   ],
+   "priceBdt": 300,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "HbA1c",
+   "aliases": [
+    "HbA1c",
+    "Diabetes",
+    "ডায়াবেটিস"
+   ],
+   "priceBdt": 300,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Widal test",
+   "aliases": [
+    "Widal",
+    "Typhoid",
+    "টাইফয়েড",
+    "ভিডাল"
+   ],
+   "priceBdt": 80,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "HBsAg",
+   "aliases": [
+    "Hepatitis B",
+    "HBsAg",
+    "হেপাটাইটিস বি"
+   ],
+   "priceBdt": 150,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Blood grouping",
+   "aliases": [
+    "Blood group",
+    "রক্তের গ্রুপ",
+    "গ্রুপিং"
+   ],
+   "priceBdt": 50,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "ECG",
+   "aliases": [
+    "ECG",
+    "EKG",
+    "ইসিজি",
+    "হার্ট"
+   ],
+   "priceBdt": 80,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "X-ray chest (per film)",
+   "aliases": [
+    "X-ray",
+    "Xray",
+    "Chest X-ray",
+    "এক্সরে",
+    "বুকের এক্সরে"
+   ],
+   "priceBdt": 200,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Ultrasound (single organ)",
+   "aliases": [
+    "Ultrasound",
+    "USG",
+    "Ultrasonogram",
+    "আল্ট্রাসনোগ্রাম",
+    "আলট্রাসাউন্ড"
+   ],
+   "priceBdt": 110,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Ultrasound whole abdomen",
+   "aliases": [
+    "Ultrasound",
+    "USG",
+    "Whole abdomen",
+    "আল্ট্রাসনোগ্রাম",
+    "পেটের আল্ট্রা"
+   ],
+   "priceBdt": 220,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  }
+ ],
+ "govt-full": [
+  {
+   "name": "CBC (TC, DC, ESR, Hb)",
+   "aliases": [
+    "CBC",
+    "Complete Blood Count",
+    "সিবিসি",
+    "রক্ত পরীক্ষা",
+    "Hb",
+    "ESR",
+    "হিমোগ্লোবিন"
+   ],
+   "priceBdt": 150,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Blood sugar",
+   "aliases": [
+    "Sugar",
+    "Glucose",
+    "RBS",
+    "FBS",
+    "ব্লাড সুগার",
+    "ডায়াবেটিস",
+    "সুগার"
+   ],
+   "priceBdt": 60,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Serum creatinine",
+   "aliases": [
+    "Creatinine",
+    "Kidney",
+    "ক্রিয়েটিনিন",
+    "কিডনি"
+   ],
+   "priceBdt": 50,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Blood urea",
+   "aliases": [
+    "Urea",
+    "ইউরিয়া"
+   ],
+   "priceBdt": 50,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Serum bilirubin",
+   "aliases": [
+    "Bilirubin",
+    "Jaundice",
+    "বিলিরুবিন",
+    "জন্ডিস"
+   ],
+   "priceBdt": 60,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Lipid profile",
+   "aliases": [
+    "Cholesterol",
+    "Lipid",
+    "লিপিড প্রোফাইল",
+    "কোলেস্টেরল"
+   ],
+   "priceBdt": 300,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "HbA1c",
+   "aliases": [
+    "HbA1c",
+    "Diabetes",
+    "ডায়াবেটিস"
+   ],
+   "priceBdt": 300,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Widal test",
+   "aliases": [
+    "Widal",
+    "Typhoid",
+    "টাইফয়েড",
+    "ভিডাল"
+   ],
+   "priceBdt": 80,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "HBsAg",
+   "aliases": [
+    "Hepatitis B",
+    "HBsAg",
+    "হেপাটাইটিস বি"
+   ],
+   "priceBdt": 150,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Blood grouping",
+   "aliases": [
+    "Blood group",
+    "রক্তের গ্রুপ",
+    "গ্রুপিং"
+   ],
+   "priceBdt": 50,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "ECG",
+   "aliases": [
+    "ECG",
+    "EKG",
+    "ইসিজি",
+    "হার্ট"
+   ],
+   "priceBdt": 80,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "X-ray chest (per film)",
+   "aliases": [
+    "X-ray",
+    "Xray",
+    "Chest X-ray",
+    "এক্সরে",
+    "বুকের এক্সরে"
+   ],
+   "priceBdt": 200,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Ultrasound (single organ)",
+   "aliases": [
+    "Ultrasound",
+    "USG",
+    "Ultrasonogram",
+    "আল্ট্রাসনোগ্রাম",
+    "আলট্রাসাউন্ড"
+   ],
+   "priceBdt": 110,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "Ultrasound whole abdomen",
+   "aliases": [
+    "Ultrasound",
+    "USG",
+    "Whole abdomen",
+    "আল্ট্রাসনোগ্রাম",
+    "পেটের আল্ট্রা"
+   ],
+   "priceBdt": 220,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "CT scan brain (without contrast)",
+   "aliases": [
+    "CT",
+    "CT scan",
+    "সিটি স্ক্যান",
+    "Brain"
+   ],
+   "priceBdt": 2000,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "MRI (plain)",
+   "aliases": [
+    "MRI",
+    "এমআরআই"
+   ],
+   "priceBdt": 3000,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  },
+  {
+   "name": "MRI with contrast",
+   "aliases": [
+    "MRI",
+    "এমআরআই",
+    "Contrast"
+   ],
+   "priceBdt": 4000,
+   "note": "Govt fixed fee · সরকারি নির্ধারিত ফি"
+  }
+ ]
+}

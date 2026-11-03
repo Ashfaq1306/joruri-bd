@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -16,7 +17,8 @@ class ContentCache {
     try {
       final file = await _file();
       if (!await file.exists()) return null;
-      return jsonDecode(await file.readAsString()) as Map<String, dynamic>;
+      // Several MB with every hospital: decoded off the UI thread.
+      return await compute(_decodeMap, await file.readAsString());
     } catch (e, s) {
       AppLogger.error('Content cache unreadable; using bundled data', e, s);
       return null;
@@ -28,7 +30,7 @@ class ContentCache {
   Future<void> write(Map<String, dynamic> data) async {
     final file = await _file();
     final temp = File('${file.path}.tmp');
-    await temp.writeAsString(jsonEncode(data), flush: true);
+    await temp.writeAsString(await compute(jsonEncode, data), flush: true);
     await temp.rename(file.path);
   }
 
@@ -39,6 +41,8 @@ class ContentCache {
     } catch (_) {}
   }
 }
+
+Map<String, dynamic> _decodeMap(String text) => jsonDecode(text) as Map<String, dynamic>;
 
 final contentCacheProvider = Provider<ContentCache>((ref) => ContentCache());
 

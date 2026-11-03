@@ -272,6 +272,28 @@ abstract class AppStrings {
   String get searchPharmaciesInMaps;
   String get demoPlace;
   String get searchTestInHospital;
+  String get tabPharmacies;
+  String get tabMedicinePrices;
+  String get chooseDistrictForPharmacies;
+  String get searchPharmacyHint;
+  String get onlyWithPhone;
+  String licenceValidUntil(String date);
+  String licenceExpired(String date);
+  String get pharmacyDirections;
+  String get pharmacySourceNote;
+  String get searchMedicine;
+  String get medicineSearchHint;
+  String medicinesFound(int n);
+  String get noMedicineFound;
+  String get pricePerUnit;
+  String get noPublishedPrice;
+  String get sameMedicineOtherBrands;
+  String get cheapest;
+  String medicinePriceNote(String date);
+  String get medicineCompany;
+  String get medicineGeneric;
+  String get medicinePack;
+  String get medicineDar;
 
   // Account and profile
   String get brandLine;
@@ -355,6 +377,20 @@ abstract class AppStrings {
   String get updatesCheckFailed;
   String get downloadStarted;
   String get openLink;
+
+  // Hospital directory (DGHS data)
+  String get searchNameOrArea;
+  String get filterGovernment;
+  String get filterPrivate;
+  String beds(int n);
+  String get otherNumbers;
+  String get noPhoneListed;
+  String get govFeeNote;
+  String get emailLabel;
+  String get websiteLabel;
+  String get directionsLabel;
+  String showingFirst(int shown, int total);
+  String get bloodBanksNearby;
 }
 
 class _AppStringsDelegate extends LocalizationsDelegate<AppStrings> {

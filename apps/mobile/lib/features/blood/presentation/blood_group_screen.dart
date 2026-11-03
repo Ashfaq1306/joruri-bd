@@ -67,6 +67,14 @@ class BloodGroupScreen extends ConsumerWidget {
                 ),
             ],
           ),
+          const SizedBox(height: JSpace.md),
+          // Official blood banks and hospital transfusion units (DGHS list).
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(52)),
+            onPressed: () => context.push('/hospitals?filter=bloodBank'),
+            icon: const Icon(Icons.bloodtype, color: JColors.blood),
+            label: Text(s.bloodBanksNearby),
+          ),
           const SizedBox(height: JSpace.lg),
           Text(s.bloodDisclaimer, style: theme.textTheme.bodySmall),
         ],

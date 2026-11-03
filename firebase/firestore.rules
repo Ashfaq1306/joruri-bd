@@ -69,6 +69,13 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // Packed copies of the published lists (built by the admin website),
+    // so a phone downloads everything with a few reads.
+    match /snapshots/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
     // ---------- blood donors ----------
     match /donors/{id} {
       // Listing: signed-in users only, and only consented + visible donors.

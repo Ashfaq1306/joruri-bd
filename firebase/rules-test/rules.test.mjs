@@ -32,6 +32,9 @@ async function t(name, p) { try { await p; results.push(['PASS', name]); } catch
 await t('anon reads meta/app', assertSucceeds(getDoc(doc(anon, 'meta/app'))));
 await t('anon reads published announcements', assertSucceeds(getDocs(query(collection(anon, 'announcements'), where('published', '==', true)))));
 await t('anon cannot list all announcements', assertFails(getDocs(collection(anon, 'announcements'))));
+await t('anon reads snapshots', assertSucceeds(getDoc(doc(anon, 'snapshots/hospitals-0'))));
+await t('anon cannot write snapshots', assertFails(setDoc(doc(anon, 'snapshots/hospitals-0'), { json: '[]' })));
+await t('editor writes snapshots', assertSucceeds(setDoc(doc(editor, 'snapshots/hospitals-0'), { json: '[]' })));
 await t('anon cannot write content', assertFails(setDoc(doc(anon, 'emergency_numbers/x'), { number: '1', published: true })));
 await t('anon cannot list donors', assertFails(getDocs(query(collection(anon, 'donors'), where('shareConsent', '==', true), where('hidden', '==', false), limit(10)))));
 // admin checks

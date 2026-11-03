@@ -13,6 +13,7 @@ export 'src/models/emergency_contact.dart';
 export 'src/models/emergency_number.dart';
 export 'src/models/guide.dart';
 export 'src/models/health_places.dart';
+export 'src/models/medicine.dart';
 export 'src/models/verification.dart';
 export 'src/phone/bd_phone.dart';
 export 'src/sos/sos_message_builder.dart';

@@ -74,7 +74,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/sos/status', builder: (_, __) => const SosStatusScreen()),
       GoRoute(path: '/accident', builder: (_, __) => const AccidentScreen()),
       GoRoute(path: '/blood', builder: (_, __) => const BloodGroupScreen()),
-      GoRoute(path: '/hospitals', builder: (_, __) => const HospitalsScreen()),
+      GoRoute(
+        path: '/hospitals',
+        builder: (_, state) => HospitalsScreen(bloodBanksOnly: state.uri.queryParameters['filter'] == 'bloodBank'),
+      ),
       GoRoute(
         path: '/hospital/:id',
         builder: (_, state) => HospitalDetailScreen(hospitalId: state.pathParameters['id'] ?? ''),

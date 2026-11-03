@@ -239,6 +239,28 @@ class StringsEn extends AppStrings {
   @override String pharmaciesFound(int n) => n == 1 ? '1 pharmacy' : '$n pharmacies';
   @override String get noPharmacies => 'No pharmacy in our list for this area yet. Search in Google Maps.';
   @override String get searchPharmaciesInMaps => 'Search pharmacies in Google Maps';
+  @override String get tabPharmacies => 'Pharmacies';
+  @override String get tabMedicinePrices => 'Medicine prices';
+  @override String get chooseDistrictForPharmacies => 'Choose your district to see its licensed pharmacies.';
+  @override String get searchPharmacyHint => 'Pharmacy name, upazila or bazar';
+  @override String get onlyWithPhone => 'Only with a phone number';
+  @override String licenceValidUntil(String date) => 'Licence valid until $date';
+  @override String licenceExpired(String date) => 'Licence expired $date (per DGDA list)';
+  @override String get pharmacyDirections => 'Directions';
+  @override String get pharmacySourceNote => 'Licensed retail pharmacies from the DGDA (Directorate General of Drug Administration) register. Shops close or move: call or check before you go.';
+  @override String get searchMedicine => 'Medicine or generic name';
+  @override String get medicineSearchHint => 'Type a brand (Napa) or a generic name (Paracetamol). Prices are the government-approved maximum retail price.';
+  @override String medicinesFound(int n) => n == 1 ? '1 medicine' : '$n medicines';
+  @override String get noMedicineFound => 'No registered medicine with that name. Check the spelling.';
+  @override String get pricePerUnit => 'per unit';
+  @override String get noPublishedPrice => 'DGDA has not published a price';
+  @override String get sameMedicineOtherBrands => 'Same medicine, other brands (cheapest first)';
+  @override String get cheapest => 'Cheapest';
+  @override String medicinePriceNote(String date) => 'Maximum retail price approved by DGDA (downloaded $date). A shop may not charge more. Ask your doctor or pharmacist before changing brands.';
+  @override String get medicineCompany => 'Company';
+  @override String get medicineGeneric => 'Generic';
+  @override String get medicinePack => 'Pack';
+  @override String get medicineDar => 'DGDA registration';
   @override String get demoPlace => 'Demo data, not a real place';
   @override String get searchTestInHospital => 'Search tests at this hospital';
 
@@ -320,4 +342,17 @@ class StringsEn extends AppStrings {
   @override String get updatesCheckFailed => 'Could not check right now. Connect to the internet and try again.';
   @override String get downloadStarted => 'Downloading… open the file when it finishes, then tap Install.';
   @override String get openLink => 'Open';
+
+  @override String get searchNameOrArea => 'Name or area, e.g. Dhaka Medical, Mirpur';
+  @override String get filterGovernment => 'Government';
+  @override String get filterPrivate => 'Private';
+  @override String beds(int n) => '$n beds';
+  @override String get otherNumbers => 'Other numbers';
+  @override String get noPhoneListed => 'No phone number listed. Try the map, or call 999 in an emergency.';
+  @override String get govFeeNote => 'Government fixed fee (Ministry of Health user-fee chart). Not every hospital does every test: call first.';
+  @override String get emailLabel => 'Email';
+  @override String get websiteLabel => 'Website';
+  @override String get directionsLabel => 'Directions';
+  @override String showingFirst(int shown, int total) => 'Showing $shown of $total. Choose a district or type a name to narrow the list.';
+  @override String get bloodBanksNearby => 'Blood banks and hospital blood units';
 }

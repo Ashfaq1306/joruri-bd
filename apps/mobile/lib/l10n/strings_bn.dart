@@ -239,6 +239,28 @@ class StringsBn extends AppStrings {
   @override String pharmaciesFound(int n) => '$n টি ফার্মেসি';
   @override String get noPharmacies => 'এই এলাকার কোনো ফার্মেসি এখনো আমাদের তালিকায় নেই। গুগল ম্যাপে খুঁজুন।';
   @override String get searchPharmaciesInMaps => 'গুগল ম্যাপে ফার্মেসি খুঁজুন';
+  @override String get tabPharmacies => 'ফার্মেসি';
+  @override String get tabMedicinePrices => 'ওষুধের দাম';
+  @override String get chooseDistrictForPharmacies => 'লাইসেন্সপ্রাপ্ত ফার্মেসি দেখতে আপনার জেলা বেছে নিন।';
+  @override String get searchPharmacyHint => 'ফার্মেসির নাম, উপজেলা বা বাজার';
+  @override String get onlyWithPhone => 'শুধু ফোন নম্বর আছে এমন';
+  @override String licenceValidUntil(String date) => 'লাইসেন্সের মেয়াদ $date পর্যন্ত';
+  @override String licenceExpired(String date) => 'লাইসেন্সের মেয়াদ শেষ $date (ডিজিডিএ তালিকা অনুযায়ী)';
+  @override String get pharmacyDirections => 'পথ দেখুন';
+  @override String get pharmacySourceNote => 'ঔষধ প্রশাসন অধিদপ্তরের (ডিজিডিএ) নিবন্ধিত খুচরা ফার্মেসির তালিকা। দোকান বন্ধ বা স্থানান্তর হতে পারে: যাওয়ার আগে ফোন করে বা খোঁজ নিয়ে নিন।';
+  @override String get searchMedicine => 'ওষুধ বা জেনেরিক নাম';
+  @override String get medicineSearchHint => 'ব্র্যান্ড (নাপা) বা জেনেরিক নাম (Paracetamol) ইংরেজিতে লিখুন। দাম সরকার অনুমোদিত সর্বোচ্চ খুচরা মূল্য।';
+  @override String medicinesFound(int n) => '$n টি ওষুধ';
+  @override String get noMedicineFound => 'এই নামে কোনো নিবন্ধিত ওষুধ পাওয়া যায়নি। বানান দেখে নিন।';
+  @override String get pricePerUnit => 'প্রতি ইউনিট';
+  @override String get noPublishedPrice => 'ডিজিডিএ দাম প্রকাশ করেনি';
+  @override String get sameMedicineOtherBrands => 'একই ওষুধ, অন্য ব্র্যান্ড (কম দাম আগে)';
+  @override String get cheapest => 'সবচেয়ে কম দাম';
+  @override String medicinePriceNote(String date) => 'ডিজিডিএ অনুমোদিত সর্বোচ্চ খুচরা মূল্য (সংগ্রহ: $date)। দোকান এর বেশি নিতে পারে না। ব্র্যান্ড বদলানোর আগে ডাক্তার বা ফার্মাসিস্টকে জিজ্ঞেস করুন।';
+  @override String get medicineCompany => 'কোম্পানি';
+  @override String get medicineGeneric => 'জেনেরিক';
+  @override String get medicinePack => 'প্যাক';
+  @override String get medicineDar => 'ডিজিডিএ নিবন্ধন';
   @override String get demoPlace => 'ডেমো তথ্য, আসল প্রতিষ্ঠান নয়';
   @override String get searchTestInHospital => 'এই হাসপাতালের টেস্ট খুঁজুন';
 
@@ -320,4 +342,17 @@ class StringsBn extends AppStrings {
   @override String get updatesCheckFailed => 'এখন দেখা যাচ্ছে না। ইন্টারনেটে যুক্ত হয়ে আবার চেষ্টা করুন।';
   @override String get downloadStarted => 'ডাউনলোড হচ্ছে… শেষ হলে ফাইলটি খুলে Install চাপুন।';
   @override String get openLink => 'খুলুন';
+
+  @override String get searchNameOrArea => 'নাম বা এলাকা, যেমন ঢাকা মেডিকেল, মিরপুর';
+  @override String get filterGovernment => 'সরকারি';
+  @override String get filterPrivate => 'বেসরকারি';
+  @override String beds(int n) => '$n শয্যা';
+  @override String get otherNumbers => 'অন্যান্য নম্বর';
+  @override String get noPhoneListed => 'কোনো ফোন নম্বর দেওয়া নেই। ম্যাপ দেখুন, জরুরি হলে ৯৯৯-এ কল করুন।';
+  @override String get govFeeNote => 'সরকার নির্ধারিত ফি (স্বাস্থ্য মন্ত্রণালয়ের ইউজার ফি তালিকা)। সব হাসপাতালে সব পরীক্ষা হয় না: আগে ফোন করে জেনে নিন।';
+  @override String get emailLabel => 'ইমেইল';
+  @override String get websiteLabel => 'ওয়েবসাইট';
+  @override String get directionsLabel => 'পথ দেখুন';
+  @override String showingFirst(int shown, int total) => '$total-এর মধ্যে $shown টি দেখানো হচ্ছে। জেলা বেছে নিন বা নাম লিখুন।';
+  @override String get bloodBanksNearby => 'ব্লাড ব্যাংক ও হাসপাতালের রক্ত বিভাগ';
 }

@@ -7,7 +7,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import {
   getFirestore, collection, doc, getDoc, getDocs, setDoc, deleteDoc, addDoc, writeBatch,
-  increment, query, orderBy, limit,
+  increment, query, orderBy, limit, where, getCountFromServer,
 } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 import { firebaseConfig } from './firebase-config.js';
 
@@ -50,6 +50,8 @@ if (configured) {
       const entry = byEmail || await adminEntry(user.uid);
       return entry ? (entry.role === 'owner' ? 'owner' : 'editor') : null;
     },
+    // Cheap counts (about 1 read per 1,000 items) for the dashboard.
+    count: async (col, field, value) => (await getCountFromServer(field ? query(collection(db, col), where(field, '==', value)) : collection(db, col))).data().count,
     list: async (col) => (await getDocs(collection(db, col))).docs.map((d) => ({ ...d.data(), id: d.id })),
     get: async (col, id) => { const s = await getDoc(doc(db, col, id)); return s.exists() ? { ...s.data(), id: s.id } : null; },
     newId: (col) => doc(collection(db, col)).id,
@@ -65,6 +67,31 @@ if (configured) {
     },
     getMeta: async (id = 'content') => (await getDoc(doc(db, 'meta', id))).data() || {},
     bumpContent: () => setDoc(doc(db, 'meta', 'content'), { version: increment(1), updatedAt: new Date().toISOString() }, { merge: true }),
+    // Packs each published list into a few documents (≤ 900 KB each), so a
+    // phone downloads everything with ~10 reads instead of one per item
+    // (the free plan allows 50,000 reads a day). Then raises the version.
+    publishSnapshots: async (lists) => {
+      const enc = new TextEncoder();
+      const old = (await getDoc(doc(db, 'meta', 'content'))).data()?.chunks || {};
+      const chunks = {}; const stamps = {}; const now = new Date().toISOString();
+      for (const [col, items] of Object.entries(lists)) {
+        const parts = []; let cur = []; let size = 2;
+        for (const item of items) {
+          const n = enc.encode(JSON.stringify(item)).length + 1;
+          if (cur.length && size + n > 900000) { parts.push(cur); cur = []; size = 2; }
+          cur.push(item); size += n;
+        }
+        if (cur.length || !parts.length) parts.push(cur);
+        for (let i = 0; i < parts.length; i++) {
+          await setDoc(doc(db, 'snapshots', `${col}-${i}`), { json: JSON.stringify(parts[i]), part: i, total: parts.length, updatedAt: new Date().toISOString() });
+        }
+        for (let i = parts.length; i < (old[col] || 0); i++) await deleteDoc(doc(db, 'snapshots', `${col}-${i}`));
+        chunks[col] = parts.length; stamps[col] = now;
+      }
+      // merge: lists not passed in keep their chunks and stamps, so phones
+      // only re-download the lists that changed.
+      await setDoc(doc(db, 'meta', 'content'), { version: increment(1), chunks, stamps, updatedAt: now }, { merge: true });
+    },
     audit: (entry) => addDoc(collection(db, 'audit'), { ...entry, at: new Date().toISOString(), by: auth.currentUser?.email || '' }),
     listAudit: async () => (await getDocs(query(collection(db, 'audit'), orderBy('at', 'desc'), limit(200)))).docs.map((d) => d.data()),
   };
