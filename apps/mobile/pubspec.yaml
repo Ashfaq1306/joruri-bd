@@ -1,7 +1,7 @@
 name: joruri_bd
 description: JORURI BD - Bangladesh emergency response companion. Help when every second matters.
 publish_to: none
-version: 1.1.0+12
+version: 1.2.0+13
 
 environment:
   sdk: ^3.5.0
@@ -70,6 +70,7 @@ flutter:
   assets:
     - assets/images/
     - assets/seed/
+    - assets/seed/pharmacies/
     - assets/sounds/
 
   # Hind Siliguri, bundled by tool/get_fonts.dart (SIL Open Font License, see assets/fonts/OFL.txt)

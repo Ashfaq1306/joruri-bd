@@ -50,3 +50,9 @@ Thumbs.db
 
 # Release APKs are published as GitHub releases, never committed
 *.apk
+
+# DGDA import working files (raw downloads contain personal data; never commit)
+tools/dgda-import/*.jsonl
+tools/dgda-import/*.log
+tools/dgda-import/medicines_list.json
+tools/dgda-import/*_report.txt

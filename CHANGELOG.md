@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.2.0 (build 13) — 2026-11-03
+Includes everything in 1.1.0 (all DGHS hospitals), which was not released on its own.
+
+**Every licensed pharmacy in Bangladesh**
+- 117,274 retail pharmacies in all 64 districts from the official DGDA register (Directorate General of Drug Administration): name, upazila, address, drug licence number and licence end date; 22,042 with a phone number.
+- Pharmacy screen: choose a district (starts in your profile's district), search by shop name, upazila or bazar, "only with a phone number" and "24 hours" filters. Shops with a valid licence and a phone number first; expired licences are labelled. Shops without a number get a **Directions** button (Google Maps).
+- Built into the app per district (works offline, only one district is read at a time). Pharmacist/proprietor names and national IDs in the register are not included.
+- Admin panel: a pharmacy can carry its DGDA licence number; it then replaces the built-in entry (to add a checked phone number or mark it 24-hour).
+
+**Medicine prices**
+- New **Medicine prices** tab on the Pharmacy screen: search ~38,000 registered medicines by brand (Napa) or generic name (Paracetamol) and see the DGDA-approved maximum retail price per unit for every pack size.
+- Each medicine lists the **same medicine from other companies, cheapest first**, with a reminder to ask a doctor or pharmacist before changing brands.
+- Veterinary products and raw materials are left out. Brands without a published price say so; nothing is estimated.
+- Source and refresh scripts: `tools/dgda-import`.
+
 ## 1.1.0 (build 12) — 2026-11-03
 **Every registered hospital in Bangladesh**
 - 8,616 facilities from the official DGHS Facility Registry: 834 government hospitals (all 37 medical college hospitals, 60 district/general hospitals, 434 upazila health complexes, specialised institutes, MCWCs, trauma centres, CMHs), 5,926 private hospitals/clinics, 1,626 NGO hospitals/clinics and 198 blood banks. Names in English and Bangla, type, upazila, address (8,084), phone (6,425), email, website, map position (4,878), beds.

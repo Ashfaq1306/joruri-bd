@@ -135,9 +135,11 @@ const SCHEMAS = {
     fields: [
       { k: 'name', label: 'Pharmacy name', required: true },
       { k: 'districtId', label: 'District', type: 'district', required: true },
-      { k: 'area', label: 'Area' }, { k: 'address', label: 'Address' },
+      { k: 'area', label: 'Area / upazila' }, { k: 'address', label: 'Address' },
       { k: 'phone', label: 'Phone', type: 'phone', required: true },
       { k: 'open24h', label: 'Open 24 hours', type: 'checkbox' },
+      { k: 'licence', label: 'DGDA drug licence no. (optional; if it matches a shop in the built-in DGDA list, this entry replaces it)' },
+      { k: 'validUpto', label: 'Licence valid until (optional)', type: 'date' },
       { k: 'verified', label: 'Checked by a person', type: 'checkbox' },
       { k: 'published', label: 'Show on phones', type: 'checkbox', default: true },
     ],
@@ -341,7 +343,7 @@ async function dashboard() {
   const liveNotices = notices.filter((n) => n.published && !isExpired(n)).length;
   const todo = [
     nHosp === 0 && ['hospitals', 'No hospitals yet: the Hospitals screen in the app is empty. Add them one by one or import the spreadsheet.'],
-    nPharm === 0 && ['pharmacies', 'No pharmacies yet: the Pharmacy screen in the app is empty.'],
+    nPharm === 0 && ['pharmacies', 'The app already has ~117,000 licensed pharmacies from the DGDA register built in. Add pharmacies here to mark 24-hour shops or add a checked phone number (enter the DGDA licence no. to replace the built-in entry).'],
     nDonors === 0 && ['donors', 'No blood donors yet. Add donors who agreed to share their number, or import the spreadsheet.'],
     empty && ['guides', `${empty} guide(s) have no steps yet; the app shows them as "being written".`],
     unverified && ['emergency_numbers', `${unverified} emergency number(s) are not marked as checked; the app shows a "not yet verified" label.`],

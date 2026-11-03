@@ -272,6 +272,28 @@ abstract class AppStrings {
   String get searchPharmaciesInMaps;
   String get demoPlace;
   String get searchTestInHospital;
+  String get tabPharmacies;
+  String get tabMedicinePrices;
+  String get chooseDistrictForPharmacies;
+  String get searchPharmacyHint;
+  String get onlyWithPhone;
+  String licenceValidUntil(String date);
+  String licenceExpired(String date);
+  String get pharmacyDirections;
+  String get pharmacySourceNote;
+  String get searchMedicine;
+  String get medicineSearchHint;
+  String medicinesFound(int n);
+  String get noMedicineFound;
+  String get pricePerUnit;
+  String get noPublishedPrice;
+  String get sameMedicineOtherBrands;
+  String get cheapest;
+  String medicinePriceNote(String date);
+  String get medicineCompany;
+  String get medicineGeneric;
+  String get medicinePack;
+  String get medicineDar;
 
   // Account and profile
   String get brandLine;

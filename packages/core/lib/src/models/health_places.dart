@@ -191,6 +191,9 @@ class Pharmacy {
     this.open24h = false,
     this.verified = false,
     this.demo = false,
+    this.licence = '',
+    this.licenceValidUpto,
+    this.source = '',
   });
 
   factory Pharmacy.fromJson(Map<String, dynamic> json) => Pharmacy(
@@ -203,17 +206,44 @@ class Pharmacy {
         open24h: (json['open24h'] as bool?) ?? false,
         verified: (json['verified'] as bool?) ?? false,
         demo: (json['demo'] as bool?) ?? false,
+        licence: (json['licence'] as String?) ?? '',
+        licenceValidUpto: DateTime.tryParse((json['validUpto'] as String?) ?? ''),
+        source: (json['source'] as String?) ?? '',
       );
 
   final String id;
   final String name;
   final String districtId;
+
+  /// Empty when the register has no number; the app offers directions instead.
   final String phone;
+
+  /// Upazila / thana.
   final String area;
   final String address;
   final bool open24h;
   final bool verified;
   final bool demo;
+
+  /// Drug licence number from the DGDA register (empty for admin-added shops).
+  final String licence;
+
+  /// Last day of the licence in the DGDA register. null = not known.
+  final DateTime? licenceValidUpto;
+
+  /// Where the entry comes from, e.g. "DGDA".
+  final String source;
+
+  bool get hasPhone => phone.trim().isNotEmpty;
+
+  /// true / false from the register's date; null when there is no date.
+  bool? licenceValidOn(DateTime day) {
+    final until = licenceValidUpto;
+    if (until == null) return null;
+    return !until.isBefore(DateTime(day.year, day.month, day.day));
+  }
+
+  String get searchText => '$name $area $address'.toLowerCase();
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -225,6 +255,9 @@ class Pharmacy {
         'open24h': open24h,
         'verified': verified,
         if (demo) 'demo': true,
+        if (licence.isNotEmpty) 'licence': licence,
+        if (licenceValidUpto != null) 'validUpto': licenceValidUpto!.toIso8601String().substring(0, 10),
+        if (source.isNotEmpty) 'source': source,
       };
 }
 
