@@ -10,7 +10,7 @@ Includes everything in 1.1.0 (all DGHS hospitals), which was not released on its
 - Admin panel: a pharmacy can carry its DGDA licence number; it then replaces the built-in entry (to add a checked phone number or mark it 24-hour).
 
 **Medicine prices**
-- New **Medicine prices** tab on the Pharmacy screen: search ~38,000 registered medicines by brand (Napa) or generic name (Paracetamol) and see the DGDA-approved maximum retail price per unit for every pack size.
+- New **Medicine prices** tab on the Pharmacy screen: search 38,834 registered medicines (22,525 with a published price) by brand (Napa) or generic name (Paracetamol) and see the DGDA-approved maximum retail price per unit for every pack size.
 - Each medicine lists the **same medicine from other companies, cheapest first**, with a reminder to ask a doctor or pharmacist before changing brands.
 - Veterinary products and raw materials are left out. Brands without a published price say so; nothing is estimated.
 - Source and refresh scripts: `tools/dgda-import`.

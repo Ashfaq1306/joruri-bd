@@ -28,7 +28,7 @@ This repository contains the app (emergency core works **fully offline and witho
 | Blood | Pick the blood group needed → every donor with that group, with their number and a Call button. Filter by division, district and area; optionally include other compatible groups. Works offline. |
 | Hospitals | **All 8,616 hospitals, clinics and blood banks registered with DGHS** (government, private, NGO), with Bangla names, phone numbers, address, map position and type. Search by name; filter by division, district, government/private, emergency, blood bank. **Tests & prices**: government user-fee chart for government hospitals (CBC, X-ray, ECG, ultrasound, CT, MRI …), cheapest first. Source and refresh scripts: `tools/dghs-import`. |
 | Pharmacy | **All 117,274 licensed retail pharmacies from the DGDA register** in every district: name, upazila, address, licence and its end date, phone (22,042) with a Call button, otherwise Directions. Search by name/upazila/bazar; phone and 24-hour filters; team-added shops from the admin panel on top. |
-| Medicine prices | **DGDA-approved maximum retail price of ~38,000 registered medicines**: search by brand or generic, every pack size, and the same medicine from other companies cheapest first. Source and refresh scripts: `tools/dgda-import`. |
+| Medicine prices | **DGDA-approved maximum retail price of 38,834 registered medicines (22,525 priced)**: search by brand or generic, every pack size, and the same medicine from other companies cheapest first. Source and refresh scripts: `tools/dgda-import`. |
 
 ## Run it (first time)
 
