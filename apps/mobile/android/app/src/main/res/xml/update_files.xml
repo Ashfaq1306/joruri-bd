@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Downloaded app updates (getApplicationSupportDirectory()/updates), shared
+     with Android's installer through the FileProvider in AndroidManifest.xml. -->
+<paths>
+    <files-path name="updates" path="updates/" />
+</paths>

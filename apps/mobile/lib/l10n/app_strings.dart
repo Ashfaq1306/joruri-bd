@@ -364,6 +364,22 @@ abstract class AppStrings {
   String get liveListUnavailable;
   String get liveListBodyGoogle;
 
+  // Sign-in with a link sent by e-mail (free; SMS codes need a paid plan)
+  String get orWord;
+  String get signInWithEmail;
+  String get sendSignInLink;
+  String get sendAgain;
+  String signInLinkSent(String email);
+  String get pasteSignInLink;
+  String get signInLinkLabel;
+  String get pasteWord;
+  String get finishSignIn;
+  String get finishSignInBody;
+  String get emailInvalid;
+  String get signInLinkInvalid;
+  String get signInEmailMismatch;
+  String get emailDailyLimit;
+
   // App updates and announcements (managed on the admin website)
   String get updateAvailable;
   String get updateRequired;
@@ -376,6 +392,12 @@ abstract class AppStrings {
   String get checking;
   String get updatesCheckFailed;
   String get downloadStarted;
+  String updateDownloading(int? percent);
+  String get updateReady;
+  String get updateInstall;
+  String get updateAllowInstall;
+  String get updateDownloadFailed;
+  String get updateInBrowser;
   String get openLink;
 
   // Hospital directory (DGHS data)

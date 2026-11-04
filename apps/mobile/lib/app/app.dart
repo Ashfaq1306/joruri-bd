@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:joruri_design_system/joruri_design_system.dart';
 
 import 'package:joruri_bd/app/router.dart';
+import 'package:joruri_bd/core/firebase/email_link_auth.dart';
+import 'package:joruri_bd/features/update/update_installer.dart';
 import 'package:joruri_bd/features/settings/presentation/settings_controller.dart';
 import 'package:joruri_bd/l10n/app_strings.dart';
 
@@ -15,6 +17,9 @@ class JoruriApp extends ConsumerWidget {
     final settings = ref.watch(settingsProvider);
     final router = ref.watch(routerProvider);
     final languageCode = settings.languageCode;
+    // Always running: e-mail sign-in links, and automatic update downloads.
+    ref.watch(signInLinkListenerProvider);
+    ref.listen(updateInstallerProvider, (_, __) {});
 
     return MaterialApp.router(
       onGenerateTitle: (context) => context.s.appName,

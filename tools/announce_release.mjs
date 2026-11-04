@@ -7,7 +7,6 @@
 import { getDoc, commit } from './lib/firestore.mjs';
 
 const REPO = 'Ashfaq1306/joruri-bd';
-const DL = `https://github.com/${REPO}/releases/latest/download`;
 const r = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { accept: 'application/vnd.github+json' } });
 if (!r.ok) throw new Error(`GitHub: ${r.status} (is the repository public and the release published?)`);
 const rel = await r.json();
@@ -20,9 +19,15 @@ for (const a of ['joruri-bd.apk', 'joruri-bd-arm32.apk']) {
 }
 const current = (await getDoc('meta/app')) || {};
 if ((current.latestVersionCode || 0) > code) throw new Error(`Phones already know a newer build (${current.latestVersionCode})`);
+// The app downloads the update itself and installs it only if its SHA-256
+// matches (GitHub publishes each asset's digest).
+const TAG_DL = `https://github.com/${REPO}/releases/download/${rel.tag_name}`;
+const sha = (n) => ((rel.assets || []).find((x) => x.name === n)?.digest || '').replace(/^sha256:/, '');
 const update = {
   latestVersionName: info.versionName || rel.tag_name, latestVersionCode: code,
-  apkUrl: `${DL}/joruri-bd.apk`, apkUrlArm32: `${DL}/joruri-bd-arm32.apk`,
+  // This release's own files (not .../latest/...), so the SHA-256 always matches.
+  apkUrl: `${TAG_DL}/joruri-bd.apk`, apkUrlArm32: `${TAG_DL}/joruri-bd-arm32.apk`,
+  apkSha256: sha('joruri-bd.apk'), apkSha256Arm32: sha('joruri-bd-arm32.apk'),
   notes: { en: info.notes?.en || '', bn: info.notes?.bn || '' }, updatedAt: new Date().toISOString(),
 };
 await commit([{ merge: ['meta/app', update] }]);

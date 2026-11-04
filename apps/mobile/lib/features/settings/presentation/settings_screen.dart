@@ -11,7 +11,7 @@ import 'package:joruri_bd/core/utils/digits.dart';
 import 'package:joruri_bd/features/contacts/presentation/contacts_controller.dart';
 import 'package:joruri_bd/core/firebase/google_auth.dart';
 import 'package:joruri_bd/core/remote/app_meta.dart';
-import 'package:joruri_bd/features/update/update_banner.dart';
+import 'package:joruri_bd/features/update/update_installer.dart';
 import 'package:joruri_bd/features/profile/data/profile_sync.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_card.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_controller.dart';
@@ -290,7 +290,9 @@ class _AboutSectionState extends ConsumerState<_AboutSection> {
     setState(() => _checking = false);
     final update = ref.read(updateInfoProvider);
     if (update != null) {
-      await downloadUpdate(context, update.meta);
+      // Downloads inside the app and opens Android's installer.
+      messenger.showSnackBar(SnackBar(content: Text(s.updateDownloading(null))));
+      await ref.read(updateInstallerProvider.notifier).downloadAndInstall(update);
     } else {
       messenger.showSnackBar(SnackBar(content: Text(reached ? s.upToDate : s.updatesCheckFailed)));
     }

@@ -21,6 +21,8 @@ class AppMeta {
     this.minVersionCode = 0,
     this.apkUrl = '',
     this.apkUrlArm32 = '',
+    this.apkSha256 = '',
+    this.apkSha256Arm32 = '',
     this.notes = const LocalizedText(en: '', bn: ''),
     this.showDraftGuides = AppConfig.showDraftGuides,
     this.showUnverifiedContent = AppConfig.showUnverifiedContent,
@@ -35,6 +37,8 @@ class AppMeta {
       minVersionCode: asInt(j['minVersionCode']),
       apkUrl: asString(j['apkUrl']),
       apkUrlArm32: asString(j['apkUrlArm32']),
+      apkSha256: asString(j['apkSha256']).toLowerCase(),
+      apkSha256Arm32: asString(j['apkSha256Arm32']).toLowerCase(),
       notes: LocalizedText.fromJson(j['notes']),
       showDraftGuides: j['showDraftGuides'] is bool ? j['showDraftGuides'] as bool : AppConfig.showDraftGuides,
       showUnverifiedContent:
@@ -49,6 +53,11 @@ class AppMeta {
   final int minVersionCode;
   final String apkUrl;
   final String apkUrlArm32;
+
+  /// SHA-256 of each APK (set by tools/announce_release.mjs). The in-app
+  /// updater installs only a download that matches; empty = not checked.
+  final String apkSha256;
+  final String apkSha256Arm32;
   final LocalizedText notes;
   final bool showDraftGuides;
   final bool showUnverifiedContent;
@@ -135,15 +144,17 @@ final updateInfoProvider = Provider<UpdateInfo?>((ref) {
 
 /// The right APK for this phone: 64-bit for almost every phone, 32-bit for
 /// old ones (only if the admins provided that link).
-Future<Uri> apkUriFor(AppMeta meta) async {
-  var url = meta.apkUrl;
+Future<Uri> apkUriFor(AppMeta meta) async => (await apkFor(meta)).uri;
+
+/// The APK link for this phone and the SHA-256 it must have ('' = unknown).
+Future<({Uri uri, String sha256})> apkFor(AppMeta meta) async {
   try {
     final abis = (await DeviceInfoPlugin().androidInfo).supportedAbis;
     if (!abis.contains('arm64-v8a') && !abis.contains('x86_64') && meta.apkUrlArm32.isNotEmpty) {
-      url = meta.apkUrlArm32;
+      return (uri: Uri.parse(meta.apkUrlArm32), sha256: meta.apkSha256Arm32);
     }
   } catch (_) {}
-  return Uri.parse(url);
+  return (uri: Uri.parse(meta.apkUrl), sha256: meta.apkSha256);
 }
 
 /// Asks the server for the newest `meta/app` (Settings → Check for updates).

@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.4.0 (build 16) — 2026-11-04
+**Automatic updates (through Firebase)**
+- When a new version is published (Firebase `meta/app`, set by the release script), the app now downloads it **inside the app**: by itself on Wi-Fi, on a tap on mobile data, with a progress bar. It checks the file's SHA-256 against `meta/app` (GitHub's digest of the release asset) and then opens Android's installer: one tap on **Update**. Android only lets app stores install silently, so that last tap stays. The first time, Android asks once to allow Joruri BD to install updates.
+- If the in-app download fails, the card offers **Download in browser** (the old way). Downloaded files are deleted after the update.
+- `meta/app` now links to the release's own files (`releases/download/<tag>/…`, not `latest`), so the checked SHA-256 always matches. New fields `apkSha256` / `apkSha256Arm32`, filled by `tools/announce_release.mjs` and by "Use latest release" on the admin panel.
+- Phones on 1.3.1 or older still update once the old way (browser); from 1.4.0 on, updates come in the app.
+- The update card's button now has white text (the dark-green-on-green text was hard to read).
+
+**Sign in with e-mail (free, no SMS)**
+- Sign-in screen: besides Google, type your e-mail and tap **Send sign-in link**; tapping the link in the e-mail opens the app and signs you in (Firebase e-mail link; Android App Links on `joruri-bd.firebaseapp.com`, whose `assetlinks.json` Firebase serves for the release key). If the link opens in a browser, paste it into the app; `joruri-bd.web.app/signin/` explains this.
+- SMS one-time codes are not possible on the free Firebase plan (Blaze only, charged per SMS).
+- **Limit:** on the free Spark plan Firebase sends only **5 sign-in e-mails per day for the whole project**. When it is reached the app says so and points to Google sign-in, which has no such limit. More e-mails need the Blaze plan.
+
 ## 1.3.1 (build 15) — 2026-11-04
 **Google sign-in works for everyone**
 - Fix: "Sign in with Google" failed on every phone with "Sign-in did not work" (`clientConfigurationError`) in all published versions. Release builds shrink unused resources, and the Web client ID that Google sign-in looks up by name (`default_web_client_id`, generated from `google-services.json`) was removed from the APK. `android/app/src/main/res/raw/keep.xml` now keeps it, and the release scripts refuse to publish an APK without it.
