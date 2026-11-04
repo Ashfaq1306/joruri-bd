@@ -705,13 +705,15 @@ async function latestGithubRelease() {
     return m ? { name: m[1], code: Number(m[2]) } : null;
   } catch { return null; }
 }
-const RELEASES_DL = `https://github.com/${RELEASES_REPO}/releases/latest/download`;
 const APP_FIELDS = [
   { k: 'latestVersionName', label: 'Latest version name (e.g. 1.2.0)' },
   { k: 'latestVersionCode', label: 'Latest build number (the number after + in pubspec.yaml, e.g. 12)', type: 'number' },
   { k: 'minVersionCode', label: 'Oldest build still allowed (phones below this see an urgent "update now" message; 0 = none)', type: 'number' },
   { k: 'apkUrl', label: 'Download link for most phones (64-bit)' },
   { k: 'apkUrlArm32', label: 'Download link for older phones (32-bit)' },
+  // The app downloads the update itself and installs it only if the file matches.
+  { k: 'apkSha256', label: 'SHA-256 of the 64-bit APK (filled by "Use latest release"; empty = not checked)' },
+  { k: 'apkSha256Arm32', label: 'SHA-256 of the 32-bit APK' },
   bi('notes', 'What is new (shown in the update message)', true),
   { k: 'showDraftGuides', label: 'Show first-aid guides that a doctor has not approved yet (with a warning)', type: 'checkbox', default: true },
   { k: 'showUnverifiedContent', label: 'Show emergency numbers that are not marked as checked (with a label)', type: 'checkbox', default: true },
@@ -727,7 +729,10 @@ async function appScreen() {
     const m = /<!-- joruri (\{.*\}) -->/.exec(r.body || '');
     const info = m ? JSON.parse(m[1]) : {};
     const code = info.versionCode || Number((/build(\d+)$/.exec(r.tag_name) || [])[1]) || 0;
-    latest = { versionName: info.versionName || r.tag_name, versionCode: code, notes: info.notes || {} };
+    const sha = (n) => ((r.assets || []).find((a) => a.name === n)?.digest || '').replace(/^sha256:/, '');
+    latest = { versionName: info.versionName || r.tag_name, versionCode: code, notes: info.notes || {},
+      sha: sha('joruri-bd.apk'), shaArm32: sha('joruri-bd-arm32.apk'),
+      dl: `https://github.com/${RELEASES_REPO}/releases/download/${r.tag_name}` };
     const live = (current.latestVersionCode || 0) >= code;
     rel.className = 'card ' + (live ? 'ok' : 'bad');
     rel.replaceChildren(
@@ -739,7 +744,9 @@ async function appScreen() {
   function fill() {
     const set = (k, v) => { const el = form.elements.namedItem(k); if (el && v != null) el.value = v; };
     set('latestVersionName', latest.versionName); set('latestVersionCode', latest.versionCode);
-    set('apkUrl', `${RELEASES_DL}/joruri-bd.apk`); set('apkUrlArm32', `${RELEASES_DL}/joruri-bd-arm32.apk`);
+    // This release's own files, so the SHA-256 always matches.
+    set('apkUrl', `${latest.dl}/joruri-bd.apk`); set('apkUrlArm32', `${latest.dl}/joruri-bd-arm32.apk`);
+    set('apkSha256', latest.sha); set('apkSha256Arm32', latest.shaArm32);
     set('notes.en', latest.notes.en || ''); set('notes.bn', latest.notes.bn || '');
     toast('Filled in. Press Save to tell every phone.');
     form.querySelector('#saveApp').focus();
@@ -763,7 +770,7 @@ async function appScreen() {
       h('ol', {},
         h('li', {}, 'A developer raises the version in pubspec.yaml and runs the release script (apps/mobile/tool/release.ps1 on Windows, release.sh on Linux). It builds the app and publishes it on GitHub; the ', h('a', { href: 'download/', target: '_blank' }, 'download page'), ' always offers the newest one.'),
         h('li', {}, 'Here, press "Use latest release" and Save.'),
-        h('li', {}, 'Every phone with an older version shows "Update available" with a download button. Content changes (numbers, hospitals, guides, announcements) never need an app update.'))),
+        h('li', {}, 'Every phone with an older version downloads the update inside the app (by itself on Wi-Fi) and shows "Install update": one tap. Content changes (numbers, hospitals, guides, announcements) never need an app update.'))),
     rel,
     form);
 }

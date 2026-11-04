@@ -313,10 +313,10 @@ class StringsEn extends AppStrings {
   @override String get phoneChangedReverify => 'Your number changed. Verify the new number to stay visible.';
 
   @override String get signInTitle => 'Sign in';
-  @override String get signInBody => 'Sign in with your Google account to put your donor profile online and to see the live donor list. Your profile is always saved on this phone too.';
+  @override String get signInBody => 'Sign in with Google or your e-mail to put your donor profile online and to see the live donor list. Your profile is always saved on this phone too.';
   @override String get signInWithGoogle => 'Sign in with Google';
   @override String get signInFailed => 'Sign-in did not work. Check the internet and try again.';
-  @override String get signInNotAvailable => 'Google sign-in is not set up for this app yet. Everything else works.';
+  @override String get signInNotAvailable => 'Sign-in is not available right now. Everything else works.';
   @override String signedInAs(String who) => 'Signed in as $who';
   @override String get phoneSelfDeclared => 'Phone numbers in the donor list are entered by the donors themselves. Joruri BD does not check them, and signing in does not verify anyone\'s identity or health.';
   @override String get syncSavedLocal => 'Saved on this phone';
@@ -329,10 +329,24 @@ class StringsEn extends AppStrings {
   @override String get syncRetry => 'Try again';
   @override String get liveListUnavailable => 'The online donor list is not available right now. Showing donors saved in the app.';
   @override String get liveListBodyGoogle => 'Sign in to see every registered donor, always up to date.';
+  @override String get orWord => 'or';
+  @override String get signInWithEmail => 'Sign in with e-mail';
+  @override String get sendSignInLink => 'Send sign-in link';
+  @override String get sendAgain => 'Send again';
+  @override String signInLinkSent(String email) => 'We sent a sign-in link to $email. Open that e-mail on this phone and tap the link. It can take a minute; check Spam too.';
+  @override String get pasteSignInLink => 'Did the link open in the browser instead? Copy the link from the e-mail and paste it here.';
+  @override String get signInLinkLabel => 'Sign-in link';
+  @override String get pasteWord => 'Paste';
+  @override String get finishSignIn => 'Finish signing in';
+  @override String get finishSignInBody => 'Enter the e-mail address the sign-in link was sent to.';
+  @override String get emailInvalid => 'Enter a valid e-mail address, for example name@gmail.com.';
+  @override String get emailDailyLimit => "Sign-in by e-mail has reached today's limit. Please use Sign in with Google, or try e-mail again tomorrow.";
+  @override String get signInEmailMismatch => 'This link was sent to a different e-mail address. Enter that address, or send a new link.';
+  @override String get signInLinkInvalid => 'This link has expired or was already used. Send a new link.';
 
   @override String get updateAvailable => 'Update available';
   @override String get updateRequired => 'Please update the app';
-  @override String updateBody(String version) => 'Version $version is ready. Download it and tap Install.';
+  @override String updateBody(String version) => 'Version $version is out. It downloads inside the app (by itself on Wi-Fi); then tap Install update.';
   @override String get updateRequiredBody => 'This version is too old to receive important changes. SOS still works, but please update now.';
   @override String get updateDownload => 'Download update';
   @override String get whatsNew => "What's new";
@@ -341,6 +355,12 @@ class StringsEn extends AppStrings {
   @override String get checking => 'Checking…';
   @override String get updatesCheckFailed => 'Could not check right now. Connect to the internet and try again.';
   @override String get downloadStarted => 'Downloading… open the file when it finishes, then tap Install.';
+  @override String updateDownloading(int? percent) => percent == null ? 'Downloading the update…' : 'Downloading the update… $percent%';
+  @override String get updateReady => 'Update ready to install';
+  @override String get updateInstall => 'Install update';
+  @override String get updateAllowInstall => 'Android asks once: allow Joruri BD to install updates, then come back and tap Install update.';
+  @override String get updateDownloadFailed => 'The update could not be downloaded in the app.';
+  @override String get updateInBrowser => 'Download in browser';
   @override String get openLink => 'Open';
 
   @override String get searchNameOrArea => 'Name or area, e.g. Dhaka Medical, Mirpur';

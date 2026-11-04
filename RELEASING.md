@@ -25,7 +25,7 @@ If you lose the key there is no way to publish updates that install over the old
    ./tool/release.sh "What changed in English" "বাংলায় কী বদলেছে"          # Linux / macOS
    .\tool\release.ps1 -Notes "What changed" -NotesBn "কী বদলেছে"            # Windows
    ```
-   This builds the signed APKs (64-bit and 32-bit), creates a GitHub release in this repository, redeploys the admin website, and tells every phone about the new version (`tools/announce_release.mjs`). Every phone running an older version shows **Update available** within seconds if online.
+   This builds the signed APKs (64-bit and 32-bit), creates a GitHub release in this repository, redeploys the admin website, and tells every phone about the new version (`tools/announce_release.mjs`). Every phone running an older version shows **Update available** within seconds if online. From 1.4.0 the app downloads the update itself (on Wi-Fi without asking), checks it against the SHA-256 that GitHub publishes for the release file, and asks the person to tap Install.
 4. Check <https://joruri-bd.web.app/#app>: it should say "Phones already know about this version". (Before 1.3.0 this was a manual step; it was missed for 1.2.0.)
 
 To force very old versions to update, set **Oldest build still allowed** on the same page; those phones see a red "Please update" card. SOS keeps working regardless.

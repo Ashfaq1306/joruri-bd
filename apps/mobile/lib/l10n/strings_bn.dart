@@ -313,10 +313,10 @@ class StringsBn extends AppStrings {
   @override String get phoneChangedReverify => 'আপনার নম্বর বদলেছে। দেখা যেতে নতুন নম্বর যাচাই করুন।';
 
   @override String get signInTitle => 'সাইন ইন';
-  @override String get signInBody => 'রক্তদাতা প্রোফাইল অনলাইনে রাখতে এবং সরাসরি রক্তদাতাদের তালিকা দেখতে Google অ্যাকাউন্ট দিয়ে সাইন ইন করুন। আপনার প্রোফাইল সবসময় এই ফোনেও সংরক্ষিত থাকে।';
+  @override String get signInBody => 'রক্তদাতা প্রোফাইল অনলাইনে রাখতে এবং সরাসরি রক্তদাতাদের তালিকা দেখতে Google বা ইমেইল দিয়ে সাইন ইন করুন। আপনার প্রোফাইল সবসময় এই ফোনেও সংরক্ষিত থাকে।';
   @override String get signInWithGoogle => 'Google দিয়ে সাইন ইন';
   @override String get signInFailed => 'সাইন ইন হয়নি। ইন্টারনেট দেখে আবার চেষ্টা করুন।';
-  @override String get signInNotAvailable => 'এই অ্যাপের জন্য Google সাইন ইন এখনো চালু হয়নি। বাকি সব কাজ করবে।';
+  @override String get signInNotAvailable => 'এখন সাইন ইন করা যাচ্ছে না। বাকি সব কাজ করবে।';
   @override String signedInAs(String who) => '$who হিসেবে সাইন ইন করা আছে';
   @override String get phoneSelfDeclared => 'রক্তদাতার তালিকার ফোন নম্বর রক্তদাতারা নিজেরাই দিয়েছেন। জরুরি বিডি সেগুলো যাচাই করে না, আর সাইন ইন কারও পরিচয় বা স্বাস্থ্য যাচাই করে না।';
   @override String get syncSavedLocal => 'এই ফোনে সংরক্ষিত';
@@ -329,10 +329,24 @@ class StringsBn extends AppStrings {
   @override String get syncRetry => 'আবার চেষ্টা করুন';
   @override String get liveListUnavailable => 'অনলাইন রক্তদাতা তালিকা এই মুহূর্তে পাওয়া যাচ্ছে না। অ্যাপে থাকা রক্তদাতাদের দেখানো হচ্ছে।';
   @override String get liveListBodyGoogle => 'সাইন ইন করলে নিবন্ধিত সব রক্তদাতাকে দেখতে পাবেন, সবসময় হালনাগাদ।';
+  @override String get orWord => 'অথবা';
+  @override String get signInWithEmail => 'ইমেইল দিয়ে সাইন ইন';
+  @override String get sendSignInLink => 'সাইন-ইন লিংক পাঠান';
+  @override String get sendAgain => 'আবার পাঠান';
+  @override String signInLinkSent(String email) => '$email ঠিকানায় একটি সাইন-ইন লিংক পাঠানো হয়েছে। এই ফোনেই ইমেইলটি খুলে লিংকে চাপুন। আসতে এক মিনিট লাগতে পারে; Spam ফোল্ডারও দেখুন।';
+  @override String get pasteSignInLink => 'লিংকটি অ্যাপের বদলে ব্রাউজারে খুলেছে? ইমেইল থেকে লিংকটি কপি করে এখানে পেস্ট করুন।';
+  @override String get signInLinkLabel => 'সাইন-ইন লিংক';
+  @override String get pasteWord => 'পেস্ট';
+  @override String get finishSignIn => 'সাইন ইন শেষ করুন';
+  @override String get finishSignInBody => 'যে ইমেইল ঠিকানায় সাইন-ইন লিংক পাঠানো হয়েছে সেটি লিখুন।';
+  @override String get emailInvalid => 'সঠিক ইমেইল ঠিকানা লিখুন, যেমন name@gmail.com।';
+  @override String get emailDailyLimit => 'আজকের জন্য ইমেইলে সাইন ইনের সীমা শেষ। Google দিয়ে সাইন ইন করুন, অথবা আগামীকাল আবার ইমেইলে চেষ্টা করুন।';
+  @override String get signInEmailMismatch => 'লিংকটি অন্য একটি ইমেইল ঠিকানায় পাঠানো হয়েছিল। সেই ঠিকানাটি লিখুন, অথবা নতুন লিংক পাঠান।';
+  @override String get signInLinkInvalid => 'এই লিংকের মেয়াদ শেষ বা আগেই ব্যবহার হয়েছে। নতুন লিংক পাঠান।';
 
   @override String get updateAvailable => 'নতুন সংস্করণ এসেছে';
   @override String get updateRequired => 'অ্যাপটি হালনাগাদ করুন';
-  @override String updateBody(String version) => 'সংস্করণ $version প্রস্তুত। ডাউনলোড করে Install চাপুন।';
+  @override String updateBody(String version) => 'সংস্করণ $version এসেছে। অ্যাপের ভেতরেই ডাউনলোড হয় (Wi-Fi-তে নিজে থেকেই); তারপর "হালনাগাদ ইনস্টল করুন" চাপুন।';
   @override String get updateRequiredBody => 'এই সংস্করণটি অনেক পুরনো, জরুরি পরিবর্তনগুলো পাবে না। SOS কাজ করবে, তবে এখনই হালনাগাদ করুন।';
   @override String get updateDownload => 'হালনাগাদ ডাউনলোড করুন';
   @override String get whatsNew => 'নতুন যা আছে';
@@ -341,6 +355,12 @@ class StringsBn extends AppStrings {
   @override String get checking => 'দেখা হচ্ছে…';
   @override String get updatesCheckFailed => 'এখন দেখা যাচ্ছে না। ইন্টারনেটে যুক্ত হয়ে আবার চেষ্টা করুন।';
   @override String get downloadStarted => 'ডাউনলোড হচ্ছে… শেষ হলে ফাইলটি খুলে Install চাপুন।';
+  @override String updateDownloading(int? percent) => percent == null ? 'হালনাগাদ ডাউনলোড হচ্ছে…' : 'হালনাগাদ ডাউনলোড হচ্ছে… $percent%';
+  @override String get updateReady => 'হালনাগাদ ইনস্টলের জন্য প্রস্তুত';
+  @override String get updateInstall => 'হালনাগাদ ইনস্টল করুন';
+  @override String get updateAllowInstall => 'Android একবার অনুমতি চাইবে: Joruri BD-কে হালনাগাদ ইনস্টলের অনুমতি দিন, তারপর ফিরে এসে "হালনাগাদ ইনস্টল করুন" চাপুন।';
+  @override String get updateDownloadFailed => 'অ্যাপের ভেতরে হালনাগাদ ডাউনলোড করা যায়নি।';
+  @override String get updateInBrowser => 'ব্রাউজারে ডাউনলোড করুন';
   @override String get openLink => 'খুলুন';
 
   @override String get searchNameOrArea => 'নাম বা এলাকা, যেমন ঢাকা মেডিকেল, মিরপুর';
