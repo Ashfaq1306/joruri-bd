@@ -46,6 +46,15 @@ if (-not $WebsiteOnly) {
   New-Item -ItemType Directory -Force $stage | Out-Null
   Copy-Item (Join-Path $out 'app-arm64-v8a-release.apk') (Join-Path $stage 'joruri-bd.apk') -Force
   Copy-Item (Join-Path $out 'app-armeabi-v7a-release.apk') (Join-Path $stage 'joruri-bd-arm32.apk') -Force
+  # Google sign-in needs the Web client ID inside the APK (see res/raw/keep.xml).
+  $sdk = if ($env:ANDROID_HOME) { $env:ANDROID_HOME } else { Join-Path $env:LOCALAPPDATA 'Android\Sdk' }
+  $aapt = Get-ChildItem (Join-Path $sdk 'build-tools') -Recurse -Filter aapt2.exe -ErrorAction SilentlyContinue | Sort-Object FullName | Select-Object -Last 1
+  if ($aapt) {
+    foreach ($apk in 'joruri-bd.apk', 'joruri-bd-arm32.apk') {
+      $res = & $aapt.FullName dump resources (Join-Path $stage $apk) | Out-String
+      if ($res -notmatch 'string/default_web_client_id') { throw "$apk has no default_web_client_id: Google sign-in would fail. Is Google sign-in enabled in Firebase and google-services.json current?" }
+    }
+  } else { Write-Warning 'aapt2 not found: could not check the APK for the Google sign-in client ID.' }
   $size = [math]::Round((Get-Item (Join-Path $stage 'joruri-bd.apk')).Length / 1MB, 1)
   $info = [ordered]@{ versionName = $name; versionCode = $code; sizeMb = $size; notes = [ordered]@{ en = $Notes; bn = $NotesBn } }
   $json = $info | ConvertTo-Json -Compress

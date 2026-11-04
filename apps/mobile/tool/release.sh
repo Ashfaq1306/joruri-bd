@@ -33,6 +33,15 @@ if [[ "${1:-}" != "--website-only" ]]; then
   mkdir -p "$stage"
   cp "$out/app-arm64-v8a-release.apk" "$stage/joruri-bd.apk"
   cp "$out/app-armeabi-v7a-release.apk" "$stage/joruri-bd-arm32.apk"
+  # Google sign-in needs the Web client ID inside the APK (see res/raw/keep.xml).
+  sdk="${ANDROID_HOME:-$HOME/Android/Sdk}"
+  aapt="$(ls "$sdk"/build-tools/*/aapt2* 2>/dev/null | sort | tail -1)"
+  if [ -n "$aapt" ]; then
+    for apk in joruri-bd.apk joruri-bd-arm32.apk; do
+      "$aapt" dump resources "$stage/$apk" | grep -q 'string/default_web_client_id' \
+        || { echo "$apk has no default_web_client_id: Google sign-in would fail." >&2; exit 1; }
+    done
+  else echo "warning: aapt2 not found, could not check the APK for the Google sign-in client ID" >&2; fi
   NAME="$name" CODE="$code" NOTES="$notes" NOTES_BN="$notes_bn" APK="$stage/joruri-bd.apk" node -e '
     const e = process.env, fs = require("fs");
     const size = Math.round(fs.statSync(e.APK).size / 104857.6) / 10;

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.1 (build 15) — 2026-11-04
+**Google sign-in works for everyone**
+- Fix: "Sign in with Google" failed on every phone with "Sign-in did not work" (`clientConfigurationError`) in all published versions. Release builds shrink unused resources, and the Web client ID that Google sign-in looks up by name (`default_web_client_id`, generated from `google-services.json`) was removed from the APK. `android/app/src/main/res/raw/keep.xml` now keeps it, and the release scripts refuse to publish an APK without it.
+- Checked with the APK from GitHub on a fresh phone with no account: the app opens, shows Online and loads live content without signing in, on any network, from the free Firebase plan (no billing account, no App Check, release signing key registered).
+
 ## 1.3.0 (build 14) — 2026-11-04
 **Every police station in Bangladesh**
 - New **Police stations** screen (Police → "Your local police station"): all 630 thanas in all 64 districts (DMP, CMP, KMP, RMP, BMP, SMP, GMP, RPMP and district police) with the **officer in charge's (OC) mobile number** and a Call button, names in English and Bangla, directions, and address + e-mail for Dhaka (DMP) stations. Starts in your profile's district; type a thana name to search the whole country. Works offline.

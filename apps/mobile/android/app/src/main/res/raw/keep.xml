@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Release builds shrink unused resources. google_sign_in looks up the Web
+     client ID (generated from google-services.json) by name at run time, so
+     the shrinker thinks it is unused and drops it: Google sign-in then fails
+     for everyone with "clientConfigurationError" (happened in 1.0.0–1.3.0).
+     tool/release.ps1 checks the built APK still contains it. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@string/default_web_client_id" />
