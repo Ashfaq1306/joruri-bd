@@ -11,7 +11,7 @@ Content (emergency numbers, hospitals, pharmacies, guides, announcements, donors
 3. Put `key.properties` at `apps/mobile/android/key.properties` and change its `storeFile=` line to where you saved `joruri-release.jks`.
 4. `apps/mobile/android/app/google-services.json`: download with
    `firebase apps:sdkconfig ANDROID 1:309379921602:android:748b82e2b04dfbbf4bed5b --project joruri-bd -o apps/mobile/android/app/google-services.json`
-5. Publishing needs write access to `github.com/Ashfaq1306/joruri-bd-releases` (the public repo that holds only the APKs; Firebase's free plan does not allow hosting APK files).
+5. Publishing needs write access to `github.com/Ashfaq1306/joruri-bd` (this public repository: APKs are its GitHub releases, because Firebase's free plan does not allow hosting APK files). The old `joruri-bd-releases` repository is archived; its download links keep working for old installs.
 
 If you lose the key there is no way to publish updates that install over the old app: keep at least two private copies.
 
@@ -25,15 +25,15 @@ If you lose the key there is no way to publish updates that install over the old
    ./tool/release.sh "What changed in English" "বাংলায় কী বদলেছে"          # Linux / macOS
    .\tool\release.ps1 -Notes "What changed" -NotesBn "কী বদলেছে"            # Windows
    ```
-   This builds the signed APKs (64-bit and 32-bit), creates a GitHub release, and redeploys the admin website.
-4. Open <https://joruri-bd.web.app/#app>, press **Use latest release**, then **Save**. Every phone running an older version now shows **Update available** (within seconds if online).
+   This builds the signed APKs (64-bit and 32-bit), creates a GitHub release in this repository, redeploys the admin website, and tells every phone about the new version (`tools/announce_release.mjs`). Every phone running an older version shows **Update available** within seconds if online.
+4. Check <https://joruri-bd.web.app/#app>: it should say "Phones already know about this version". (Before 1.3.0 this was a manual step; it was missed for 1.2.0.)
 
 To force very old versions to update, set **Oldest build still allowed** on the same page; those phones see a red "Please update" card. SOS keeps working regardless.
 
 ## Links
 
 - Download page to share: <https://joruri-bd.web.app/download/>
-- Direct APK (always the newest): <https://github.com/Ashfaq1306/joruri-bd-releases/releases/latest/download/joruri-bd.apk>
+- Direct APK (always the newest): <https://github.com/Ashfaq1306/joruri-bd/releases/latest/download/joruri-bd.apk>
 - Website only (no new app): `./tool/release.sh --website-only` or `.\tool\release.ps1 -WebsiteOnly`
 
 ## Version codes

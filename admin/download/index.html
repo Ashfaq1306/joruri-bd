@@ -34,8 +34,8 @@ h2{font-size:19px;margin:0 0 6px}.muted{color:var(--muted)}
 </div>
 <div class="wrap">
   <div class="card">
-    <a class="btn" id="dl" href="https://github.com/Ashfaq1306/joruri-bd-releases/releases/latest/download/joruri-bd.apk">⭳ অ্যাপ ডাউনলোড করুন (Android)</a>
-    <a class="btn alt" id="dl32" href="https://github.com/Ashfaq1306/joruri-bd-releases/releases/latest/download/joruri-bd-arm32.apk">পুরনো ফোনের জন্য (32-bit) · For older phones</a>
+    <a class="btn" id="dl" href="https://github.com/Ashfaq1306/joruri-bd/releases/latest/download/joruri-bd.apk">⭳ অ্যাপ ডাউনলোড করুন (Android)</a>
+    <a class="btn alt" id="dl32" href="https://github.com/Ashfaq1306/joruri-bd/releases/latest/download/joruri-bd-arm32.apk">পুরনো ফোনের জন্য (32-bit) · For older phones</a>
     <p class="ver" id="ver">&nbsp;</p>
   </div>
   <div class="card">
@@ -54,7 +54,7 @@ h2{font-size:19px;margin:0 0 6px}.muted{color:var(--muted)}
 </div>
 <script>
 // Version of the newest release (the buttons always download the newest file).
-fetch('https://api.github.com/repos/Ashfaq1306/joruri-bd-releases/releases/latest')
+fetch('https://api.github.com/repos/Ashfaq1306/joruri-bd/releases/latest')
   .then(r => r.ok ? r.json() : null).then(rel => {
     if (!rel) return;
     const m = /<!-- joruri ({.*}) -->/.exec(rel.body || '');

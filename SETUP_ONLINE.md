@@ -6,7 +6,7 @@ Everything online is **switched on** and runs on the free Firebase Spark plan:
 |---|---|
 | Admin panel | <https://joruri-bd.web.app> — sign in with Google (see `admin/README.md`) |
 | Public download page | <https://joruri-bd.web.app/download/> |
-| APK files | GitHub releases in `Ashfaq1306/joruri-bd-releases` (public; holds only APKs) |
+| APK files | GitHub releases of this repository, `Ashfaq1306/joruri-bd` (public). Older releases 1.0.0–1.2.0 are also in the archived `Ashfaq1306/joruri-bd-releases`. |
 | Database rules | `firebase/firestore.rules` — live, tested by `firebase/rules-test` (see `firebase/README.md`) |
 | Google sign-in | Enabled. SHA-1/SHA-256 registered for the shared release key and both developers' debug keys |
 

@@ -7,11 +7,11 @@
 # 1. Raise the version in pubspec.yaml first (e.g. 1.0.0+10 -> 1.1.0+11).
 #    The number after + must go up every release.
 # 2. This script builds the signed APKs and publishes them as a GitHub
-#    release in Ashfaq1306/joruri-bd-releases (free, public downloads;
+#    release in Ashfaq1306/joruri-bd, the public project repository (free downloads;
 #    Firebase's free plan does not allow APK files). The download links
 #    ".../releases/latest/download/joruri-bd.apk" always point to the newest.
-# 3. Then on the admin panel's "App & updates" page press "Use latest
-#    release" and Save: every phone shows "Update available".
+# 3. It then tells every phone (tools/announce_release.mjs, same as "Use
+#    latest release" + Save on the admin panel): "Update available".
 # Needs: flutter, gh (signed in, with access to the releases repo), firebase.
 param(
   [string]$Notes = '',
@@ -21,7 +21,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $mobile = Split-Path -Parent $PSScriptRoot
 $root = Resolve-Path (Join-Path $mobile '..\..')
-$repo = 'Ashfaq1306/joruri-bd-releases'
+$repo = 'Ashfaq1306/joruri-bd'
 
 # Native tools write warnings to stderr; judge them by exit code only.
 function Run([scriptblock]$cmd, [string]$what) {
@@ -59,9 +59,13 @@ if (-not $WebsiteOnly) {
 }
 
 Push-Location $root
-try { Run { firebase deploy --only hosting --project joruri-bd } 'firebase deploy' } finally { Pop-Location }
+try {
+  Run { firebase deploy --only hosting --project joruri-bd } 'firebase deploy'
+  # Tell every phone about the new version (was a manual admin-panel step).
+  if (-not $WebsiteOnly) { Run { node tools/announce_release.mjs } 'announce release' }
+} finally { Pop-Location }
 Write-Host ''
 Write-Host 'Done. Download page: https://joruri-bd.web.app/download/' -ForegroundColor Green
 if (-not $WebsiteOnly) {
-  Write-Host 'Last step: open https://joruri-bd.web.app/#app , press "Use latest release", then Save. Every phone is then told to update.' -ForegroundColor Green
+  Write-Host 'Every phone with an older version now shows "Update available" (check: https://joruri-bd.web.app/#app).' -ForegroundColor Green
 }

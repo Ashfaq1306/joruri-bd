@@ -38,6 +38,10 @@ class PlacesRepository {
 
   static final _districtIds = {for (final d in BdLocations.districts) d.id};
 
+  /// Every police station (thana) with its OC's number, bundled so the list
+  /// works offline (assets/seed/police_stations.json, tools/police-import).
+  Future<List<Station>> policeStations() => _load('assets/seed/police_stations.json', 'policeStations', Station.fromJson);
+
   /// DGDA-registered medicines with approved prices (assets/seed/medicines.json).
   Future<MedicineList> medicines() async {
     try {
@@ -134,6 +138,13 @@ final districtPharmaciesProvider = FutureProvider.family<List<Pharmacy>, String>
   final register = await ref.watch(placesRepositoryProvider).registerPharmacies(districtId);
   final known = {for (final p in team) if (p.licence.isNotEmpty) p.licence.toLowerCase()};
   return [...team, ...register.where((p) => !known.contains(p.licence.toLowerCase()))];
+});
+
+/// Police stations published on the admin website when downloaded;
+/// otherwise the bundled list.
+final policeStationsProvider = FutureProvider<List<Station>>((ref) async {
+  final cache = await ref.watch(cachedContentProvider.future);
+  return parseSection(cache, 'policeStations', Station.fromJson) ?? await ref.watch(placesRepositoryProvider).policeStations();
 });
 
 /// Loaded once, the first time the medicine search opens.

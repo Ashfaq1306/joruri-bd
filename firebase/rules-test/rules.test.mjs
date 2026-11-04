@@ -36,6 +36,10 @@ await t('anon reads snapshots', assertSucceeds(getDoc(doc(anon, 'snapshots/hospi
 await t('anon cannot write snapshots', assertFails(setDoc(doc(anon, 'snapshots/hospitals-0'), { json: '[]' })));
 await t('editor writes snapshots', assertSucceeds(setDoc(doc(editor, 'snapshots/hospitals-0'), { json: '[]' })));
 await t('anon cannot write content', assertFails(setDoc(doc(anon, 'emergency_numbers/x'), { number: '1', published: true })));
+await t('anon reads published police stations', assertSucceeds(getDocs(query(collection(anon, 'police_stations'), where('published', '==', true)))));
+await t('anon cannot change a police station', assertFails(setDoc(doc(anon, 'police_stations/ps1'), { name: 'X', phone: '+8801700000000', published: true })));
+await t('stranger cannot change a police station', assertFails(setDoc(doc(stranger, 'police_stations/ps1'), { name: 'X', phone: '+8801700000000', published: true })));
+await t('editor writes a police station', assertSucceeds(setDoc(doc(editor, 'police_stations/ps1'), { name: 'Ramna', phone: '+8801320039492', published: true })));
 await t('anon cannot list donors', assertFails(getDocs(query(collection(anon, 'donors'), where('shareConsent', '==', true), where('hidden', '==', false), limit(10)))));
 // admin checks
 await t('owner (mixed-case email) reads own admin entry', assertSucceeds(getDoc(doc(owner, 'admins/owner@gmail.com'))));

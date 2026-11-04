@@ -390,6 +390,18 @@ abstract class AppStrings {
   String get websiteLabel;
   String get directionsLabel;
   String showingFirst(int shown, int total);
+
+  // Police stations
+  String get policeStations;
+  String get findLocalPolice;
+  String findLocalPoliceSub(int n);
+  String get searchPoliceHint;
+  String policeStationsFound(int n);
+  String get officerInCharge;
+  String get chooseDistrictForPolice;
+  String get noPoliceStations;
+  String get policeSourceNote;
+  String get policeNumberTip;
   String get bloodBanksNearby;
 }
 

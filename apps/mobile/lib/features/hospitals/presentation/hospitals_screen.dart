@@ -41,7 +41,10 @@ class _HospitalsScreenState extends ConsumerState<HospitalsScreen> {
   }
 
   bool _accepts(Hospital h, PlaceFilter filter, String text) {
-    if (!filter.accepts(h.districtId, '')) return false;
+    // District only: the typed text is matched against name/area/address below.
+    // (accepts(h.districtId, '') also matched the text against '', so any
+    // search found no hospital at all.)
+    if (!filter.acceptsDistrict(h.districtId)) return false;
     switch (_kind) {
       case _Kind.all:
         break;
@@ -71,7 +74,7 @@ class _HospitalsScreenState extends ConsumerState<HospitalsScreen> {
             onDivision: controller.setDivision,
             onDistrict: controller.setDistrict,
             onArea: controller.setArea,
-            searchLabel: nameSearch ? s.searchNameOrArea : null,
+            searchLabel: s.searchNameOrArea,
           ),
         );
 

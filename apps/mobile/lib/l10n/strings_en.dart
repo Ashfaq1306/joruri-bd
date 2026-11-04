@@ -354,5 +354,16 @@ class StringsEn extends AppStrings {
   @override String get websiteLabel => 'Website';
   @override String get directionsLabel => 'Directions';
   @override String showingFirst(int shown, int total) => 'Showing $shown of $total. Choose a district or type a name to narrow the list.';
+
+  @override String get policeStations => 'Police stations';
+  @override String get findLocalPolice => 'Your local police station (thana)';
+  @override String findLocalPoliceSub(int n) => "$n police stations in all 64 districts, with the OC's number";
+  @override String get searchPoliceHint => 'Thana or area name';
+  @override String policeStationsFound(int n) => n == 1 ? '1 police station' : '$n police stations';
+  @override String get officerInCharge => 'Officer in charge (OC)';
+  @override String get chooseDistrictForPolice => 'Choose a district, or type the name of a thana.';
+  @override String get noPoliceStations => 'No police station found. Check the spelling or choose another district.';
+  @override String get policeSourceNote => 'OC numbers from the list of police station OCs published by RAB (rab.gov.bd, October 2024); Dhaka addresses and e-mails from the DMP website. The number belongs to the post, not the person, but can change.';
+  @override String get policeNumberTip => 'Life in danger or a crime happening now? Call 999 first. It is free and answers 24 hours.';
   @override String get bloodBanksNearby => 'Blood banks and hospital blood units';
 }
