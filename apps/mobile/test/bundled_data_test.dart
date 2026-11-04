@@ -24,4 +24,22 @@ void main() {
     expect(m.downloadedOn, isNotEmpty);
     expect(searchMedicines(m.items, 'paracetamol'), isNotEmpty);
   });
+
+  test('every district has police stations with a valid OC mobile number', () async {
+    final all = await repo.policeStations();
+    expect(all.length, greaterThan(600));
+    expect({for (final s in all) s.id}.length, all.length, reason: 'ids are unique');
+    expect({for (final s in all) s.phone}.length, all.length, reason: 'each number belongs to one station');
+    for (final d in BdLocations.districts) {
+      expect(all.where((s) => s.districtId == d.id), isNotEmpty, reason: d.id);
+    }
+    for (final s in all) {
+      expect(s.phone, matches(RegExp(r'^\+8801[3-9]\d{8}$')), reason: s.name);
+      expect(s.nameBn, isNotEmpty, reason: s.name);
+      expect(BdLocations.district(s.districtId), isNotNull, reason: s.name);
+    }
+    final ramna = all.firstWhere((s) => s.name == 'Ramna Model Thana');
+    expect(ramna.phone, '+8801320039492');
+    expect(ramna.email, 'ocramna@dmp.gov.bd');
+  });
 }

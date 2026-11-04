@@ -10,13 +10,14 @@ const NUMBER_CATEGORIES = ['national', 'police', 'fire', 'ambulance', 'health', 
 const GUIDE_ICONS = ['heart', 'stroke', 'unconscious', 'choking', 'bleeding', 'burn', 'fracture', 'electric', 'drowning', 'snake',
   'animal', 'poison', 'seizure', 'road', 'fire', 'gas', 'collapse', 'flood', 'cyclone', 'earthquake', 'lightning', 'landslide', 'storm'];
 // Collections the phones download (each save raises meta/content.version).
-const CONTENT = ['emergency_numbers', 'guides', 'hospitals', 'pharmacies', 'announcements'];
+const CONTENT = ['emergency_numbers', 'guides', 'hospitals', 'pharmacies', 'police_stations', 'announcements'];
 const ICONS = {
   dashboard: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z',
   announcements: 'M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z',
   emergency_numbers: 'M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z',
   hospitals: 'M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z',
   pharmacies: 'M21 5h-2.64l1.14-3.14L17.15 1l-1.46 4H3v2l2 6-2 6v2h18v-2l-2-6 2-6V5zm-5 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z',
+  police_stations: 'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h2v2h-2v2h-2v-2H9V9h2V7z',
   guides: 'M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z',
   donors: 'M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z',
   app: 'M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14zm-1-6h-3V8h-2v5H8l4 4 4-4z',
@@ -144,6 +145,29 @@ const SCHEMAS = {
       { k: 'published', label: 'Show on phones', type: 'checkbox', default: true },
     ],
   },
+  police_stations: {
+    title: 'Police stations (thanas)', idFrom: (d) => 'ps-' + (d.districtId || 'x') + '-' + (slug(d.name) || Date.now().toString(36)),
+    intro: 'Every thana with the officer in charge (OC) number, shown under Police in the app. Built from the RAB list of OC numbers (October 2024) and the DMP website; refresh with tools/police-import. When an OC number changes, edit it here: phones update within seconds.',
+    columns: [['Name', (d) => d.name], ['বাংলা', (d) => d.nameBn || ''], ['District', (d) => districtName(d.districtId)], ['Unit', (d) => d.unit || 'District police'],
+      ['OC number', (d) => d.phone], ['Checked', (d) => d.checkedOn || ''], ['On phones', (d) => d.published ? 'Yes' : 'Hidden']],
+    fields: [
+      { k: 'name', label: 'Name (English), e.g. Ramna Model Thana', required: true },
+      { k: 'nameBn', label: 'Name (বাংলা), e.g. রমনা মডেল থানা' },
+      { k: 'districtId', label: 'District', type: 'district', required: true },
+      { k: 'unit', label: 'Metropolitan unit (empty for district police), e.g. Dhaka Metropolitan Police (DMP)' },
+      { k: 'unitBn', label: 'Metropolitan unit in Bangla' },
+      { k: 'phone', label: 'Officer in charge (OC) mobile', type: 'phone', required: true },
+      { k: 'otherPhones', label: 'Other numbers: duty officer, land line (comma separated)', type: 'csv' },
+      { k: 'address', label: 'Address' }, { k: 'email', label: 'E-mail' },
+      { k: 'lat', label: 'Map latitude (optional)', type: 'decimal' }, { k: 'lng', label: 'Map longitude (optional)', type: 'decimal' },
+      { k: 'open24h', label: 'Open 24 hours', type: 'checkbox', default: true },
+      { k: 'source', label: 'Source of the number (e.g. RAB list Oct 2024, phone call on 2026-11-04)' },
+      { k: 'sourceUrl', label: 'Source link' },
+      { k: 'checkedOn', label: 'Number checked on', type: 'date' },
+      { k: 'verified', label: 'Checked by a person (called or confirmed with the police)', type: 'checkbox' },
+      { k: 'published', label: 'Show on phones', type: 'checkbox', default: true },
+    ],
+  },
   guides: {
     title: 'First aid & disaster guides', idFrom: (d) => slug(d.title?.en) || 'g-' + Date.now(),
     columns: [['Title', (d) => d.title?.en], ['Type', (d) => d.kind], ['Review', (d) => d.reviewStatus], ['On phones', (d) => d.published ? 'Yes' : 'Hidden']],
@@ -211,10 +235,16 @@ async function afterContentChange(action, col, id, summary) {
   if (CONTENT.includes(col)) await publishContent(false, [col]);
   await B().audit({ action, collection: col, docId: id || '', summary: summary || '' });
 }
+/** 999 first, then by category, short codes before full numbers (apps up to 1.2.0 show this order as is). */
+function sortNumbers(list) {
+  const rank = (n) => NUMBER_CATEGORIES.indexOf(n.category) * 10 + (String(n.number || '').length > 6 ? 1 : 0);
+  return [...list].sort((a, b) => rank(a) - rank(b) || String(a.number).localeCompare(String(b.number), 'en', { numeric: true }));
+}
 /** Rebuilds the packed copies phones download, from the lists on this page. */
 async function publishContent(fresh, cols = CONTENT) {
   const lists = {};
   for (const col of cols) lists[col] = (await load(col, fresh)).filter((x) => x.published);
+  if (lists.emergency_numbers) lists.emergency_numbers = sortNumbers(lists.emergency_numbers);
   await B().publishSnapshots(lists);
 }
 
@@ -222,7 +252,7 @@ async function publishContent(fresh, cols = CONTENT) {
 const NAV = [
   ['', 'Overview'], ['dashboard', 'Dashboard'], ['announcements', 'Announcements'], ['app', 'App & updates'],
   ['', 'Content on phones'], ['emergency_numbers', 'Emergency numbers'], ['hospitals', 'Hospitals & tests'],
-  ['pharmacies', 'Pharmacies'], ['guides', 'Guides'],
+  ['pharmacies', 'Pharmacies'], ['police_stations', 'Police stations'], ['guides', 'Guides'],
   ['', 'People'], ['donors', 'Blood donors'], ['admins', 'Admins'],
   ['', 'Tools'], ['import', 'Import & backup'], ['audit', 'Activity log'],
 ];
@@ -333,10 +363,10 @@ function accessCheckFailedScreen() {
 
 async function dashboard() {
   // Big lists are only counted on the server; small ones are read.
-  const [meta, appMeta, numbers, guides, notices, nHosp, nGovHosp, nPharm, nPharm24, nDonors, nAppDonors] = await Promise.all([
+  const [meta, appMeta, numbers, guides, notices, nHosp, nGovHosp, nPharm, nPharm24, nDonors, nAppDonors, nPolice, latestRelease] = await Promise.all([
     B().getMeta('content'), B().getMeta('app'), load('emergency_numbers'), load('guides'), load('announcements'),
     B().count('hospitals'), B().count('hospitals', 'government', true), B().count('pharmacies'), B().count('pharmacies', 'open24h', true),
-    B().count('donors'), B().count('donors', 'source', 'app')]);
+    B().count('donors'), B().count('donors', 'source', 'app'), B().count('police_stations'), latestGithubRelease()]);
   const stat = (label, n, view, sub) => h('button', { class: 'stat', onclick: () => go(view) }, icon(view), h('b', {}, n), h('span', {}, label), sub ? h('small', {}, sub) : null);
   const unverified = numbers.filter((n) => n.verification?.status !== 'verified').length;
   const empty = guides.filter((g) => !(g.doNow?.en || []).length && !(g.doNow?.bn || []).length).length;
@@ -348,6 +378,9 @@ async function dashboard() {
     empty && ['guides', `${empty} guide(s) have no steps yet; the app shows them as "being written".`],
     unverified && ['emergency_numbers', `${unverified} emergency number(s) are not marked as checked; the app shows a "not yet verified" label.`],
     !appMeta.latestVersionCode && ['app', 'No app release is published yet, so phones are not told about updates.'],
+    // Happened with 1.2.0: released on GitHub, but phones were never told.
+    latestRelease && appMeta.latestVersionCode && latestRelease.code > appMeta.latestVersionCode && ['app', `Version ${latestRelease.name} (build ${latestRelease.code}) is on GitHub, but phones are still told ${appMeta.latestVersionName || ''} (build ${appMeta.latestVersionCode}) is the newest. Open App & updates, press "Use latest release", then Save.`],
+    nPolice === 0 && ['police_stations', 'No police stations in the database yet; the app uses its built-in list.'],
   ].filter(Boolean);
   return h('div', {},
     h('div', { class: 'head' }, h('h1', {}, 'Dashboard'),
@@ -357,6 +390,7 @@ async function dashboard() {
       stat('Emergency numbers', numbers.length, 'emergency_numbers', unverified ? `${unverified} not checked yet` : 'all checked'),
       stat('Hospitals', nHosp, 'hospitals', `${nGovHosp} government`),
       stat('Pharmacies', nPharm, 'pharmacies', `${nPharm24} open 24 h`),
+      stat('Police stations', nPolice, 'police_stations', 'with OC numbers'),
       stat('Guides', guides.length, 'guides', `${guides.filter((g) => g.reviewStatus === 'approved').length} doctor-approved`),
       stat('Blood donors', nDonors, 'donors', `${nAppDonors} signed up in the app`),
       stat('App version', appMeta.latestVersionName || '—', 'app', appMeta.latestVersionCode ? `build ${appMeta.latestVersionCode}` : 'not published')),
@@ -661,7 +695,16 @@ async function auditScreen() {
 }
 
 /* ---------- app & updates (meta/app) ---------- */
-const RELEASES_REPO = 'Ashfaq1306/joruri-bd-releases';
+// APKs are GitHub releases of the (public) source repository.
+const RELEASES_REPO = 'Ashfaq1306/joruri-bd';
+/** {name, code} of the newest GitHub release (tag v1.2.0-build13), or null. */
+async function latestGithubRelease() {
+  try {
+    const r = await fetch(`https://api.github.com/repos/${RELEASES_REPO}/releases/latest`, { cache: 'no-store' });
+    const m = r.ok ? /^v?(.+)-build(\d+)$/.exec((await r.json()).tag_name || '') : null;
+    return m ? { name: m[1], code: Number(m[2]) } : null;
+  } catch { return null; }
+}
 const RELEASES_DL = `https://github.com/${RELEASES_REPO}/releases/latest/download`;
 const APP_FIELDS = [
   { k: 'latestVersionName', label: 'Latest version name (e.g. 1.2.0)' },

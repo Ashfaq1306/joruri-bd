@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:joruri_core/joruri_core.dart';
 import 'package:joruri_design_system/joruri_design_system.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -7,6 +8,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:joruri_bd/core/widgets/glass_app_bar.dart';
 import 'package:joruri_bd/app/providers.dart';
 import 'package:joruri_bd/core/config/app_config.dart';
+import 'package:joruri_bd/core/utils/digits.dart';
+import 'package:joruri_bd/features/directory/data/places_repository.dart';
 import 'package:joruri_bd/core/widgets/unverified_label.dart';
 import 'package:joruri_bd/features/directory/data/content_repository.dart';
 import 'package:joruri_bd/l10n/app_strings.dart';
@@ -29,9 +32,8 @@ class NumbersScreen extends ConsumerWidget {
     final s = context.s;
     final async = ref.watch(emergencyNumbersProvider);
     final filter = category;
-    final showsStations = filter == NumberCategory.police ||
-        filter == NumberCategory.fire ||
-        filter == NumberCategory.ambulance;
+    final showsPolice = filter == null || filter == NumberCategory.police;
+    final stationsPending = filter == NumberCategory.fire || filter == NumberCategory.ambulance;
 
     return Scaffold(
       appBar: GlassAppBar(title: Text(_title(s))),
@@ -44,8 +46,18 @@ class NumbersScreen extends ConsumerWidget {
           return ListView(
             padding: const EdgeInsets.all(JSpace.md),
             children: [
-              for (final n in list) ...[NumberCard(number: n), const SizedBox(height: 12)],
-              if (showsStations)
+              for (final n in list) ...[
+                NumberCard(number: n),
+                const SizedBox(height: 12),
+                // Right after 999: every thana with the OC's number.
+                if (showsPolice && n.number == AppConfig.nationalEmergencyNumber) ...[
+                  const _PoliceStationsLink(),
+                  const SizedBox(height: 12),
+                ],
+              ],
+              if (showsPolice && !list.any((n) => n.number == AppConfig.nationalEmergencyNumber))
+                const _PoliceStationsLink(),
+              if (stationsPending)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: JSpace.sm),
                   child: Text(s.localNumbersPending, style: Theme.of(context).textTheme.bodyMedium),
@@ -53,6 +65,48 @@ class NumbersScreen extends ConsumerWidget {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/// Opens the list of every police station with the OC's number.
+class _PoliceStationsLink extends ConsumerWidget {
+  const _PoliceStationsLink();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final s = context.s;
+    final theme = Theme.of(context);
+    final count = ref.watch(policeStationsProvider).valueOrNull?.length;
+    return Material(
+      color: JColors.police,
+      borderRadius: BorderRadius.circular(20),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: () => context.push('/police-stations'),
+        child: Padding(
+          padding: const EdgeInsets.all(JSpace.md),
+          child: Row(
+            children: [
+              const Icon(Icons.local_police, color: Colors.white, size: 36),
+              const SizedBox(width: JSpace.md),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(s.findLocalPolice,
+                        style: theme.textTheme.titleMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
+                    if (count != null && count > 0)
+                      Text(localizedDigits(s.findLocalPoliceSub(count), s.languageCode),
+                          style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white.withAlpha(220))),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right, color: Colors.white),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -112,21 +166,30 @@ class NumberCard extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Text(
-                  number.name.resolve(lang),
-                  style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+          // Short codes (999) sit beside the name; full numbers get their own line.
+          if (number.number.length <= 6)
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    number.name.resolve(lang),
+                    style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                  ),
                 ),
-              ),
-              Text(
-                number.number,
-                style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w800),
-              ),
-            ],
-          ),
+                Text(
+                  localizedDigits(number.number, lang),
+                  style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w800),
+                ),
+              ],
+            )
+          else ...[
+            Text(number.name.resolve(lang), style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+            Text(
+              localizedDigits(_grouped(number.number), lang),
+              style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
+            ),
+          ],
           const SizedBox(height: JSpace.xs),
           Text(number.description.resolve(lang), style: theme.textTheme.bodyMedium),
           if (!v.isVerified) ...[
@@ -155,4 +218,11 @@ class NumberCard extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// 01320001223 → 01320-001223, 02223355555 → 02-223355555.
+String _grouped(String n) {
+  if (RegExp(r'^01\d{9}$').hasMatch(n)) return '${n.substring(0, 5)}-${n.substring(5)}';
+  if (n.startsWith('02') && n.length > 6) return '02-${n.substring(2)}';
+  return n;
 }

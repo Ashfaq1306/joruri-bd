@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.3.0 (build 14) — 2026-11-04
+**Every police station in Bangladesh**
+- New **Police stations** screen (Police → "Your local police station"): all 630 thanas in all 64 districts (DMP, CMP, KMP, RMP, BMP, SMP, GMP, RPMP and district police) with the **officer in charge's (OC) mobile number** and a Call button, names in English and Bangla, directions, and address + e-mail for Dhaka (DMP) stations. Starts in your profile's district; type a thana name to search the whole country. Works offline.
+- Source: the RAB list of police-station OCs (01320 series, October 2024, `tools/police-import/source/thana-services.pdf`), cross-checked against an independent Cumilla list (all 18 match). Not used: the older `OC_Contact_List` PDF (01713 series; same number on several thanas, 10-digit numbers) and the DMP website's phone numbers (011 Citycell numbers, closed in 2016, and pre-2018 7-digit land lines). Two numbers that break their district's sequence (Rajpur, Jhalokati; Shashibhushan, Bhola) are left out until checked. Brahmanbaria Sadar and Chandpur Sadar are not in the source.
+- Admin panel: new **Police stations** page (edit an OC number when it changes; phones update within seconds). Refresh scripts: `tools/police-import`.
+
+**Emergency numbers (live on all phones, also older versions)**
+- Checked against the Bangladesh Police and Fire Service websites and marked verified: 999, 102, 109, 1098, 333.
+- Added: Police Headquarters control room 01320-001223 (24 h), Fire Service headquarters control room 02-223355555, 1090 disaster early warning, 16430 government legal aid, 106 Anti-Corruption Commission.
+- 16263 (Shastho Batayon): now links to DGHS and warns that the service had funding problems in 2026.
+- Fix: the Fire Service card showed an internal note ("confirm … before marking verified") to users.
+- Fix: the list was never sorted, so 102 could appear above 999. 999 is now always first (also for older app versions, by publishing in that order).
+- Long numbers (01320-001223) get their own line instead of squeezing the name.
+
+**Bug fixes found by testing on a phone**
+- **Hospital search found nothing**: typing any name (e.g. "Dhaka Medical") showed "No hospital in our list" because the district check also compared the text with an empty area. Fixed, with a test.
+- **Tests & prices**: the text box from the Hospitals tab was used as an area filter, so "CBC" found no hospital after a name search. It now matches hospital name, area or address ("CBC" + "Dhaka Medical" = CBC at Dhaka Medical College Hospital).
+- Phones were never told about 1.2.0: the release was published but the admin panel still announced 1.0.1. The release scripts now announce each release automatically (`tools/announce_release.mjs`), and the dashboard warns if GitHub has a newer release than phones are told about.
+
+**One repository**
+- `Ashfaq1306/joruri-bd` is now public and holds the code **and** the APK releases. `joruri-bd-releases` is archived; its old download links keep working.
+
 ## 1.2.0 (build 13) — 2026-11-03
 Includes everything in 1.1.0 (all DGHS hospitals), which was not released on its own.
 

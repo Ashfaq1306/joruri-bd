@@ -354,5 +354,16 @@ class StringsBn extends AppStrings {
   @override String get websiteLabel => 'ওয়েবসাইট';
   @override String get directionsLabel => 'পথ দেখুন';
   @override String showingFirst(int shown, int total) => '$total-এর মধ্যে $shown টি দেখানো হচ্ছে। জেলা বেছে নিন বা নাম লিখুন।';
+
+  @override String get policeStations => 'থানা';
+  @override String get findLocalPolice => 'আপনার এলাকার থানা';
+  @override String findLocalPoliceSub(int n) => 'সব ৬৪ জেলার $n টি থানা, ওসির মোবাইল নম্বরসহ';
+  @override String get searchPoliceHint => 'থানা বা এলাকার নাম';
+  @override String policeStationsFound(int n) => '$n টি থানা';
+  @override String get officerInCharge => 'অফিসার ইনচার্জ (ওসি)';
+  @override String get chooseDistrictForPolice => 'একটি জেলা বেছে নিন, অথবা থানার নাম লিখুন।';
+  @override String get noPoliceStations => 'কোনো থানা পাওয়া যায়নি। বানান দেখুন বা অন্য জেলা বেছে নিন।';
+  @override String get policeSourceNote => 'ওসিদের নম্বর র‍্যাবের প্রকাশিত থানার ওসিদের তালিকা থেকে (rab.gov.bd, অক্টোবর ২০২৪); ঢাকার ঠিকানা ও ই-মেইল ডিএমপির ওয়েবসাইট থেকে। নম্বরটি পদের, ব্যক্তির নয়, তবে বদলাতে পারে।';
+  @override String get policeNumberTip => 'জীবন ঝুঁকিতে বা এখনই অপরাধ ঘটছে? আগে ৯৯৯-এ কল করুন। বিনা খরচে, ২৪ ঘণ্টা।';
   @override String get bloodBanksNearby => 'ব্লাড ব্যাংক ও হাসপাতালের রক্ত বিভাগ';
 }

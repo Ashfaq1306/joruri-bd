@@ -13,6 +13,7 @@ import 'package:joruri_bd/features/guides/presentation/guide_detail_screen.dart'
 import 'package:joruri_bd/features/hospitals/presentation/hospital_detail_screen.dart';
 import 'package:joruri_bd/features/hospitals/presentation/hospitals_screen.dart';
 import 'package:joruri_bd/features/pharmacy/presentation/pharmacy_screen.dart';
+import 'package:joruri_bd/features/police/presentation/police_stations_screen.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_screen.dart';
 import 'package:joruri_bd/features/profile/presentation/sign_in_screen.dart';
 import 'package:joruri_bd/features/guides/presentation/guides_screen.dart';
@@ -83,6 +84,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, state) => HospitalDetailScreen(hospitalId: state.pathParameters['id'] ?? ''),
       ),
       GoRoute(path: '/pharmacy', builder: (_, __) => const PharmacyScreen()),
+      GoRoute(path: '/police-stations', builder: (_, __) => const PoliceStationsScreen()),
       GoRoute(path: '/profile', builder: (_, __) => const ProfileScreen()),
       GoRoute(path: '/sign-in', builder: (_, __) => const SignInScreen()),
       // Old link from the SMS version.

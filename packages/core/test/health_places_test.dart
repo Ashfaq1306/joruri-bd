@@ -22,8 +22,18 @@ void main() {
     expect(r.map((o) => o.hospital.id), ['a']);
   });
 
+  test('the text box also matches the hospital name ("CBC at Hospital b")', () {
+    final r = findTest(hospitals, 'cbc', const PlaceFilter(areaText: 'hospital b'));
+    expect(r.map((o) => o.hospital.id), ['b']);
+  });
+
   test('division filter', () {
     expect(const PlaceFilter(divisionId: 'sylhet').accepts('sylhet', ''), isTrue);
     expect(const PlaceFilter(divisionId: 'sylhet').accepts('dhaka', ''), isFalse);
+    // Name search must not be blocked by the district check (bug in 1.2.0).
+    expect(const PlaceFilter(areaText: 'x').acceptsDistrict('dhaka'), isTrue);
+    expect(const PlaceFilter(districtId: 'dhaka', areaText: 'ramna').acceptsDistrict('dhaka'), isTrue);
+    expect(const PlaceFilter(divisionId: 'dhaka', areaText: 'x').acceptsDistrict('gazipur'), isTrue);
+    expect(const PlaceFilter(divisionId: 'sylhet', areaText: 'x').acceptsDistrict('dhaka'), isFalse);
   });
 }

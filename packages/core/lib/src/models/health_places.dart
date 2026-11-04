@@ -270,13 +270,19 @@ class PlaceFilter {
   final String areaText;
 
   bool accepts(String districtId, String area) {
-    if (this.districtId != null && districtId != this.districtId) return false;
-    if (this.districtId == null && divisionId != null &&
-        BdLocations.district(districtId)?.divisionId != divisionId) {
-      return false;
-    }
+    if (!acceptsDistrict(districtId)) return false;
     final text = areaText.trim().toLowerCase();
     return text.isEmpty || area.toLowerCase().contains(text);
+  }
+
+  /// Division and district only (the caller matches the text itself, e.g.
+  /// against name and address).
+  bool acceptsDistrict(String districtId) {
+    if (this.districtId != null && districtId != this.districtId) return false;
+    if (this.districtId == null && divisionId != null && BdLocations.district(districtId)?.divisionId != divisionId) {
+      return false;
+    }
+    return true;
   }
 
   PlaceFilter copyWith({String? Function()? divisionId, String? Function()? districtId, String? areaText}) =>
@@ -296,11 +302,14 @@ class TestOffer {
 }
 
 /// Every hospital in the area that lists a matching test, cheapest first.
-/// Tests without a price come last.
+/// Tests without a price come last. The filter's text matches the hospital's
+/// name, area or address (the same box is the name search on the Hospitals
+/// tab; matching the area alone made "CBC" + "Dhaka Medical" find nothing).
 List<TestOffer> findTest(List<Hospital> hospitals, String query, PlaceFilter where) {
+  final text = where.areaText.trim().toLowerCase();
   final offers = <TestOffer>[
     for (final h in hospitals)
-      if (where.accepts(h.districtId, h.area))
+      if (where.acceptsDistrict(h.districtId) && (text.isEmpty || h.searchText.contains(text)))
         for (final t in h.tests)
           if (t.matches(query)) TestOffer(h, t),
   ];
