@@ -72,6 +72,10 @@ service cloud.firestore {
       allow read: if resource.data.published == true || isAdmin();
       allow write: if isAdmin();
     }
+    match /fire_stations/{id} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow write: if isAdmin();
+    }
 
     // Packed copies of the published lists (built by the admin website),
     // so a phone downloads everything with a few reads.

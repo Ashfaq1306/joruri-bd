@@ -23,6 +23,21 @@ void main() {
     expect(searchStations(stations, districtId: 'narayanganj').map((s) => s.id), ['c', 'd']);
   });
 
+  test('fire: the district\'s own station first, offices last, held numbers stay blank', () {
+    final fire = [
+      Station.fromJson({'id': 'o', 'name': 'Deputy Assistant Director, Narayanganj Zone-1', 'districtId': 'narayanganj', 'phone': '+8801901020710', 'service': 'fire', 'office': true}),
+      Station.fromJson({'id': 'f', 'name': 'Fatullah Fire Station', 'districtId': 'narayanganj', 'phone': '+8801901020838', 'service': 'fire'}),
+      Station.fromJson({'id': 'n', 'name': 'Narayanganj Fire Station', 'districtId': 'narayanganj', 'phone': '+8801901020828', 'service': 'fire'}),
+      Station.fromJson({'id': 'h', 'name': 'Agrabad Fire Station', 'districtId': 'chattogram', 'phone': '', 'service': 'fire', 'needsCheck': 'Printed with 12 digits.'}),
+    ];
+    expect(searchStations(fire, districtId: 'narayanganj').map((s) => s.id), ['n', 'f', 'o']);
+    final held = fire.last;
+    expect(held.service, StationService.fire);
+    expect(held.allPhones, isEmpty);
+    expect(Station.fromJson(held.toJson()).needsCheck, 'Printed with 12 digits.');
+    expect(Station.fromJson(fire.first.toJson()).office, isTrue);
+  });
+
   test('search in Bangla, English and by district name', () {
     expect(searchStations(stations, text: 'রমনা').single.id, 'b');
     expect(searchStations(stations, text: 'fatul').single.id, 'd');

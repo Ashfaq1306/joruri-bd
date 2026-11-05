@@ -1,0 +1,780 @@
+# Fire Service and Civil Defence (FSCD): station and office numbers, typed from
+# the eight division lists in this folder (fscd-<division>-division.pdf, one
+# table per district, "নতুন যোগাযোগ নাম্বার"). Received 2026-11-05.
+#
+# One row per line:  kind|Bangla|English|number as printed
+#   kind S = fire station (the Bangla/English is the place; "ফায়ার স্টেশন" /
+#            "Fire Station" is added by build.mjs), O = office (full name).
+# "## <districtId>" starts a district. Numbers are copied exactly as printed,
+# misprints included; build.mjs checks them (see report.txt).
+
+## dhaka
+O|উপপরিচালক, ঢাকা বিভাগ|Deputy Director, Dhaka Division|01901020100
+O|সহকারী পরিচালক, ঢাকা|Assistant Director, Dhaka|01901020102
+O|উপসহকারী পরিচালক, ঢাকা জোন-১|Deputy Assistant Director, Dhaka Zone-1|01901020704
+O|উপসহকারী পরিচালক, ঢাকা জোন-২|Deputy Assistant Director, Dhaka Zone-2|01901020705
+O|উপসহকারী পরিচালক, ঢাকা জোন-৩|Deputy Assistant Director, Dhaka Zone-3|01901020706
+O|উপসহকারী পরিচালক, ঢাকা জোন-৪|Deputy Assistant Director, Dhaka Zone-4|01901020707
+O|উপসহকারী পরিচালক, ঢাকা জোন-৫|Deputy Assistant Director, Dhaka Zone-5|01901020708
+S|সিদ্দিকবাজার|Siddique Bazar|01901020748
+S|সদরঘাট|Sadarghat|01901020750
+S|সদরঘাট নদী|Sadarghat River|01901020752
+S|পোস্তগোলা|Postogola|01901020756
+S|লালবাগ|Lalbagh|01901020770
+S|পলাশী ব্যারাক|Palashi Barrack|01901020774
+S|খিলগাঁও|Khilgaon|01901020760
+S|তেজগাঁও|Tejgaon|01901020758
+S|মোহাম্মদপুর|Mohammadpur|01901020762
+S|মিরপুর|Mirpur|01901020764
+S|কুর্মিটোলা|Kurmitola|01901020768
+S|উত্তরা|Uttara|01901020782
+S|হযরত শাহজালাল আন্তর্জাতিক বিমানবন্দর (অস্থায়ী)|Hazrat Shahjalal International Airport (temporary)|01901020041
+S|ডিইপিজেড|DEPZ (Dhaka EPZ)|01901020822
+S|ডেমরা|Demra|01901020778
+S|বারিধারা|Baridhara|01901020780
+S|সাভার|Savar|01901020820
+S|দোহার|Dohar|01901020808
+S|হাজারীবাগ|Hazaribagh|01901020776
+S|ধামরাই|Dhamrai|01901020804
+S|কেরানীগঞ্জ|Keraniganj|01901020810
+S|কেরানীগঞ্জ স্যাটেলাইট|Keraniganj Satellite|01901020814
+S|সচিবালয়|Secretariat|02-9515555
+S|সূত্রাপুর|Sutrapur|01901020754
+S|কল্যাণপুর|Kalyanpur|01901020766
+S|চামড়া শিল্পনগরী|Leather Industrial Estate (Savar)|01901020824
+S|ভাষানটেক|Bhashantek|01901020772
+S|কল্যাণপুর|Kalyanpur|01901020766
+S|সাভার (জিরাবো)|Savar (Zirabo)|01901020826
+S|পল্লবী|Pallabi|01901020784
+
+## narayanganj
+O|উপসহকারী পরিচালক, নারায়ণগঞ্জ জোন-১|Deputy Assistant Director, Narayanganj Zone-1|01901020710
+O|উপসহকারী পরিচালক, নারায়ণগঞ্জ জোন-২|Deputy Assistant Director, Narayanganj Zone-2|01901020705
+S|নারায়ণগঞ্জ|Narayanganj|01901020828
+S|কাঁচপুর মডার্ন|Kanchpur Modern|01901020848
+S|হাজীগঞ্জ|Hajiganj|01901020830
+S|বন্দর|Bandar|01901020850
+S|নারায়ণগঞ্জ নদী|Narayanganj River|01901020836
+S|কাঞ্চন নদী|Kanchan River|01901020854
+S|আদমজী (ইপিজেড)|Adamjee (EPZ)|01901020832
+S|আড়াইহাজার|Araihazar|01901020842
+S|ফতুল্লা|Fatullah|01901020838
+S|পাগলা স্থল-কাম-নদী|Pagla Land-cum-River|01901020840
+S|সোনারগাঁও|Sonargaon|01901020846
+S|পূর্বাচল|Purbachal|01901020858
+
+## gazipur
+O|উপসহকারী পরিচালক, গাজীপুর|Deputy Assistant Director, Gazipur|01901020709
+S|জয়দেবপুর|Joydebpur|01901020868
+S|টঙ্গী|Tongi|01901020866
+S|কালিয়াকৈর|Kaliakair|01901020892
+S|শ্রীপুর|Sreepur|01901020900
+S|কালীগঞ্জ|Kaliganj|01901020896
+S|সমরাস্ত্র কারখানা|Ordnance Factory (BOF)|01901020721
+S|কাশিমপুর মিনি|Kashimpur Mini|01755630094
+S|কাপাসিয়া|Kapasia|01901020898
+S|গাজীপুর চৌরাস্তা মডার্ন|Gazipur Chowrasta Modern|01901020874
+S|কোনাবাড়ী মডার্ন|Konabari Modern|01901020878
+S|সারাবো (কাশিমপুর)|Sarabo (Kashimpur)|01901020872
+
+## munshiganj
+O|উপসহকারী পরিচালক, মুন্সীগঞ্জ|Deputy Assistant Director, Munshiganj|01901020712
+S|মুন্সীগঞ্জ|Munshiganj|01901020924
+S|কমলাঘাট নদী|Kamalaghat River|01901020926
+S|শ্রীনগর|Sreenagar|01901020934
+S|গজারিয়া|Gazaria|01901020928
+S|গজারিয়া বিসিক|Gazaria BSCIC|01901020930
+S|সিরাজদিখান|Sirajdikhan|01901020940
+S|লৌহজং|Louhajang|01901020936
+
+## narsingdi
+O|উপসহকারী পরিচালক, নরসিংদী|Deputy Assistant Director, Narsingdi|01901020713
+S|নরসিংদী|Narsingdi|01901020902
+S|মনোহরদী|Monohardi|01901020912
+S|পলাশ|Palash|01901020914
+S|মাধবদী|Madhabdi|01901020904
+S|রায়পুরা|Raipura|01901020918
+S|শিবপুর|Shibpur|01901020920
+S|বেলাব|Belabo|01901020910
+
+## manikganj
+O|উপসহকারী পরিচালক, মানিকগঞ্জ|Deputy Assistant Director, Manikganj|01901020714
+S|মানিকগঞ্জ|Manikganj|01901020946
+S|ঘিওর|Ghior|01901020948
+S|আরিচা স্থল-কাম-নদী|Aricha Land-cum-River|01901020952
+S|হরিরামপুর|Harirampur|01901020950
+S|সিংগাইর|Singair|01901020954
+S|দৌলতপুর|Daulatpur|01901020960
+S|সাটুরিয়া|Saturia|01901020956
+
+## tangail
+O|সহকারী পরিচালক, টাঙ্গাইল|Assistant Director, Tangail|01901020104
+S|টাঙ্গাইল|Tangail|01901020962
+S|মধুপুর|Madhupur|01901020976
+S|মির্জাপুর|Mirzapur|01901020980
+S|বাসাইল|Basail|01901020964
+S|সখিপুর|Sakhipur|01901020986
+S|নাগরপুর|Nagarpur|01901020984
+S|ভূঞাপুর|Bhuapur|01901020966
+S|ধনবাড়ী|Dhanbari|01901020978
+S|কালিহাতী|Kalihati|01901020970
+S|গোপালপুর|Gopalpur|01901020968
+S|ঘাটাইল|Ghatail|01901020988
+S|এলেঙ্গা|Elenga|01901020972
+S|দেলদুয়ার|Delduar|01901020992
+
+## faridpur
+O|সহকারী পরিচালক, ফরিদপুর|Assistant Director, Faridpur|01901020106
+S|ফরিদপুর|Faridpur|01901020996
+S|বোয়ালমারী|Boalmari|01901021008
+S|ভাঙ্গা|Bhanga|01901021006
+S|মধুখালী|Madhukhali|01901021014
+S|সদরপুর|Sadarpur|01901021010
+S|সালথা|Saltha|01901021016
+S|নগরকান্দা|Nagarkanda|01901021002
+S|চরভদ্রাসন|Charbhadrasan|01901021018
+S|আলফাডাঙ্গা|Alfadanga|01901021022
+
+## rajbari
+O|উপসহকারী পরিচালক, রাজবাড়ী|Deputy Assistant Director, Rajbari|01901020719
+S|পাংশা|Pangsha|01901021030
+S|রাজবাড়ী|Rajbari|01901021024
+S|বালিয়াকান্দি|Baliakandi|01901021026
+S|গোয়ালন্দ|Goalanda|01901021028
+S|কালুখালী|Kalukhali|01901021032
+
+## madaripur
+O|উপসহকারী পরিচালক, মাদারীপুর|Deputy Assistant Director, Madaripur|01901020718
+S|মাদারীপুর|Madaripur|01901021034
+S|শিবচর|Shibchar|01901021036
+S|রাজৈর|Rajoir|01901021038
+S|কালকিনি|Kalkini|01901021042
+S|টেকেরহাট বন্দর স্থল-কাম-নদী|Tekerhat Bandar Land-cum-River|01901021040
+
+## gopalganj
+O|উপসহকারী পরিচালক, গোপালগঞ্জ|Deputy Assistant Director, Gopalganj|01901020717
+S|গোপালগঞ্জ|Gopalganj|01901021046
+S|টুঙ্গিপাড়া|Tungipara|01901021054
+S|মুকসুদপুর|Muksudpur|01901021052
+S|কোটালীপাড়া|Kotalipara|01901021050
+S|কাশিয়ানী|Kashiani|01901021056
+
+## shariatpur
+O|উপসহকারী পরিচালক, শরীয়তপুর|Deputy Assistant Director, Shariatpur|01901020720
+S|শরীয়তপুর|Shariatpur|01901021058
+S|ডামুড্যা|Damudya|01901021060
+S|গোসাইরহাট|Gosairhat|01901021062
+S|জাজিরা|Zajira|01901021066
+S|নড়িয়া|Naria|01901021064
+S|ভেদরগঞ্জ|Bhedarganj|01901021070
+
+## kishoreganj
+O|উপসহকারী পরিচালক, কিশোরগঞ্জ|Deputy Assistant Director, Kishoreganj|01901020722
+S|কিশোরগঞ্জ|Kishoreganj|01901021074
+S|বাজিতপুর|Bajitpur|01901021080
+S|ভৈরব বাজার|Bhairab Bazar|01901021082
+S|ভৈরব নদী|Bhairab River|01901021084
+S|কুলিয়ারচর|Kuliarchar|01901021086
+S|তাড়াইল|Tarail|01901021088
+S|কটিয়াদী|Katiadi|01901021096
+S|পাকুন্দিয়া|Pakundia|01901021090
+S|হোসেনপুর|Hossainpur|01901021100
+S|করিমগঞ্জ|Karimganj|01901021094
+S|ইটনা|Itna|01901021106
+S|মিঠামইন|Mithamain|01901021104
+S|অষ্টগ্রাম|Austagram|01901021098
+S|নিকলী স্থল-কাম-নদী|Nikli Land-cum-River|01901021102
+
+## chattogram
+O|উপপরিচালক, চট্টগ্রাম বিভাগ|Deputy Director, Chattogram Division|019010210110
+O|সহকারী পরিচালক, চট্টগ্রাম জেলা|Assistant Director, Chattogram District|01901020112
+O|উপসহকারী পরিচালক, চট্টগ্রাম জোন-১|Deputy Assistant Director, Chattogram Zone-1|019010201506
+S|আগ্রাবাদ|Agrabad|019010201540
+S|বন্দর|Bandar (Port)|01901021555
+S|সিইপিজেড|CEPZ|01901021551
+S|কেইপিজেড|KEPZ|01901021553
+S|নন্দনকানন|Nandankanan|01901-021545
+O|উপসহকারী পরিচালক, চট্টগ্রাম জোন-২|Deputy Assistant Director, Chattogram Zone-2|01901021507
+S|পটিয়া|Patiya|01901021601
+S|লামারবাজার|Lamar Bazar|01901-021549
+S|বোয়ালখালী|Boalkhali|01901021597
+S|বাঁশখালী|Banshkhali|01901021595
+S|আনোয়ারা|Anwara|01901021593
+S|চন্দনাইশ|Chandanaish|01901021599
+S|সাতকানিয়া|Satkania|01901021603
+S|লোহাগাড়া|Lohagara|01901021605
+O|উপসহকারী পরিচালক, চট্টগ্রাম জোন-৩|Deputy Assistant Director, Chattogram Zone-3|01901021508
+# Kaptai is printed again under Chattogram Zone-3 with the same number; it is
+# in Rangamati district and listed there.
+S|চন্দনপুরা|Chandanpura|01901021559
+S|কালুরঘাট|Kalurghat|01901021557
+S|হাটহাজারী|Hathazari|01901021575
+S|রাউজান|Raozan|01901021583
+S|রাঙ্গুনিয়া|Rangunia|01901021581
+S|ফটিকছড়ি|Fatikchhari|01901021571
+S|কুমিরা|Kumira|01901021591
+S|বায়েজিদ|Bayezid|01901021543
+S|সীতাকুণ্ড|Sitakunda|01901021589
+S|সন্দ্বীপ|Sandwip|01901021587
+S|মিরসরাই|Mirsharai|01901021577
+S|বারৈয়ারহাট|Baraiyarhat|01901021579
+
+## coxs-bazar
+O|উপসহকারী পরিচালক, কক্সবাজার|Deputy Assistant Director, Cox's Bazar|01901021511
+S|কক্সবাজার|Cox's Bazar|01901021607
+S|চকরিয়া|Chakaria|01901021617
+S|রামু|Ramu|01901021621
+S|পেকুয়া|Pekua|01901021629
+S|মহেশখালী|Maheshkhali|01901021619
+S|কুতুবদিয়া|Kutubdia|01901021631
+S|উখিয়া|Ukhiya|01901021627
+S|টেকনাফ|Teknaf|01901021625
+
+## bandarban
+O|সহকারী পরিচালক, বান্দরবান|Assistant Director, Bandarban|01901020119
+S|বান্দরবান|Bandarban|01901021679
+S|আলীকদম|Alikadam|01901021683
+S|লামা|Lama|01901-021685
+S|রোয়াংছড়ি|Rowangchhari|01901-021687
+S|রুমা|Ruma|01901-021691
+S|নাইক্ষ্যংছড়ি|Naikhongchhari|01897-878797
+S|থানচি|Thanchi|01901-021689
+
+## rangamati
+O|সহকারী পরিচালক, রাঙ্গামাটি|Assistant Director, Rangamati|01901020118
+S|রাঙ্গামাটি|Rangamati|01901021637
+S|কাপ্তাই|Kaptai|01901021641
+S|কাউখালী|Kawkhali|01901021643
+S|লংগদু|Langadu|01901021645
+
+## khagrachhari
+O|উপসহকারী পরিচালক, খাগড়াছড়ি|Deputy Assistant Director, Khagrachhari|01901021508
+S|খাগড়াছড়ি|Khagrachhari|01901021661
+S|দীঘিনালা|Dighinala|01901021663
+S|রামগড়|Ramgarh|01901021665
+S|মাটিরাঙ্গা|Matiranga|01901021667
+S|লক্ষ্মীছড়ি|Lakshmichhari|01901021669
+S|পানছড়ি|Panchhari|01901021671
+
+## cumilla
+O|সহকারী পরিচালক, কুমিল্লা|Assistant Director, Cumilla|01901020114
+O|উপসহকারী পরিচালক, কুমিল্লা|Deputy Assistant Director, Cumilla|01901021510
+S|কুমিল্লা|Cumilla|01901021695
+S|কুমিল্লা ইপিজেড|Cumilla EPZ|01901021699
+S|দৌলতগঞ্জ বাজার|Daulatganj Bazar|01901021717
+S|চৌদ্দগ্রাম|Chauddagram|01901021711
+S|চৌয়ারা বাজার|Chouara Bazar|01901021697
+S|বরুড়া|Barura|01901021715
+S|চান্দিনা|Chandina|01901021701
+S|দাউদকান্দি|Daudkandi|01901021703
+S|মুরাদনগর|Muradnagar|01901021707
+S|বুড়িচং|Burichang|01901021713
+S|হোমনা|Homna|01901021705
+S|মেঘনা|Meghna|01901021721
+S|মনোহরগঞ্জ|Monoharganj|01901021719
+
+## brahmanbaria
+O|উপসহকারী পরিচালক, ব্রাহ্মণবাড়িয়া|Deputy Assistant Director, Brahmanbaria|019010201514
+S|ব্রাহ্মণবাড়িয়া|Brahmanbaria|01901021735
+S|আশুগঞ্জ|Ashuganj|01901021737
+S|আখাউড়া|Akhaura|01901021739
+S|কসবা|Kasba|01901021745
+S|সরাইল|Sarail|01901021747
+S|বাঞ্ছারামপুর|Bancharampur|01901021743
+S|নবীনগর|Nabinagar|01901021749
+S|নাসিরনগর|Nasirnagar|01901021751
+S|বিজয়নগর|Bijoynagar|01901021753
+
+## chandpur
+O|উপসহকারী পরিচালক, চাঁদপুর|Deputy Assistant Director, Chandpur|019010201515
+S|চাঁদপুর উত্তর|Chandpur North|01901021755
+S|চাঁদপুর দক্ষিণ|Chandpur South|01901021757
+S|চাঁদপুর নদী|Chandpur River|01901021759
+S|হাজীগঞ্জ|Hajiganj|01901-021761
+S|কচুয়া|Kachua|01901021765
+S|শাহরাস্তি|Shahrasti|01901021769
+S|মতলব|Matlab|01901021767
+S|মতলব উত্তর|Matlab North|01901021771
+S|ফরিদগঞ্জ|Faridganj|01901-021773
+S|হাইমচর|Haimchar|01901021763
+
+## noakhali
+O|সহকারী পরিচালক, নোয়াখালী|Assistant Director, Noakhali|01901020116
+S|মাইজদী|Maijdee|01901021775
+S|চৌমুহনী|Chowmuhani|01901021783
+S|চাটখিল|Chatkhil|01901021781
+S|সুবর্ণচর|Subarnachar|01901021797
+S|সোনাইমুড়ী|Sonaimuri|01901021787
+S|কোম্পানীগঞ্জ|Companiganj|01901021789
+S|হাতিয়া|Hatiya|01901021791
+S|কবিরহাট|Kabirhat|01901021795
+S|সেনবাগ|Senbagh|019011021801
+
+## feni
+O|উপসহকারী পরিচালক, ফেনী|Deputy Assistant Director, Feni|01901021534
+S|ফেনী|Feni|01901021823
+S|ছাগলনাইয়া|Chhagalnaiya|01901021825
+S|পরশুরাম|Parshuram|01901021827
+S|সোনাগাজী|Sonagazi|01901021829
+S|ফুলগাজী|Fulgazi|01901021831
+
+## lakshmipur
+O|উপসহকারী পরিচালক, লক্ষ্মীপুর|Deputy Assistant Director, Lakshmipur|01901021516
+S|লক্ষ্মীপুর|Lakshmipur|01901021805
+S|রায়পুর|Raipur|01901021811
+S|কমলনগর|Kamalnagar|01901021817
+S|রামগঞ্জ|Ramganj|01901021813
+S|রামগতি|Ramgati|01901021815
+
+## khulna
+O|উপপরিচালক, খুলনা বিভাগ|Deputy Director, Khulna Division|01901-020130
+O|সহকারী পরিচালক, খুলনা|Assistant Director, Khulna|01901-020132
+O|উপসহকারী পরিচালক, খুলনা|Deputy Assistant Director, Khulna|01901-022704
+O|ফোরম্যান, খুলনা|Foreman, Khulna|01920-659967
+O|ওসি কন্ট্রোল রুম, খুলনা|Control room (OC Control), Khulna|01717-934439
+S|খুলনা সদর|Khulna Sadar|01901022730
+S|খালিশপুর|Khalishpur|01901022732
+S|টুটপাড়া|Tutpara|01901022734
+S|দৌলতপুর|Daulatpur|01901022736
+S|খুলনা স্থল-কাম-নদী|Khulna Land-cum-River|01301022748
+S|খুলনা নদী|Khulna River|01901022738
+S|রূপসা|Rupsha|01901022752
+S|খানজাহান আলী|Khan Jahan Ali|01901022744
+# Printed "ডুমুরিয়া বটিয়াঘাটা ফায়ার স্টেশন"; Batiaghata has its own row below.
+S|ডুমুরিয়া|Dumuria|01901022750
+S|দাকোপ|Dacope|01901022758
+S|বটিয়াঘাটা|Batiaghata|01901022756
+S|তেরখাদা|Terokhada|01901022760
+S|কয়রা|Koyra|01901022762
+
+## bagerhat
+O|উপসহকারী পরিচালক, বাগেরহাট|Deputy Assistant Director, Bagerhat|01901-022705
+S|বাগেরহাট সদর|Bagerhat Sadar|01901-022768
+S|রামপাল|Rampal|01901-022786
+S|মোংলা ইপিজেড|Mongla EPZ|01901-022774
+S|মোংলা|Mongla|01901-022772
+S|শরণখোলা|Sarankhola|01901-022782
+S|মোড়েলগঞ্জ|Morrelganj|01901-022778
+S|কচুয়া|Kachua|01901-022792
+S|মোল্লাহাট|Mollahat|01901-022784
+S|চিতলমারী|Chitalmari|01901-022794
+S|ফকিরহাট|Fakirhat|01901-022788
+
+## satkhira
+O|উপসহকারী পরিচালক, সাতক্ষীরা|Deputy Assistant Director, Satkhira|01901-022706
+S|সাতক্ষীরা সদর|Satkhira Sadar|01901-022796
+S|দেবহাটা|Debhata|01901-022806
+S|কালীগঞ্জ|Kaliganj|01901-022800
+S|আশাশুনি|Assasuni|01901-022798
+S|কলারোয়া|Kalaroa|01901-022804
+S|শ্যামনগর|Shyamnagar|01901-022808
+S|তালা|Tala|01901-022810
+
+## jashore
+O|সহকারী পরিচালক, যশোর|Assistant Director, Jashore|01901-020134
+O|উপসহকারী পরিচালক, যশোর|Deputy Assistant Director, Jashore|01901-022712
+S|যশোর সদর|Jashore Sadar|01901-022814
+S|যশোর সেনানিবাস|Jashore Cantonment|01901-022816
+S|নওয়াপাড়া|Noapara|01912-6828
+S|ঝিকরগাছা|Jhikargachha|01901022826
+S|বেনাপোল|Benapole|01901-022830
+S|মনিরামপুর|Monirampur|01740-322834
+S|বাঘারপাড়া|Bagherpara|01901-022836
+S|কেশবপুর|Keshabpur|01901-022842
+S|চৌগাছা|Chaugachha|01901-022840
+
+## narail
+O|উপসহকারী পরিচালক, নড়াইল|Deputy Assistant Director, Narail|01901-022707
+S|নড়াইল সদর|Narail Sadar|01901-022860
+S|লোহাগড়া|Lohagara|01901-022864
+S|কালিয়া|Kalia|01901-022866
+
+## jhenaidah
+O|উপসহকারী পরিচালক, ঝিনাইদহ|Deputy Assistant Director, Jhenaidah|01901-022709
+S|ঝিনাইদহ সদর|Jhenaidah Sadar|01901-022844
+S|শৈলকুপা|Shailkupa|01901-022850
+S|কোটচাঁদপুর|Kotchandpur|01901-022848
+S|হরিণাকুণ্ডু|Harinakunda|01901-022852
+S|মহেশপুর|Maheshpur|01901-022857
+S|কালীগঞ্জ|Kaliganj|01901-022852
+
+## magura
+O|উপসহকারী পরিচালক, মাগুরা|Deputy Assistant Director, Magura|01901-022708
+S|মাগুরা সদর|Magura Sadar|01901-022868
+S|মোহাম্মদপুর|Mohammadpur|01901-022872
+S|শ্রীপুর|Sreepur|01901-022874
+S|শালিখা|Shalikha|01901-022876
+
+## kushtia
+O|সহকারী পরিচালক, কুষ্টিয়া|Assistant Director, Kushtia|01901020136
+O|উপসহকারী পরিচালক, কুষ্টিয়া|Deputy Assistant Director, Kushtia|01901-022713
+S|কুষ্টিয়া সদর|Kushtia Sadar|01901-022878
+S|খোকসা|Khoksa|01901-022888
+S|ভেড়ামারা|Bheramara|01901-022886
+S|কুমারখালী|Kumarkhali|01901-022882
+S|মিরপুর|Mirpur|01901-022884
+
+## chuadanga
+O|উপসহকারী পরিচালক, চুয়াডাঙ্গা|Deputy Assistant Director, Chuadanga|01901022710
+S|চুয়াডাঙ্গা সদর|Chuadanga Sadar|01901-022898
+S|আলমডাঙ্গা|Alamdanga|01901-022902
+S|জীবননগর|Jibannagar|01901-022906
+S|দর্শনা|Darshana|01901-022908
+
+## meherpur
+O|উপসহকারী পরিচালক, মেহেরপুর|Deputy Assistant Director, Meherpur|01901022711
+S|মেহেরপুর সদর|Meherpur Sadar|01901-022892
+S|বামুন্দি|Bamundi|01901-022894
+S|মুজিবনগর|Mujibnagar|01901-022896
+
+## barishal
+O|উপপরিচালক, বরিশাল বিভাগ|Deputy Director, Barishal Division|01901020160
+O|সহকারী পরিচালক, বরিশাল|Assistant Director, Barishal|01901020162
+S|বরিশাল সদর|Barishal Sadar|01901023921
+S|বরিশাল দক্ষিণ|Barishal South|01901023929
+S|বরিশাল নদী|Barishal River|01901023923
+S|গৌরনদী|Gournadi|01901023931
+S|বানারীপাড়া|Banaripara|01901023937
+S|উজিরপুর|Wazirpur|01901023933
+S|মেহেন্দিগঞ্জ|Mehendiganj|01901-023939
+S|বাবুগঞ্জ|Babuganj|01901023941
+S|বাকেরগঞ্জ|Bakerganj|01901023943
+S|হিজলা|Hizla|01901023947
+S|মুলাদী|Muladi|01901023949
+
+## pirojpur
+O|উপসহকারী পরিচালক, পিরোজপুর|Deputy Assistant Director, Pirojpur|01901023904
+S|পিরোজপুর|Pirojpur|01901023959
+S|মঠবাড়িয়া|Mathbaria|01901023963
+S|ভান্ডারিয়া|Bhandaria|01901023961
+S|কাউখালী|Kawkhali|01901023967
+S|নাজিরপুর|Nazirpur|01901023965
+S|নেছারাবাদ|Nesarabad|01901023969
+S|জিয়ানগর|Zianagar|01901023973
+
+## jhalokati
+O|উপসহকারী পরিচালক, ঝালকাঠি|Deputy Assistant Director, Jhalokati|01901023905
+S|ঝালকাঠি|Jhalokati|01901023951
+S|নলছিটি|Nalchity|01901023955
+S|কাঠালিয়া|Kathalia|01901023953
+S|রাজাপুর|Rajapur|01901023957
+
+## bhola
+O|উপসহকারী পরিচালক, ভোলা|Deputy Assistant Director, Bhola|01901023906
+S|ভোলা|Bhola|01901023975
+S|বোরহানউদ্দিন|Burhanuddin|01901023979
+S|চরফ্যাশন|Char Fasson|01901023981
+S|লালমোহন|Lalmohan|01901023985
+S|দৌলতখান|Daulatkhan|01901023983
+S|তজুমদ্দিন|Tazumuddin|01901023989
+S|মনপুরা|Monpura|01901023987
+
+# The Barishal list prints this table under a second "পিরোজপুর জেলা" heading;
+# every row is in Patuakhali district.
+## patuakhali
+O|সহকারী পরিচালক, পটুয়াখালী|Assistant Director, Patuakhali|01901020164
+S|পটুয়াখালী সদর|Patuakhali Sadar|01901023995
+S|পটুয়াখালী নদী|Patuakhali River|01901023997
+S|বাউফল|Bauphal|01901023999
+S|মির্জাগঞ্জ|Mirzaganj|01901024007
+S|খেপুপাড়া|Khepupara|01901024009
+S|দশমিনা|Dashmina|01901024001
+S|গলাচিপা|Galachipa|01901024015
+
+## barguna
+O|উপসহকারী পরিচালক, বরগুনা|Deputy Assistant Director, Barguna|01901023907
+S|বরগুনা|Barguna|01901024017
+S|আমতলী|Amtali|01901024019
+S|পাথরঘাটা|Patharghata|01901024021
+S|বামনা|Bamna|01901024023
+S|বেতাগী|Betagi|01901024025
+S|তালতলী|Taltali|01901024027
+
+## rajshahi
+O|উপপরিচালক, রাজশাহী বিভাগ|Deputy Director, Rajshahi Division|01901-020120
+O|সহকারী পরিচালক, রাজশাহী|Assistant Director, Rajshahi|01901-020122
+O|উপসহকারী পরিচালক, রাজশাহী|Deputy Assistant Director, Rajshahi|01901-022204
+S|রাজশাহী|Rajshahi|01901-022227
+S|রাজশাহী উত্তর|Rajshahi North|01901-022231
+S|বিশ্ববিদ্যালয়|University (Rajshahi)|01901-022229
+S|নওহাটা|Nowhata|01901-022247
+S|পুঠিয়া|Puthia|01901-022249
+S|চারঘাট|Charghat|01901-022237
+S|গোদাগাড়ী|Godagari|01901-022241
+S|তানোর|Tanore|01901-022251
+S|বাগমারা|Bagmara|01901-022235
+S|দুর্গাপুর|Durgapur|01901-022239
+S|বাঘা|Bagha|01901-022253
+S|মোহনপুর|Mohanpur|01901-022245
+
+## chapainawabganj
+O|উপসহকারী পরিচালক, চাঁপাইনবাবগঞ্জ|Deputy Assistant Director, Chapainawabganj|01901-022205
+S|চাঁপাইনবাবগঞ্জ|Chapainawabganj|01901-022309
+S|শিবগঞ্জ|Shibganj|01901-022317
+S|গোমস্তাপুর|Gomastapur|01901-022313
+S|ভোলাহাট|Bholahat|01901-022311
+S|নাচোল|Nachole|01901-022315
+
+## natore
+O|উপসহকারী পরিচালক, নাটোর|Deputy Assistant Director, Natore|01901-022207
+S|নাটোর|Natore|01901-022283
+S|লালপুর|Lalpur|01901-022293
+S|দয়রামপুর|Doyrampur|01901-022285
+S|গুরুদাসপুর|Gurudaspur|01901-022289
+S|বনপাড়া|Bonpara|01901-022287
+S|সিংড়া|Singra|01901-022295
+S|নলডাঙ্গা|Naldanga|01901-022297
+
+## naogaon
+O|উপসহকারী পরিচালক, নওগাঁ|Deputy Assistant Director, Naogaon|01901-022206
+S|নওগাঁ|Naogaon|01901-022255
+S|পত্নীতলা|Patnitala|01901-022269
+S|আত্রাই|Atrai|01901-022263
+S|নিয়ামতপুর|Niamatpur|01901-022267
+S|মহাদেবপুর|Mohadevpur|01901-022259
+S|রাণীনগর|Raninagar|01901-022271
+S|মান্দা|Manda|01901-022265
+S|বদলগাছি|Badalgachhi|01901-022277
+S|পোরশা|Porsha|01901-022281
+S|ধামইরহাট|Dhamoirhat|01901-022275
+S|সাপাহার|Sapahar|01901-022273
+
+## bogura
+O|সহকারী পরিচালক, বগুড়া|Assistant Director, Bogura|01901-020124
+O|উপসহকারী পরিচালক, বগুড়া|Deputy Assistant Director, Bogura|01901-022211
+S|বগুড়া|Bogura|01901-022381
+S|সোনাতলা|Sonatala|01901-022411
+S|শেরপুর|Sherpur|01901-022405
+S|ধুনট|Dhunat|01901-022391
+S|সারিয়াকান্দি|Sariakandi|01901-022403
+S|গাবতলী|Gabtali|01901-022395
+S|শিবগঞ্জ|Shibganj|01901-022407
+S|কাহালু|Kahaloo|01901-022399
+S|নন্দীগ্রাম|Nandigram|01901-022401
+S|আদমদীঘি|Adamdighi|01901-022387
+S|দুপচাঁচিয়া|Dupchanchia|01901-022393
+S|শাজাহানপুর|Shajahanpur|01901-022413
+
+## joypurhat
+O|উপসহকারী পরিচালক, জয়পুরহাট|Deputy Assistant Director, Joypurhat|01901-022208
+S|জয়পুরহাট|Joypurhat|01901-022299
+S|আক্কেলপুর|Akkelpur|01901-022301
+S|পাঁচবিবি|Panchbibi|01901-022305
+S|কালাই|Kalai|01901-022307
+S|ক্ষেতলাল|Khetlal|01901-022303
+
+## pabna
+O|সহকারী পরিচালক, পাবনা|Assistant Director, Pabna|01901-020126
+O|উপসহকারী পরিচালক, পাবনা|Deputy Assistant Director, Pabna|01901-022209
+S|পাবনা|Pabna|01901-022325
+S|ঈশ্বরদী|Ishwardi|01901-022335
+S|বেড়া|Bera|01901-022329
+S|চাটমোহর|Chatmohar|01901-022331
+S|সুজানগর|Sujanagar|01901-022349
+S|কাশিনাথপুর|Kashinathpur|01901-022345
+S|ঈশ্বরদী ইপিজেড|Ishwardi EPZ|01901-022337
+S|সাঁথিয়া|Santhia|01901-022343
+S|ফরিদপুর|Faridpur|01901-022333
+S|আটঘরিয়া|Atgharia|01901-022327
+S|গ্রীনসিটি|Green City (Rooppur)|01901-022339
+S|রূপপুর মডার্ন|Rooppur Modern|01901-022340
+S|রূপপুর|Rooppur|01901-022341
+
+## sirajganj
+O|উপসহকারী পরিচালক, সিরাজগঞ্জ|Deputy Assistant Director, Sirajganj|01901-022210
+S|সিরাজগঞ্জ|Sirajganj|01901022353
+S|বাঘাবাড়ী নদী|Baghabari River|01901-022371
+S|উল্লাপাড়া|Ullapara|01901-022375
+S|শাহজাদপুর|Shahjadpur|01901-022369
+S|কাজীপুর|Kazipur|01901-022363
+S|রায়গঞ্জ|Raiganj|01901-022365
+S|বেলকুচি|Belkuchi|01901-022357
+S|কামারখন্দ|Kamarkhanda|01901-022359
+S|তাড়াশ|Tarash|01901-022373
+S|নর্থ ওয়েস্ট|North West|01313-425824
+
+## sylhet
+O|উপপরিচালক, সিলেট বিভাগ|Deputy Director, Sylhet Division|01901-020150
+O|সহকারী পরিচালক, বৃহত্তর সিলেট জেলা|Assistant Director, Greater Sylhet|01901-020152
+O|উপসহকারী পরিচালক, সিলেট|Deputy Assistant Director, Sylhet|01901-023602
+S|সিলেট|Sylhet|01901-023616
+S|সিলেট দক্ষিণ|Sylhet South|01901-023628
+S|সিলেট সেনানিবাস|Sylhet Cantonment|01901-023618
+S|বিয়ানীবাজার|Beanibazar|01901-023634
+S|জকিগঞ্জ|Zakiganj|01901-023636
+S|ওসমানীনগর|Osmaninagar|01901-023638
+S|ফেঞ্চুগঞ্জ|Fenchuganj|01901-023640
+S|গোলাপগঞ্জ|Golapganj|01901-023642
+S|জৈন্তাপুর|Jaintiapur|01901-023644
+S|কানাইঘাট|Kanaighat|01901-023646
+S|বিশ্বনাথ|Bishwanath|01901-023648
+S|কোম্পানীগঞ্জ|Companiganj|01901-023650
+
+## sunamganj
+O|উপসহকারী পরিচালক, সুনামগঞ্জ|Deputy Assistant Director, Sunamganj|01901-023605
+S|সুনামগঞ্জ|Sunamganj|01901-023698
+S|ছাতক|Chhatak|01901-023700
+S|জগন্নাথপুর|Jagannathpur|01901-023704
+S|দক্ষিণ সুনামগঞ্জ|South Sunamganj|01901-023706
+S|দিরাই|Derai|01901-023708
+S|বিশ্বম্ভরপুর|Bishwamvarpur|01901-023710
+S|দোয়ারাবাজার|Dowarabazar|01901-023712
+S|তাহিরপুর|Tahirpur|01901-023714
+S|ধর্মপাশা|Dharmapasha|01901-023716
+S|জামালগঞ্জ|Jamalganj|01901-023720
+S|শাল্লা|Shalla|01901-023722
+
+## moulvibazar
+O|উপসহকারী পরিচালক, মৌলভীবাজার|Deputy Assistant Director, Moulvibazar|01901-023603
+S|মৌলভীবাজার|Moulvibazar|01901-023658
+S|কুলাউড়া|Kulaura|01901-023664
+S|কমলগঞ্জ|Kamalganj|01901-023666
+S|শ্রীমঙ্গল|Sreemangal|01901-023668
+S|বড়লেখা|Barlekha|01901-023670
+S|রাজনগর|Rajnagar|01901-023672
+S|জুড়ী|Juri|01901-023674
+
+## habiganj
+O|উপসহকারী পরিচালক, হবিগঞ্জ|Deputy Assistant Director, Habiganj|01901-023604
+S|হবিগঞ্জ|Habiganj|01901-023678
+S|বানিয়াচং|Baniachong|01901-023680
+S|মাধবপুর|Madhabpur|01901-023682
+S|নবীগঞ্জ|Nabiganj|01901-023686
+S|শায়েস্তাগঞ্জ|Shaistaganj|01901-023688
+S|চুনারুঘাট|Chunarughat|01901-023690
+S|লাখাই স্থল-কাম-নদী|Lakhai Land-cum-River|01901023692
+S|বাহুবল|Bahubal|01901023696
+
+## rangpur
+O|উপপরিচালক, রংপুর বিভাগ|Deputy Director, Rangpur Division|01901-020140
+O|সহকারী পরিচালক, রংপুর|Assistant Director, Rangpur|01901-020142
+O|উপসহকারী পরিচালক, রংপুর|Deputy Assistant Director, Rangpur|01901-023203
+S|রংপুর|Rangpur|01901-023231
+S|হারাগাছ|Haragachh|01901-023241
+S|বদরগঞ্জ|Badarganj|01901-023235
+S|কাউনিয়া|Kaunia|01901-023239
+S|মিঠাপুকুর|Mithapukur|01901-023243
+S|পীরগাছা|Pirgachha|01901-023245
+S|পীরগঞ্জ|Pirganj|01901-023247
+S|তারাগঞ্জ|Taraganj|01901-023249
+S|গংগাচড়া|Gangachara|01901-023237
+
+## gaibandha
+O|উপসহকারী পরিচালক, গাইবান্ধা|Deputy Assistant Director, Gaibandha|01901-023204
+S|গাইবান্ধা|Gaibandha|01901-023337
+S|গোবিন্দগঞ্জ|Gobindaganj|01901-023325
+S|ফুলছড়ি|Fulchhari|01901-023333
+S|সাঘাটা|Saghata|01901-023332
+S|সুন্দরগঞ্জ|Sundarganj|01901-023327
+S|সাদুল্লাপুর|Sadullapur|01901-023335
+S|পলাশবাড়ী|Palashbari|01901-023329
+
+## kurigram
+O|উপসহকারী পরিচালক, কুড়িগ্রাম|Deputy Assistant Director, Kurigram|01901-023205
+S|কুড়িগ্রাম|Kurigram|01901-023337
+S|উলিপুর|Ulipur|01901-023341
+S|নাগেশ্বরী|Nageshwari|01901-023343
+S|চিলমারী|Chilmari|01901-023345
+S|কর্তিমারী|Kortimari|01901-023347
+S|রাজারহাট|Rajarhat|01901-023349
+S|ফুলবাড়ী|Phulbari|01723-976767
+S|রাজিবপুর|Rajibpur|01901-023353
+
+## lalmonirhat
+O|উপসহকারী পরিচালক, লালমনিরহাট|Deputy Assistant Director, Lalmonirhat|01901-023206
+S|লালমনিরহাট|Lalmonirhat|01901-023359
+S|পাটগ্রাম|Patgram|01901-023361
+S|হাতীবান্ধা|Hatibandha|01901-023367
+S|কালীগঞ্জ|Kaliganj|01901-023365
+S|আদিতমারী|Aditmari|01901-023369
+
+## nilphamari
+O|উপসহকারী পরিচালক, নীলফামারী|Deputy Assistant Director, Nilphamari|01901-023207
+S|নীলফামারী|Nilphamari|01901-023307
+S|সৈয়দপুর|Saidpur|01901-023311
+S|উত্তরা ইপিজেড|Uttara EPZ|01901-023309
+S|কিশোরগঞ্জ|Kishoreganj|01901-023319
+S|জলঢাকা|Jaldhaka|01901-023317
+S|ডোমার|Domar|01901-023313
+S|ডিমলা|Dimla|01901-023321
+S|চিলাহাটি|Chilahati|01901-023315
+
+## dinajpur
+O|সহকারী পরিচালক, দিনাজপুর|Assistant Director, Dinajpur|01901-020144
+O|উপসহকারী পরিচালক, দিনাজপুর|Deputy Assistant Director, Dinajpur|01901-023210
+S|দিনাজপুর|Dinajpur|01901-023251
+S|পার্বতীপুর|Parbatipur|01901-023259
+S|ফুলবাড়ী|Phulbari|01901-023261
+S|বিরামপুর|Birampur|01901-023269
+S|সেতাবগঞ্জ|Setabganj|01901-023263
+S|হিলি|Hili|01901-023273
+S|বীরগঞ্জ|Birganj|01901-023279
+S|চিরিরবন্দর|Chirirbandar|01901-023265
+S|খানসামা|Khansama|01901-023277
+S|ঘোড়াঘাট|Ghoraghat|01901-023271
+S|নবাবগঞ্জ|Nawabganj|01901-023281
+S|কাহারোল|Kaharole|01901-023275
+S|বিরল|Biral|01901-023283
+
+## thakurgaon
+O|উপসহকারী পরিচালক, ঠাকুরগাঁও|Deputy Assistant Director, Thakurgaon|01901-023208
+S|ঠাকুরগাঁও|Thakurgaon|01901-023285
+S|পীরগঞ্জ|Pirganj|01901-023291
+S|রাণীশংকৈল|Ranisankail|01901-023295
+S|বালিয়াডাঙ্গী|Baliadangi|01901-023287
+S|হরিপুর|Haripur|01901-023289
+
+## panchagarh
+O|উপসহকারী পরিচালক, পঞ্চগড়|Deputy Assistant Director, Panchagarh|01901-023209
+S|পঞ্চগড়|Panchagarh|01901-023297
+S|তেঁতুলিয়া|Tetulia|01901-023299
+S|বোদা|Boda|01901-023301
+S|দেবীগঞ্জ|Debiganj|01901-023303
+S|আটোয়ারী|Atwari|01901-023305
+
+## mymensingh
+O|উপপরিচালক, ময়মনসিংহ বিভাগ|Deputy Director, Mymensingh Division|01980271354
+O|সহকারী পরিচালক, ময়মনসিংহ|Assistant Director, Mymensingh|01819848030
+O|উপসহকারী পরিচালক, ময়মনসিংহ|Deputy Assistant Director, Mymensingh|01730002353
+S|ময়মনসিংহ|Mymensingh|01901024217
+S|মুক্তাগাছা|Muktagachha|01901024225
+S|ঈশ্বরগঞ্জ|Ishwarganj|01901024235
+S|ভালুকা|Bhaluka|01901024229
+S|ফুলবাড়িয়া|Phulbaria|01901024239
+S|ফুলপুর|Phulpur|01901024241
+S|গফরগাঁও|Gaffargaon|01901024231
+S|হালুয়াঘাট|Haluaghat|01901024243
+S|ত্রিশাল|Trishal|01901024245
+S|ধোবাউড়া|Dhobaura|01901024247
+S|নান্দাইল|Nandail|01901024249
+S|কৃষি বিশ্ববিদ্যালয়|Agricultural University (BAU)|01901024225
+S|গৌরীপুর|Gauripur|01901024253
+
+## jamalpur
+O|সহকারী পরিচালক, জামালপুর|Assistant Director, Jamalpur|01901020174
+S|জামালপুর|Jamalpur|01901024275
+S|সরিষাবাড়ী|Sarishabari|01901024293
+S|ইসলামপুর|Islampur|01901024285
+S|মেলান্দহ|Melandaha|01901024290
+S|দেওয়ানগঞ্জ|Dewanganj|01901024283
+S|মাদারগঞ্জ|Madarganj|01901024289
+S|বকশীগঞ্জ|Bakshiganj|01901024297
+
+## sherpur
+O|উপসহকারী পরিচালক, শেরপুর|Deputy Assistant Director, Sherpur|01901024204
+S|শেরপুর|Sherpur|01901024299
+S|নালিতাবাড়ী|Nalitabari|01901024305
+S|ঝিনাইগাতী|Jhenaigati|01901024301
+S|শ্রীবরদী|Sreebardi|01901024311
+
+## netrokona
+O|উপসহকারী পরিচালক, নেত্রকোনা|Deputy Assistant Director, Netrokona|01718092909
+S|নেত্রকোনা|Netrokona|01901024255
+S|মোহনগঞ্জ|Mohanganj|01901024269
+S|কেন্দুয়া|Kendua|01901024265
+S|কলমাকান্দা|Kalmakanda|01901024263
+S|মদন|Madan|01901024267
+S|দুর্গাপুর|Durgapur|01901024261
+S|আটপাড়া|Atpara|01901024257
+S|বারহাট্টা|Barhatta|01901024259
+S|পূর্বধলা|Purbadhala|01901024271

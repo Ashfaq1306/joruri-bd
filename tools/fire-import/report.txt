@@ -1,0 +1,35 @@
+Fire Service list built 2026-11-05T15:48:19.981Z
+637 entries: 543 fire stations, 94 offices; 64 of 64 districts
+Per division: dhaka 150, chattogram 117, khulna 80, barishal 49, rajshahi 87, sylhet 44, rangpur 71, mymensingh 39
+Every district has at least one fire station.
+
+Number left blank until someone checks it (15):
+  Secretariat Fire Station (Dhaka): Printed "02-9515555" (old 7-digit Dhaka land line (changed in 2018)).
+  Deputy Assistant Director, Narayanganj Zone-2 (Narayanganj): Printed with the same number as Dhaka Zone-2 (01901-020705).
+  Deputy Director, Chattogram Division (Chattogram): Printed "019010210110" (12 digits). Probably 01901-020110.
+  Deputy Assistant Director, Chattogram Zone-1 (Chattogram): Printed "019010201506" (12 digits). Probably 01901-021506.
+  Agrabad Fire Station (Chattogram): Printed "019010201540" (12 digits). Probably 01901-021540.
+  Deputy Assistant Director, Khagrachhari (Khagrachhari): Printed with the same number as Chattogram Zone-3 (01901-021508).
+  Deputy Assistant Director, Brahmanbaria (Brahmanbaria): Printed "019010201514" (12 digits). Probably 01901-021514.
+  Deputy Assistant Director, Chandpur (Chandpur): Printed "019010201515" (12 digits). Probably 01901-021515.
+  Senbagh Fire Station (Noakhali): Printed "019011021801" (12 digits). Probably 01901-021801.
+  Khulna Land-cum-River Fire Station (Khulna): Printed 01301-022748: probably 01901-022748 (every other Khulna station is 01901-0227xx).
+  Noapara Fire Station (Jashore): Printed "01912-6828" (9 digits).
+  Monirampur Fire Station (Jashore): Printed 01740-322834: probably 01901-022834 (every other Jashore station is 01901-0228xx).
+  Kaliganj Fire Station (Jhenaidah): Printed with the same number as Harinakunda (01901-022852).
+  Gaibandha Fire Station (Gaibandha): Printed with the same number as Kurigram Fire Station (01901-023337), which fits the Kurigram series.
+  Agricultural University (BAU) Fire Station (Mymensingh): Printed with the same number as Muktagachha (01901-024225).
+
+Kept, but outside the Fire Service's 01901-02xxxx series (10); worth a call to confirm:
+  Kashimpur Mini Fire Station (Gazipur): 01755-630094
+  Naikhongchhari Fire Station (Bandarban): 01897-878797
+  Foreman, Khulna (Khulna): 01920-659967
+  Control room (OC Control), Khulna (Khulna): 01717-934439
+  North West Fire Station (Sirajganj): 01313-425824
+  Phulbari Fire Station (Kurigram): 01723-976767
+  Deputy Director, Mymensingh Division (Mymensingh): 01980-271354
+  Assistant Director, Mymensingh (Mymensingh): 01819-848030
+  Deputy Assistant Director, Mymensingh (Mymensingh): 01730-002353
+  Deputy Assistant Director, Netrokona (Netrokona): 01718-092909
+
+Repeated row dropped: Kalyanpur (dhaka), line 46

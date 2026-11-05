@@ -424,6 +424,20 @@ abstract class AppStrings {
   String get noPoliceStations;
   String get policeSourceNote;
   String get policeNumberTip;
+
+  // Fire stations (Fire Service and Civil Defence)
+  String get fireStations;
+  String get findLocalFire;
+  String findLocalFireSub(int n);
+  String get searchFireHint;
+  String fireStationsFound(int n);
+  String get chooseDistrictForFire;
+  String get noFireStations;
+  String get fireSourceNote;
+  String get fireNumberTip;
+  String get stationNumber;
+  String get officeNumber;
+  String get numberBeingChecked;
   String get bloodBanksNearby;
 }
 

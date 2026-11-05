@@ -384,6 +384,18 @@ class StringsEn extends AppStrings {
   @override String get chooseDistrictForPolice => 'Choose a district, or type the name of a thana.';
   @override String get noPoliceStations => 'No police station found. Check the spelling or choose another district.';
   @override String get policeSourceNote => 'OC numbers from the list of police station OCs published by RAB (rab.gov.bd, October 2024); Dhaka addresses and e-mails from the DMP website. The number belongs to the post, not the person, but can change.';
+  @override String get fireStations => 'Fire stations';
+  @override String get findLocalFire => 'Your local fire station';
+  @override String findLocalFireSub(int n) => '$n fire stations and Fire Service offices in all 64 districts';
+  @override String get searchFireHint => 'Fire station or area name';
+  @override String fireStationsFound(int n) => n == 1 ? '1 result' : '$n results';
+  @override String get chooseDistrictForFire => 'Choose a district, or type the name of a fire station or upazila.';
+  @override String get noFireStations => 'No fire station found. Check the spelling or choose another district.';
+  @override String get fireSourceNote => 'Numbers from the Fire Service and Civil Defence lists of station and office numbers, one per division (November 2026). A number belongs to the station, not to a person. A few numbers were misprinted in those lists; they are left out until they are checked.';
+  @override String get fireNumberTip => 'Fire, a building collapse or someone trapped? Call 999 first. It is free and answers 24 hours. Then call the nearest fire station.';
+  @override String get stationNumber => 'Station number';
+  @override String get officeNumber => 'Office number';
+  @override String get numberBeingChecked => 'Number being checked. Call 999 or 102 meanwhile.';
   @override String get policeNumberTip => 'Life in danger or a crime happening now? Call 999 first. It is free and answers 24 hours.';
   @override String get bloodBanksNearby => 'Blood banks and hospital blood units';
 }

@@ -384,6 +384,18 @@ class StringsBn extends AppStrings {
   @override String get chooseDistrictForPolice => 'একটি জেলা বেছে নিন, অথবা থানার নাম লিখুন।';
   @override String get noPoliceStations => 'কোনো থানা পাওয়া যায়নি। বানান দেখুন বা অন্য জেলা বেছে নিন।';
   @override String get policeSourceNote => 'ওসিদের নম্বর র‍্যাবের প্রকাশিত থানার ওসিদের তালিকা থেকে (rab.gov.bd, অক্টোবর ২০২৪); ঢাকার ঠিকানা ও ই-মেইল ডিএমপির ওয়েবসাইট থেকে। নম্বরটি পদের, ব্যক্তির নয়, তবে বদলাতে পারে।';
+  @override String get fireStations => 'ফায়ার স্টেশন';
+  @override String get findLocalFire => 'আপনার এলাকার ফায়ার স্টেশন';
+  @override String findLocalFireSub(int n) => 'সব ৬৪ জেলার $n টি ফায়ার স্টেশন ও ফায়ার সার্ভিস অফিস';
+  @override String get searchFireHint => 'ফায়ার স্টেশন বা এলাকার নাম';
+  @override String fireStationsFound(int n) => '$n টি পাওয়া গেছে';
+  @override String get chooseDistrictForFire => 'একটি জেলা বেছে নিন, অথবা ফায়ার স্টেশন বা উপজেলার নাম লিখুন।';
+  @override String get noFireStations => 'কোনো ফায়ার স্টেশন পাওয়া যায়নি। বানান দেখুন বা অন্য জেলা বেছে নিন।';
+  @override String get fireSourceNote => 'নম্বরগুলো ফায়ার সার্ভিস ও সিভিল ডিফেন্সের বিভাগভিত্তিক স্টেশন ও অফিসের নম্বরের তালিকা থেকে (নভেম্বর ২০২৬)। নম্বরটি স্টেশনের, কোনো ব্যক্তির নয়। তালিকার কয়েকটি নম্বর ভুল ছাপা ছিল; যাচাই না হওয়া পর্যন্ত সেগুলো দেখানো হচ্ছে না।';
+  @override String get fireNumberTip => 'আগুন, ভবন ধস বা কেউ আটকে আছে? আগে ৯৯৯-এ কল করুন। বিনা খরচে, ২৪ ঘণ্টা। তারপর কাছের ফায়ার স্টেশনে কল করুন।';
+  @override String get stationNumber => 'স্টেশনের নম্বর';
+  @override String get officeNumber => 'অফিসের নম্বর';
+  @override String get numberBeingChecked => 'নম্বরটি যাচাই করা হচ্ছে। এর মধ্যে ৯৯৯ বা ১০২-এ কল করুন।';
   @override String get policeNumberTip => 'জীবন ঝুঁকিতে বা এখনই অপরাধ ঘটছে? আগে ৯৯৯-এ কল করুন। বিনা খরচে, ২৪ ঘণ্টা।';
   @override String get bloodBanksNearby => 'ব্লাড ব্যাংক ও হাসপাতালের রক্ত বিভাগ';
 }

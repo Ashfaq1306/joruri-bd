@@ -33,7 +33,8 @@ class NumbersScreen extends ConsumerWidget {
     final async = ref.watch(emergencyNumbersProvider);
     final filter = category;
     final showsPolice = filter == null || filter == NumberCategory.police;
-    final stationsPending = filter == NumberCategory.fire || filter == NumberCategory.ambulance;
+    final showsFire = filter == null || filter == NumberCategory.fire;
+    final stationsPending = filter == NumberCategory.ambulance;
 
     return Scaffold(
       appBar: GlassAppBar(title: Text(_title(s))),
@@ -49,14 +50,23 @@ class NumbersScreen extends ConsumerWidget {
               for (final n in list) ...[
                 NumberCard(number: n),
                 const SizedBox(height: 12),
-                // Right after 999: every thana with the OC's number.
-                if (showsPolice && n.number == AppConfig.nationalEmergencyNumber) ...[
-                  const _PoliceStationsLink(),
-                  const SizedBox(height: 12),
+                // Right after 999: every thana with the OC's number, and
+                // every fire station with its number.
+                if (n.number == AppConfig.nationalEmergencyNumber) ...[
+                  if (showsPolice) ...[
+                    const _StationsLink(service: StationService.police),
+                    const SizedBox(height: 12),
+                  ],
+                  if (showsFire) ...[
+                    const _StationsLink(service: StationService.fire),
+                    const SizedBox(height: 12),
+                  ],
                 ],
               ],
-              if (showsPolice && !list.any((n) => n.number == AppConfig.nationalEmergencyNumber))
-                const _PoliceStationsLink(),
+              if (!list.any((n) => n.number == AppConfig.nationalEmergencyNumber)) ...[
+                if (showsPolice) const _StationsLink(service: StationService.police),
+                if (showsFire) const _StationsLink(service: StationService.fire),
+              ],
               if (stationsPending)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: JSpace.sm),
@@ -70,35 +80,39 @@ class NumbersScreen extends ConsumerWidget {
   }
 }
 
-/// Opens the list of every police station with the OC's number.
-class _PoliceStationsLink extends ConsumerWidget {
-  const _PoliceStationsLink();
+/// Opens the list of every police station with the OC's number, or of
+/// every fire station with its number.
+class _StationsLink extends ConsumerWidget {
+  const _StationsLink({required this.service});
+
+  final StationService service;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final s = context.s;
     final theme = Theme.of(context);
-    final count = ref.watch(policeStationsProvider).valueOrNull?.length;
+    final fire = service == StationService.fire;
+    final count = ref.watch(stationsProvider(service)).valueOrNull?.length;
     return Material(
-      color: JColors.police,
+      color: fire ? JColors.fire : JColors.police,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
-        onTap: () => context.push('/police-stations'),
+        onTap: () => context.push(fire ? '/fire-stations' : '/police-stations'),
         child: Padding(
           padding: const EdgeInsets.all(JSpace.md),
           child: Row(
             children: [
-              const Icon(Icons.local_police, color: Colors.white, size: 36),
+              Icon(fire ? Icons.local_fire_department : Icons.local_police, color: Colors.white, size: 36),
               const SizedBox(width: JSpace.md),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(s.findLocalPolice,
+                    Text(fire ? s.findLocalFire : s.findLocalPolice,
                         style: theme.textTheme.titleMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
                     if (count != null && count > 0)
-                      Text(localizedDigits(s.findLocalPoliceSub(count), s.languageCode),
+                      Text(localizedDigits(fire ? s.findLocalFireSub(count) : s.findLocalPoliceSub(count), s.languageCode),
                           style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white.withAlpha(220))),
                   ],
                 ),
