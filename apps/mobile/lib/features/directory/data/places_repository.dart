@@ -42,6 +42,10 @@ class PlacesRepository {
   /// works offline (assets/seed/police_stations.json, tools/police-import).
   Future<List<Station>> policeStations() => _load('assets/seed/police_stations.json', 'policeStations', Station.fromJson);
 
+  /// Every fire station and Fire Service office with its number, from the
+  /// Fire Service and Civil Defence's own lists (tools/fire-import).
+  Future<List<Station>> fireStations() => _load('assets/seed/fire_stations.json', 'fireStations', Station.fromJson);
+
   /// DGDA-registered medicines with approved prices (assets/seed/medicines.json).
   Future<MedicineList> medicines() async {
     try {
@@ -146,6 +150,18 @@ final policeStationsProvider = FutureProvider<List<Station>>((ref) async {
   final cache = await ref.watch(cachedContentProvider.future);
   return parseSection(cache, 'policeStations', Station.fromJson) ?? await ref.watch(placesRepositoryProvider).policeStations();
 });
+
+/// Fire stations published on the admin website when downloaded;
+/// otherwise the bundled list.
+final fireStationsProvider = FutureProvider<List<Station>>((ref) async {
+  final cache = await ref.watch(cachedContentProvider.future);
+  Station parse(Map<String, dynamic> json) => Station.fromJson({...json, 'service': 'fire'});
+  return parseSection(cache, 'fireStations', parse) ?? await ref.watch(placesRepositoryProvider).fireStations();
+});
+
+/// The police or fire station list.
+FutureProvider<List<Station>> stationsProvider(StationService service) =>
+    service == StationService.fire ? fireStationsProvider : policeStationsProvider;
 
 /// Loaded once, the first time the medicine search opens.
 final medicinesProvider = FutureProvider<MedicineList>((ref) => ref.watch(placesRepositoryProvider).medicines());

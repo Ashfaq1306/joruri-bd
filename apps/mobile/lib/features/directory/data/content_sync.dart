@@ -84,6 +84,7 @@ class ContentSync {
       const cacheKey = {
         'emergency_numbers': 'numbers', 'guides': 'guides', 'hospitals': 'hospitals',
         'pharmacies': 'pharmacies', 'announcements': 'announcements', 'police_stations': 'policeStations',
+        'fire_stations': 'fireStations',
       };
       Future<List<Map<String, dynamic>>> published(String collection) async {
         final count = chunks is Map ? (chunks[collection] as num?)?.toInt() : null;
@@ -126,6 +127,7 @@ class ContentSync {
         published('announcements'),
         // Older websites have no police list yet: keep the phone's copy.
         if (chunks is Map && chunks['police_stations'] != null) published('police_stations') else Future.value(const <Map<String, dynamic>>[]),
+        if (chunks is Map && chunks['fire_stations'] != null) published('fire_stations') else Future.value(const <Map<String, dynamic>>[]),
       ]);
       final data = <String, dynamic>{
         'version': version,
@@ -137,6 +139,7 @@ class ContentSync {
         'pharmacies': lists[3],
         'announcements': lists[4],
         'policeStations': lists[5].isNotEmpty ? lists[5] : (old?['policeStations'] ?? const []),
+        'fireStations': lists[6].isNotEmpty ? lists[6] : (old?['fireStations'] ?? const []),
       };
       // Safety guard: never replace a working copy with one that has no
       // emergency numbers (a mistake on the website must not blank 999).

@@ -14,17 +14,20 @@ import 'package:joruri_bd/features/directory/data/places_repository.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_controller.dart';
 import 'package:joruri_bd/l10n/app_strings.dart';
 
-/// Every police station (thana) with the officer in charge's number.
-/// Starts in the district of the user's profile; typing a thana name
-/// searches the whole country when no district is chosen.
-class PoliceStationsScreen extends ConsumerStatefulWidget {
-  const PoliceStationsScreen({super.key});
+/// Every police station (thana) with the officer in charge's number, or
+/// every fire station and Fire Service office with its number.
+/// Starts in the district of the user's profile; typing a name searches
+/// the whole country when no district is chosen.
+class StationsScreen extends ConsumerStatefulWidget {
+  const StationsScreen({super.key, required this.service});
+
+  final StationService service;
 
   @override
-  ConsumerState<PoliceStationsScreen> createState() => _PoliceStationsScreenState();
+  ConsumerState<StationsScreen> createState() => _StationsScreenState();
 }
 
-class _PoliceStationsScreenState extends ConsumerState<PoliceStationsScreen> {
+class _StationsScreenState extends ConsumerState<StationsScreen> {
   /// Own search text: a thana name must not carry over into the Hospitals
   /// and Pharmacy screens (they share the district choice, not the text).
   String _text = '';
@@ -46,11 +49,12 @@ class _PoliceStationsScreenState extends ConsumerState<PoliceStationsScreen> {
     final filter = ref.watch(placeFilterProvider);
     final controller = ref.read(placeFilterProvider.notifier);
     final text = _text.trim();
+    final fire = widget.service == StationService.fire;
 
     final header = <Widget>[
       Padding(
         padding: const EdgeInsets.fromLTRB(JSpace.md, JSpace.md, JSpace.md, 0),
-        child: _Call999Banner(text: s.policeNumberTip),
+        child: _Call999Banner(text: fire ? s.fireNumberTip : s.policeNumberTip),
       ),
       Padding(
         padding: const EdgeInsets.fromLTRB(JSpace.md, JSpace.md, JSpace.md, 0),
@@ -59,7 +63,7 @@ class _PoliceStationsScreenState extends ConsumerState<PoliceStationsScreen> {
           onDivision: controller.setDivision,
           onDistrict: controller.setDistrict,
           onArea: (v) => setState(() => _text = v),
-          searchLabel: s.searchPoliceHint,
+          searchLabel: fire ? s.searchFireHint : s.searchPoliceHint,
         ),
       ),
     ];
@@ -67,7 +71,7 @@ class _PoliceStationsScreenState extends ConsumerState<PoliceStationsScreen> {
     // The search fields stay above the list and are never rebuilt in a new
     // place: otherwise the first typed letter switches the list widget, the
     // text field loses focus and the keyboard closes after one letter.
-    final results = ref.watch(policeStationsProvider).when(
+    final results = ref.watch(stationsProvider(widget.service)).when(
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (_, __) => Center(child: Text(s.genericError)),
           data: (all) {
@@ -77,7 +81,7 @@ class _PoliceStationsScreenState extends ConsumerState<PoliceStationsScreen> {
               return ListView(children: [
                 Padding(
                   padding: const EdgeInsets.all(JSpace.md),
-                  child: Text(s.chooseDistrictForPolice, style: theme.textTheme.titleMedium),
+                  child: Text(fire ? s.chooseDistrictForFire : s.chooseDistrictForPolice, style: theme.textTheme.titleMedium),
                 ),
               ]);
             }
@@ -89,7 +93,9 @@ class _PoliceStationsScreenState extends ConsumerState<PoliceStationsScreen> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(JSpace.md, JSpace.sm, JSpace.md, JSpace.sm),
                 child: Text(
-                  found.isEmpty ? s.noPoliceStations : localizedDigits(s.policeStationsFound(found.length), s.languageCode),
+                  found.isEmpty
+                      ? (fire ? s.noFireStations : s.noPoliceStations)
+                      : localizedDigits(fire ? s.fireStationsFound(found.length) : s.policeStationsFound(found.length), s.languageCode),
                   style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
@@ -97,7 +103,7 @@ class _PoliceStationsScreenState extends ConsumerState<PoliceStationsScreen> {
             final bottom = <Widget>[
               Padding(
                 padding: const EdgeInsets.all(JSpace.md),
-                child: Text(s.policeSourceNote, style: theme.textTheme.bodySmall),
+                child: Text(fire ? s.fireSourceNote : s.policeSourceNote, style: theme.textTheme.bodySmall),
               ),
             ];
             return ListView.builder(
@@ -119,7 +125,7 @@ class _PoliceStationsScreenState extends ConsumerState<PoliceStationsScreen> {
         );
 
     return Scaffold(
-      appBar: GlassAppBar(title: Text(s.policeStations)),
+      appBar: GlassAppBar(title: Text(fire ? s.fireStations : s.policeStations)),
       body: Column(children: [...header, Expanded(child: results)]),
     );
   }
@@ -202,7 +208,10 @@ class StationCard extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(st.service == StationService.police ? s.officerInCharge : st.displayName(lang),
+                      Text(
+                          st.service == StationService.police
+                              ? s.officerInCharge
+                              : (st.office ? s.officeNumber : s.stationNumber),
                           style: theme.textTheme.bodySmall),
                       Text(localizedDigits(BdPhone.display(st.phone), lang),
                           style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800)),
@@ -216,6 +225,10 @@ class StationCard extends ConsumerWidget {
                 ),
               ],
             ),
+          ],
+          if (st.allPhones.isEmpty) ...[
+            const SizedBox(height: JSpace.sm),
+            Text(s.numberBeingChecked, style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.error)),
           ],
           for (final other in st.otherPhones.where((p) => p != st.phone))
             Row(

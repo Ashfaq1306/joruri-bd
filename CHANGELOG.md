@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.0 (build 17) — 2026-11-05
+**Every fire station in Bangladesh**
+- New **Fire stations** screen (Fire Service → "Your local fire station", also under All numbers): 543 fire stations and 94 Fire Service offices in all 64 districts, each with its number and a Call button, in Bangla and English, with directions. Starts in your profile's district; type a station or upazila name to search the whole country. The district's own station comes first, offices last. Works offline.
+- Source: the Fire Service and Civil Defence lists of station and office numbers for the eight divisions (`tools/fire-import/source/`). The PDFs use a legacy Bangla font, so the 638 rows were typed from the page images and every number was checked by `tools/fire-import/build.mjs`.
+- 15 numbers were misprinted in the lists (12 digits, an old Dhaka land line, or the same number printed on two stations). They are **not** dialled: those entries say "Number being checked. Call 999 or 102 meanwhile." until an admin enters the confirmed number. List and probable numbers: `tools/fire-import/report.txt`.
+- Admin panel: new **Fire stations** page (rows to check are marked ⚠; the dashboard counts them). The phones of every version from 1.5.0 get edits within seconds.
+- Admin panel fix: emptying a field in an edit form now removes it (before, the old value came back after Save). Seed import also accepts `police_stations.json` and `fire_stations.json`.
+
 ## 1.4.0 (build 16) — 2026-11-04
 **Automatic updates (through Firebase)**
 - When a new version is published (Firebase `meta/app`, set by the release script), the app now downloads it **inside the app**: by itself on Wi-Fi, on a tap on mobile data, with a progress bar. It checks the file's SHA-256 against `meta/app` (GitHub's digest of the release asset) and then opens Android's installer: one tap on **Update**. Android only lets app stores install silently, so that last tap stays. The first time, Android asks once to allow Joruri BD to install updates.

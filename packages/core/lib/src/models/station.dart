@@ -30,6 +30,8 @@ class Station {
     this.sourceUrl = '',
     this.checkedOn = '',
     this.verified = false,
+    this.office = false,
+    this.needsCheck = '',
   });
 
   factory Station.fromJson(Map<String, dynamic> json) => Station(
@@ -52,6 +54,8 @@ class Station {
         sourceUrl: (json['sourceUrl'] as String?) ?? '',
         checkedOn: (json['checkedOn'] as String?) ?? '',
         verified: (json['verified'] as bool?) ?? false,
+        office: (json['office'] as bool?) ?? false,
+        needsCheck: (json['needsCheck'] as String?) ?? '',
       );
 
   final String id;
@@ -79,6 +83,14 @@ class Station {
   /// ISO date the number was last compared with its source.
   final String checkedOn;
   final bool verified;
+
+  /// An office (e.g. the district's Deputy Assistant Director of the Fire
+  /// Service) rather than a station: listed after the stations.
+  final bool office;
+
+  /// Why the number is left blank for now (it was misprinted in the source);
+  /// the app then points to 999 instead of dialling a guess.
+  final String needsCheck;
 
   String displayName(String languageCode) => languageCode == 'bn' && nameBn.isNotEmpty ? nameBn : name;
   String displayUnit(String languageCode) => languageCode == 'bn' && unitBn.isNotEmpty ? unitBn : unit;
@@ -111,17 +123,31 @@ class Station {
         if (sourceUrl.isNotEmpty) 'sourceUrl': sourceUrl,
         if (checkedOn.isNotEmpty) 'checkedOn': checkedOn,
         if (verified) 'verified': true,
+        if (office) 'office': true,
+        if (needsCheck.isNotEmpty) 'needsCheck': needsCheck,
       };
 }
 
-/// Stations matching a search, Metropolitan/Sadar first then by name.
+/// Stations matching a search: Metropolitan, then Sadar (or the station named
+/// after the district), then the rest by name; offices last.
 List<Station> searchStations(List<Station> all, {String? districtId, String text = ''}) {
   final q = text.trim().toLowerCase();
   final out = [
     for (final s in all)
       if ((districtId == null || s.districtId == districtId) && (q.isEmpty || s.searchText.contains(q))) s,
   ];
-  int rank(Station s) => s.unit.isNotEmpty ? 0 : (RegExp(r'sadar|kotwali', caseSensitive: false).hasMatch(s.name) ? 1 : 2);
+  final sadar = RegExp(r'sadar|kotwali', caseSensitive: false);
+  bool namedAfterDistrict(Station s) {
+    final d = BdLocations.district(s.districtId)?.en.toLowerCase();
+    return d != null && s.name.toLowerCase().startsWith(d);
+  }
+
+  int rank(Station s) {
+    if (s.office) return 3;
+    if (s.unit.isNotEmpty) return 0;
+    return sadar.hasMatch(s.name) || (s.service == StationService.fire && namedAfterDistrict(s)) ? 1 : 2;
+  }
+
   out.sort((a, b) {
     final r = rank(a).compareTo(rank(b));
     return r != 0 ? r : a.name.toLowerCase().compareTo(b.name.toLowerCase());

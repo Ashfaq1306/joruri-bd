@@ -10,7 +10,7 @@ const NUMBER_CATEGORIES = ['national', 'police', 'fire', 'ambulance', 'health', 
 const GUIDE_ICONS = ['heart', 'stroke', 'unconscious', 'choking', 'bleeding', 'burn', 'fracture', 'electric', 'drowning', 'snake',
   'animal', 'poison', 'seizure', 'road', 'fire', 'gas', 'collapse', 'flood', 'cyclone', 'earthquake', 'lightning', 'landslide', 'storm'];
 // Collections the phones download (each save raises meta/content.version).
-const CONTENT = ['emergency_numbers', 'guides', 'hospitals', 'pharmacies', 'police_stations', 'announcements'];
+const CONTENT = ['emergency_numbers', 'guides', 'hospitals', 'pharmacies', 'police_stations', 'fire_stations', 'announcements'];
 const ICONS = {
   dashboard: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z',
   announcements: 'M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z',
@@ -18,6 +18,7 @@ const ICONS = {
   hospitals: 'M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z',
   pharmacies: 'M21 5h-2.64l1.14-3.14L17.15 1l-1.46 4H3v2l2 6-2 6v2h18v-2l-2-6 2-6V5zm-5 9h-3v3h-2v-3H8v-2h3V9h2v3h3v2z',
   police_stations: 'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h2v2h-2v2h-2v-2H9V9h2V7z',
+  fire_stations: 'M19.48 12.35c-1.57-4.08-7.16-4.3-5.81-10.23.1-.44-.37-.78-.75-.55C9.29 3.71 6.68 8 8.87 13.62c.18.46-.36.89-.75.59-1.81-1.37-2-3.34-1.84-4.75.06-.52-.62-.77-.91-.34C4.69 10.16 4 11.84 4 14.37c.38 5.6 5.11 7.32 6.81 7.54 2.43.31 5.06-.14 6.95-1.87 2.08-1.93 2.84-5.01 1.72-7.69zm-9.28 5.03c1.44-.35 2.18-1.39 2.38-2.31.33-1.43-.96-2.83-.09-5.09.33 1.87 3.27 3.04 3.27 5.08.08 2.53-2.66 4.7-5.56 2.32z',
   guides: 'M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z',
   donors: 'M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z',
   app: 'M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14zm-1-6h-3V8h-2v5H8l4 4 4-4z',
@@ -168,6 +169,28 @@ const SCHEMAS = {
       { k: 'published', label: 'Show on phones', type: 'checkbox', default: true },
     ],
   },
+  fire_stations: {
+    title: 'Fire stations', idFrom: (d) => 'fs-' + (d.districtId || 'x') + '-' + (slug(d.name) || Date.now().toString(36)),
+    intro: 'Every fire station and Fire Service office with its number, shown under Fire Service in the app. Built from the Fire Service and Civil Defence lists for the eight divisions (November 2026); refresh with tools/fire-import. Rows marked "Check" had a misprinted number: the app shows them without a number ("call 999 or 102") until you enter the right one here.',
+    columns: [['Name', (d) => d.name], ['বাংলা', (d) => d.nameBn || ''], ['District', (d) => districtName(d.districtId)], ['Type', (d) => d.office ? 'Office' : 'Station'],
+      ['Number', (d) => d.phone || '—'], ['Check', (d) => d.needsCheck ? '⚠ ' + d.needsCheck : ''], ['On phones', (d) => d.published ? 'Yes' : 'Hidden']],
+    fields: [
+      { k: 'name', label: 'Name (English), e.g. Fatullah Fire Station', required: true },
+      { k: 'nameBn', label: 'Name (বাংলা), e.g. ফতুল্লা ফায়ার স্টেশন' },
+      { k: 'districtId', label: 'District', type: 'district', required: true },
+      { k: 'office', label: 'This is an office (Deputy/Assistant Director), not a fire station', type: 'checkbox' },
+      { k: 'phone', label: 'Number (mobile or land line). Empty = the app says "number being checked, call 999 or 102"', type: 'phone' },
+      { k: 'otherPhones', label: 'Other numbers (comma separated)', type: 'csv' },
+      { k: 'needsCheck', label: 'Needs check: why the number is missing or doubtful (clear this once the number is confirmed)' },
+      { k: 'address', label: 'Address' }, { k: 'email', label: 'E-mail' },
+      { k: 'lat', label: 'Map latitude (optional)', type: 'decimal' }, { k: 'lng', label: 'Map longitude (optional)', type: 'decimal' },
+      { k: 'open24h', label: 'Open 24 hours', type: 'checkbox', default: true },
+      { k: 'source', label: 'Source of the number (e.g. FSCD Dhaka division list Nov 2026, phone call on 2026-11-06)' },
+      { k: 'checkedOn', label: 'Number checked on', type: 'date' },
+      { k: 'verified', label: 'Checked by a person (called the station)', type: 'checkbox' },
+      { k: 'published', label: 'Show on phones', type: 'checkbox', default: true },
+    ],
+  },
   guides: {
     title: 'First aid & disaster guides', idFrom: (d) => slug(d.title?.en) || 'g-' + Date.now(),
     columns: [['Title', (d) => d.title?.en], ['Type', (d) => d.kind], ['Review', (d) => d.reviewStatus], ['On phones', (d) => d.published ? 'Yes' : 'Hidden']],
@@ -252,7 +275,7 @@ async function publishContent(fresh, cols = CONTENT) {
 const NAV = [
   ['', 'Overview'], ['dashboard', 'Dashboard'], ['announcements', 'Announcements'], ['app', 'App & updates'],
   ['', 'Content on phones'], ['emergency_numbers', 'Emergency numbers'], ['hospitals', 'Hospitals & tests'],
-  ['pharmacies', 'Pharmacies'], ['police_stations', 'Police stations'], ['guides', 'Guides'],
+  ['pharmacies', 'Pharmacies'], ['police_stations', 'Police stations'], ['fire_stations', 'Fire stations'], ['guides', 'Guides'],
   ['', 'People'], ['donors', 'Blood donors'], ['admins', 'Admins'],
   ['', 'Tools'], ['import', 'Import & backup'], ['audit', 'Activity log'],
 ];
@@ -363,10 +386,11 @@ function accessCheckFailedScreen() {
 
 async function dashboard() {
   // Big lists are only counted on the server; small ones are read.
-  const [meta, appMeta, numbers, guides, notices, nHosp, nGovHosp, nPharm, nPharm24, nDonors, nAppDonors, nPolice, latestRelease] = await Promise.all([
+  const [meta, appMeta, numbers, guides, notices, nHosp, nGovHosp, nPharm, nPharm24, nDonors, nAppDonors, nPolice, nFire, nFireCheck, latestRelease] = await Promise.all([
     B().getMeta('content'), B().getMeta('app'), load('emergency_numbers'), load('guides'), load('announcements'),
     B().count('hospitals'), B().count('hospitals', 'government', true), B().count('pharmacies'), B().count('pharmacies', 'open24h', true),
-    B().count('donors'), B().count('donors', 'source', 'app'), B().count('police_stations'), latestGithubRelease()]);
+    B().count('donors'), B().count('donors', 'source', 'app'), B().count('police_stations'),
+    B().count('fire_stations'), B().count('fire_stations', 'phone', ''), latestGithubRelease()]);
   const stat = (label, n, view, sub) => h('button', { class: 'stat', onclick: () => go(view) }, icon(view), h('b', {}, n), h('span', {}, label), sub ? h('small', {}, sub) : null);
   const unverified = numbers.filter((n) => n.verification?.status !== 'verified').length;
   const empty = guides.filter((g) => !(g.doNow?.en || []).length && !(g.doNow?.bn || []).length).length;
@@ -381,6 +405,8 @@ async function dashboard() {
     // Happened with 1.2.0: released on GitHub, but phones were never told.
     latestRelease && appMeta.latestVersionCode && latestRelease.code > appMeta.latestVersionCode && ['app', `Version ${latestRelease.name} (build ${latestRelease.code}) is on GitHub, but phones are still told ${appMeta.latestVersionName || ''} (build ${appMeta.latestVersionCode}) is the newest. Open App & updates, press "Use latest release", then Save.`],
     nPolice === 0 && ['police_stations', 'No police stations in the database yet; the app uses its built-in list.'],
+    nFire === 0 && ['fire_stations', 'No fire stations in the database yet; the app uses its built-in list.'],
+    nFireCheck > 0 && ['fire_stations', `${nFireCheck} fire station(s) or office(s) have no number because it was misprinted in the Fire Service list. Call to confirm, then enter the number (rows marked ⚠ Check).`],
   ].filter(Boolean);
   return h('div', {},
     h('div', { class: 'head' }, h('h1', {}, 'Dashboard'),
@@ -391,6 +417,7 @@ async function dashboard() {
       stat('Hospitals', nHosp, 'hospitals', `${nGovHosp} government`),
       stat('Pharmacies', nPharm, 'pharmacies', `${nPharm24} open 24 h`),
       stat('Police stations', nPolice, 'police_stations', 'with OC numbers'),
+      stat('Fire stations', nFire, 'fire_stations', nFireCheck ? `${nFireCheck} number(s) to check` : 'stations and offices'),
       stat('Guides', guides.length, 'guides', `${guides.filter((g) => g.reviewStatus === 'approved').length} doctor-approved`),
       stat('Blood donors', nDonors, 'donors', `${nAppDonors} signed up in the app`),
       stat('App version', appMeta.latestVersionName || '—', 'app', appMeta.latestVersionCode ? `build ${appMeta.latestVersionCode}` : 'not published')),
@@ -527,6 +554,11 @@ function openForm(col, existing) {
     // same ID (e.g. two hospitals with the same name in different districts).
     if (!existing && (state.data[col] || []).some((x) => x.id === id)) id = `${id}-${Date.now().toString(36).slice(-5)}`;
     const doc = clean({ ...(existing || {}), ...data, id, updatedAt: new Date().toISOString() });
+    // A field emptied in the form is removed (otherwise the old value came back).
+    for (const f of schema.fields) if (!f.k.includes('.') && !(f.k in data)) delete doc[f.k];
+    // A number entered for a row that had none: the "needs check" note is done.
+    if (existing && !existing.phone && doc.phone && doc.needsCheck === existing.needsCheck) delete doc.needsCheck;
+    if (col === 'fire_stations' && !doc.phone) doc.phone = ''; // counted on the dashboard as "to check"
     if (col === 'donors' && !existing) doc.source = 'admin';
     if (col === 'hospitals') doc.demo = false;
     const btn = form.querySelector('#save'); btn.disabled = true; btn.textContent = 'Saving…';
@@ -615,6 +647,8 @@ function fromSeedJson(json) {
   add('guides', json.guides, { published: true });
   add('hospitals', json.hospitals, { published: true });
   add('pharmacies', json.pharmacies, { published: true });
+  add('police_stations', json.policeStations, { published: true });
+  add('fire_stations', json.fireStations, { published: true });
   add('donors', json.donors && json.donors.filter((d) => d.shareConsent), { source: 'admin', hidden: false });
   return out;
 }
@@ -662,7 +696,7 @@ function importScreen() {
       h('p', {}, 'Download everything (content, announcements, donors, app settings) as one JSON file. Keep a copy before big changes.'),
       h('button', { class: 'primary', onclick: () => backup().catch((e) => toast('Backup failed: ' + e.message, true)) }, '⭳ Download backup')),
     h('div', { class: 'card' }, h('h3', {}, '1 · Start from the app\'s built-in data'),
-      h('p', {}, 'Choose the files from apps/mobile/assets/seed/: emergency_numbers.json, guides.json, and (optional) hospitals.json, pharmacies.json, donors.json. Do not import the *_demo files.'),
+      h('p', {}, 'Choose the files from apps/mobile/assets/seed/: emergency_numbers.json, guides.json, and (optional) hospitals.json, pharmacies.json, police_stations.json, fire_stations.json, donors.json. Do not import the *_demo files.'),
       picker('seedFiles', 'Seed JSON files', '.json', true, async (files) => {
         const batches = []; const problems = [];
         for (const f of files) {
