@@ -41,6 +41,24 @@ void main() {
     expect(m.lowestPrice, 1.2);
   });
 
+  test('admin edits replace, hide and add medicines', () {
+    final napa = all.first;
+    expect(napa.key, '|Napa|500 mg|Tablet|Co');
+    final merged = applyMedicineEdits(all, [
+      {'replaces': napa.key, 'brand': 'Napa', 'generic': 'Paracetamol', 'strength': '500 mg', 'form': 'Tablet', 'company': 'Co',
+        'packs': [{'pack': '10 x 10', 'price': 1.5}], 'checkedOn': '2026-11-06'},
+      {'replaces': all[3].key, 'hidden': true},
+      {'brand': 'Newpara', 'generic': 'Paracetamol', 'strength': '500 mg', 'form': 'Tablet', 'packs': [{'pack': 'strip', 'price': 0.9}]},
+      {'packs': []}, // no name: skipped
+    ]);
+    expect(merged.length, all.length);
+    expect(merged.where((m) => m.brand == 'Napa').single.lowestPrice, 1.5);
+    expect(merged.where((m) => m.brand == 'Napa').single.updatedOn, '2026-11-06');
+    expect(merged.any((m) => m.brand == 'Renapa'), isFalse);
+    expect(sameMedicine(merged, napa).first.brand, 'Newpara');
+    expect(applyMedicineEdits(all, const []), same(all));
+  });
+
   test('pharmacy licence validity from register date', () {
     final p = Pharmacy.fromJson({'id': 'x', 'name': 'P', 'districtId': 'dhaka', 'validUpto': '2026-11-03'});
     expect(p.licenceValidOn(DateTime(2026, 11, 3)), isTrue);

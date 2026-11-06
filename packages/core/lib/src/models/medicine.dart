@@ -11,6 +11,7 @@ class Medicine {
     required this.company,
     this.dar = '',
     this.packs = const [],
+    this.updatedOn = '',
   })  : brandLower = brand.toLowerCase(),
         genericLower = generic.toLowerCase(),
         genericKey = '${_norm(generic)}|${_norm(strength)}|${formGroup(form)}';
@@ -33,6 +34,27 @@ class Medicine {
     );
   }
 
+  /// A medicine added or corrected on the admin website (medicines/{id}):
+  /// `{brand, generic, strength, form, company, dar, packs: [{pack, price}], checkedOn}`.
+  factory Medicine.fromJson(Map<String, dynamic> json) {
+    String text(String k) => (json[k] as String?)?.trim() ?? '';
+    final brand = text('brand');
+    if (brand.isEmpty && text('generic').isEmpty) throw const FormatException('medicine without a name');
+    return Medicine(
+      brand: brand,
+      generic: text('generic'),
+      strength: text('strength'),
+      form: text('form'),
+      company: text('company'),
+      dar: text('dar'),
+      packs: [
+        for (final p in (json['packs'] as List? ?? const []))
+          if (p is Map && p['price'] is num) MedicinePack('${p['pack'] ?? ''}', (p['price'] as num).toDouble()),
+      ],
+      updatedOn: text('checkedOn'),
+    );
+  }
+
   final String brand;
   final String generic;
   final String strength;
@@ -44,6 +66,14 @@ class Medicine {
   /// DGDA registration (DAR) number.
   final String dar;
   final List<MedicinePack> packs;
+
+  /// Date the Joruri BD team last checked this entry on the admin website;
+  /// empty for the DGDA list as downloaded.
+  final String updatedOn;
+
+  /// Identifies a row of the built-in DGDA list, so the admin website can
+  /// correct or hide it (same formula in admin/app.js: medicineKey).
+  String get key => '$dar|$brand|$strength|$form|$company';
 
   /// Lowest unit price over all pack sizes, or null when DGDA lists none.
   double? get lowestPrice {
@@ -67,6 +97,26 @@ class MedicinePack {
   /// e.g. "10 x 10 in Blister Pack", "100 ml in Bottle".
   final String pack;
   final double priceBdt;
+}
+
+/// The built-in DGDA list with the admin website's changes: an edit with
+/// `replaces` (a [Medicine.key]) takes the place of that row, `hidden: true`
+/// removes it, and an edit without `replaces` is a medicine DGDA lacks.
+List<Medicine> applyMedicineEdits(List<Medicine> builtIn, List<Map<String, dynamic>> edits) {
+  if (edits.isEmpty) return builtIn;
+  final replaced = <String>{};
+  final added = <Medicine>[];
+  for (final e in edits) {
+    final r = e['replaces'];
+    if (r is String && r.isNotEmpty) replaced.add(r);
+    if (e['hidden'] == true) continue;
+    try {
+      added.add(Medicine.fromJson(e));
+    } catch (_) {
+      // One broken entry must never hide the rest.
+    }
+  }
+  return [...builtIn.where((m) => !replaced.contains(m.key)), ...added];
 }
 
 String _norm(String s) => s.toLowerCase().replaceAll(RegExp(r'\s+'), ' ').trim();

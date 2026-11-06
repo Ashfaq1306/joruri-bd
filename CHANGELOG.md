@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.0 (build 18) — 2026-11-06
+**Medicines and pharmacies on the admin panel**
+- Admin panel: new **Medicines & prices** page. Search all 38,834 brands of the DGDA price list that are built into the app, then **Edit** one to correct its price or details, **Hide** it, or **+ Add** a medicine DGDA does not list. Deleting a change brings back the DGDA entry. The app shows corrected entries with "Checked and updated by the Joruri BD team (date)".
+- Admin panel: the **Pharmacies** page can now search the 117,274 DGDA register shops built into the app (choose a district): **Edit** a shop to add its phone number or mark it open 24 hours, or **Hide** it (closed, wrong). The phone number is now optional.
+- Phones from 1.6.0 apply these changes within seconds (new lists `medicines` and `pharmacy_hides` in the content snapshots; older versions ignore them). The admin website gets copies of the DGDA lists at every deploy (`tools/admin-data/copy.mjs`, hosting predeploy).
+- Firestore rules: new `medicines` collection (read if published, write admins only).
+- Admin panel fix: forms and lists no longer show a stray "null".
+
 ## 1.5.0 (build 17) — 2026-11-05
 **Every fire station in Bangladesh**
 - New **Fire stations** screen (Fire Service → "Your local fire station", also under All numbers): 543 fire stations and 94 Fire Service offices in all 64 districts, each with its number and a Call button, in Bangla and English, with directions. Starts in your profile's district; type a station or upazila name to search the whole country. The district's own station comes first, offices last. Works offline.

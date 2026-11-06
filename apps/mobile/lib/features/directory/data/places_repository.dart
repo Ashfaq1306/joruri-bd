@@ -141,7 +141,21 @@ final districtPharmaciesProvider = FutureProvider.family<List<Pharmacy>, String>
   final team = (await ref.watch(pharmaciesProvider.future)).where((p) => p.districtId == districtId).toList();
   final register = await ref.watch(placesRepositoryProvider).registerPharmacies(districtId);
   final known = {for (final p in team) if (p.licence.isNotEmpty) p.licence.toLowerCase()};
-  return [...team, ...register.where((p) => !known.contains(p.licence.toLowerCase()))];
+  // Shops hidden on the admin website (closed, wrong): their licence numbers.
+  final hidden = await ref.watch(hiddenPharmacyLicencesProvider.future);
+  return [
+    ...team,
+    ...register.where((p) => !known.contains(p.licence.toLowerCase()) && !hidden.contains(p.licence.toLowerCase())),
+  ];
+});
+
+/// Licence numbers of DGDA register shops hidden on the admin website.
+final hiddenPharmacyLicencesProvider = FutureProvider<Set<String>>((ref) async {
+  final cache = await ref.watch(cachedContentProvider.future);
+  return {
+    for (final x in (cache?['pharmacyHides'] as List? ?? const []))
+      if (x is Map && x['licence'] is String && (x['licence'] as String).trim().isNotEmpty) (x['licence'] as String).trim().toLowerCase(),
+  };
 });
 
 /// Police stations published on the admin website when downloaded;
@@ -163,8 +177,20 @@ final fireStationsProvider = FutureProvider<List<Station>>((ref) async {
 FutureProvider<List<Station>> stationsProvider(StationService service) =>
     service == StationService.fire ? fireStationsProvider : policeStationsProvider;
 
-/// Loaded once, the first time the medicine search opens.
-final medicinesProvider = FutureProvider<MedicineList>((ref) => ref.watch(placesRepositoryProvider).medicines());
+/// The bundled DGDA list: read once, the first time the medicine search opens.
+final builtInMedicinesProvider = FutureProvider<MedicineList>((ref) => ref.watch(placesRepositoryProvider).medicines());
+
+/// The DGDA list with the medicines corrected, hidden or added on the admin
+/// website (downloaded with the other content).
+final medicinesProvider = FutureProvider<MedicineList>((ref) async {
+  final base = await ref.watch(builtInMedicinesProvider.future);
+  final edits = (await ref.watch(cachedContentProvider.future))?['medicines'];
+  if (edits is! List || edits.isEmpty) return base;
+  return MedicineList(
+    applyMedicineEdits(base.items, [for (final e in edits) if (e is Map) Map<String, dynamic>.from(e)]),
+    base.downloadedOn,
+  );
+});
 
 /// The area chosen on the Hospitals and Pharmacy screens, remembered on this phone.
 final placeFilterProvider = NotifierProvider<PlaceFilterController, PlaceFilter>(PlaceFilterController.new);

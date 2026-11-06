@@ -5,6 +5,9 @@
   },
   "hosting": {
     "public": "admin",
+    "predeploy": [
+      "node tools/admin-data/copy.mjs"
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",

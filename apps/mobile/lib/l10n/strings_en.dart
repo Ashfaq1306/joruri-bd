@@ -256,6 +256,7 @@ class StringsEn extends AppStrings {
   @override String get noPublishedPrice => 'DGDA has not published a price';
   @override String get sameMedicineOtherBrands => 'Same medicine, other brands (cheapest first)';
   @override String get cheapest => 'Cheapest';
+  @override String medicineCheckedByTeam(String date) => 'Checked and updated by the Joruri BD team ($date).';
   @override String medicinePriceNote(String date) => 'Maximum retail price approved by DGDA (downloaded $date). A shop may not charge more. Ask your doctor or pharmacist before changing brands.';
   @override String get medicineCompany => 'Company';
   @override String get medicineGeneric => 'Generic';

@@ -227,6 +227,11 @@ class MedicineDetailScreen extends StatelessWidget {
               ),
           ],
           const SizedBox(height: JSpace.md),
+          if (m.updatedOn.isNotEmpty) ...[
+            Text(localizedDigits(s.medicineCheckedByTeam(m.updatedOn), lang),
+                style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700)),
+            const SizedBox(height: JSpace.xs),
+          ],
           Text(localizedDigits(s.medicinePriceNote(downloadedOn), lang), style: theme.textTheme.bodySmall),
         ],
       ),
