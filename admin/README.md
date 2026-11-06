@@ -29,7 +29,8 @@ Every **Save** goes to the database and raises the content version.
 | **App & updates** | Newest app version and download links. **Use latest release** fills them from GitHub; the release script does this for you. Also: **Oldest build still allowed** (forces a red "Please update" card), show draft guides, show unchecked numbers | seconds |
 | **Emergency numbers** | National numbers (999, 102 …): category, Bangla and English text, "checked" status and source | seconds |
 | **Hospitals & tests** | About 8,600 hospitals from the DGHS registry. Edit phone, address and tests with prices, or add your own. The list shows 300 rows; use **Search** | seconds |
-| **Pharmacies** | 24-hour shops and checked numbers. About 117,000 DGDA-licensed pharmacies are built into the app; entering the same licence number replaces the built-in entry | seconds |
+| **Pharmacies** | All 117,274 DGDA-licensed pharmacies built into the app: choose a district in **Find a shop in the DGDA register**, then **Edit** (add a phone number, mark open 24 hours) or **Hide** (closed, wrong). **+ Add** a shop that is not in the register | seconds |
+| **Medicines & prices** | All 38,834 medicines of the DGDA price list built into the app: **Find a medicine**, then **Edit** the price or details, or **Hide** it. **+ Add** a medicine DGDA does not list | seconds |
 | **Police stations** | 630 thanas with the OC's mobile. Edit when an OC number changes | seconds |
 | **Fire stations** | 543 fire stations and 94 Fire Service offices with their numbers. Rows marked **⚠ Check** have no number yet (see below) | seconds |
 | **Guides** | First-aid and disaster guides in Bangla and English: steps, warnings, review status | seconds |
@@ -44,6 +45,19 @@ Every **Save** goes to the database and raises the content version.
 2. Type in **Search…** (any word: a name, a district, part of a number).
 3. Click **Edit** on the row, change the fields, then **Save**. Or click **+ Add** for a new entry, or **Delete** to remove one; Delete asks first.
 4. A field you empty is removed. Phone numbers can be typed in any form, including Bangla digits (০১৯০১-…). They are stored as `+8801…`.
+
+## Medicines and pharmacies built into the app
+
+The DGDA medicine price list and the DGDA pharmacy register are built into the app, so they work offline. The admin panel does not copy them into the database; it stores only **your changes**, and phones apply them on top of the built-in lists.
+
+- **Medicines & prices → Find a medicine in the DGDA list**: type a brand or generic name (e.g. `napa`, `paracetamol`).
+  - **Edit** opens the entry. Change what is wrong; prices go one per line as `pack | price per unit`, for example `10 x 10 in Blister Pack | 1.20`. Save. The app now shows your version, marked "Checked and updated by the Joruri BD team".
+  - **Hide** removes the entry from the app; **Show again** brings it back.
+  - **+ Add** adds a medicine that DGDA does not list.
+- **Pharmacies → Find a shop in the DGDA register**: choose the district, type part of the name, area or licence number.
+  - **Edit** lets you add the phone number, mark it open 24 hours or fix the address. Save.
+  - **Hide** removes a closed or wrong shop from the app; **Show again** brings it back.
+- Everything you changed is listed under **Your changes and additions**. **Delete** there undoes the change: the app goes back to the DGDA entry as it was.
 
 ## Fire stations: the 15 numbers to check
 
@@ -60,6 +74,6 @@ The full list is in `tools/fire-import/report.txt`.
 
 ## Deploying changes to this website
 
-`firebase deploy --only hosting` from the repo root, or `.\tool\release.ps1 -WebsiteOnly`.
+`firebase deploy --only hosting` from the repo root, or `.\tool\release.ps1 -WebsiteOnly`. Before each deploy, `tools/admin-data/copy.mjs` copies the built-in DGDA lists to `admin/data/` (not kept in git) for the Medicines and Pharmacies pages.
 
 Security rules are in `firebase/firestore.rules` and tested by `firebase/rules-test` (`npm install && npm test`; needs Java).

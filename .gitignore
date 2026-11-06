@@ -59,3 +59,6 @@ tools/dgda-import/*_report.txt
 
 # Police import: derived file (the app bundles assets/seed/police_stations.json)
 tools/police-import/police_stations_built.json
+
+# Copies of the DGDA lists for the admin website (tools/admin-data/copy.mjs)
+admin/data/

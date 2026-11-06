@@ -44,6 +44,10 @@ await t('anon reads published fire stations', assertSucceeds(getDocs(query(colle
 await t('anon cannot change a fire station', assertFails(setDoc(doc(anon, 'fire_stations/fs1'), { name: 'X', phone: '+8801700000000', published: true })));
 await t('stranger cannot change a fire station', assertFails(setDoc(doc(stranger, 'fire_stations/fs1'), { name: 'X', phone: '+8801700000000', published: true })));
 await t('editor writes a fire station', assertSucceeds(setDoc(doc(editor, 'fire_stations/fs1'), { name: 'Fatullah Fire Station', phone: '+8801901020838', published: true })));
+await t('anon reads published medicine changes', assertSucceeds(getDocs(query(collection(anon, 'medicines'), where('published', '==', true)))));
+await t('anon cannot change a medicine', assertFails(setDoc(doc(anon, 'medicines/m1'), { brand: 'X', published: true })));
+await t('stranger cannot change a medicine', assertFails(setDoc(doc(stranger, 'medicines/m1'), { brand: 'X', published: true })));
+await t('editor corrects a medicine price', assertSucceeds(setDoc(doc(editor, 'medicines/m1'), { brand: 'Napa', generic: 'Paracetamol', packs: [{ pack: '10 x 10', price: 1.2 }], replaces: 'k', published: true })));
 await t('anon cannot list donors', assertFails(getDocs(query(collection(anon, 'donors'), where('shareConsent', '==', true), where('hidden', '==', false), limit(10)))));
 // admin checks
 await t('owner (mixed-case email) reads own admin entry', assertSucceeds(getDoc(doc(owner, 'admins/owner@gmail.com'))));

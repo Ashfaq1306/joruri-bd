@@ -290,6 +290,7 @@ abstract class AppStrings {
   String get sameMedicineOtherBrands;
   String get cheapest;
   String medicinePriceNote(String date);
+  String medicineCheckedByTeam(String date);
   String get medicineCompany;
   String get medicineGeneric;
   String get medicinePack;

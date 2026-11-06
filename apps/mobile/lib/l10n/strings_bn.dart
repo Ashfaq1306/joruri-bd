@@ -256,6 +256,7 @@ class StringsBn extends AppStrings {
   @override String get noPublishedPrice => 'ডিজিডিএ দাম প্রকাশ করেনি';
   @override String get sameMedicineOtherBrands => 'একই ওষুধ, অন্য ব্র্যান্ড (কম দাম আগে)';
   @override String get cheapest => 'সবচেয়ে কম দাম';
+  @override String medicineCheckedByTeam(String date) => 'এই তথ্য জরুরি বিডি টিম যাচাই করে হালনাগাদ করেছে ($date)।';
   @override String medicinePriceNote(String date) => 'ডিজিডিএ অনুমোদিত সর্বোচ্চ খুচরা মূল্য (সংগ্রহ: $date)। দোকান এর বেশি নিতে পারে না। ব্র্যান্ড বদলানোর আগে ডাক্তার বা ফার্মাসিস্টকে জিজ্ঞেস করুন।';
   @override String get medicineCompany => 'কোম্পানি';
   @override String get medicineGeneric => 'জেনেরিক';
