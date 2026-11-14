@@ -25,5 +25,7 @@ IconData guideIcon(String key) => switch (key) {
       'lightning' => Icons.thunderstorm,
       'landslide' => Icons.landslide,
       'storm' => Icons.storm,
+      'heat' => Icons.wb_sunny,
+      'cold' => Icons.ac_unit,
       _ => Icons.medical_services,
     };

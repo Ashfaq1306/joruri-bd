@@ -11,6 +11,7 @@ import 'package:joruri_bd/core/utils/digits.dart';
 import 'package:joruri_bd/features/contacts/presentation/contacts_controller.dart';
 import 'package:joruri_bd/core/firebase/google_auth.dart';
 import 'package:joruri_bd/core/remote/app_meta.dart';
+import 'package:joruri_bd/features/alerts/presentation/alert_settings_section.dart';
 import 'package:joruri_bd/features/update/update_installer.dart';
 import 'package:joruri_bd/features/profile/data/profile_sync.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_card.dart';
@@ -73,6 +74,9 @@ class SettingsScreen extends ConsumerWidget {
             value: settings.easyMode,
             onChanged: (v) => controller.change((c) => c.copyWith(easyMode: v)),
           ),
+
+          heading(s.disasterAlerts),
+          const AlertSettingsSection(),
 
           heading(s.sosSettings),
           ListTile(

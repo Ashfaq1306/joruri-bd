@@ -6,6 +6,7 @@ import 'package:joruri_design_system/joruri_design_system.dart';
 import 'package:joruri_bd/app/providers.dart';
 import 'package:joruri_bd/core/config/app_config.dart';
 import 'package:joruri_bd/core/widgets/logo.dart';
+import 'package:joruri_bd/features/alerts/presentation/home_alert_banner.dart';
 import 'package:joruri_bd/features/announcements/announcements.dart';
 import 'package:joruri_bd/features/contacts/presentation/contacts_controller.dart';
 import 'package:joruri_bd/features/home/presentation/network_pill.dart';
@@ -41,7 +42,7 @@ class _StandardHome extends ConsumerWidget {
       (Icons.local_pharmacy, s.tilePharmacy, JColors.firstAid, () => context.push('/pharmacy')),
       (Icons.local_police, s.tilePolice, JColors.police, () => context.push('/numbers/police')),
       (Icons.local_fire_department, s.tileFire, JColors.fire, () => context.push('/numbers/fire')),
-      (Icons.flood, s.tileDisaster, JColors.disaster, () => context.go('/guides?tab=1')),
+      (Icons.warning_amber_rounded, s.tileDisaster, JColors.disaster, () => context.push('/alerts')),
       (Icons.medical_services, s.tileFirstAid, JColors.sos, () => context.go('/guides?tab=0')),
       (Icons.flashlight_on, s.tileToolkit, JColors.toolkit, () => context.push('/toolkit')),
     ];
@@ -54,6 +55,7 @@ class _StandardHome extends ConsumerWidget {
           children: [
             const _SosPanel(diameter: JSize.sosButton),
             const SizedBox(height: JSpace.md),
+            const HomeAlertBanner(),
             const UpdateBanner(),
             const AnnouncementsList(),
             GridView.builder(
@@ -100,6 +102,7 @@ class _EasyHome extends ConsumerWidget {
           children: [
             const _SosPanel(diameter: JSize.sosButtonEasy),
             const SizedBox(height: JSpace.md),
+            const HomeAlertBanner(),
             const UpdateBanner(),
             const AnnouncementsList(),
             BigActionButton(

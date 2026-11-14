@@ -8,7 +8,10 @@ import 'package:joruri_bd/app/app.dart';
 import 'package:joruri_bd/app/providers.dart';
 import 'package:joruri_bd/core/connectivity/network_status.dart';
 import 'package:joruri_bd/core/logging/app_logger.dart';
+import 'package:joruri_bd/features/alerts/data/alert_notifications.dart';
+import 'package:joruri_bd/features/alerts/data/alerts_repository.dart';
 import 'package:joruri_bd/features/directory/data/content_sync.dart';
+import 'package:joruri_bd/features/settings/presentation/settings_controller.dart';
 import 'package:joruri_bd/features/blood/data/donor_repository.dart';
 import 'package:joruri_bd/features/directory/data/content_repository.dart';
 import 'package:joruri_bd/features/directory/data/places_repository.dart';
@@ -52,6 +55,15 @@ Future<void> main() async {
       final sync = container.read(contentSyncProvider);
       sync.run();
       sync.watch();
+    });
+    // Disaster alerts: follow the live list, show notifications, and ask once
+    // (after onboarding) for permission to notify.
+    Future<void>.delayed(const Duration(seconds: 3), () async {
+      final alerts = container.read(alertNotificationsProvider);
+      await alerts.start();
+      if (container.read(settingsProvider).onboardingDone && container.read(alertSettingsProvider).notify) {
+        await alerts.askPermissionOnce();
+      }
     });
     container.listen<AsyncValue<NetworkStatus>>(networkStatusProvider, (previous, next) {
       if (next.valueOrNull == NetworkStatus.online && previous?.valueOrNull != NetworkStatus.online) {

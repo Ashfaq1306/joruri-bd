@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.7.0 (build 19) — 2026-11-15
+**Disaster alerts and warnings**
+- New **Disaster alerts** screen (Home → Disaster): the active warnings for your district first, then the rest of the country, with level (Advisory, Be alert, Warning, Emergency), area, issue and end time, and the source.
+  - Weather and cyclone warnings come from the **Bangladesh Meteorological Department's official Common Alerting Protocol feed** (cap.bmd.gov.bd), in Bangla and English. The districts a warning covers are worked out from BMD's own area map and place names.
+  - **Earthquakes** that can be felt in Bangladesh come from the US Geological Survey, minutes after they happen, with the nearest district and distance.
+  - The team can issue its own alerts on the admin panel (new **Disaster alerts** page), e.g. river flood warnings from FFWC or evacuation orders, for the whole country, divisions or districts, with or without a notification.
+- **Phone notifications**, also when the app is closed: the alert watcher (`tools/alerts`, GitHub Actions every 10 minutes, keyless sign-in with workload identity) publishes the list to Firestore `meta/alerts` and sends each new serious alert to the FCM topics of the districts it covers (`alerts-bn-<district>`, `alerts-en-<district>`, `alerts-<lang>-all`). Danger signals and strong earthquakes use a high-priority channel. Settings → Disaster alerts: on/off, your district (default: your profile's), or all of Bangladesh. Android 13+ asks once for permission.
+- Every alert says **what to do now**: the meaning of the storm signal, BMD's own instruction, and the steps of the matching guide. New **Cyclone signals** page (what signals 1–11 mean and what coastal families should do at each), **Emergency bag checklist**, and a **1090** button (free government forecast and early-warning line).
+- **Earthquakes cannot be predicted.** The alert screen explains how to check that Android's own Earthquake Alerts (active in Bangladesh since 2022) is on: it is the only warning that arrives seconds *before* strong shaking.
+- Red/orange banner on Home when a warning covers your district.
+- If the watcher stops, the app reads BMD and USGS itself while it is open, and keeps the last list for offline use.
+
+**Guides**
+- All eight disaster guides written, in Bangla and English, with new sections **Get ready before it comes** and **After it has passed**: flood, cyclone and storm surge, earthquake, lightning, landslide, nor'wester, and new **heat wave** and **cold wave** guides (BMD temperature bands). Sources: Standing Orders on Disaster, BMD, CPP, FFWC, IFRC, WHO.
+- The 12 first-aid guides that said "being written" now have content: heart attack, stroke, unconscious person and CPR, fracture, drowning, animal bites (rabies), poisoning, seizure, road accident, building fire, gas leak, building collapse (IFRC 2020 guidelines).
+- All guides are marked **draft** with a banner until a doctor (first aid) or the Department of Disaster Management (disaster) approves them on the admin panel. Existing phones get the new text within seconds (content snapshot); the admin guide form has the two new sections.
+
 ## 1.6.0 (build 18) — 2026-11-06
 **Medicines and pharmacies on the admin panel**
 - Admin panel: new **Medicines & prices** page. Search all 38,834 brands of the DGDA price list that are built into the app, then **Edit** one to correct its price or details, **Hide** it, or **+ Add** a medicine DGDA does not list. Deleting a change brings back the DGDA entry. The app shows corrected entries with "Checked and updated by the Joruri BD team (date)".

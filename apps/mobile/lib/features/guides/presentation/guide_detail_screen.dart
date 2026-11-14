@@ -73,11 +73,13 @@ class GuideDetailScreen extends ConsumerWidget {
             )
           else ...[
             if (g.reviewStatus == ReviewStatus.draft)
-              UnverifiedLabel(text: s.draftBanner),
+              UnverifiedLabel(text: g.kind == GuideKind.disaster ? s.draftDisasterBanner : s.draftBanner),
             if (g.reviewStatus == ReviewStatus.pending)
               UnverifiedLabel(text: s.guidePending),
+            section(s.getReadyBefore, g.prepare.resolve(lang)),
             section(s.whatToDoNow, g.doNow.resolve(lang)),
             section(s.whatNotToDo, g.doNot.resolve(lang)),
+            section(s.afterItPasses, g.after.resolve(lang)),
             section(s.whenToGetHelp, g.getHelp.resolve(lang)),
             if (!g.whoToContact.isEmpty)
               Padding(
