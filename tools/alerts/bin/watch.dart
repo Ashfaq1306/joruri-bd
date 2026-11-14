@@ -41,6 +41,21 @@ Future<void> main(List<String> args) async {
   final now = DateTime.now().toUtc();
   _token = Platform.environment['GOOGLE_ACCESS_TOKEN'] ?? await cliToken();
 
+  // --check-push: FCM validates a message without delivering it, to prove
+  // that this sign-in may send notifications.
+  if (args.contains('--check-push')) {
+    final r = await http.post(
+      Uri.parse('https://fcm.googleapis.com/v1/projects/$project/messages:send'),
+      headers: {'authorization': 'Bearer $_token', 'content-type': 'application/json'},
+      body: jsonEncode({
+        'validate_only': true,
+        'message': {'topic': 'alerts-en-dhaka', 'notification': {'title': 'Test', 'body': 'Validation only, not delivered'}},
+      }),
+    );
+    log('FCM check: ${r.statusCode} ${r.body.length > 200 ? r.body.substring(0, 200) : r.body}');
+    if (r.statusCode != 200) exit(1);
+  }
+
   final official = <HazardAlert>[...await bmdAlerts(now), ...await usgsAlerts(now)];
   final active = activeAlerts(official, now);
   log('active official alerts: ${active.length}');
