@@ -11,6 +11,11 @@ on:
   schedule:
     - cron: '*/10 * * * *'
   workflow_dispatch:
+    inputs:
+      check_push:
+        description: Also check that notifications can be sent (validated by FCM, not delivered)
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -51,7 +56,7 @@ jobs:
           GOOGLE_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
         run: |
           dart pub get
-          dart run bin/watch.dart
+          dart run bin/watch.dart ${{ inputs.check_push && '--check-push' || '' }}
       # GitHub pauses scheduled workflows of a repository with no activity
       # for 60 days. Re-enabling it once a day keeps the alerts running.
       - name: Keep the schedule on
