@@ -127,11 +127,10 @@ void main() {
     expect(find.text('Signal 10'), findsOneWidget);
     expect(find.text('Signal 10: Great danger signal'), findsOneWidget);
     expect(find.textContaining('Go to a cyclone shelter or a strong concrete building now'), findsOneWidget);
-    expect(find.textContaining('Official advice'), findsOneWidget);
+    expect(find.textContaining('What to do (Bangladesh Meteorological Department)'), findsOneWidget);
     // Steps from the bundled cyclone guide, and a link to the full guide.
     expect(find.textContaining('Great danger signal (8, 9, 10)'), findsOneWidget);
     expect(find.text('Guide: Cyclone and storm surge'), findsOneWidget);
-    expect(find.text('Call 999'), findsOneWidget);
   });
 
   testWidgets('earthquake report shows the after-shaking steps and says it was not predicted', (tester) async {

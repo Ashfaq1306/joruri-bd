@@ -63,8 +63,14 @@ class _AlertsScreenState extends ConsumerState<AlertsScreen> {
     final district = ref.watch(alertDistrictProvider);
     final settings = ref.watch(alertSettingsProvider);
     final now = DateTime.now().toUtc();
-    final mine = [for (final a in active) if (a.concerns(district)) a];
-    final others = [for (final a in active) if (!a.concerns(district)) a];
+    final mine = [
+      for (final a in active)
+        if (a.concerns(district)) a
+    ];
+    final others = [
+      for (final a in active)
+        if (!a.concerns(district)) a
+    ];
     final districtName = district == null ? null : BdLocations.district(district)?.name(lang);
 
     Widget heading(String text, {Widget? trailing}) => Padding(
@@ -241,8 +247,10 @@ class _AreaCard extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(s.myAlertArea, style: theme.textTheme.labelLarge?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
-                Text(districtName ?? s.notChosen, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+                Text(s.myAlertArea,
+                    style: theme.textTheme.labelLarge?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                Text(districtName ?? s.notChosen,
+                    style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
                 if (everywhere) Text(s.notifyWholeCountryOn, style: theme.textTheme.bodySmall),
               ],
             ),
@@ -271,35 +279,40 @@ Future<String?> pickAlertDistrict(BuildContext context, String? current) {
     builder: (context) => DraggableScrollableSheet(
       expand: false,
       initialChildSize: 0.8,
-      builder: (context, controller) => ListView(
-        controller: controller,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(JSpace.md, 0, JSpace.md, JSpace.sm),
-            child: Text(s.chooseYourDistrict,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)),
-          ),
-          for (final div in BdLocations.divisions) ...[
+      builder: (context, controller) => Material(
+        type: MaterialType.transparency,
+        child: ListView(
+          controller: controller,
+          children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(JSpace.md, JSpace.md, JSpace.md, 4),
-              child: Text(div.name(lang),
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Theme.of(context).colorScheme.primary)),
+              padding: const EdgeInsets.fromLTRB(JSpace.md, 0, JSpace.md, JSpace.sm),
+              child: Text(s.chooseYourDistrict,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)),
             ),
-            for (final d in BdLocations.districts.where((d) => d.divisionId == div.id))
-              ListTile(
-                title: Text(d.name(lang)),
-                trailing: d.id == current ? const Icon(Icons.check, color: JColors.ok) : null,
-                onTap: () => Navigator.of(context).pop(d.id),
+            for (final div in BdLocations.divisions) ...[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(JSpace.md, JSpace.md, JSpace.md, 4),
+                child: Text(div.name(lang),
+                    style:
+                        Theme.of(context).textTheme.labelLarge?.copyWith(color: Theme.of(context).colorScheme.primary)),
               ),
+              for (final d in BdLocations.districts.where((d) => d.divisionId == div.id))
+                ListTile(
+                  title: Text(d.name(lang)),
+                  trailing: d.id == current ? const Icon(Icons.check, color: JColors.ok) : null,
+                  onTap: () => Navigator.of(context).pop(d.id),
+                ),
+            ],
           ],
-        ],
+        ),
       ),
     ),
   );
 }
 
 class _LinkCard extends StatelessWidget {
-  const _LinkCard({required this.icon, required this.color, required this.title, required this.subtitle, required this.onTap});
+  const _LinkCard(
+      {required this.icon, required this.color, required this.title, required this.subtitle, required this.onTap});
 
   final IconData icon;
   final Color color;

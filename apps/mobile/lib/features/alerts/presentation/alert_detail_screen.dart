@@ -281,7 +281,7 @@ class AlertDetailScreen extends ConsumerWidget {
                   style: FilledButton.styleFrom(backgroundColor: JColors.sos, foregroundColor: Colors.white),
                   onPressed: () => ref.read(phoneServiceProvider).dial(AppConfig.nationalEmergencyNumber),
                   icon: const Icon(Icons.call),
-                  label: Text(s.call999),
+                  label: Text(localizedDigits('999', lang)),
                 ),
               ),
               const SizedBox(width: JSpace.sm),

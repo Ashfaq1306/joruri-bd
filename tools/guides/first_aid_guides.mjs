@@ -269,7 +269,9 @@ const seed = JSON.parse(fs.readFileSync(file, 'utf8'));
 for (const g of firstAidGuides) {
   const i = seed.guides.findIndex((x) => x.id === g.id);
   if (i < 0) throw new Error('unknown guide ' + g.id);
-  if (seed.guides[i].reviewStatus !== 'pending') throw new Error(`${g.id} already has content; not overwritten`);
+  // Running again is fine; a guide someone else filled in is not overwritten.
+  const same = JSON.stringify(seed.guides[i]) === JSON.stringify(g);
+  if (seed.guides[i].reviewStatus !== 'pending' && !same) throw new Error(`${g.id} already has other content; not overwritten`);
   seed.guides[i] = g;
 }
 fs.writeFileSync(file, JSON.stringify(seed, null, 2) + '\n');

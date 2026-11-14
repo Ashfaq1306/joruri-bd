@@ -65,6 +65,12 @@ Future<void> main() async {
         await alerts.askPermissionOnce();
       }
     });
+    // A new user is asked right after finishing onboarding.
+    container.listen<bool>(settingsProvider.select((s) => s.onboardingDone), (was, done) {
+      if (done && was == false && container.read(alertSettingsProvider).notify) {
+        Future<void>.delayed(const Duration(seconds: 1), () => container.read(alertNotificationsProvider).askPermissionOnce());
+      }
+    });
     container.listen<AsyncValue<NetworkStatus>>(networkStatusProvider, (previous, next) {
       if (next.valueOrNull == NetworkStatus.online && previous?.valueOrNull != NetworkStatus.online) {
         container.read(contentSyncProvider).run();
