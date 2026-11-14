@@ -472,7 +472,7 @@ class StringsEn extends AppStrings {
   @override String get alertNotFound => 'This alert has ended or is no longer on the list.';
   @override String signalNo(int n) => 'Signal $n';
   @override String get alertEnded => 'This alert has ended.';
-  @override String officialAdvice(String source) => 'Official advice ($source)';
+  @override String officialAdvice(String source) => 'What to do ($source)';
   @override String fullGuide(String title) => 'Guide: $title';
   @override String get alertDetails => 'Details';
   @override String get magnitude => 'Magnitude';

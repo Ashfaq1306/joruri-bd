@@ -472,7 +472,7 @@ class StringsBn extends AppStrings {
   @override String get alertNotFound => 'এই সতর্কবার্তার মেয়াদ শেষ, বা এটি আর তালিকায় নেই।';
   @override String signalNo(int n) => '$n নম্বর সংকেত';
   @override String get alertEnded => 'এই সতর্কবার্তার মেয়াদ শেষ হয়েছে।';
-  @override String officialAdvice(String source) => 'সরকারি নির্দেশনা ($source)';
+  @override String officialAdvice(String source) => 'নির্দেশনা ($source)';
   @override String fullGuide(String title) => 'গাইড: $title';
   @override String get alertDetails => 'বিস্তারিত';
   @override String get magnitude => 'মাত্রা';

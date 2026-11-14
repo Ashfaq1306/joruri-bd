@@ -30,6 +30,7 @@ class AlertNotifications {
   final _plugin = FlutterLocalNotificationsPlugin();
   bool _started = false;
   bool _syncing = false;
+  bool _syncAgain = false;
 
   static const urgentChannel = AndroidNotificationChannel(
     'alerts_urgent',
@@ -70,6 +71,8 @@ class AlertNotifications {
 
     // New alerts in the live list while the app is open.
     _ref.listen<List<HazardAlert>>(activeAlertsProvider, (_, next) => _notifyNew(next), fireImmediately: true);
+    // A newly chosen district may already have a warning.
+    _ref.listen<String?>(alertDistrictProvider, (_, __) => _notifyNew(_ref.read(activeAlertsProvider)));
 
     if (!await _ref.read(firebaseReadyProvider.future)) return;
     try {
@@ -123,31 +126,49 @@ class AlertNotifications {
 
   /// Subscribes to the topics for the current settings and leaves the others.
   Future<void> syncTopics() async {
-    if (_syncing) return;
+    if (_syncing) {
+      // Settings changed while a sync runs: sync again when it finishes.
+      _syncAgain = true;
+      return;
+    }
     _syncing = true;
     try {
-      final prefs = _ref.read(sharedPreferencesProvider);
-      final settings = _ref.read(alertSettingsProvider);
-      final district = _ref.read(alertDistrictProvider);
-      final lang = _language();
-      final want = <String>{
-        if (settings.notify && settings.everywhere) 'alerts-$lang-all',
-        if (settings.notify && !settings.everywhere && district != null) 'alerts-$lang-$district',
-      };
-      final have = {...?prefs.getStringList(_topicsKey)};
-      final fcm = FirebaseMessaging.instance;
+      do {
+        _syncAgain = false;
+        await _syncTopicsOnce();
+      } while (_syncAgain);
+    } finally {
+      _syncing = false;
+    }
+  }
+
+  Future<void> _syncTopicsOnce() async {
+    final prefs = _ref.read(sharedPreferencesProvider);
+    final settings = _ref.read(alertSettingsProvider);
+    final district = _ref.read(alertDistrictProvider);
+    final lang = _language();
+    final want = <String>{
+      if (settings.notify && settings.everywhere) 'alerts-$lang-all',
+      if (settings.notify && !settings.everywhere && district != null) 'alerts-$lang-$district',
+    };
+    final have = {...?prefs.getStringList(_topicsKey)};
+    final fcm = FirebaseMessaging.instance;
+    try {
+      // Saved after every step, so a failure halfway is finished next time.
       for (final t in have.difference(want)) {
         await fcm.unsubscribeFromTopic(t).timeout(const Duration(seconds: 20));
+        have.remove(t);
+        await prefs.setStringList(_topicsKey, have.toList());
       }
       for (final t in want.difference(have)) {
         await fcm.subscribeToTopic(t).timeout(const Duration(seconds: 20));
+        have.add(t);
+        await prefs.setStringList(_topicsKey, have.toList());
       }
-      await prefs.setStringList(_topicsKey, want.toList());
+      AppLogger.info('Alert topics: $want');
     } catch (e, s) {
       // Offline: tried again on the next start or settings change.
       AppLogger.error('Alert topics not updated', e, s);
-    } finally {
-      _syncing = false;
     }
   }
 
