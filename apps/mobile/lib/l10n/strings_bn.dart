@@ -399,4 +399,101 @@ class StringsBn extends AppStrings {
   @override String get numberBeingChecked => 'নম্বরটি যাচাই করা হচ্ছে। এর মধ্যে ৯৯৯ বা ১০২-এ কল করুন।';
   @override String get policeNumberTip => 'জীবন ঝুঁকিতে বা এখনই অপরাধ ঘটছে? আগে ৯৯৯-এ কল করুন। বিনা খরচে, ২৪ ঘণ্টা।';
   @override String get bloodBanksNearby => 'ব্লাড ব্যাংক ও হাসপাতালের রক্ত বিভাগ';
+
+  // Disaster alerts
+  @override String get disasterAlerts => 'দুর্যোগ সতর্কতা';
+  @override String get hazardCyclone => 'ঘূর্ণিঝড়';
+  @override String get hazardFlood => 'বন্যা';
+  @override String get hazardRain => 'ভারী বৃষ্টি';
+  @override String get hazardStorm => 'ঝড় ও বজ্রপাত';
+  @override String get hazardHeat => 'তাপপ্রবাহ';
+  @override String get hazardCold => 'শৈত্যপ্রবাহ';
+  @override String get hazardFog => 'ঘন কুয়াশা';
+  @override String get hazardLandslide => 'পাহাড় ধস';
+  @override String get hazardEarthquake => 'ভূমিকম্প';
+  @override String get hazardTsunami => 'সুনামি';
+  @override String get hazardOther => 'সতর্কতা';
+  @override String get levelEmergency => 'জরুরি বিপদ';
+  @override String get levelWarning => 'সতর্কবার্তা';
+  @override String get levelWatch => 'সতর্ক থাকুন';
+  @override String get levelAdvisory => 'তথ্য';
+  @override String get sourceBmd => 'বাংলাদেশ আবহাওয়া অধিদপ্তর';
+  @override String get sourceUsgs => 'ইউএস জিওলজিক্যাল সার্ভে (ভূমিকম্প)';
+  @override String get sourceTeam => 'জরুরি বিডি টিম';
+  @override String get justNow => 'এইমাত্র';
+  @override String minutesAgo(int n) => '$n মিনিট আগে';
+  @override String hoursAgo(int n) => '$n ঘণ্টা আগে';
+  @override String get wholeCountry => 'সারা দেশ';
+  @override String get alertsOffline => 'আবহাওয়া সেবায় পৌঁছানো যায়নি। সর্বশেষ সংরক্ষিত সতর্কবার্তা দেখানো হচ্ছে।';
+  @override String get notificationsOffBody => 'নোটিফিকেশন বন্ধ, তাই এই ফোন আপনাকে সতর্ক করতে পারবে না। চালু করুন।';
+  @override String get alertsForYou => 'আপনার এলাকার সতর্কবার্তা';
+  @override String alertsFor(String place) => '$place-এর সতর্কবার্তা';
+  @override String get chooseAlertDistrict => 'সতর্কবার্তা পেতে আপনার জেলা বেছে নিন।';
+  @override String noAlertsHere(String place) => 'এই মুহূর্তে $place-এর জন্য কোনো সতর্কবার্তা নেই।';
+  @override String get activeAlerts => 'চলমান সতর্কবার্তা';
+  @override String get elsewhereInBangladesh => 'দেশের অন্যান্য এলাকা';
+  @override String alertsChecked(String ago) => 'সর্বশেষ যাচাই: $ago।';
+  @override String get alertSourcesNote => 'আবহাওয়া ও ঘূর্ণিঝড়ের সতর্কবার্তা বাংলাদেশ আবহাওয়া অধিদপ্তর (cap.bmd.gov.bd) থেকে; ভূমিকম্পের তথ্য ইউএস জিওলজিক্যাল সার্ভে থেকে। প্রতি ১০ মিনিটে যাচাই করা হয়।';
+  @override String get getReady => 'প্রস্তুত থাকুন';
+  @override String get cycloneSignals => 'ঘূর্ণিঝড় সংকেত';
+  @override String get cycloneSignalsSub => '১ থেকে ১১ নম্বর সংকেতের মানে ও করণীয়';
+  @override String get cycloneSignalsIntro => 'বাংলাদেশ আবহাওয়া অধিদপ্তর সমুদ্রবন্দরগুলোর (চট্টগ্রাম, কক্সবাজার, মোংলা, পায়রা) জন্য এই সংকেত দেয়। উপকূলীয় এলাকা তাদের বন্দরের সংকেত অনুসরণ করে। সিপিপি স্বেচ্ছাসেবকরা পতাকা তুলে ও মাইকিং করে তা জানান।';
+  @override String get cycloneSignalsSource => 'বাংলাদেশ আবহাওয়া অধিদপ্তরের প্রকাশিত ব্যাখ্যা অনুযায়ী। সব সময় প্রশাসন ও সিপিপি স্বেচ্ছাসেবকদের নির্দেশ মানুন।';
+  @override String get emergencyBag => 'জরুরি ব্যাগের তালিকা';
+  @override String get emergencyBagSub => 'ঘূর্ণিঝড়, বন্যা ও ভূমিকম্পের জন্য গুছিয়ে রাখুন';
+  @override String get emergencyBagIntro => 'এমন একটি ব্যাগ প্রস্তুত রাখুন যা এক মিনিটে নিয়ে বের হতে পারেন। কয়েক মাস পরপর দেখে নিন।';
+  @override List<String> get emergencyBagItems => const [
+        'খাবার পানি (মাথাপিছু অন্তত ৩ লিটার) ও পানি বিশুদ্ধকরণ ট্যাবলেট',
+        '৩ দিনের শুকনো খাবার: চিড়া, মুড়ি, বিস্কুট, গুড়',
+        'ওরস্যালাইন ও নিয়মিত ওষুধ, প্রেসক্রিপশনসহ',
+        'প্রাথমিক চিকিৎসার বাক্স: ব্যান্ডেজ, জীবাণুনাশক, প্যারাসিটামল',
+        'টর্চ, বাড়তি ব্যাটারি ও ছোট রেডিও',
+        'মোবাইল ফোন, চার্জার ও চার্জ দেওয়া পাওয়ার ব্যাংক',
+        'জাতীয় পরিচয়পত্র, জন্মনিবন্ধন, জমির দলিল ও ব্যাংকের কাগজ, মুখবন্ধ পলিথিনে',
+        'খুচরা কিছু টাকা',
+        'সাহায্য চাওয়ার জন্য একটি বাঁশি',
+        'গরম কাপড়, গামছা, স্যানিটারি প্যাড, এবং দরকার হলে শিশুখাদ্য ও ডায়াপার',
+        'পরিবারের সবার ফোন নম্বর লেখা একটি কাগজ',
+      ];
+  @override String get disasterGuides => 'দুর্যোগে করণীয়';
+  @override String get disasterGuidesSub => 'বন্যা, ঘূর্ণিঝড়, ভূমিকম্প ইত্যাদির আগে, সময় ও পরে';
+  @override String get call1090 => '১০৯০-এ কল করুন (টোল-ফ্রি)';
+  @override String get call1090Sub => 'সরকারি আবহাওয়ার পূর্বাভাস ও দুর্যোগের আগাম সতর্কবার্তা, ২৪ ঘণ্টা';
+  @override String get myAlertArea => 'যে এলাকার সতর্কবার্তা পাবেন';
+  @override String get notChosen => 'বেছে নেওয়া হয়নি';
+  @override String get fromProfile => 'আপনার প্রোফাইল থেকে';
+  @override String get notifyWholeCountryOn => 'সারা দেশের নোটিফিকেশন চালু আছে';
+  @override String get change => 'বদলান';
+  @override String get chooseYourDistrict => 'আপনার জেলা বেছে নিন';
+  @override String get earthquakeEarlyWarning => 'কাঁপুনির আগে ভূমিকম্পের সতর্কবার্তা';
+  @override String get earthquakeEarlyWarningBody => 'ভূমিকম্পের আগাম পূর্বাভাস কেউ দিতে পারে না। তবে আপনার অ্যান্ড্রয়েড ফোন জোরালো কাঁপুনি পৌঁছানোর কয়েক সেকেন্ড আগে সতর্ক করতে পারে (Android Earthquake Alerts, বাংলাদেশে চালু আছে)। বসে পড়া, মাথা ঢাকা ও ধরে থাকার জন্য এই কয়েক সেকেন্ডই যথেষ্ট। এর জন্য লোকেশন ও ইন্টারনেট চালু রাখতে হয়।';
+  @override String get earthquakeEarlyWarningSteps => 'চালু আছে কি না দেখুন: Settings → Safety and emergency → Earthquake alerts (কিছু ফোনে: Location → Advanced → Earthquake alerts)।';
+  @override String get openPhoneSettings => 'ফোনের সেটিংস খুলুন';
+  @override String get alertNotFound => 'এই সতর্কবার্তার মেয়াদ শেষ, বা এটি আর তালিকায় নেই।';
+  @override String signalNo(int n) => '$n নম্বর সংকেত';
+  @override String get alertEnded => 'এই সতর্কবার্তার মেয়াদ শেষ হয়েছে।';
+  @override String officialAdvice(String source) => 'সরকারি নির্দেশনা ($source)';
+  @override String fullGuide(String title) => 'গাইড: $title';
+  @override String get alertDetails => 'বিস্তারিত';
+  @override String get magnitude => 'মাত্রা';
+  @override String get depth => 'গভীরতা';
+  @override String km(int n) => '$n কিমি';
+  @override String get epicentre => 'উৎপত্তিস্থল';
+  @override String get happenedAt => 'কখন হয়েছে';
+  @override String get issuedAt => 'জারি হয়েছে';
+  @override String get validUntil => 'মেয়াদ';
+  @override String get area => 'এলাকা';
+  @override String districtsCovered(int n) => '$nটি জেলা';
+  @override String get fullBulletin => 'পূর্ণ বুলেটিন';
+  @override String get quakeNotPredicted => 'এটি ইতিমধ্যে ঘটে যাওয়া ভূমিকম্পের খবর। ভূমিকম্পের পূর্বাভাস দেওয়া যায় না; কাঁপুনির কয়েক সেকেন্ড আগে সতর্কবার্তা পেতে Android Earthquake Alerts চালু রাখুন।';
+  @override String get openOfficialPage => 'সরকারি পাতা খুলুন';
+  @override String moreAlerts(int n) => 'আরও $nটি সতর্কবার্তা · দেখতে চাপুন';
+  @override String get tapForWhatToDo => 'করণীয় জানতে চাপুন';
+  @override String get alertNotifications => 'দুর্যোগ সতর্কবার্তার নোটিফিকেশন';
+  @override String get alertNotificationsBody => 'আপনার এলাকার ঘূর্ণিঝড় সংকেত, ভারী বৃষ্টি, তাপ ও শৈত্যপ্রবাহ, ঝড় এবং ভূমিকম্পের খবর, অ্যাপ বন্ধ থাকলেও।';
+  @override String get notifyWholeCountry => 'সারা দেশের সতর্কবার্তা';
+  @override String get notifyWholeCountryBody => 'সব জেলার নোটিফিকেশন পান, যেমন অন্য জেলায় থাকা পরিবারের খোঁজ রাখতে।';
+  @override String get getReadyBefore => 'আগে থেকে প্রস্তুতি';
+  @override String get afterItPasses => 'দুর্যোগের পরে';
+  @override String get draftDisasterBanner => 'খসড়া: সরকারি ও রেড ক্রিসেন্টের নির্দেশনা অনুযায়ী লেখা, দুর্যোগ ব্যবস্থাপনা অধিদপ্তর এখনো যাচাই করেনি। সব সময় প্রশাসন ও সিপিপি স্বেচ্ছাসেবকদের নির্দেশ মানুন।';
 }

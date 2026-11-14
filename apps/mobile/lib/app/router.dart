@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:joruri_core/joruri_core.dart';
 
 import 'package:joruri_bd/features/accident/presentation/accident_screen.dart';
+import 'package:joruri_bd/features/alerts/presentation/alert_detail_screen.dart';
+import 'package:joruri_bd/features/alerts/presentation/alerts_screen.dart';
+import 'package:joruri_bd/features/alerts/presentation/storm_signals_screen.dart';
 import 'package:joruri_bd/features/blood/presentation/blood_group_screen.dart';
 import 'package:joruri_bd/features/blood/presentation/donor_list_screen.dart';
 import 'package:joruri_bd/features/coming_soon/presentation/coming_soon_screen.dart';
@@ -74,6 +77,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/sos', builder: (_, __) => const SosCountdownScreen()),
       GoRoute(path: '/sos/status', builder: (_, __) => const SosStatusScreen()),
       GoRoute(path: '/accident', builder: (_, __) => const AccidentScreen()),
+      GoRoute(path: '/alerts', builder: (_, __) => const AlertsScreen()),
+      GoRoute(path: '/alerts/signals', builder: (_, __) => const StormSignalsScreen()),
+      GoRoute(
+        path: '/alerts/:id',
+        builder: (_, state) => AlertDetailScreen(alertId: state.pathParameters['id'] ?? ''),
+      ),
       GoRoute(path: '/blood', builder: (_, __) => const BloodGroupScreen()),
       GoRoute(
         path: '/hospitals',

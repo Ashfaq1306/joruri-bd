@@ -399,4 +399,101 @@ class StringsEn extends AppStrings {
   @override String get numberBeingChecked => 'Number being checked. Call 999 or 102 meanwhile.';
   @override String get policeNumberTip => 'Life in danger or a crime happening now? Call 999 first. It is free and answers 24 hours.';
   @override String get bloodBanksNearby => 'Blood banks and hospital blood units';
+
+  // Disaster alerts
+  @override String get disasterAlerts => 'Disaster alerts';
+  @override String get hazardCyclone => 'Cyclone';
+  @override String get hazardFlood => 'Flood';
+  @override String get hazardRain => 'Heavy rain';
+  @override String get hazardStorm => 'Storm and lightning';
+  @override String get hazardHeat => 'Heat wave';
+  @override String get hazardCold => 'Cold wave';
+  @override String get hazardFog => 'Dense fog';
+  @override String get hazardLandslide => 'Landslide';
+  @override String get hazardEarthquake => 'Earthquake';
+  @override String get hazardTsunami => 'Tsunami';
+  @override String get hazardOther => 'Alert';
+  @override String get levelEmergency => 'Emergency';
+  @override String get levelWarning => 'Warning';
+  @override String get levelWatch => 'Be alert';
+  @override String get levelAdvisory => 'Advisory';
+  @override String get sourceBmd => 'Bangladesh Meteorological Department';
+  @override String get sourceUsgs => 'US Geological Survey (earthquakes)';
+  @override String get sourceTeam => 'Joruri BD team';
+  @override String get justNow => 'just now';
+  @override String minutesAgo(int n) => '$n min ago';
+  @override String hoursAgo(int n) => n == 1 ? '1 hour ago' : '$n hours ago';
+  @override String get wholeCountry => 'All of Bangladesh';
+  @override String get alertsOffline => 'Could not reach the weather services. Showing the last saved alerts.';
+  @override String get notificationsOffBody => 'Notifications are off, so this phone cannot warn you. Turn them on.';
+  @override String get alertsForYou => 'Alerts for your area';
+  @override String alertsFor(String place) => 'Alerts for $place';
+  @override String get chooseAlertDistrict => 'Choose your district to get warnings for it.';
+  @override String noAlertsHere(String place) => 'No warnings for $place right now.';
+  @override String get activeAlerts => 'Active alerts';
+  @override String get elsewhereInBangladesh => 'Elsewhere in Bangladesh';
+  @override String alertsChecked(String ago) => 'Checked $ago.';
+  @override String get alertSourcesNote => 'Weather and cyclone warnings from the Bangladesh Meteorological Department (cap.bmd.gov.bd); earthquakes from the US Geological Survey. Checked every 10 minutes.';
+  @override String get getReady => 'Be prepared';
+  @override String get cycloneSignals => 'Cyclone signals';
+  @override String get cycloneSignalsSub => 'What signals 1 to 11 mean, and what to do';
+  @override String get cycloneSignalsIntro => 'The Bangladesh Meteorological Department orders these signals for the sea ports (Chattogram, Cox\'s Bazar, Mongla, Payra). Coastal areas follow the signal of their port. CPP volunteers raise flags and announce them by megaphone.';
+  @override String get cycloneSignalsSource => 'Meanings as published by the Bangladesh Meteorological Department. Always follow instructions from officials and CPP volunteers.';
+  @override String get emergencyBag => 'Emergency bag checklist';
+  @override String get emergencyBagSub => 'Keep it packed for cyclones, floods and earthquakes';
+  @override String get emergencyBagIntro => 'Keep one bag ready that you can grab in a minute. Check it every few months.';
+  @override List<String> get emergencyBagItems => const [
+        'Drinking water (at least 3 litres per person) and water purification tablets',
+        'Dry food for 3 days: chira, muri, biscuits, gur',
+        'ORS packets and your regular medicines, with the prescription',
+        'First aid kit: bandages, antiseptic, paracetamol',
+        'Torch, spare batteries and a small radio',
+        'Mobile phone, charger and a charged power bank',
+        'NID, birth certificates, land papers and bank documents in a sealed plastic bag',
+        'Some cash in small notes',
+        'A whistle to call for help',
+        'Warm clothes, a gamchha, sanitary pads, and baby food and nappies if needed',
+        'A written list of family phone numbers',
+      ];
+  @override String get disasterGuides => 'Disaster guides';
+  @override String get disasterGuidesSub => 'Before, during and after floods, cyclones, earthquakes and more';
+  @override String get call1090 => 'Call 1090 (free)';
+  @override String get call1090Sub => 'Government weather forecast and disaster early warning, 24 hours';
+  @override String get myAlertArea => 'Warn me for';
+  @override String get notChosen => 'Not chosen';
+  @override String get fromProfile => 'from your profile';
+  @override String get notifyWholeCountryOn => 'Notifications for all of Bangladesh are on';
+  @override String get change => 'Change';
+  @override String get chooseYourDistrict => 'Choose your district';
+  @override String get earthquakeEarlyWarning => 'Earthquake warning before shaking';
+  @override String get earthquakeEarlyWarningBody => 'No one can predict an earthquake. But your Android phone can warn you a few seconds before strong shaking arrives (Android Earthquake Alerts, active in Bangladesh). Those seconds are enough to Drop, Cover and Hold On. It needs location and internet on.';
+  @override String get earthquakeEarlyWarningSteps => 'Check it is on: Settings → Safety and emergency → Earthquake alerts (on some phones: Location → Advanced → Earthquake alerts).';
+  @override String get openPhoneSettings => 'Open phone settings';
+  @override String get alertNotFound => 'This alert has ended or is no longer on the list.';
+  @override String signalNo(int n) => 'Signal $n';
+  @override String get alertEnded => 'This alert has ended.';
+  @override String officialAdvice(String source) => 'Official advice ($source)';
+  @override String fullGuide(String title) => 'Guide: $title';
+  @override String get alertDetails => 'Details';
+  @override String get magnitude => 'Magnitude';
+  @override String get depth => 'Depth';
+  @override String km(int n) => '$n km';
+  @override String get epicentre => 'Epicentre';
+  @override String get happenedAt => 'Happened';
+  @override String get issuedAt => 'Issued';
+  @override String get validUntil => 'Valid until';
+  @override String get area => 'Area';
+  @override String districtsCovered(int n) => n == 1 ? 'District covered' : '$n districts covered';
+  @override String get fullBulletin => 'Full bulletin';
+  @override String get quakeNotPredicted => 'This is a report of an earthquake that has already happened. Earthquakes cannot be predicted; for a warning seconds before shaking, keep Android Earthquake Alerts on.';
+  @override String get openOfficialPage => 'Open the official page';
+  @override String moreAlerts(int n) => n == 1 ? '1 more alert · tap to see' : '$n more alerts · tap to see';
+  @override String get tapForWhatToDo => 'Tap to see what to do';
+  @override String get alertNotifications => 'Disaster alert notifications';
+  @override String get alertNotificationsBody => 'Cyclone signals, heavy rain, heat and cold waves, storms and earthquakes for your area, even when the app is closed.';
+  @override String get notifyWholeCountry => 'Alerts for all of Bangladesh';
+  @override String get notifyWholeCountryBody => 'Get notified for every district, for example to look after family elsewhere.';
+  @override String get getReadyBefore => 'Get ready before it comes';
+  @override String get afterItPasses => 'After it has passed';
+  @override String get draftDisasterBanner => 'Draft: based on government and Red Crescent guidance, not yet checked by the Department of Disaster Management. Always follow officials and CPP volunteers.';
 }

@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <!-- In-app updates: open Android's installer for the APK the app downloaded. -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <!-- Disaster alerts (Android 13+ asks the user). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:label="Joruri BD"
         android:name="${applicationName}"
@@ -51,6 +54,11 @@
             android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/update_files"/>
         </provider>
+        <!-- Push alerts from the alert watcher (tools/alerts): icon, colour and the
+             channel used when a message names none. The app creates the channels. -->
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_stat_alert"/>
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/alert_red"/>
+        <meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="alerts"/>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

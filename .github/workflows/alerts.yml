@@ -1,0 +1,64 @@
+# Disaster alerts: every 10 minutes, read BMD warnings and USGS earthquakes,
+# publish them to the app (Firestore meta/alerts) and send push notifications
+# to the districts they cover. See tools/alerts/bin/watch.dart.
+#
+# No secrets: GitHub signs in to Google Cloud with workload identity
+# (set up once by tools/alerts/setup_github_access.mjs), as a service account
+# that can only use Firestore and send FCM messages.
+name: Disaster alerts
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write   # sign in to Google Cloud
+  actions: write    # keep this schedule switched on (see last step)
+
+concurrency:
+  group: alerts
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            packages/core
+            tools/alerts
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ hashFiles('tools/alerts/pubspec.lock') }}
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/309379921602/locations/global/workloadIdentityPools/github/providers/joruri-bd
+          service_account: alerts-watcher@joruri-bd.iam.gserviceaccount.com
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/cloud-platform
+      - name: Check warnings and notify phones
+        working-directory: tools/alerts
+        env:
+          GOOGLE_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
+        run: |
+          dart pub get
+          dart run bin/watch.dart
+      # GitHub pauses scheduled workflows of a repository with no activity
+      # for 60 days. Re-enabling it once a day keeps the alerts running.
+      - name: Keep the schedule on
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$(date -u +%H%M | cut -c1-3)" = "030" ]; then
+            gh api -X PUT "repos/${{ github.repository }}/actions/workflows/alerts.yml/enable" || true
+          fi

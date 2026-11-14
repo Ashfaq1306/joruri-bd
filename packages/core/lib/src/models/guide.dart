@@ -30,8 +30,10 @@ class Guide {
     required this.icon,
     required this.title,
     required this.reviewStatus,
+    this.prepare = const LocalizedList(),
     this.doNow = const LocalizedList(),
     this.doNot = const LocalizedList(),
+    this.after = const LocalizedList(),
     this.getHelp = const LocalizedList(),
     this.whoToContact = const LocalizedText(en: '', bn: ''),
     this.callNumbers = const [],
@@ -44,8 +46,10 @@ class Guide {
         icon: (json['icon'] as String?) ?? '',
         title: LocalizedText.fromJson(json['title']),
         reviewStatus: ReviewStatus.parse(json['reviewStatus']),
+        prepare: LocalizedList.fromJson(json['prepare']),
         doNow: LocalizedList.fromJson(json['doNow']),
         doNot: LocalizedList.fromJson(json['doNot']),
+        after: LocalizedList.fromJson(json['after']),
         getHelp: LocalizedList.fromJson(json['getHelp']),
         whoToContact: LocalizedText.fromJson(json['whoToContact']),
         callNumbers: ((json['callNumbers'] as List?) ?? const [])
@@ -63,8 +67,12 @@ class Guide {
   final String icon;
   final LocalizedText title;
   final ReviewStatus reviewStatus;
+  /// Disaster guides: how to get ready before it comes.
+  final LocalizedList prepare;
   final LocalizedList doNow;
   final LocalizedList doNot;
+  /// Disaster guides: what to do once it has passed.
+  final LocalizedList after;
   final LocalizedList getHelp;
   final LocalizedText whoToContact;
   final List<String> callNumbers;

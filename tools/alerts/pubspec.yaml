@@ -1,0 +1,11 @@
+name: joruri_alerts
+description: Checks BMD and USGS for new warnings, publishes them to meta/alerts and notifies phones (FCM topics).
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  joruri_core:
+    path: ../../packages/core
+  http: ^1.2.0

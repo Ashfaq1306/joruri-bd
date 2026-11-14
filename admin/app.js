@@ -8,10 +8,11 @@ const ALIASES = {"chittagong": "chattogram", "comilla": "cumilla", "barisal": "b
 const GROUPS = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 const NUMBER_CATEGORIES = ['national', 'police', 'fire', 'ambulance', 'health', 'womenChildren', 'government', 'disaster'];
 const GUIDE_ICONS = ['heart', 'stroke', 'unconscious', 'choking', 'bleeding', 'burn', 'fracture', 'electric', 'drowning', 'snake',
-  'animal', 'poison', 'seizure', 'road', 'fire', 'gas', 'collapse', 'flood', 'cyclone', 'earthquake', 'lightning', 'landslide', 'storm'];
+  'animal', 'poison', 'seizure', 'road', 'fire', 'gas', 'collapse', 'flood', 'cyclone', 'earthquake', 'lightning', 'landslide', 'storm', 'heat', 'cold'];
 // Collections the phones download (each save raises meta/content.version).
 const CONTENT = ['emergency_numbers', 'guides', 'hospitals', 'pharmacies', 'medicines', 'police_stations', 'fire_stations', 'announcements'];
 const ICONS = {
+  alerts: 'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',
   dashboard: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z',
   announcements: 'M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z',
   emergency_numbers: 'M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z',
@@ -225,8 +226,10 @@ const SCHEMAS = {
       { k: 'kind', label: 'Type', type: 'select', options: ['firstAid', 'disaster'] },
       { k: 'icon', label: 'Icon', type: 'select', options: GUIDE_ICONS },
       { k: 'reviewStatus', label: 'Review status (approved = checked by a doctor)', type: 'select', options: ['draft', 'approved', 'pending'] },
+      { k: 'prepare', label: 'Disaster guides: get ready before it comes (one per line)', type: 'bi-lines' },
       { k: 'doNow', label: 'What to do now (one step per line)', type: 'bi-lines' },
       { k: 'doNot', label: 'What not to do (one per line)', type: 'bi-lines' },
+      { k: 'after', label: 'Disaster guides: after it has passed (one per line)', type: 'bi-lines' },
       { k: 'getHelp', label: 'When to get professional help (one per line)', type: 'bi-lines' },
       bi('whoToContact', 'Who to contact', true),
       { k: 'callNumbers', label: 'Call buttons (comma separated, e.g. 999)', type: 'csv' },
@@ -306,7 +309,7 @@ async function publishContent(fresh, cols = CONTENT) {
 
 /* ---------- screens ---------- */
 const NAV = [
-  ['', 'Overview'], ['dashboard', 'Dashboard'], ['announcements', 'Announcements'], ['app', 'App & updates'],
+  ['', 'Overview'], ['dashboard', 'Dashboard'], ['alerts', 'Disaster alerts'], ['announcements', 'Announcements'], ['app', 'App & updates'],
   ['', 'Content on phones'], ['emergency_numbers', 'Emergency numbers'], ['hospitals', 'Hospitals & tests'],
   ['pharmacies', 'Pharmacies'], ['medicines', 'Medicines & prices'], ['police_stations', 'Police stations'], ['fire_stations', 'Fire stations'], ['guides', 'Guides'],
   ['', 'People'], ['donors', 'Blood donors'], ['admins', 'Admins'],
@@ -353,6 +356,7 @@ async function render() {
       : view === 'import' ? importScreen()
         : view === 'audit' ? await auditScreen()
           : view === 'app' ? await appScreen()
+          : view === 'alerts' ? await alertsScreen()
             : view === 'admins' ? await adminsScreen()
               : await listScreen(view);
     if (state.view !== view) return; // the person moved on while this loaded
@@ -979,6 +983,137 @@ async function appScreen() {
         h('li', {}, 'Every phone with an older version downloads the update inside the app (by itself on Wi-Fi) and shows "Install update": one tap. Content changes (numbers, hospitals, guides, announcements) never need an app update.'))),
     rel,
     form);
+}
+
+
+/* ---------- disaster alerts ---------- */
+// meta/alerts: "official" (JSON, written every 10 minutes by the alert
+// watcher on GitHub Actions: BMD warnings + USGS earthquakes) and "team"
+// (JSON, written here). Phones follow the document live; the watcher sends
+// push notifications for new serious alerts (team ones included).
+const HAZARDS = { cyclone: 'Cyclone', flood: 'Flood', rain: 'Heavy rain', storm: 'Storm / lightning', heat: 'Heat wave', cold: 'Cold wave',
+  fog: 'Dense fog', landslide: 'Landslide', earthquake: 'Earthquake', tsunami: 'Tsunami', other: 'Other' };
+const ALERT_LEVELS = { advisory: 'Advisory (blue, no notification)', watch: 'Be alert (yellow)', warning: 'Warning (orange)', emergency: 'Emergency (red)' };
+const WATCHER_URL = 'https://github.com/Ashfaq1306/joruri-bd/actions/workflows/alerts.yml';
+const parseJsonList = (s) => { try { const v = JSON.parse(s || '[]'); return Array.isArray(v) ? v : []; } catch { return []; } };
+const alertArea = (a) => (a.nationwide ? 'Whole country' : `${(a.districts || []).length} districts${a.divisions?.length ? ' (' + a.divisions.join(', ') + ')' : ''}`);
+const localInput = (iso) => { if (!iso) return ''; const d = new Date(iso); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 16); };
+
+async function alertsScreen() {
+  const meta = await B().getMeta('alerts');
+  const pushedDoc = await B().getMeta('alertsPushed');
+  const sent = (() => { try { return JSON.parse(pushedDoc.ids || '{}'); } catch { return {}; } })();
+  const official = parseJsonList(meta.official);
+  let team = parseJsonList(meta.team);
+  const now = new Date();
+  const checked = meta.officialAt ? new Date(meta.officialAt) : null;
+  const late = !checked || now - checked > 30 * 60 * 1000;
+  const active = (a) => new Date(a.expires || (Date.parse(a.sent) + 24 * 3600e3)) > now;
+
+  const status = h('div', { class: 'card ' + (late ? 'bad' : 'ok') },
+    h('b', {}, checked ? `Official sources last checked ${fmtTime(meta.officialAt)}` : 'The alert watcher has not run yet.'),
+    h('p', {}, late
+      ? 'The watcher should run every 10 minutes. Open GitHub Actions to see why it stopped (meanwhile phones read BMD and USGS themselves while the app is open).'
+      : 'BMD and USGS are checked every 10 minutes; new serious alerts are sent to phones in the districts they cover.'),
+    h('a', { href: WATCHER_URL, target: '_blank', rel: 'noopener' }, 'Alert watcher on GitHub ("Run workflow" checks now)'));
+
+  const row = (a, actions) => h('tr', { class: active(a) ? '' : 'muted' },
+    h('td', {}, (ALERT_LEVELS[a.level] || a.level).split(' (')[0]),
+    h('td', {}, HAZARDS[a.hazard] || a.hazard),
+    h('td', {}, a.headline?.en || a.headline?.bn || ''),
+    h('td', {}, alertArea(a)),
+    h('td', {}, a.expires ? fmtTime(a.expires) : '24 h'),
+    h('td', {}, sent[a.id] ? '✓ ' + fmtTime(sent[a.id]) : (a.push === false || a.level === 'advisory' ? 'No' : active(a) ? 'Waiting' : '—')),
+    h('td', { class: 'actions' }, ...(actions || [])));
+  const head = () => h('thead', {}, h('tr', {}, ['Level', 'Hazard', 'Headline', 'Area', 'Until', 'Notification sent', ''].map((t) => h('th', {}, t))));
+
+  async function saveTeam(next, summary) {
+    await B().merge('meta', 'alerts', { team: JSON.stringify(next), teamAt: new Date().toISOString() });
+    await B().audit({ action: 'edit', collection: 'meta', docId: 'alerts', summary });
+    team = next;
+    toast('Saved. Open apps show it within seconds; notifications go out at the next check (within about 10 minutes).');
+    render();
+  }
+
+  function openAlertForm(existing) {
+    const a = existing || { level: 'warning', hazard: 'flood', push: true, districts: [], divisions: [] };
+    const form = h('form', { class: 'editor' });
+    const dlg = h('div', { class: 'overlay', onmousedown: (e) => { if (e.target === dlg) dlg.remove(); } }, form);
+    form.addEventListener('keydown', (e) => { if (e.key === 'Escape') dlg.remove(); });
+    const sel = (name, options, value) => h('select', { name }, Object.entries(options).map(([k, v]) => { const o = h('option', { value: k }, v); o.selected = k === value; return o; }));
+    const bi2 = (k, label, rows) => h('div', { class: 'stack' },
+      h('label', {}, label + ' (English)', h('textarea', { name: k + '.en', rows }, a[k]?.en || '')),
+      h('label', {}, label + ' (বাংলা)', h('textarea', { name: k + '.bn', rows }, a[k]?.bn || '')));
+    const districtBoxes = LOC.divisions.map((div) => {
+      const mine = LOC.districts.filter((d) => d.divisionId === div.id);
+      const boxes = mine.map((d) => h('label', { style: 'display:inline-block;margin:2px 12px 2px 0' },
+        h('input', { type: 'checkbox', name: 'district', value: d.id, checked: (a.districts || []).includes(d.id) }), ' ', d.en));
+      const all = h('input', { type: 'checkbox', name: 'division', value: div.id, checked: (a.divisions || []).includes(div.id) });
+      const open = (a.divisions || []).includes(div.id) || mine.some((d) => (a.districts || []).includes(d.id));
+      return h('details', { open }, h('summary', {}, div.en), h('label', {}, all, ' ', h('b', {}, `All of ${div.en} division`)), h('div', {}, ...boxes));
+    });
+    const errs = h('div', { class: 'err' });
+    form.append(
+      h('h2', {}, existing ? 'Edit alert' : 'New alert'),
+      h('label', {}, 'Hazard', sel('hazard', HAZARDS, a.hazard)),
+      h('label', {}, 'Level', sel('level', ALERT_LEVELS, a.level)),
+      bi2('headline', 'Headline', 2),
+      bi2('instruction', 'What people must do', 3),
+      bi2('description', 'Details (optional)', 3),
+      h('label', {}, h('input', { type: 'checkbox', name: 'nationwide', checked: !!a.nationwide }), ' Whole country'),
+      h('div', {}, h('b', {}, 'Or choose divisions / districts'), ...districtBoxes),
+      h('label', {}, 'Ends (date and time)', h('input', { type: 'datetime-local', name: 'expires', required: true, value: localInput(a.expires) })),
+      h('label', {}, 'Official notice link (optional, e.g. FFWC or the district administration)', h('input', { name: 'web', value: a.web || '' })),
+      h('label', {}, h('input', { type: 'checkbox', name: 'push', checked: a.push !== false }), ' Send a phone notification (levels "Be alert" and above)'),
+      errs,
+      h('div', { class: 'row' }, h('button', { class: 'primary', type: 'submit' }, 'Save'), h('button', { type: 'button', onclick: () => dlg.remove() }, 'Cancel')));
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const v = (n) => form.elements.namedItem(n);
+      const pick = (n) => [...form.querySelectorAll(`input[name=${n}]:checked`)].map((x) => x.value);
+      const divisions = pick('division');
+      const districts = [...new Set([...pick('district'), ...LOC.districts.filter((d) => divisions.includes(d.divisionId)).map((d) => d.id)])];
+      const doc = {
+        id: a.id || 'team-' + Date.now(), source: 'team', hazard: v('hazard').value, level: v('level').value,
+        headline: { en: v('headline.en').value.trim(), bn: v('headline.bn').value.trim() },
+        instruction: { en: v('instruction.en').value.trim(), bn: v('instruction.bn').value.trim() },
+        description: { en: v('description.en').value.trim(), bn: v('description.bn').value.trim() },
+        nationwide: v('nationwide').checked, divisions, districts,
+        sent: a.sent || new Date().toISOString(), expires: v('expires').value ? new Date(v('expires').value).toISOString() : '',
+        web: v('web').value.trim(), push: v('push').checked,
+      };
+      const problems = [];
+      if (!doc.headline.en && !doc.headline.bn) problems.push('Write a headline (Bangla and English if you can).');
+      if (!doc.nationwide && !districts.length) problems.push('Choose the whole country, divisions or districts.');
+      if (!doc.expires || new Date(doc.expires) <= new Date()) problems.push('The end time must be in the future.');
+      if (doc.web && !/^https?:\/\//.test(doc.web)) problems.push('The link must start with https://');
+      if (problems.length) { errs.replaceChildren(...problems.map((p) => h('div', {}, '• ' + p))); return; }
+      dlg.remove();
+      try {
+        await saveTeam([...team.filter((x) => x.id !== doc.id), doc], `${existing ? 'Edited' : 'New'} alert: ${doc.headline.en || doc.headline.bn}`);
+      } catch (err) { console.error(err); toast('Could not save: ' + (err.message || err), true); }
+    });
+    document.body.append(dlg);
+  }
+
+  const end = (a) => saveTeam(team.map((x) => (x.id === a.id ? { ...x, expires: new Date().toISOString() } : x)), `Ended alert: ${a.headline?.en || a.id}`);
+  const del = (a) => { if (confirm('Delete this alert?')) saveTeam(team.filter((x) => x.id !== a.id), `Deleted alert: ${a.headline?.en || a.id}`); };
+
+  return h('div', {},
+    h('div', { class: 'head' }, h('h1', {}, 'Disaster alerts'), h('button', { class: 'primary', onclick: () => openAlertForm(null) }, '+ New alert')),
+    h('p', { class: 'hint' }, 'Weather and cyclone warnings (Bangladesh Meteorological Department) and earthquakes (USGS) arrive by themselves. Use "New alert" for warnings that have no feed: river floods from FFWC/BWDB, evacuation orders from the district administration, landslide warnings, or a correction.'),
+    status,
+    h('h2', {}, 'Your alerts'),
+    h('div', { class: 'tablewrap' }, h('table', {}, head(), h('tbody', {}, team.length
+      ? [...team].sort((x, y) => String(y.sent).localeCompare(String(x.sent))).map((a) => row(a, [
+        h('button', { onclick: () => openAlertForm(a) }, 'Edit'),
+        active(a) ? h('button', { onclick: () => end(a) }, 'End now') : null,
+        h('button', { class: 'danger', onclick: () => del(a) }, 'Delete')].filter(Boolean)))
+      : h('tr', {}, h('td', { colspan: 7, class: 'center' }, 'None.'))))),
+    h('h2', {}, 'Official alerts (automatic)'),
+    h('div', { class: 'tablewrap' }, h('table', {}, head(), h('tbody', {}, official.length
+      ? official.map((a) => row(a, a.web ? [h('a', { href: a.web, target: '_blank', rel: 'noopener' }, 'Source')] : []))
+      : h('tr', {}, h('td', { colspan: 7, class: 'center' }, 'No active official alerts right now.'))))));
 }
 
 /* ---------- admins ---------- */

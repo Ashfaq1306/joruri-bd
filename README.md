@@ -19,8 +19,9 @@ This repository contains the app (emergency core works **fully offline and witho
 | SOS status | Step-by-step result, coordinates to read out, call 999, resend, share via WhatsApp etc., "I am safe" |
 | Emergency contacts | Up to 3, Bangla digits accepted, first one is called |
 | Emergency numbers | 999, Police HQ control room, 102 and Fire Service HQ, 109, 1098, 16263, 1090, 16430, 333, 106, each with its source; checked against police.gov.bd and fireservice.gov.bd on 2026-11-04 |
-| First aid | 17 topics; 5 have draft content (bleeding, burns, choking, electric shock, snake bite), 12 say "being written" |
-| Disaster | 6 topics listed; content comes in Phase 6 |
+| First aid | 17 topics, all with draft content in Bangla and English (IFRC 2020 guidelines), shown with a "not yet checked by a doctor" banner until approved on the admin panel |
+| Disaster alerts | **Live warnings for your district**: cyclone signals, heavy rain, heat and cold waves, storms and fog from the **Bangladesh Meteorological Department's official CAP feed**, earthquakes that can be felt in Bangladesh from **USGS**, and the team's own alerts (river floods, evacuations) from the admin panel. **Push notifications** to the districts each warning covers (FCM topics, sent by `tools/alerts` on GitHub Actions every 10 minutes), also when the app is closed. Each alert says what to do; storm signals 1–11 explained; emergency bag checklist; 1090 button; how to switch on Android Earthquake Alerts (the only warning *before* shaking: no one can predict earthquakes). |
+| Disaster guides | Flood, cyclone and storm surge, earthquake, lightning, landslide, nor'wester, heat wave, cold wave: before, during, after, what not to do (draft, from the Standing Orders on Disaster, BMD, CPP, IFRC) |
 | Toolkit | Flashlight, siren (bundled sound), compass, GPS coordinates, battery, contacts |
 | Road accident mode | Six large buttons on one screen |
 | Easy Mode | Very large buttons and text for older users |

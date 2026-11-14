@@ -4,8 +4,13 @@
 /// mobile app, the Flutter Web admin panel and Dart Cloud Functions.
 library;
 
+export 'src/alerts/cap_parser.dart';
+export 'src/alerts/hazard_alert.dart';
+export 'src/alerts/storm_signals.dart';
+export 'src/alerts/usgs_quakes.dart';
 export 'src/blood/blood_group.dart';
 export 'src/blood/donor_search.dart';
+export 'src/geo/bd_district_points.dart';
 export 'src/geo/bd_locations.dart';
 export 'src/localized_text.dart';
 export 'src/models/donor.dart';

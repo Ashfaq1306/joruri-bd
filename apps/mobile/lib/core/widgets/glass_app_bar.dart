@@ -13,6 +13,7 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor,
     this.foregroundColor,
     this.showLogo = false,
+    this.actions,
   });
 
   final Widget? title;
@@ -23,6 +24,7 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final bool showLogo;
+  final List<Widget>? actions;
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight + (bottom?.preferredSize.height ?? 0));
@@ -35,6 +37,7 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: title,
       bottom: bottom,
+      actions: actions,
       automaticallyImplyLeading: automaticallyImplyLeading && !showLogo,
       leading: showLogo ? const Padding(padding: EdgeInsets.all(11), child: LogoTile(size: 34)) : null,
       leadingWidth: showLogo ? 60 : null,
