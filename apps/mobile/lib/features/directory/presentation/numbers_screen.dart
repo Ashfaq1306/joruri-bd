@@ -12,6 +12,7 @@ import 'package:joruri_bd/core/utils/digits.dart';
 import 'package:joruri_bd/features/directory/data/places_repository.dart';
 import 'package:joruri_bd/core/widgets/unverified_label.dart';
 import 'package:joruri_bd/features/directory/data/content_repository.dart';
+import 'package:joruri_bd/features/profile/presentation/profile_controller.dart';
 import 'package:joruri_bd/l10n/app_strings.dart';
 
 /// Emergency numbers for one category (police, fire, ambulance) or all.
@@ -34,7 +35,7 @@ class NumbersScreen extends ConsumerWidget {
     final filter = category;
     final showsPolice = filter == null || filter == NumberCategory.police;
     final showsFire = filter == null || filter == NumberCategory.fire;
-    final stationsPending = filter == NumberCategory.ambulance;
+    final ambulanceScreen = filter == NumberCategory.ambulance;
 
     return Scaffold(
       appBar: GlassAppBar(title: Text(_title(s))),
@@ -42,8 +43,11 @@ class NumbersScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, __) => _Fallback(message: s.genericError),
         data: (all) {
-          final list = filter == null ? all : all.where((n) => n.serves(filter)).toList();
-          if (list.isEmpty) return _Fallback(message: s.noNumbers);
+          // Local services (ambulances in one city) are listed by city on
+          // the ambulance screen, not among the national numbers.
+          final list = [for (final n in all) if (!n.isLocal && (filter == null || n.serves(filter))) n];
+          final ambulances = [for (final n in all) if (n.isLocal && n.category == NumberCategory.ambulance) n];
+          if (list.isEmpty && (!ambulanceScreen || ambulances.isEmpty)) return _Fallback(message: s.noNumbers);
           return ListView(
             padding: const EdgeInsets.all(JSpace.md),
             children: [
@@ -67,14 +71,118 @@ class NumbersScreen extends ConsumerWidget {
                 if (showsPolice) const _StationsLink(service: StationService.police),
                 if (showsFire) const _StationsLink(service: StationService.fire),
               ],
-              if (stationsPending)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: JSpace.sm),
-                  child: Text(s.localNumbersPending, style: Theme.of(context).textTheme.bodyMedium),
-                ),
+              if (filter == null && ambulances.isNotEmpty) ...[
+                const SizedBox(height: 12),
+                _AmbulancesLink(count: ambulances.length),
+              ],
+              if (ambulanceScreen)
+                if (ambulances.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: JSpace.sm),
+                    child: Text(s.localNumbersPending, style: Theme.of(context).textTheme.bodyMedium),
+                  )
+                else
+                  ..._ambulanceSections(context, ref, ambulances),
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/// Ambulance services grouped by city, the person's own district first.
+List<Widget> _ambulanceSections(BuildContext context, WidgetRef ref, List<EmergencyNumber> ambulances) {
+  final s = context.s;
+  final theme = Theme.of(context);
+  final lang = s.languageCode;
+  final home = ref.watch(profileProvider)?.districtId;
+  final byDistrict = <String, List<EmergencyNumber>>{};
+  for (final a in ambulances) {
+    byDistrict.putIfAbsent(a.districtId!, () => []).add(a);
+  }
+  final order = byDistrict.keys.toList()
+    ..sort((a, b) {
+      if (a == home) return -1;
+      if (b == home) return 1;
+      return byDistrict[b]!.length.compareTo(byDistrict[a]!.length);
+    });
+  return [
+    const SizedBox(height: JSpace.sm),
+    Text(s.ambulanceServices, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)),
+    const SizedBox(height: JSpace.xs),
+    Text(s.ambulanceListNote, style: theme.textTheme.bodyMedium),
+    for (final d in order) ...[
+      Padding(
+        padding: const EdgeInsets.fromLTRB(4, JSpace.lg, 4, JSpace.sm),
+        child: Row(
+          children: [
+            const Icon(Icons.location_city, size: 20, color: JColors.ambulance),
+            const SizedBox(width: 8),
+            Text(BdLocations.district(d)?.name(lang) ?? d,
+                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800)),
+            if (d == home) ...[
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  color: JColors.ambulance.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(99),
+                ),
+                child: Text(s.yourDistrictTag,
+                    style: theme.textTheme.labelMedium?.copyWith(color: JColors.ambulance, fontWeight: FontWeight.w700)),
+              ),
+            ],
+            const Spacer(),
+            Text(localizedDigits('${byDistrict[d]!.length}', lang), style: theme.textTheme.labelLarge),
+          ],
+        ),
+      ),
+      for (final a in byDistrict[d]!) ...[
+        NumberCard(number: a),
+        const SizedBox(height: 12),
+      ],
+    ],
+  ];
+}
+
+/// On the list of all numbers: opens the ambulance services by city.
+class _AmbulancesLink extends StatelessWidget {
+  const _AmbulancesLink({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    final s = context.s;
+    final theme = Theme.of(context);
+    return Material(
+      color: JColors.ambulance,
+      borderRadius: BorderRadius.circular(20),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: () => context.push('/numbers/ambulance'),
+        child: Padding(
+          padding: const EdgeInsets.all(JSpace.md),
+          child: Row(
+            children: [
+              const Icon(Icons.emergency, color: Colors.white, size: 36),
+              const SizedBox(width: JSpace.md),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(s.ambulanceServices,
+                        style: theme.textTheme.titleMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
+                    Text(localizedDigits(s.ambulanceServicesCount(count), s.languageCode),
+                        style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white.withAlpha(220))),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right, color: Colors.white),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -204,6 +312,17 @@ class NumberCard extends ConsumerWidget {
               style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
             ),
           ],
+          if (number.address != null) ...[
+            const SizedBox(height: 2),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(Icons.place_outlined, size: 18, color: theme.colorScheme.onSurfaceVariant),
+                const SizedBox(width: 4),
+                Expanded(child: Text(number.address!.resolve(lang), style: theme.textTheme.bodyMedium)),
+              ],
+            ),
+          ],
           const SizedBox(height: JSpace.xs),
           Text(number.description.resolve(lang), style: theme.textTheme.bodyMedium),
           if (!v.isVerified) ...[
@@ -228,6 +347,23 @@ class NumberCard extends ConsumerWidget {
               label: Text(s.callNumber(number.number)),
             ),
           ),
+          if (number.otherNumbers.isNotEmpty) ...[
+            const SizedBox(height: JSpace.sm),
+            Text(s.otherNumbers, style: theme.textTheme.labelLarge),
+            const SizedBox(height: 4),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final other in number.otherNumbers)
+                  ActionChip(
+                    avatar: const Icon(Icons.call, size: 18),
+                    label: Text(localizedDigits(_grouped(other), lang)),
+                    onPressed: () => ref.read(phoneServiceProvider).dial(other),
+                  ),
+              ],
+            ),
+          ],
         ],
       ),
     );

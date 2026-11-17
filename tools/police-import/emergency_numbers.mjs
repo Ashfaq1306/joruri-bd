@@ -1,7 +1,9 @@
-// National emergency numbers, checked against official sources on 2026-11-04.
+// National emergency numbers, checked against official sources on 2026-11-04,
+// plus local ambulance services (ambulances.mjs, unverified).
 //   node emergency_numbers.mjs            → rewrites apps/mobile/assets/seed/emergency_numbers.json
 //   node emergency_numbers.mjs --publish  → also writes them to Firestore and sends them to phones
 import fs from 'node:fs';
+import { ambulances } from './ambulances.mjs';
 
 const CHECKED = '2026-11-04';
 const POLICE = { sourceName: 'Bangladesh Police — Hot Line Number', sourceUrl: 'https://www.police.gov.bd/en/hot_line_number' };
@@ -9,7 +11,7 @@ const FIRE = { sourceName: 'Fire Service and Civil Defence', sourceUrl: 'https:/
 const ok = (src, note) => ({ status: 'verified', ...src, checkedOn: CHECKED, note });
 const notYet = (src, note) => ({ status: 'unverified', ...src, checkedOn: CHECKED, note });
 
-export const numbers = [
+export const national = [
   {
     id: 'bd-999', number: '999', category: 'national', alsoCovers: ['police', 'fire', 'ambulance'],
     name: { en: 'National Emergency Service', bn: 'জাতীয় জরুরি সেবা' },
@@ -113,9 +115,12 @@ export const numbers = [
   },
 ];
 
+// National numbers, then local ambulance services (ambulances.mjs).
+export const numbers = [...national, ...ambulances];
+
 const file = new URL('../../apps/mobile/assets/seed/emergency_numbers.json', import.meta.url);
-fs.writeFileSync(file, JSON.stringify({ schemaVersion: 1, contentVersion: '2026-11-04.1', numbers }, null, 2) + '\n');
-console.log(`${numbers.length} numbers written to the app's bundled data`);
+fs.writeFileSync(file, JSON.stringify({ schemaVersion: 1, contentVersion: '2026-11-17.1', numbers }, null, 2) + '\n');
+console.log(`${numbers.length} numbers (${ambulances.length} ambulance services) written to the app's bundled data`);
 
 if (process.argv.includes('--publish')) {
   const { listAll, commit, publishSnapshots } = await import('../lib/firestore.mjs');

@@ -45,6 +45,16 @@ class ProfileCard extends ConsumerWidget {
               icon: const Icon(Icons.person_add),
               label: Text(s.saveAccount),
             ),
+            if (ref.watch(authUserProvider).valueOrNull == null) ...[
+              const SizedBox(height: JSpace.sm),
+              Text(s.haveAccountBody, style: theme.textTheme.bodySmall),
+              const SizedBox(height: JSpace.xs),
+              OutlinedButton.icon(
+                onPressed: () => context.push('/sign-in'),
+                icon: const Icon(Icons.login),
+                label: Text(s.logIn),
+              ),
+            ],
           ],
         ),
       );
@@ -120,8 +130,8 @@ class ProfileCard extends ConsumerWidget {
             const SizedBox(height: JSpace.sm),
             FilledButton.icon(
               onPressed: () => context.push('/sign-in'),
-              icon: const Icon(Icons.account_circle_outlined),
-              label: Text(s.signInWithGoogle),
+              icon: const Icon(Icons.login),
+              label: Text(s.logIn),
             ),
           ] else if (!sync.running &&
               (sync.status == SyncStatus.waitingForNetwork ||

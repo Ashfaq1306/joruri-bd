@@ -267,7 +267,7 @@ class StringsBn extends AppStrings {
 
   @override String get brandLine => 'জরুরি সহায়ক অ্যাপ';
   @override String get createAccount => 'আপনার অ্যাকাউন্ট তৈরি করুন';
-  @override String get accountWhy => 'যেন সাহায্য সঠিক মানুষের কাছে পৌঁছায়। তথ্য এই ফোনে থাকে; অনলাইন রক্তদাতা তালিকায় থাকতে পরে Google দিয়ে সাইন ইন করুন।';
+  @override String get accountWhy => 'যেন সাহায্য সঠিক মানুষের কাছে পৌঁছায়। তথ্য এই ফোনে থাকে; অনলাইন রক্তদাতা তালিকায় থাকতে পরে লগ ইন করুন।';
   @override String get fullName => 'পুরো নাম';
   @override String get mobileNumber => 'মোবাইল নম্বর';
   @override String get yourBloodGroup => 'আপনার রক্তের গ্রুপ';
@@ -314,7 +314,7 @@ class StringsBn extends AppStrings {
   @override String get phoneChangedReverify => 'আপনার নম্বর বদলেছে। দেখা যেতে নতুন নম্বর যাচাই করুন।';
 
   @override String get signInTitle => 'সাইন ইন';
-  @override String get signInBody => 'রক্তদাতা প্রোফাইল অনলাইনে রাখতে এবং সরাসরি রক্তদাতাদের তালিকা দেখতে Google বা ইমেইল দিয়ে সাইন ইন করুন। আপনার প্রোফাইল সবসময় এই ফোনেও সংরক্ষিত থাকে।';
+  @override String get signInBody => 'রক্তদাতা প্রোফাইল অনলাইনে রাখতে, সরাসরি রক্তদাতাদের তালিকা দেখতে এবং যেকোনো ফোনে প্রোফাইল ফিরে পেতে লগ ইন করুন। আপনার প্রোফাইল সবসময় এই ফোনেও সংরক্ষিত থাকে।';
   @override String get signInWithGoogle => 'Google দিয়ে সাইন ইন';
   @override String get signInFailed => 'সাইন ইন হয়নি। ইন্টারনেট দেখে আবার চেষ্টা করুন।';
   @override String get signInNotAvailable => 'এখন সাইন ইন করা যাচ্ছে না। বাকি সব কাজ করবে।';
@@ -495,5 +495,30 @@ class StringsBn extends AppStrings {
   @override String get notifyWholeCountryBody => 'সব জেলার নোটিফিকেশন পান, যেমন অন্য জেলায় থাকা পরিবারের খোঁজ রাখতে।';
   @override String get getReadyBefore => 'আগে থেকে প্রস্তুতি';
   @override String get afterItPasses => 'দুর্যোগের পরে';
+  @override String get ambulanceServices => 'শহরভিত্তিক অ্যাম্বুলেন্স সেবা';
+  @override String get ambulanceListNote => 'MedicsBD-র তালিকা (২০২১) থেকে হাসপাতাল ও বেসরকারি অ্যাম্বুলেন্স। এখনো ফোন করে যাচাই করা হয়নি, নম্বর বদলে থাকতে পারে। আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।';
+  @override String ambulanceServicesCount(int n) => 'ঢাকা, চট্টগ্রাম, কুমিল্লা, রাজশাহী ও খুলনায় $nটি অ্যাম্বুলেন্স সেবা';
+  @override String get yourDistrictTag => 'আপনার জেলা';
+  @override String get logIn => 'লগ ইন';
+  @override String get logInTitle => 'লগ ইন বা অ্যাকাউন্ট তৈরি';
+  @override String get logInBody => 'আগে থেকেই জরুরি বিডি অ্যাকাউন্ট আছে? একই ইমেইল ও পাসওয়ার্ড দিয়ে লগ ইন করুন, এই ফোনে বা নতুন ফোনে। আপনার প্রোফাইল নিজে থেকেই ফিরে আসবে।';
+  @override String get createAccountTab => 'অ্যাকাউন্ট তৈরি';
+  @override String get createAccountBody => 'ইমেইল ও পাসওয়ার্ড দিয়ে একবারই অ্যাকাউন্ট তৈরি করুন। পরের বার শুধু লগ ইন করবেন।';
+  @override String get passwordLabel => 'পাসওয়ার্ড';
+  @override String get confirmPasswordLabel => 'পাসওয়ার্ড আবার লিখুন';
+  @override String get showPassword => 'পাসওয়ার্ড দেখুন';
+  @override String get hidePassword => 'পাসওয়ার্ড লুকান';
+  @override String get forgotPassword => 'পাসওয়ার্ড ভুলে গেছেন?';
+  @override String passwordResetSent(String email) => '$email ঠিকানায় একটি ইমেইল পাঠানো হয়েছে। এর লিংক খুলে নতুন পাসওয়ার্ড দিন, তারপর এখানে লগ ইন করুন। স্প্যাম ফোল্ডারও দেখুন।';
+  @override String get passwordTooShort => 'পাসওয়ার্ডে অন্তত ৬টি অক্ষর দিন।';
+  @override String get passwordsDontMatch => 'দুটি পাসওয়ার্ড এক নয়।';
+  @override String get wrongEmailOrPassword => 'ইমেইল বা পাসওয়ার্ড ভুল। আবার চেষ্টা করুন, অথবা "পাসওয়ার্ড ভুলে গেছেন?" চাপুন।';
+  @override String get emailAlreadyHasAccount => 'এই ইমেইলে আগেই অ্যাকাউন্ট আছে। লগ ইন করুন। আগে কখনো পাসওয়ার্ড না দিয়ে থাকলে (Google বা ইমেইল লিংক দিয়ে ঢুকেছিলেন), "পাসওয়ার্ড ভুলে গেছেন?" চেপে পাসওয়ার্ড ঠিক করুন, অথবা Google ব্যবহার করুন।';
+  @override String get noInternetTryAgain => 'ইন্টারনেট সংযোগ নেই। সংযোগ দিয়ে আবার চেষ্টা করুন।';
+  @override String get continueWithGoogle => 'Google দিয়ে চালিয়ে যান';
+  @override String get haveAccountTitle => 'আগে থেকেই অ্যাকাউন্ট আছে?';
+  @override String get haveAccountBody => 'লগ ইন করলে আপনার সংরক্ষিত প্রোফাইল ফিরে আসবে। আবার পূরণ করতে হবে না।';
+  @override String get profileRestored => 'আবার স্বাগতম। আপনার প্রোফাইল ফিরিয়ে আনা হয়েছে।';
+  @override String get stayLoggedIn => 'সাইন আউট না করা পর্যন্ত এই ফোনে লগ ইন থাকবেন।';
   @override String get draftDisasterBanner => 'খসড়া: সরকারি ও রেড ক্রিসেন্টের নির্দেশনা অনুযায়ী লেখা, দুর্যোগ ব্যবস্থাপনা অধিদপ্তর এখনো যাচাই করেনি। সব সময় প্রশাসন ও সিপিপি স্বেচ্ছাসেবকদের নির্দেশ মানুন।';
 }

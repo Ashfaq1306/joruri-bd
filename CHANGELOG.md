@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.8.0 (build 20) — 2026-11-17
+**Log in once: accounts with e-mail and password**
+- New **Log in / Create account** screen. Create an account once with an e-mail address and a password (or Google), then just **log in**, on this phone or a new one. No more e-mail links (the free plan allowed only 5 a day for everyone). The phone stays logged in until you sign out.
+- **Your profile comes back when you log in.** It used to be only sent online, never read back, so after reinstalling the app or changing phone people had to fill in the account form again. Now the profile saved with the account is restored by itself (also at app start when logged in with no profile on the phone).
+- Onboarding: **"Already have an account? Log in"** above the account form; after logging in, the form is skipped. After filling the form, the next screen opens on **Create account**. Settings → profile card: **Log in** button when there is no profile on the phone.
+- **Forgot password?** sends a reset e-mail. People who signed in with Google or an e-mail link before can use it to set a password for the same account.
+- Clear messages for wrong password, address already registered (switches to Log in), short or mismatched passwords and no internet.
+
+**Ambulance services by city**
+- The Ambulance screen now lists **33 hospital and private ambulance services** in Dhaka, Chattogram, Cumilla, Rajshahi and Khulna, grouped by city with your district first, each with address, a call button and its other numbers. 999 stays at the top.
+- Source: the MedicsBD ambulance list (medicsbd.com/ambulance-info). The live page showed no entries on 2026-11-17 ("The list is being updated"), so the list MedicsBD published (Wayback Machine copy of 12 Aug 2021) was used. Only services with a mobile number were imported; landline-only entries use 7-digit Dhaka numbers from before the BTCL renumbering and cannot be dialled as printed. All entries are marked **not yet verified** until someone calls them (`tools/police-import/ambulances.mjs`).
+- The list of all numbers links to the ambulances instead of listing them. The admin website's Emergency numbers page can now set a district, an address and other numbers.
+
 ## 1.7.0 (build 19) — 2026-11-15
 **Disaster alerts and warnings**
 - New **Disaster alerts** screen (Home → Disaster): the active warnings for your district first, then the rest of the country, with level (Advisory, Be alert, Warning, Emergency), area, issue and end time, and the source.

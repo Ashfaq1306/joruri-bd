@@ -119,6 +119,23 @@ class ProfileSync {
     }
   }
 
+  /// The profile saved online for the person signed in, or null (none
+  /// saved, signed out or offline). Used to bring it back after logging in
+  /// on a new phone or after reinstalling the app.
+  Future<UserProfile?> pull() async {
+    try {
+      final user = await _user();
+      if (user == null) return null;
+      final snap = await FirebaseFirestore.instance.doc('users/${user.uid}').get().timeout(_timeout);
+      final data = snap.data();
+      if (data == null) return null;
+      return UserProfile.fromJson(data);
+    } catch (e, s) {
+      AppLogger.error('Online profile could not be read', e, s);
+      return null;
+    }
+  }
+
   /// "Delete my data". Removes the private profile. The donor listing is
   /// deleted when allowed; if an admin has hidden it, the rules keep it (so
   /// moderation cannot be undone) and it is switched off instead.

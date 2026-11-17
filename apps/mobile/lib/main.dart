@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:joruri_bd/app/app.dart';
 import 'package:joruri_bd/app/providers.dart';
 import 'package:joruri_bd/core/connectivity/network_status.dart';
+import 'package:joruri_bd/core/firebase/firebase_ready.dart';
 import 'package:joruri_bd/core/logging/app_logger.dart';
 import 'package:joruri_bd/features/alerts/data/alert_notifications.dart';
 import 'package:joruri_bd/features/alerts/data/alerts_repository.dart';
@@ -15,6 +16,7 @@ import 'package:joruri_bd/features/settings/presentation/settings_controller.dar
 import 'package:joruri_bd/features/blood/data/donor_repository.dart';
 import 'package:joruri_bd/features/directory/data/content_repository.dart';
 import 'package:joruri_bd/features/directory/data/places_repository.dart';
+import 'package:joruri_bd/features/profile/presentation/profile_controller.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_sync_controller.dart';
 
 Future<void> main() async {
@@ -65,6 +67,13 @@ Future<void> main() async {
         await alerts.askPermissionOnce();
       }
     });
+    // Logged in but no profile on this phone (e.g. the app was reinstalled):
+    // bring back the one saved with the account.
+    container.listen<AsyncValue<Object?>>(authUserProvider, (_, next) {
+      if (next.valueOrNull != null && container.read(profileProvider) == null) {
+        container.read(profileProvider.notifier).restoreFromAccount().ignore();
+      }
+    }, fireImmediately: true);
     // A new user is asked right after finishing onboarding.
     container.listen<bool>(settingsProvider.select((s) => s.onboardingDone), (was, done) {
       if (done && was == false && container.read(alertSettingsProvider).notify) {

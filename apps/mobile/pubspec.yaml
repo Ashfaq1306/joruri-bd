@@ -1,7 +1,7 @@
 name: joruri_bd
 description: JORURI BD - Bangladesh emergency response companion. Help when every second matters.
 publish_to: none
-version: 1.7.0+19
+version: 1.8.0+20
 
 environment:
   sdk: ^3.5.0
