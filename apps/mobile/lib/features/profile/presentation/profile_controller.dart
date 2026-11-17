@@ -35,6 +35,24 @@ class ProfileController extends Notifier<UserProfile?> {
     return ref.read(profileSyncStatusProvider.notifier).sync();
   }
 
+  Future<bool>? _restoring;
+
+  /// After logging in on a phone with no profile yet (new phone, app
+  /// reinstalled): brings back the profile saved with the account, so the
+  /// person never has to fill it in again. True when one was restored.
+  Future<bool> restoreFromAccount() => _restoring ??= _restore().whenComplete(() => _restoring = null);
+
+  Future<bool> _restore() async {
+    if (state != null) return false;
+    final online = await ref.read(profileSyncProvider).pull();
+    // Something typed on the phone meanwhile wins.
+    if (online == null || state != null) return false;
+    state = online;
+    await ref.read(profileRepositoryProvider).save(online);
+    ref.read(profileSyncStatusProvider.notifier).markSynced();
+    return true;
+  }
+
   /// The donor switches their own availability on and off.
   Future<void> setAvailable(bool value) async {
     final current = state;

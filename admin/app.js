@@ -88,12 +88,16 @@ const SCHEMAS = {
   emergency_numbers: {
     title: 'Emergency numbers', idFrom: (d) => 'bd-' + slug(d.number),
     columns: [['Number', (d) => d.number], ['Name', (d) => d.name?.en], ['Category', (d) => d.category],
+      ['District', (d) => d.districtId ? districtName(d.districtId) : 'Whole country'],
       ['Checked', (d) => d.verification?.status === 'verified' ? '✔ verified' : '⚠ not yet'], ['On phones', (d) => d.published ? 'Yes' : 'Hidden']],
     fields: [
       { k: 'number', label: 'Number to dial', required: true },
       { k: 'category', label: 'Category', type: 'select', options: NUMBER_CATEGORIES },
       { k: 'alsoCovers', label: 'Also shown under (comma separated: police, fire, ambulance)', type: 'csv' },
       bi('name', 'Name'), bi('description', 'Description', true),
+      { k: 'districtId', label: 'District (only for a local service, e.g. an ambulance in one city; empty = whole country)', type: 'district' },
+      bi('address', 'Address (local services)'),
+      { k: 'otherNumbers', label: 'Other numbers (comma separated)', type: 'csv' },
       { k: 'verification.status', label: 'Checked by a person?', type: 'select', options: ['unverified', 'verified'] },
       { k: 'verification.sourceName', label: 'Source name (e.g. Bangladesh Police website)' },
       { k: 'verification.sourceUrl', label: 'Source link' },

@@ -267,7 +267,7 @@ class StringsEn extends AppStrings {
 
   @override String get brandLine => 'Emergency companion';
   @override String get createAccount => 'Create your account';
-  @override String get accountWhy => 'So help reaches the right person. Saved on this phone; sign in with Google later to appear in the online donor list.';
+  @override String get accountWhy => 'So help reaches the right person. Saved on this phone; log in later to appear in the online donor list.';
   @override String get fullName => 'Full name';
   @override String get mobileNumber => 'Mobile number';
   @override String get yourBloodGroup => 'Your blood group';
@@ -314,7 +314,7 @@ class StringsEn extends AppStrings {
   @override String get phoneChangedReverify => 'Your number changed. Verify the new number to stay visible.';
 
   @override String get signInTitle => 'Sign in';
-  @override String get signInBody => 'Sign in with Google or your e-mail to put your donor profile online and to see the live donor list. Your profile is always saved on this phone too.';
+  @override String get signInBody => 'Log in to put your donor profile online, see the live donor list and get your profile back on any phone. Your profile is always saved on this phone too.';
   @override String get signInWithGoogle => 'Sign in with Google';
   @override String get signInFailed => 'Sign-in did not work. Check the internet and try again.';
   @override String get signInNotAvailable => 'Sign-in is not available right now. Everything else works.';
@@ -495,5 +495,30 @@ class StringsEn extends AppStrings {
   @override String get notifyWholeCountryBody => 'Get notified for every district, for example to look after family elsewhere.';
   @override String get getReadyBefore => 'Get ready before it comes';
   @override String get afterItPasses => 'After it has passed';
+  @override String get ambulanceServices => 'Ambulance services by city';
+  @override String get ambulanceListNote => 'Hospital and private ambulances from the MedicsBD list (2021). Not yet confirmed by phone, so numbers may have changed. Ask the fare first. In a life-threatening emergency, call 999 first.';
+  @override String ambulanceServicesCount(int n) => '$n ambulance services in Dhaka, Chattogram, Cumilla, Rajshahi and Khulna';
+  @override String get yourDistrictTag => 'your district';
+  @override String get logIn => 'Log in';
+  @override String get logInTitle => 'Log in or create account';
+  @override String get logInBody => 'Already have a Joruri BD account? Log in with the same e-mail and password, on this phone or a new one. Your profile comes back by itself.';
+  @override String get createAccountTab => 'Create account';
+  @override String get createAccountBody => 'Create your account once with an e-mail and a password. Next time, just log in.';
+  @override String get passwordLabel => 'Password';
+  @override String get confirmPasswordLabel => 'Password again';
+  @override String get showPassword => 'Show password';
+  @override String get hidePassword => 'Hide password';
+  @override String get forgotPassword => 'Forgot password?';
+  @override String passwordResetSent(String email) => 'We sent an e-mail to $email. Open the link in it to set a new password, then log in here. Check the spam folder too.';
+  @override String get passwordTooShort => 'Use at least 6 characters for the password.';
+  @override String get passwordsDontMatch => 'The two passwords are not the same.';
+  @override String get wrongEmailOrPassword => 'Wrong e-mail or password. Try again, or tap "Forgot password?".';
+  @override String get emailAlreadyHasAccount => 'This e-mail already has an account. Log in instead. If you never set a password (you used Google or an e-mail link before), tap "Forgot password?" to set one, or use Google.';
+  @override String get noInternetTryAgain => 'No internet connection. Connect and try again.';
+  @override String get continueWithGoogle => 'Continue with Google';
+  @override String get haveAccountTitle => 'Already have an account?';
+  @override String get haveAccountBody => 'Log in and your saved profile comes back. No need to fill it in again.';
+  @override String get profileRestored => 'Welcome back. Your profile is restored.';
+  @override String get stayLoggedIn => 'You stay logged in on this phone until you sign out.';
   @override String get draftDisasterBanner => 'Draft: based on government and Red Crescent guidance, not yet checked by the Department of Disaster Management. Always follow officials and CPP volunteers.';
 }

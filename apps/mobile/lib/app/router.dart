@@ -96,7 +96,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/police-stations', builder: (_, __) => const StationsScreen(service: StationService.police)),
       GoRoute(path: '/fire-stations', builder: (_, __) => const StationsScreen(service: StationService.fire)),
       GoRoute(path: '/profile', builder: (_, __) => const ProfileScreen()),
-      GoRoute(path: '/sign-in', builder: (_, __) => const SignInScreen()),
+      GoRoute(
+        path: '/sign-in',
+        builder: (_, state) => SignInScreen(startWithCreate: state.uri.queryParameters['mode'] == 'create'),
+      ),
       // Old link from the SMS version.
       GoRoute(path: '/verify', redirect: (_, __) => '/sign-in'),
       GoRoute(path: '/blood/donors', builder: (_, __) => const DonorListScreen()),

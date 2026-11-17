@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:joruri_design_system/joruri_design_system.dart';
 
+import 'package:joruri_bd/core/firebase/firebase_ready.dart';
+
 import 'package:joruri_bd/features/contacts/presentation/contacts_list.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_controller.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_form.dart';
@@ -44,9 +46,18 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     if (profile == null) return;
     await ref.read(profileProvider.notifier).save(profile);
     if (!mounted) return;
-    // Sign in with Google now (or "Later"), then continue.
-    await context.push<bool>('/sign-in');
+    // Create the account online now (or "Later"), then continue. Already
+    // logged in: the profile was just put online.
+    if (!ref.read(signedInProvider)) await context.push<bool>('/sign-in?mode=create');
     if (mounted) _go(2);
+  }
+
+  /// Someone who already has an account (new phone, app reinstalled): log
+  /// in, and the saved profile comes back without filling the form again.
+  Future<void> _logIn() async {
+    await context.push<bool>('/sign-in');
+    if (!mounted) return;
+    if (ref.read(profileProvider) != null) _go(2);
   }
 
   void _finish() =>
@@ -124,7 +135,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       page(
         title: s.createAccount,
         body: s.accountWhy,
-        children: [ProfileForm(key: _profileForm)],
+        children: [
+          _HaveAccountCard(onLogIn: _logIn),
+          const SizedBox(height: JSpace.md),
+          ProfileForm(key: _profileForm),
+        ],
       ),
       // 3. Contacts
       page(title: s.contactsStepTitle, body: s.contactsStepBody, children: const [ContactsList()]),
@@ -210,6 +225,50 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         ),
       ),
     ),
+    );
+  }
+}
+
+/// "Already have an account? Log in" above the account form.
+class _HaveAccountCard extends ConsumerWidget {
+  const _HaveAccountCard({required this.onLogIn});
+
+  final VoidCallback onLogIn;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final s = context.s;
+    final theme = Theme.of(context);
+    final user = ref.watch(authUserProvider).valueOrNull;
+    if (user != null) {
+      return Text(s.signedInAs(user.email ?? user.displayName ?? ''),
+          style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600));
+    }
+    return Container(
+      padding: const EdgeInsets.all(JSpace.md),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.primary.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(JSize.radius),
+        border: Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.25)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.account_circle_outlined, size: 32, color: theme.colorScheme.primary),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(s.haveAccountTitle, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+                const SizedBox(height: 2),
+                Text(s.haveAccountBody, style: theme.textTheme.bodySmall),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          FilledButton.tonal(onPressed: onLogIn, child: Text(s.logIn)),
+        ],
+      ),
     );
   }
 }

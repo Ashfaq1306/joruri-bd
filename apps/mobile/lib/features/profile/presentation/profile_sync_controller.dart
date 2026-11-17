@@ -54,5 +54,8 @@ class ProfileSyncController extends Notifier<ProfileSyncState> {
     if (hasPending) await sync();
   }
 
+  /// The profile on the phone was just copied from the online one.
+  void markSynced() => state = ProfileSyncState(SyncStatus.synced, at: DateTime.now());
+
   void reset() => state = const ProfileSyncState(SyncStatus.signedOut);
 }

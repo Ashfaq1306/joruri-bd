@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-11-04.1",
+  "contentVersion": "2026-11-17.1",
   "numbers": [
     {
       "id": "bd-999",
@@ -225,6 +225,888 @@
         "sourceUrl": "https://www.police.gov.bd/en/hot_line_number",
         "checkedOn": "2026-11-04",
         "note": "Listed as \"দুদক হটলাইন ১০৬\" on the Bangladesh Police and Fire Service websites (checked 2026-11-04)."
+      }
+    },
+    {
+      "id": "amb-al-markazul-islami",
+      "number": "01819732905",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Al-Markazul Islami ambulance service",
+        "bn": "আল-মারকাজুল ইসলামী অ্যাম্বুলেন্স সার্ভিস"
+      },
+      "address": {
+        "en": "21/17 Babar Road, Mohammadpur, Dhaka",
+        "bn": "২১/১৭ বাবর রোড, মোহাম্মদপুর, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-evercare-dhaka",
+      "number": "01714090000",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Evercare Hospital Dhaka (formerly Apollo)",
+        "bn": "এভারকেয়ার হাসপাতাল ঢাকা (সাবেক অ্যাপোলো)"
+      },
+      "address": {
+        "en": "Plot 81, Block E, Bashundhara R/A, Dhaka",
+        "bn": "প্লট ৮১, ব্লক ই, বসুন্ধরা আ/এ, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01713063067"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-aysha-memorial",
+      "number": "01919372647",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Aysha Memorial Specialised Hospital",
+        "bn": "আয়শা মেমোরিয়াল স্পেশালাইজড হাসপাতাল"
+      },
+      "address": {
+        "en": "74/G Peak Square, Mohakhali, Dhaka",
+        "bn": "৭৪/জি পিক স্কয়ার, মহাখালী, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01915490007"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-cmh-dhaka",
+      "number": "01769013311",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "CMH Dhaka, 24-hour ambulance",
+        "bn": "সিএমএইচ ঢাকা, ২৪ ঘণ্টা অ্যাম্বুলেন্স"
+      },
+      "address": {
+        "en": "Combined Military Hospital, Dhaka Cantonment (Emergency & Casualty)",
+        "bn": "সম্মিলিত সামরিক হাসপাতাল, ঢাকা সেনানিবাস (জরুরি বিভাগ)"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01724579521"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-comfort-nursing-home",
+      "number": "01731956033",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Comfort Nursing Home",
+        "bn": "কমফোর্ট নার্সিং হোম"
+      },
+      "address": {
+        "en": "167/B Green Road, Dhanmondi, Dhaka",
+        "bn": "১৬৭/বি গ্রিন রোড, ধানমন্ডি, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01552468377"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-criticare-ems",
+      "number": "01711191947",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Criticare EMS",
+        "bn": "ক্রিটিকেয়ার ইএমএস"
+      },
+      "address": {
+        "en": "A.K. Complex (2nd floor), 19 Green Road, Dhaka",
+        "bn": "এ.কে. কমপ্লেক্স (২য় তলা), ১৯ গ্রিন রোড, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-dagma-hospital",
+      "number": "01921088076",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Dagma Diagnostic Hospital",
+        "bn": "ডাগমা ডায়াগনস্টিক হাসপাতাল"
+      },
+      "address": {
+        "en": "Cha-88/1 Bir Uttam Rafiqul Islam Avenue, North Badda, Dhaka",
+        "bn": "ছ-৮৮/১ বীর উত্তম রফিকুল ইসলাম এভিনিউ, উত্তর বাড্ডা, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-day-night-ambulance",
+      "number": "01711544328",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Day-Night Ambulance Service",
+        "bn": "ডে-নাইট অ্যাম্বুলেন্স সার্ভিস"
+      },
+      "address": {
+        "en": "Dhaka",
+        "bn": "ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-haf-hospital",
+      "number": "01741331446",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "H.A.F. General Hospital",
+        "bn": "এইচ.এ.এফ. জেনারেল হাসপাতাল"
+      },
+      "address": {
+        "en": "Cha-88/5 Hasen Uddin Road, North Badda, Dhaka",
+        "bn": "ছ-৮৮/৫ হাসেন উদ্দিন রোড, উত্তর বাড্ডা, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-ibrahim-cardiac",
+      "number": "01713003004",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Ibrahim Cardiac Hospital, 24-hour ambulance",
+        "bn": "ইব্রাহিম কার্ডিয়াক হাসপাতাল, ২৪ ঘণ্টা অ্যাম্বুলেন্স"
+      },
+      "address": {
+        "en": "Shahbag, Dhaka",
+        "bn": "শাহবাগ, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-panjeri-hospital",
+      "number": "01678074437",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Panjeri Hospital",
+        "bn": "পাঞ্জেরী হাসপাতাল"
+      },
+      "address": {
+        "en": "K-11/1 Shahjahanpur bus stand, Progoti Sarani, Dhaka",
+        "bn": "কে-১১/১ শাহজাহানপুর বাসস্ট্যান্ড, প্রগতি সরণি, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01727360727"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-rafa-medical",
+      "number": "01975090807",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Rafa Medical",
+        "bn": "রাফা মেডিকেল"
+      },
+      "address": {
+        "en": "Insurance Academy Bhaban, 53 Mohakhali TB Gate, Dhaka",
+        "bn": "ইন্স্যুরেন্স একাডেমি ভবন, ৫৩ মহাখালী টিবি গেট, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-shahabuddin-medical",
+      "number": "01716777790",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Shahabuddin Medical College Hospital",
+        "bn": "শাহাবুদ্দিন মেডিকেল কলেজ হাসপাতাল"
+      },
+      "address": {
+        "en": "House 12, Road 113/A, Gulshan 2, Dhaka",
+        "bn": "বাড়ি ১২, রোড ১১৩/এ, গুলশান ২, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01919777790"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-united-hospital",
+      "number": "01914001326",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "United Hospital",
+        "bn": "ইউনাইটেড হাসপাতাল"
+      },
+      "address": {
+        "en": "Gulshan, Dhaka",
+        "bn": "গুলশান, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-modern-ambulance",
+      "number": "01711450839",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Modern Ambulance Service",
+        "bn": "মডার্ন অ্যাম্বুলেন্স সার্ভিস"
+      },
+      "address": {
+        "en": "PG Hospital gate 1, Shahbag, Dhaka",
+        "bn": "পিজি হাসপাতাল ১ নম্বর গেট, শাহবাগ, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01933342273",
+        "01924860108"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-labaid-dhanmondi",
+      "number": "01713330088",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Labaid Hospital",
+        "bn": "ল্যাবএইড হাসপাতাল"
+      },
+      "address": {
+        "en": "House 6, Road 4, Dhanmondi, Dhaka",
+        "bn": "বাড়ি ৬, রোড ৪, ধানমন্ডি, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01713091940"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-desh-ambulance",
+      "number": "01790509607",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Desh Ambulance Service",
+        "bn": "দেশ অ্যাম্বুলেন্স সার্ভিস"
+      },
+      "address": {
+        "en": "82 East Ahmed Nagar, Mirpur, Dhaka",
+        "bn": "৮২ পূর্ব আহমেদ নগর, মিরপুর, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-ad-din-dhaka",
+      "number": "01713488411",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Ad-Din Medical College Hospital",
+        "bn": "আদ্-দ্বীন মেডিকেল কলেজ হাসপাতাল"
+      },
+      "address": {
+        "en": "2 Bara Moghbazar, Outer Circular Road, Dhaka",
+        "bn": "২ বড় মগবাজার, আউটার সার্কুলার রোড, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01713488412"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-islami-bank-mirpur",
+      "number": "01992346634",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "Islami Bank Hospital Mirpur",
+        "bn": "ইসলামী ব্যাংক হাসপাতাল মিরপুর"
+      },
+      "address": {
+        "en": "Plot 31, Main Road 3, Begum Rokeya Sarani, Mirpur, Dhaka",
+        "bn": "প্লট ৩১, মেইন রোড ৩, বেগম রোকেয়া সরণি, মিরপুর, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-24-hours-ambulance",
+      "number": "01911125156",
+      "category": "ambulance",
+      "districtId": "dhaka",
+      "name": {
+        "en": "24 Hours Ambulance",
+        "bn": "২৪ আওয়ার্স অ্যাম্বুলেন্স"
+      },
+      "address": {
+        "en": "Moghbazar, Airport Road, Basabo and Dhanmondi, Dhaka",
+        "bn": "মগবাজার, এয়ারপোর্ট রোড, বাসাবো ও ধানমন্ডি, ঢাকা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01710060020"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-alif-ambulance",
+      "number": "01701777782",
+      "category": "ambulance",
+      "districtId": "chattogram",
+      "name": {
+        "en": "Alif Ambulance",
+        "bn": "আলিফ অ্যাম্বুলেন্স"
+      },
+      "address": {
+        "en": "Panchlaish, Chattogram",
+        "bn": "পাঁচলাইশ, চট্টগ্রাম"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-afc-fortis-ctg",
+      "number": "01933226666",
+      "category": "ambulance",
+      "districtId": "chattogram",
+      "name": {
+        "en": "AFC Health Fortis Heart Institute",
+        "bn": "এএফসি হেলথ ফর্টিস হার্ট ইনস্টিটিউট"
+      },
+      "address": {
+        "en": "12/12 O.R. Nizam Road, Chattogram",
+        "bn": "১২/১২ ও.আর. নিজাম রোড, চট্টগ্রাম"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-sts-apollo-ctg",
+      "number": "01714162759",
+      "category": "ambulance",
+      "districtId": "chattogram",
+      "name": {
+        "en": "STS Chattogram Apollo Hospital",
+        "bn": "এসটিএস চট্টগ্রাম অ্যাপোলো হাসপাতাল"
+      },
+      "address": {
+        "en": "3095/A O.R. Nizam Road (GEC/Golpahar), Panchlaish, Chattogram",
+        "bn": "৩০৯৫/এ ও.আর. নিজাম রোড (গোলপাহাড়), পাঁচলাইশ, চট্টগ্রাম"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-cmch",
+      "number": "01819637685",
+      "category": "ambulance",
+      "districtId": "chattogram",
+      "name": {
+        "en": "Chattogram Medical College Hospital",
+        "bn": "চট্টগ্রাম মেডিকেল কলেজ হাসপাতাল"
+      },
+      "address": {
+        "en": "57 K.B. Fazlul Kader Road, Panchlaish, Chattogram",
+        "bn": "৫৭ কে.বি. ফজলুল কাদের রোড, পাঁচলাইশ, চট্টগ্রাম"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-islami-bank-ctg",
+      "number": "01731253990",
+      "category": "ambulance",
+      "districtId": "chattogram",
+      "name": {
+        "en": "Islami Bank Hospital Chattogram",
+        "bn": "ইসলামী ব্যাংক হাসপাতাল চট্টগ্রাম"
+      },
+      "address": {
+        "en": "3 Sheikh Mujib Road, Agrabad, Chattogram",
+        "bn": "৩ শেখ মুজিব রোড, আগ্রাবাদ, চট্টগ্রাম"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-cumilla-trauma",
+      "number": "01735274020",
+      "category": "ambulance",
+      "districtId": "cumilla",
+      "name": {
+        "en": "Cumilla Trauma Centre",
+        "bn": "কুমিল্লা ট্রমা সেন্টার"
+      },
+      "address": {
+        "en": "511 Nazrul Avenue, Cumilla",
+        "bn": "৫১১ নজরুল এভিনিউ, কুমিল্লা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-gomti-hospital",
+      "number": "01842798083",
+      "category": "ambulance",
+      "districtId": "cumilla",
+      "name": {
+        "en": "Cumilla Gomti Hospital",
+        "bn": "কুমিল্লা গোমতী হাসপাতাল"
+      },
+      "address": {
+        "en": "Nazrul Avenue, Kandirpar, Cumilla",
+        "bn": "নজরুল এভিনিউ, কান্দিরপাড়, কুমিল্লা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-eastern-medical",
+      "number": "01730014800",
+      "category": "ambulance",
+      "districtId": "cumilla",
+      "name": {
+        "en": "Eastern Medical College Hospital",
+        "bn": "ইস্টার্ন মেডিকেল কলেজ হাসপাতাল"
+      },
+      "address": {
+        "en": "Kabila, Dhaka–Chattogram highway, Burichang, Cumilla",
+        "bn": "কাবিলা, ঢাকা–চট্টগ্রাম মহাসড়ক, বুড়িচং, কুমিল্লা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [
+        "01717031411",
+        "01748800590"
+      ],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-islami-bank-rajshahi",
+      "number": "01763930101",
+      "category": "ambulance",
+      "districtId": "rajshahi",
+      "name": {
+        "en": "Islami Bank Medical College Hospital",
+        "bn": "ইসলামী ব্যাংক মেডিকেল কলেজ হাসপাতাল"
+      },
+      "address": {
+        "en": "Medical College Road, Rajshahi",
+        "bn": "মেডিকেল কলেজ রোড, রাজশাহী"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-ad-din-akij",
+      "number": "01713488422",
+      "category": "ambulance",
+      "districtId": "khulna",
+      "name": {
+        "en": "Ad-Din Akij Medical College Hospital",
+        "bn": "আদ্-দ্বীন আকিজ মেডিকেল কলেজ হাসপাতাল"
+      },
+      "address": {
+        "en": "Boikali, Khulna",
+        "bn": "বৈকালী, খুলনা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-khulna-city-medical",
+      "number": "01858209392",
+      "category": "ambulance",
+      "districtId": "khulna",
+      "name": {
+        "en": "Khulna City Medical College Hospital",
+        "bn": "খুলনা সিটি মেডিকেল কলেজ হাসপাতাল"
+      },
+      "address": {
+        "en": "33 KDA Avenue, Royal Mor, Khulna",
+        "bn": "৩৩ কেডিএ এভিনিউ, রয়েল মোড়, খুলনা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-bd-eye-khulna",
+      "number": "01799209075",
+      "category": "ambulance",
+      "districtId": "khulna",
+      "name": {
+        "en": "Bangladesh Eye Hospital, Khulna",
+        "bn": "বাংলাদেশ আই হাসপাতাল, খুলনা"
+      },
+      "address": {
+        "en": "9/B Majid Sarani, Shibbari, Khulna",
+        "bn": "৯/বি মজিদ সরণি, শিববাড়ি, খুলনা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+      }
+    },
+    {
+      "id": "amb-gazi-medical",
+      "number": "01779656722",
+      "category": "ambulance",
+      "districtId": "khulna",
+      "name": {
+        "en": "Gazi Medical College Hospital",
+        "bn": "গাজী মেডিকেল কলেজ হাসপাতাল"
+      },
+      "address": {
+        "en": "19-21 Majid Sarani, Sonadanga, Khulna",
+        "bn": "১৯-২১ মজিদ সরণি, সোনাডাঙ্গা, খুলনা"
+      },
+      "description": {
+        "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
+        "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
+      },
+      "otherNumbers": [],
+      "verification": {
+        "status": "unverified",
+        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
+        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
+        "checkedOn": "2026-11-17",
+        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
       }
     }
   ]

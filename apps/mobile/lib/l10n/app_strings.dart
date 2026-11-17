@@ -381,6 +381,35 @@ abstract class AppStrings {
   String get signInEmailMismatch;
   String get emailDailyLimit;
 
+  // Ambulance services by city
+  String get ambulanceServices;
+  String get ambulanceListNote;
+  String ambulanceServicesCount(int n);
+  String get yourDistrictTag;
+
+  // Accounts with e-mail and password (create once, then log in)
+  String get logIn;
+  String get logInTitle;
+  String get logInBody;
+  String get createAccountTab;
+  String get createAccountBody;
+  String get passwordLabel;
+  String get confirmPasswordLabel;
+  String get showPassword;
+  String get hidePassword;
+  String get forgotPassword;
+  String passwordResetSent(String email);
+  String get passwordTooShort;
+  String get passwordsDontMatch;
+  String get wrongEmailOrPassword;
+  String get emailAlreadyHasAccount;
+  String get noInternetTryAgain;
+  String get continueWithGoogle;
+  String get haveAccountTitle;
+  String get haveAccountBody;
+  String get profileRestored;
+  String get stayLoggedIn;
+
   // App updates and announcements (managed on the admin website)
   String get updateAvailable;
   String get updateRequired;
