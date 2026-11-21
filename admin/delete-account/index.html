@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delete Joruri BD Account</title>
+<meta name="description" content="জরুরি বিডি অ্যাকাউন্ট ও তথ্য মুছুন · Delete your Joruri BD account and data.">
+<link rel="icon" href="../logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--green:#006A4E;--red:#C8102E;--ink:#14211C;--muted:#5a6a63;--bg:#f2f6f4;--card:#fff;--line:#dde5e1;--field:#fff;
+  font-family:'Hind Siliguri',system-ui,sans-serif;color:var(--ink);color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--ink:#e6efeb;--muted:#9fb1a9;--bg:#0b1411;--card:#111d19;--line:#24342e;--field:#0b1411;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);line-height:1.55}
+.hero{background:radial-gradient(120% 140% at 0 0,#0c8d68,#006A4E 48%,#004A36);color:#fff;padding:36px 16px 64px;text-align:center}
+.hero img{width:72px;height:72px;border-radius:20px;background:#fff;padding:6px}
+.hero h1{margin:12px 0 2px;font-size:26px}.hero p{margin:0;opacity:.9}
+.wrap{max-width:560px;margin:-40px auto 40px;padding:0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 10px 30px -18px rgba(0,0,0,.4);margin-bottom:16px}
+h2{font-size:19px;margin:0 0 6px}.muted{color:var(--muted)}a{color:var(--green)}
+ol,ul{padding-left:20px;margin:6px 0}li{margin:4px 0}
+label{display:block;font-weight:600;margin:12px 0 4px}
+input{width:100%;font:inherit;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--field);color:var(--ink)}
+button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:13px;width:100%;margin-top:12px;cursor:pointer}
+.primary{background:var(--green);color:#fff}.danger{background:var(--red);color:#fff}
+.ghost{background:none;color:var(--green);border:1px solid var(--line)}
+button:disabled{opacity:.6;cursor:wait}
+.msg{margin-top:12px;padding:12px;border-radius:12px;display:none}
+.msg.err{display:block;background:color-mix(in srgb,var(--red) 12%,transparent)}
+.msg.ok{display:block;background:color-mix(in srgb,var(--green) 14%,transparent)}
+.or{text-align:center;color:var(--muted);margin:14px 0 0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="hero">
+  <img src="../logo.png" alt="">
+  <h1>অ্যাকাউন্ট মুছুন · Delete account</h1>
+  <p>জরুরি বিডি · Joruri BD</p>
+</div>
+<div class="wrap">
+  <div class="card">
+    <h2>অ্যাপ থেকে · In the app</h2>
+    <ol>
+      <li>সেটিংস → গোপনীয়তা → <b>আমার তথ্য মুছুন</b>। <span class="muted">Settings → Privacy → <b>Delete my data</b>.</span></li>
+      <li><b>স্থায়ীভাবে মুছুন</b> চাপুন। <span class="muted">Tap <b>Delete forever</b>.</span></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>এখানে, অ্যাপ ছাড়া · Here, without the app</h2>
+    <p>যা মুছে যাবে: আপনার অ্যাকাউন্ট, প্রোফাইল (নাম, মোবাইল, রক্তের গ্রুপ, জেলা, এলাকা), রক্তদাতা তালিকার তথ্য ও জরুরি যোগাযোগ। এটি আর ফেরানো যাবে না।</p>
+    <p class="muted">What is deleted: your account, profile (name, mobile, blood group, district, area), donor listing and emergency contacts. It cannot be undone. Nothing is kept afterwards.</p>
+
+    <div id="signin">
+      <form id="pwForm">
+        <label for="email">ই-মেইল · E-mail</label>
+        <input id="email" type="email" autocomplete="username" required>
+        <label for="password">পাসওয়ার্ড · Password</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <button class="primary" type="submit">লগ ইন · Log in</button>
+      </form>
+      <button class="ghost" id="forgot" type="button">পাসওয়ার্ড ভুলে গেছেন? · Forgot password?</button>
+      <p class="or">অথবা · or</p>
+      <button class="ghost" id="google" type="button">গুগল দিয়ে লগ ইন · Log in with Google</button>
+    </div>
+
+    <div id="confirm" hidden>
+      <p>লগ ইন: <b id="who"></b><br><span class="muted">Logged in as the account above.</span></p>
+      <button class="danger" id="delete" type="button">স্থায়ীভাবে মুছুন · Delete forever</button>
+      <button class="ghost" id="cancel" type="button">বাতিল · Cancel</button>
+    </div>
+
+    <div class="msg" id="msg" role="status"></div>
+  </div>
+
+  <p class="muted" style="text-align:center"><a href="../privacy/">গোপনীয়তা নীতি · Privacy policy</a></p>
+</div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+import {
+  getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut,
+  sendPasswordResetEmail, deleteUser, onAuthStateChanged,
+} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+import { getFirestore, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+import { firebaseConfig } from '../firebase-config.js';
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const $ = (id) => document.getElementById(id);
+
+const show = (text, ok = false) => { const m = $('msg'); m.textContent = text; m.className = 'msg ' + (ok ? 'ok' : 'err'); };
+const clear = () => { $('msg').className = 'msg'; };
+const busy = (on) => document.querySelectorAll('button').forEach((b) => { b.disabled = on; });
+
+const explain = (e) => {
+  const code = (e && e.code) || '';
+  if (['auth/invalid-credential', 'auth/wrong-password', 'auth/user-not-found', 'auth/invalid-login-credentials'].includes(code))
+    return 'ই-মেইল বা পাসওয়ার্ড ভুল। Wrong e-mail or password.';
+  if (code === 'auth/too-many-requests') return 'অনেকবার চেষ্টা হয়েছে, পরে আবার চেষ্টা করুন। Too many tries, try again later.';
+  if (code === 'auth/network-request-failed' || code === 'unavailable') return 'ইন্টারনেট সংযোগ নেই। No internet connection.';
+  if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') return '';
+  if (code === 'auth/requires-recent-login') return 'নিরাপত্তার জন্য আবার লগ ইন করুন। Please log in again.';
+  console.error(e);
+  return 'কিছু একটা ভুল হয়েছে, আবার চেষ্টা করুন। Something went wrong, please try again.';
+};
+
+// Always start signed out on this page, so nobody deletes an account by accident.
+let fresh = false;
+onAuthStateChanged(auth, (user) => {
+  $('signin').hidden = !!(user && fresh);
+  $('confirm').hidden = !(user && fresh);
+  if (user && fresh) $('who').textContent = user.email || user.displayName || user.uid;
+  if (user && !fresh) signOut(auth);
+});
+
+const loggedIn = () => { fresh = true; clear(); $('signin').hidden = true; $('confirm').hidden = false;
+  const u = auth.currentUser; $('who').textContent = u.email || u.displayName || u.uid; };
+
+$('pwForm').addEventListener('submit', async (ev) => {
+  ev.preventDefault(); busy(true);
+  try { await signInWithEmailAndPassword(auth, $('email').value.trim(), $('password').value); loggedIn(); }
+  catch (e) { const t = explain(e); if (t) show(t); }
+  finally { busy(false); }
+});
+
+$('google').addEventListener('click', async () => {
+  busy(true);
+  try { const p = new GoogleAuthProvider(); p.setCustomParameters({ prompt: 'select_account' }); await signInWithPopup(auth, p); loggedIn(); }
+  catch (e) { const t = explain(e); if (t) show(t); }
+  finally { busy(false); }
+});
+
+$('forgot').addEventListener('click', async () => {
+  const email = $('email').value.trim();
+  if (!email) { show('উপরে ই-মেইল লিখুন। Type your e-mail above first.'); return; }
+  busy(true);
+  try { await sendPasswordResetEmail(auth, email); show('পাসওয়ার্ড বদলানোর লিংক পাঠানো হয়েছে (যদি অ্যাকাউন্ট থাকে)। If an account exists, a link to set a new password was sent.', true); }
+  catch (e) { const t = explain(e); if (t) show(t); }
+  finally { busy(false); }
+});
+
+$('cancel').addEventListener('click', async () => { fresh = false; await signOut(auth); clear(); });
+
+$('delete').addEventListener('click', async () => {
+  const user = auth.currentUser; if (!user) return;
+  busy(true);
+  try {
+    await deleteDoc(doc(db, 'donors', user.uid));
+    await deleteDoc(doc(db, 'users', user.uid));
+    await deleteUser(user);
+    fresh = false;
+    $('signin').hidden = true; $('confirm').hidden = true;
+    show('আপনার অ্যাকাউন্ট ও সব তথ্য মুছে ফেলা হয়েছে। Your account and all your data were deleted.', true);
+  } catch (e) {
+    const t = explain(e); if (t) show(t);
+  } finally { busy(false); }
+});
+</script>
+</body>
+</html>

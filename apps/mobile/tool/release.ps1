@@ -10,6 +10,10 @@
 #    release in Ashfaq1306/joruri-bd, the public project repository (free downloads;
 #    Firebase's free plan does not allow APK files). The download links
 #    ".../releases/latest/download/joruri-bd.apk" always point to the newest.
+#    It also builds the Google Play app bundle (build/release-upload/
+#    joruri-bd-play.aab, attached to the release too): same app, but
+#    updates come from Play, so the in-app APK updater is left out.
+#    Upload that file in Play Console (see PLAYSTORE.md).
 # 3. It then tells every phone (tools/announce_release.mjs, same as "Use
 #    latest release" + Save on the admin panel): "Update available".
 # Needs: flutter, gh (signed in, with access to the releases repo), firebase.
@@ -39,13 +43,22 @@ if (-not $WebsiteOnly) {
   $tag = "v$name-build$code"
   Write-Host "Building Joruri BD $name (build $code)..." -ForegroundColor Green
   Push-Location $mobile
-  try { Run { flutter build apk --release --split-per-abi } 'flutter build' } finally { Pop-Location }
+  try {
+    Run { flutter build apk --release --split-per-abi } 'flutter build'
+    Run { flutter build appbundle --release --dart-define=PLAY_STORE=true } 'flutter build appbundle'
+  } finally { Pop-Location }
+  # Google Play does not allow apps to install updates themselves.
+  $playManifest = Join-Path $mobile 'build\app\intermediates\merged_manifest\release\outputReleaseAppLinkSettings\AndroidManifest.xml'
+  if ((Test-Path $playManifest) -and (Select-String -Path $playManifest -Pattern 'REQUEST_INSTALL_PACKAGES' -Quiet)) {
+    throw 'The Google Play bundle still asks for REQUEST_INSTALL_PACKAGES. Check android/app/build.gradle.kts (PLAY_STORE).'
+  }
 
   $out = Join-Path $mobile 'build\app\outputs\flutter-apk'
   $stage = Join-Path $mobile 'build\release-upload'
   New-Item -ItemType Directory -Force $stage | Out-Null
   Copy-Item (Join-Path $out 'app-arm64-v8a-release.apk') (Join-Path $stage 'joruri-bd.apk') -Force
   Copy-Item (Join-Path $out 'app-armeabi-v7a-release.apk') (Join-Path $stage 'joruri-bd-arm32.apk') -Force
+  Copy-Item (Join-Path $mobile 'build\app\outputs\bundle\release\app-release.aab') (Join-Path $stage 'joruri-bd-play.aab') -Force
   # Google sign-in needs the Web client ID inside the APK (see res/raw/keep.xml).
   $sdk = if ($env:ANDROID_HOME) { $env:ANDROID_HOME } else { Join-Path $env:LOCALAPPDATA 'Android\Sdk' }
   $aapt = Get-ChildItem (Join-Path $sdk 'build-tools') -Recurse -Filter aapt2.exe -ErrorAction SilentlyContinue | Sort-Object FullName | Select-Object -Last 1
@@ -63,13 +76,14 @@ if (-not $WebsiteOnly) {
   [IO.File]::WriteAllText($bodyFile, $body, [Text.UTF8Encoding]::new($false))
 
   Write-Host "Publishing $tag to github.com/$repo ..." -ForegroundColor Green
-  Run { gh release create $tag (Join-Path $stage 'joruri-bd.apk') (Join-Path $stage 'joruri-bd-arm32.apk') `
+  Run { gh release create $tag (Join-Path $stage 'joruri-bd.apk') (Join-Path $stage 'joruri-bd-arm32.apk') (Join-Path $stage 'joruri-bd-play.aab') `
       --repo $repo --title "Joruri BD $name" --notes-file $bodyFile --latest } 'gh release create'
 }
 
 Push-Location $root
 try {
-  Run { firebase deploy --only hosting --project joruri-bd } 'firebase deploy'
+  # Website (admin panel, download, privacy and delete-account pages) and the database rules.
+  Run { firebase deploy --only 'hosting,firestore:rules' --project joruri-bd } 'firebase deploy'
   # Tell every phone about the new version (was a manual admin-panel step).
   if (-not $WebsiteOnly) { Run { node tools/announce_release.mjs } 'announce release' }
 } finally { Pop-Location }

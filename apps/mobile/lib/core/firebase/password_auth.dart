@@ -37,6 +37,29 @@ class PasswordAuth {
   Future<PasswordResult> logIn(String email, String password) =>
       _run(email, password, (auth, e, p) => auth.signInWithEmailAndPassword(email: e, password: p));
 
+  /// Proves again that it is the account owner (Firebase asks for this
+  /// before an account is deleted).
+  Future<PasswordResult> confirm(String password) async {
+    try {
+      if (!await _ref.read(firebaseReadyProvider.future)) return PasswordResult.unavailable;
+      final user = FirebaseAuth.instance.currentUser;
+      final email = user?.email;
+      if (user == null || email == null) return PasswordResult.failed;
+      await user
+          .reauthenticateWithCredential(EmailAuthProvider.credential(email: email, password: password))
+          .timeout(_timeout);
+      return PasswordResult.signedIn;
+    } on FirebaseAuthException catch (e) {
+      AppLogger.error('Password check failed: ${e.code}', e);
+      return _map(e.code);
+    } on TimeoutException {
+      return PasswordResult.noInternet;
+    } catch (e, s) {
+      AppLogger.error('Password check failed', e, s);
+      return PasswordResult.failed;
+    }
+  }
+
   /// E-mails a link to choose a new password. Also how someone who used to
   /// sign in with an e-mail link (no password yet) sets one.
   Future<PasswordResult> sendReset(String email, {required String languageCode}) async {

@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:joruri_bd/app/providers.dart';
 import 'package:joruri_bd/core/connectivity/network_status.dart';
 import 'package:joruri_bd/core/firebase/firebase_ready.dart';
+import 'package:joruri_bd/features/contacts/presentation/contacts_controller.dart';
 import 'package:joruri_bd/features/directory/data/content_repository.dart';
 import 'package:joruri_bd/features/directory/presentation/numbers_screen.dart';
 import 'package:joruri_bd/features/profile/data/profile_sync.dart';
@@ -20,23 +21,28 @@ import 'package:joruri_bd/features/profile/presentation/profile_controller.dart'
 import 'package:joruri_bd/features/profile/presentation/sign_in_screen.dart';
 import 'package:joruri_bd/l10n/app_strings.dart';
 
+const _savedContacts = [EmergencyContact(id: 'c1', name: 'Amma', phone: '+8801811000000')];
 const _saved = UserProfile(name: 'Rahim', phone: '+8801711000000', bloodGroup: BloodGroup.oPos, districtId: 'chattogram');
 
 /// The online copy of the profile, without Firebase.
 class _FakeSync extends ProfileSync {
   _FakeSync(super.ref, this.online);
 
-  final UserProfile? online;
+  final AccountCopy? online;
   int pulls = 0;
+  List<EmergencyContact>? pushedContacts;
 
   @override
-  Future<UserProfile?> pull() async {
+  Future<AccountCopy?> pull() async {
     pulls++;
     return online;
   }
 
   @override
-  Future<SyncStatus> push(UserProfile? profile) async => SyncStatus.synced;
+  Future<SyncStatus> push(UserProfile? profile, {List<EmergencyContact> contacts = const []}) async {
+    pushedContacts = contacts;
+    return SyncStatus.synced;
+  }
 }
 
 List<EmergencyNumber> _bundledNumbers() {
@@ -130,7 +136,7 @@ void main() {
     final container = ProviderContainer(overrides: [
       sharedPreferencesProvider.overrideWithValue(prefs),
       firebaseReadyProvider.overrideWith((ref) async => false),
-      profileSyncProvider.overrideWith((ref) => sync = _FakeSync(ref, _saved)),
+      profileSyncProvider.overrideWith((ref) => sync = _FakeSync(ref, const AccountCopy(_saved, _savedContacts))),
     ]);
     addTearDown(container.dispose);
 
@@ -138,6 +144,7 @@ void main() {
     expect(await container.read(profileProvider.notifier).restoreFromAccount(), isTrue);
     expect(container.read(profileProvider)?.name, 'Rahim');
     expect(prefs.getString('profile.v1'), contains('Rahim'));
+    expect(container.read(contactsProvider).single.name, 'Amma');
     // A profile already on the phone is never replaced.
     expect(await container.read(profileProvider.notifier).restoreFromAccount(), isFalse);
     expect(sync.pulls, 1);

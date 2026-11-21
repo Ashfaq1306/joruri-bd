@@ -3,7 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:joruri_core/joruri_core.dart';
 
+import 'dart:async';
+
 import 'package:joruri_bd/app/providers.dart';
+import 'package:joruri_bd/core/firebase/firebase_ready.dart';
+import 'package:joruri_bd/features/profile/presentation/profile_controller.dart';
+import 'package:joruri_bd/features/profile/presentation/profile_sync_controller.dart';
 import 'package:joruri_bd/core/config/app_config.dart';
 import 'package:joruri_bd/features/contacts/data/contacts_repository.dart';
 
@@ -42,9 +47,29 @@ class ContactsController extends Notifier<List<EmergencyContact>> {
     await _set([state[index], ...state.where((c) => c.id != id)]);
   }
 
+  /// Contacts saved with the account, after logging in. Contacts already
+  /// on the phone are kept.
+  Future<void> restore(List<EmergencyContact> online) async {
+    if (state.isNotEmpty) return;
+    final next = online.take(AppConfig.maxEmergencyContacts).toList();
+    state = List.unmodifiable(next);
+    await ref.read(contactsRepositoryProvider).save(next);
+  }
+
+  /// Removes the contacts from this phone (logging out, deleting the data).
+  Future<void> clearOnPhone() async {
+    state = const [];
+    await ref.read(contactsRepositoryProvider).clear();
+  }
+
   Future<void> _set(List<EmergencyContact> next) async {
     state = List.unmodifiable(next);
     await ref.read(contactsRepositoryProvider).save(next);
+    // Logged in: keep the copy saved with the account up to date, so the
+    // contacts come back after logging in again.
+    if (ref.read(signedInProvider) && ref.read(profileProvider) != null) {
+      unawaited(ref.read(profileSyncStatusProvider.notifier).sync());
+    }
   }
 }
 

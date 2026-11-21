@@ -387,6 +387,30 @@ abstract class AppStrings {
   String ambulanceServicesCount(int n);
   String get yourDistrictTag;
 
+  // Logging out and deleting the account
+  String get logOutTitle;
+  String get logOutBody;
+  String get logOutUnsavedTitle;
+  String get logOutUnsavedBody;
+  String get logOutAnyway;
+  String get loggingOut;
+  String get loggedOut;
+  String get deleteMyDataAccountBody;
+  String get deleteForever;
+  String get deletingData;
+  String get confirmItsYou;
+  String confirmPasswordToDelete(String email);
+  String get confirmGoogleToDelete;
+  String get confirmOtherToDelete;
+  String get noPasswordYetHint;
+  String get dataDeleted;
+  String get localDataDeleted;
+  String get deleteNeedsInternet;
+  String get deleteFailed;
+  String get privacyPolicy;
+  String get updatesFromPlay;
+  String get openPlayStore;
+
   // Accounts with e-mail and password (create once, then log in)
   String get logIn;
   String get logInTitle;

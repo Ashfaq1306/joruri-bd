@@ -23,6 +23,8 @@ class ProfileRepository {
     }
   }
 
+  Future<void> clear() => _prefs.remove(_key);
+
   Future<void> save(UserProfile profile) async {
     await _prefs.setString(_key, jsonEncode(profile.toJson()));
   }

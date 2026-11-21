@@ -7,6 +7,17 @@ abstract final class AppConfig {
 
   static const maxEmergencyContacts = 3;
 
+  /// Privacy policy and the page to delete an account without the app
+  /// (both on the project website, required by Google Play).
+  static const privacyPolicyUrl = 'https://joruri-bd.web.app/privacy/';
+  static const deleteAccountUrl = 'https://joruri-bd.web.app/delete-account/';
+
+  /// Built for Google Play (`--dart-define=PLAY_STORE=true`): updates come
+  /// from Play, so the app's own APK updater is switched off (Play does not
+  /// allow apps to install updates themselves).
+  static const playStore = bool.fromEnvironment('PLAY_STORE');
+  static const playStoreUrl = 'https://play.google.com/store/apps/details?id=bd.joruri.joruri_bd';
+
   /// Seed data is confirmed by a person before release (README, "Release gate").
   /// Until then unverified entries are shown, always with a visible
   /// "Not yet verified" label. Set to false for the store build.

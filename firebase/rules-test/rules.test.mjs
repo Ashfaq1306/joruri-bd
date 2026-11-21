@@ -73,6 +73,21 @@ await t('signed-in user lists consented donors', assertSucceeds(getDocs(query(co
 await t('user creates own listing', assertSucceeds(setDoc(doc(stranger, 'donors/uidX'), { id: 'uidX', uid: 'uidX', source: 'app', name: 'Me', bloodGroup: 'O+', phone: '+8801712345678', districtId: 'dhaka', area: '', available: true, shareConsent: true, hidden: false, verified: false })));
 await t('user cannot verify self', assertFails(updateDoc(doc(stranger, 'donors/uidX'), { verified: true })));
 await t('editor hides a donor', assertSucceeds(updateDoc(doc(editor, 'donors/uidX'), { hidden: true })));
+await t('user cannot un-hide self', assertFails(updateDoc(doc(stranger, 'donors/uidX'), { hidden: false })));
+// "Delete my data": the owner removes everything, also a hidden listing
+await t('owner deletes own hidden listing', assertSucceeds(deleteDoc(doc(stranger, 'donors/uidX'))));
+await t('owner deletes missing listing', assertSucceeds(deleteDoc(doc(stranger, 'donors/uidX'))));
+await t('user cannot delete another listing', assertFails(deleteDoc(doc(stranger, 'donors/d1'))));
+// private profile with emergency contacts
+const profile = { name: 'Me', phone: '+8801712345678', bloodGroup: 'O+', districtId: 'dhaka', area: '', donor: true, available: true, consent: false };
+const contacts = [{ id: 'c1', name: 'Amma', phone: '+8801811000000' }];
+await t('user saves profile with contacts', assertSucceeds(setDoc(doc(stranger, 'users/uidX'), { ...profile, contacts, updatedAt: '2026-11-21T00:00:00Z' })));
+await t('too many contacts refused', assertFails(setDoc(doc(stranger, 'users/uidX'), { ...profile, contacts: [1, 2, 3, 4, 5, 6] })));
+await t('unknown profile field refused', assertFails(setDoc(doc(stranger, 'users/uidX'), { ...profile, admin: true })));
+const otherUser = env.authenticatedContext('uidY', tok('y@gmail.com')).firestore();
+await t('other user cannot read profile', assertFails(getDoc(doc(otherUser, 'users/uidX'))));
+await t('admin can read profile', assertSucceeds(getDoc(doc(editor, 'users/uidX'))));
+await t('owner deletes profile', assertSucceeds(deleteDoc(doc(stranger, 'users/uidX'))));
 
 await env.cleanup();
 for (const r of results) console.log(r.join('  '));

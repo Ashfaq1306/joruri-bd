@@ -5,8 +5,8 @@ import 'package:joruri_core/joruri_core.dart';
 import 'package:joruri_design_system/joruri_design_system.dart';
 
 import 'package:joruri_bd/core/firebase/firebase_ready.dart';
-import 'package:joruri_bd/core/firebase/google_auth.dart';
 import 'package:joruri_bd/features/profile/data/profile_sync.dart';
+import 'package:joruri_bd/features/profile/presentation/account_actions.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_sync_controller.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_controller.dart';
 import 'package:joruri_bd/l10n/app_strings.dart';
@@ -45,7 +45,13 @@ class ProfileCard extends ConsumerWidget {
               icon: const Icon(Icons.person_add),
               label: Text(s.saveAccount),
             ),
-            if (ref.watch(authUserProvider).valueOrNull == null) ...[
+            if (ref.watch(authUserProvider).valueOrNull case final user?) ...[
+              // Logged in, but nothing saved with this account yet.
+              const SizedBox(height: JSpace.sm),
+              Text(s.signedInAs(user.email ?? user.displayName ?? ''), style: theme.textTheme.bodySmall),
+              const SizedBox(height: JSpace.xs),
+              _LogOutButton(),
+            ] else ...[
               const SizedBox(height: JSpace.sm),
               Text(s.haveAccountBody, style: theme.textTheme.bodySmall),
               const SizedBox(height: JSpace.xs),
@@ -144,18 +150,14 @@ class ProfileCard extends ConsumerWidget {
               label: Text(s.syncRetry),
             ),
           ],
-          if (user != null)
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                // Signing out never deletes anything online.
-                onPressed: () async {
-                  await ref.read(googleAuthProvider).signOut();
-                  ref.read(profileSyncStatusProvider.notifier).reset();
-                },
-                child: Text(s.signOut),
+          if (user != null) ...[
+            if (user.email != null)
+              Padding(
+                padding: const EdgeInsets.only(top: JSpace.xs),
+                child: Text(s.signedInAs(user.email!), style: theme.textTheme.bodySmall),
               ),
-            ),
+            Align(alignment: Alignment.centerRight, child: _LogOutButton()),
+          ],
           if (p.listedAsDonor)
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
@@ -167,6 +169,18 @@ class ProfileCard extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// Logs out and removes the person's information from this phone (it stays
+/// saved with the account). Logging out never deletes anything online.
+class _LogOutButton extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) => TextButton.icon(
+        style: TextButton.styleFrom(foregroundColor: JColors.sos),
+        onPressed: () => confirmLogOut(context, ref),
+        icon: const Icon(Icons.logout),
+        label: Text(context.s.signOut),
+      );
 }
 
 /// "Saved on this phone" is always true; this line says what happened online.

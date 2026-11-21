@@ -6,7 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:joruri_bd/core/logging/app_logger.dart';
 
 /// Emergency contacts, kept in the app's private storage on this phone.
-/// Nothing is uploaded. (Cloud sync arrives with accounts, opt-in only.)
+/// When the person is logged in, a copy is also saved with their account
+/// (ProfileSync), so the contacts come back after logging in again.
 class ContactsRepository {
   ContactsRepository(this._prefs);
 
@@ -27,6 +28,8 @@ class ContactsRepository {
       return const [];
     }
   }
+
+  Future<void> clear() => _prefs.remove(_key);
 
   Future<void> save(List<EmergencyContact> contacts) async {
     await _prefs.setString(_key, jsonEncode(contacts.map((c) => c.toJson()).toList()));

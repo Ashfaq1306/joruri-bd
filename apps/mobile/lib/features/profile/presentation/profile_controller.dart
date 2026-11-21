@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:joruri_core/joruri_core.dart';
 
 import 'package:joruri_bd/app/providers.dart';
+import 'package:joruri_bd/features/contacts/presentation/contacts_controller.dart';
 import 'package:joruri_bd/features/profile/data/profile_repository.dart';
 import 'package:joruri_bd/features/profile/data/profile_sync.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_sync_controller.dart';
@@ -38,8 +39,9 @@ class ProfileController extends Notifier<UserProfile?> {
   Future<bool>? _restoring;
 
   /// After logging in on a phone with no profile yet (new phone, app
-  /// reinstalled): brings back the profile saved with the account, so the
-  /// person never has to fill it in again. True when one was restored.
+  /// reinstalled, logged out before): brings back the profile and the
+  /// emergency contacts saved with the account, so the person never has to
+  /// fill them in again. True when a profile was restored.
   Future<bool> restoreFromAccount() => _restoring ??= _restore().whenComplete(() => _restoring = null);
 
   Future<bool> _restore() async {
@@ -47,10 +49,17 @@ class ProfileController extends Notifier<UserProfile?> {
     final online = await ref.read(profileSyncProvider).pull();
     // Something typed on the phone meanwhile wins.
     if (online == null || state != null) return false;
-    state = online;
-    await ref.read(profileRepositoryProvider).save(online);
+    state = online.profile;
+    await ref.read(profileRepositoryProvider).save(online.profile);
+    if (online.contacts.isNotEmpty) await ref.read(contactsProvider.notifier).restore(online.contacts);
     ref.read(profileSyncStatusProvider.notifier).markSynced();
     return true;
+  }
+
+  /// Removes the profile from this phone (logging out, deleting the data).
+  Future<void> clearOnPhone() async {
+    state = null;
+    await ref.read(profileRepositoryProvider).clear();
   }
 
   /// The donor switches their own availability on and off.

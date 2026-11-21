@@ -129,6 +129,8 @@ class UpdateInfo {
 
 /// Non-null when the admins published a newer build than this one.
 final updateInfoProvider = Provider<UpdateInfo?>((ref) {
+  // Installed from Google Play: Play delivers the updates.
+  if (AppConfig.playStore) return null;
   final meta = ref.watch(appMetaProvider).valueOrNull;
   final info = ref.watch(packageInfoProvider).valueOrNull;
   if (meta == null || info == null || meta.apkUrl.isEmpty) return null;

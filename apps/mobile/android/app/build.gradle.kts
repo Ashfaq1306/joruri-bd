@@ -1,3 +1,4 @@
+import java.util.Base64
 import java.util.Properties
 
 // Release signing: android/key.properties (never committed) points to the
@@ -9,6 +10,16 @@ val keyProperties = Properties().apply {
     val f = rootProject.file("key.properties")
     if (f.exists()) f.inputStream().use { load(it) }
 }
+
+// Google Play build: flutter build appbundle --dart-define=PLAY_STORE=true
+// Play delivers the updates, and does not allow an app to install updates
+// itself, so that build leaves out the in-app updater's install permission
+// (src/play/AndroidManifest.xml). Flutter passes the --dart-define values to
+// Gradle base64-encoded in the "dart-defines" property.
+val playStore = (project.findProperty("dart-defines") as String?)
+    ?.split(",")
+    ?.map { String(Base64.getDecoder().decode(it)) }
+    ?.contains("PLAY_STORE=true") == true
 
 plugins {
     id("com.android.application")
@@ -53,6 +64,10 @@ android {
         release {
             signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
         }
+    }
+
+    if (playStore) {
+        sourceSets.getByName("release").manifest.srcFile("src/play/AndroidManifest.xml")
     }
 }
 

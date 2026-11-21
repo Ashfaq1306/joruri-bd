@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:joruri_core/joruri_core.dart';
 
 import 'package:joruri_bd/core/firebase/firebase_ready.dart';
 import 'package:joruri_bd/core/logging/app_logger.dart';
@@ -76,7 +77,10 @@ class ProfileSync {
     return FirebaseAuth.instance.currentUser;
   }
 
-  Future<SyncStatus> push(UserProfile? profile) async {
+  /// Saves the profile and the emergency contacts with the account, so both
+  /// come back after logging in again (logging out removes them from the
+  /// phone).
+  Future<SyncStatus> push(UserProfile? profile, {List<EmergencyContact> contacts = const []}) async {
     try {
       if (!await _ref.read(firebaseReadyProvider.future)) return SyncStatus.offlineOnly;
       final user = FirebaseAuth.instance.currentUser;
@@ -87,7 +91,11 @@ class ProfileSync {
       final now = DateTime.now().toUtc().toIso8601String();
 
       // 1. Private profile (owner-only).
-      await db.doc('users/${user.uid}').set({...profile.toJson(), 'updatedAt': now}).timeout(_timeout);
+      await db.doc('users/${user.uid}').set({
+        ...profile.toJson(),
+        'contacts': [for (final c in contacts) c.toJson()],
+        'updatedAt': now,
+      }).timeout(_timeout);
 
       // 2. Donor listing.
       final donor = db.doc('donors/${user.uid}');
@@ -119,56 +127,48 @@ class ProfileSync {
     }
   }
 
-  /// The profile saved online for the person signed in, or null (none
+  /// What is saved with the account of the person signed in, or null (none
   /// saved, signed out or offline). Used to bring it back after logging in
-  /// on a new phone or after reinstalling the app.
-  Future<UserProfile?> pull() async {
+  /// on a new phone, after reinstalling the app or after logging out.
+  Future<AccountCopy?> pull() async {
     try {
       final user = await _user();
       if (user == null) return null;
       final snap = await FirebaseFirestore.instance.doc('users/${user.uid}').get().timeout(_timeout);
       final data = snap.data();
       if (data == null) return null;
-      return UserProfile.fromJson(data);
+      final contacts = <EmergencyContact>[];
+      for (final c in (data['contacts'] as List?) ?? const []) {
+        try {
+          contacts.add(EmergencyContact.fromJson(Map<String, dynamic>.from(c as Map)));
+        } catch (_) {}
+      }
+      return AccountCopy(UserProfile.fromJson(data), contacts);
     } catch (e, s) {
       AppLogger.error('Online profile could not be read', e, s);
       return null;
     }
   }
 
-  /// "Delete my data". Removes the private profile. The donor listing is
-  /// deleted when allowed; if an admin has hidden it, the rules keep it (so
-  /// moderation cannot be undone) and it is switched off instead.
-  /// Always signs out at the end.
-  Future<void> removeAndSignOut() async {
-    try {
-      final user = await _user();
-      if (user != null) {
-        final db = FirebaseFirestore.instance;
-        final donor = db.doc('donors/${user.uid}');
-        try {
-          await donor.delete().timeout(_timeout);
-        } catch (_) {
-          try {
-            await donor.update({
-              'shareConsent': false,
-              'available': false,
-              'updatedAt': DateTime.now().toUtc().toIso8601String(),
-            }).timeout(_timeout);
-          } catch (_) {}
-        }
-        try {
-          await db.doc('users/${user.uid}').delete().timeout(_timeout);
-        } catch (_) {}
-      }
-    } catch (e, s) {
-      AppLogger.error('Could not remove online profile', e, s);
-    } finally {
-      try {
-        if (await _ref.read(firebaseReadyProvider.future)) await FirebaseAuth.instance.signOut();
-      } catch (_) {}
-    }
+  /// Deletes everything saved online for the person signed in: the donor
+  /// listing and the private profile (with the emergency contacts). Throws
+  /// when the server could not be reached, so nothing on the phone is
+  /// removed before the online copy is really gone.
+  Future<void> deleteOnline() async {
+    final user = await _user();
+    if (user == null) return;
+    final db = FirebaseFirestore.instance;
+    await db.doc('donors/${user.uid}').delete().timeout(_timeout);
+    await db.doc('users/${user.uid}').delete().timeout(_timeout);
   }
+}
+
+/// The copy of the person's data kept with their account.
+class AccountCopy {
+  const AccountCopy(this.profile, this.contacts);
+
+  final UserProfile profile;
+  final List<EmergencyContact> contacts;
 }
 
 final profileSyncProvider = Provider<ProfileSync>((ref) => ProfileSync(ref));

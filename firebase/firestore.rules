@@ -131,8 +131,10 @@ service cloud.firestore {
         && validOwnDonorFields(request.resource.data)
       );
 
-      // Delete: admins, or the owner while NOT hidden by an admin.
-      allow delete: if isAdmin() || (signedIn() && id == request.auth.uid && resource.data.hidden == false);
+      // Delete: admins, or the owner ("Delete my data" removes the account
+      // and everything saved with it, also a listing an admin had hidden;
+      // the account itself is deleted too, so it cannot come back).
+      allow delete: if isAdmin() || (signedIn() && id == request.auth.uid);
     }
 
     function validOwnDonorFields(d) {
@@ -153,7 +155,10 @@ service cloud.firestore {
       allow read, delete: if signedIn() && request.auth.uid == uid;
       allow create, update: if signedIn() && request.auth.uid == uid
         && request.resource.data.keys().hasOnly(['name', 'phone', 'bloodGroup', 'districtId', 'divisionId', 'area',
-                                                 'donor', 'available', 'consent', 'updatedAt'])
+                                                 'donor', 'available', 'consent', 'contacts', 'updatedAt'])
+        // Emergency contacts saved with the account (at most 3 in the app).
+        && (!('contacts' in request.resource.data)
+            || (request.resource.data.contacts is list && request.resource.data.contacts.size() <= 5))
         && shortString(request.resource.data.name, 80)
         && isBloodGroup(request.resource.data.bloodGroup)
         && shortString(request.resource.data.get('area', ''), 80);
