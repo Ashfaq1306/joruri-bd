@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:joruri_bd/app/providers.dart';
+import 'package:joruri_bd/features/contacts/presentation/contacts_controller.dart';
 import 'package:joruri_bd/features/profile/data/profile_sync.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_controller.dart';
 
@@ -35,7 +36,7 @@ class ProfileSyncController extends Notifier<ProfileSyncState> {
     state = ProfileSyncState(state.status, running: true, at: state.at);
     SyncStatus result;
     try {
-      result = await ref.read(profileSyncProvider).push(ref.read(profileProvider));
+      result = await ref.read(profileSyncProvider).push(ref.read(profileProvider), contacts: ref.read(contactsProvider));
     } catch (_) {
       result = SyncStatus.failed;
     }
@@ -58,4 +59,12 @@ class ProfileSyncController extends Notifier<ProfileSyncState> {
   void markSynced() => state = ProfileSyncState(SyncStatus.synced, at: DateTime.now());
 
   void reset() => state = const ProfileSyncState(SyncStatus.signedOut);
+
+  /// Logged out: nothing is waiting to go online any more.
+  Future<void> clear() async {
+    reset();
+    try {
+      await ref.read(sharedPreferencesProvider).remove(_pendingKey);
+    } catch (_) {}
+  }
 }

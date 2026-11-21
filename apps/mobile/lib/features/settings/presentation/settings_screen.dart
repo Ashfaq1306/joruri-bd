@@ -3,19 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:joruri_core/joruri_core.dart';
 import 'package:joruri_design_system/joruri_design_system.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:joruri_bd/core/widgets/glass_app_bar.dart';
-import 'package:joruri_bd/app/providers.dart';
 import 'package:joruri_bd/core/config/app_config.dart';
 import 'package:joruri_bd/core/utils/digits.dart';
 import 'package:joruri_bd/features/contacts/presentation/contacts_controller.dart';
-import 'package:joruri_bd/core/firebase/google_auth.dart';
 import 'package:joruri_bd/core/remote/app_meta.dart';
 import 'package:joruri_bd/features/alerts/presentation/alert_settings_section.dart';
 import 'package:joruri_bd/features/update/update_installer.dart';
-import 'package:joruri_bd/features/profile/data/profile_sync.dart';
 import 'package:joruri_bd/features/profile/presentation/profile_card.dart';
-import 'package:joruri_bd/features/profile/presentation/profile_controller.dart';
+import 'package:joruri_bd/features/profile/presentation/account_actions.dart';
 import 'package:joruri_bd/features/settings/domain/app_settings.dart';
 import 'package:joruri_bd/features/settings/presentation/permissions_section.dart';
 import 'package:joruri_bd/features/settings/presentation/settings_controller.dart';
@@ -159,9 +157,14 @@ class SettingsScreen extends ConsumerWidget {
           const SizedBox(height: JSpace.md),
           OutlinedButton.icon(
             style: OutlinedButton.styleFrom(foregroundColor: JColors.sos),
-            onPressed: () => _confirmDelete(context, ref),
-            icon: const Icon(Icons.delete_outline),
+            onPressed: () => confirmDeleteMyData(context, ref),
+            icon: const Icon(Icons.delete_forever_outlined),
             label: Text(s.deleteLocalData),
+          ),
+          TextButton.icon(
+            onPressed: () => launchUrl(Uri.parse(AppConfig.privacyPolicyUrl), mode: LaunchMode.externalApplication),
+            icon: const Icon(Icons.privacy_tip_outlined),
+            label: Text(s.privacyPolicy),
           ),
 
           heading(s.about),
@@ -198,36 +201,6 @@ class SettingsScreen extends ConsumerWidget {
         actions: [TextButton(onPressed: () => Navigator.pop(dialogContext), child: Text(s.close))],
       ),
     );
-  }
-
-  Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
-    final s = context.s;
-    final yes = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(s.deleteLocalData),
-        content: Text(s.deleteLocalDataBody),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: Text(s.cancel)),
-          TextButton(
-            style: TextButton.styleFrom(foregroundColor: JColors.sos),
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(s.delete),
-          ),
-        ],
-      ),
-    );
-    if (!(yes ?? false)) return;
-    // Removes the online profile (an admin-hidden listing is switched off
-    // instead of deleted) and signs out of Firebase and Google.
-    await ref.read(profileSyncProvider).removeAndSignOut();
-    await ref.read(googleAuthProvider).signOut();
-    await ref.read(sharedPreferencesProvider).clear();
-    ref
-      ..invalidate(contactsProvider)
-      ..invalidate(profileProvider)
-      ..invalidate(settingsProvider);
-    // Onboarding is reset too, so the router returns to the welcome screen.
   }
 }
 
@@ -314,6 +287,15 @@ class _AboutSectionState extends ConsumerState<_AboutSection> {
       children: [
         Text('${s.appName} · ${s.version} ${localizedDigits(version, s.languageCode)}', style: theme.textTheme.bodyMedium),
         const SizedBox(height: JSpace.sm),
+        if (AppConfig.playStore) ...[
+          Text(s.updatesFromPlay, style: theme.textTheme.bodySmall),
+          const SizedBox(height: JSpace.xs),
+          OutlinedButton.icon(
+            onPressed: () => launchUrl(Uri.parse(AppConfig.playStoreUrl), mode: LaunchMode.externalApplication),
+            icon: const Icon(Icons.shop_outlined),
+            label: Text(s.openPlayStore),
+          ),
+        ] else
         OutlinedButton.icon(
           onPressed: _checking ? null : _check,
           icon: _checking

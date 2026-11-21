@@ -28,7 +28,18 @@ class GoogleAuth {
         serverClientId: _webClientId.isEmpty ? null : _webClientId,
       );
 
-  Future<SignInResult> signIn() async {
+  Future<SignInResult> signIn() => _withGoogle(
+      (credential) => FirebaseAuth.instance.signInWithCredential(credential));
+
+  /// Proves again that it is the account owner (Firebase asks for this
+  /// before an account is deleted).
+  Future<SignInResult> reauthenticate() => _withGoogle((credential) async {
+        final user = FirebaseAuth.instance.currentUser;
+        if (user == null) throw FirebaseAuthException(code: 'no-current-user');
+        return user.reauthenticateWithCredential(credential);
+      });
+
+  Future<SignInResult> _withGoogle(Future<UserCredential> Function(AuthCredential credential) use) async {
     try {
       if (!await _ref.read(firebaseReadyProvider.future)) return SignInResult.unavailable;
       await _ensureInitialized();
@@ -40,9 +51,7 @@ class GoogleAuth {
         AppLogger.error('Google sign-in returned no ID token (Web client ID missing in google-services.json?)');
         return SignInResult.unavailable;
       }
-      await FirebaseAuth.instance
-          .signInWithCredential(GoogleAuthProvider.credential(idToken: idToken))
-          .timeout(const Duration(seconds: 20));
+      await use(GoogleAuthProvider.credential(idToken: idToken)).timeout(const Duration(seconds: 20));
       return SignInResult.signedIn;
     } on GoogleSignInException catch (e) {
       if (e.code == GoogleSignInExceptionCode.canceled) return SignInResult.cancelled;

@@ -6,7 +6,7 @@ This repository contains the app (emergency core works **fully offline and witho
 
 - **Get the app:** <https://joruri-bd.web.app/download/>
 - **Admin panel guide:** `admin/README.md` · **Backend and rules:** `firebase/README.md`
-- **Publishing a new app version:** `RELEASING.md` · **Setting up a computer:** `SETUP_ONLINE.md` · **Changes:** `CHANGELOG.md`
+- **Publishing a new app version:** `RELEASING.md` · **Google Play:** `PLAYSTORE.md` · **Setting up a computer:** `SETUP_ONLINE.md` · **Changes:** `CHANGELOG.md`
 
 ## What works now
 
@@ -25,7 +25,7 @@ This repository contains the app (emergency core works **fully offline and witho
 | Toolkit | Flashlight, siren (bundled sound), compass, GPS coordinates, battery, contacts |
 | Road accident mode | Six large buttons on one screen |
 | Easy Mode | Very large buttons and text for older users |
-| Settings | Language, theme, Easy Mode, SOS options, message preview, permissions, privacy, delete my data |
+| Settings | Language, theme, Easy Mode, SOS options, message preview, permissions, privacy policy, **Log out** (removes your data from the phone; it comes back when you log in) and **Delete my data** (deletes the account and everything saved with it) |
 | Blood | Pick the blood group needed → every donor with that group, with their number and a Call button. Filter by division, district and area; optionally include other compatible groups. Works offline. |
 | Hospitals | **All 8,616 hospitals, clinics and blood banks registered with DGHS** (government, private, NGO), with Bangla names, phone numbers, address, map position and type. Search by name; filter by division, district, government/private, emergency, blood bank. **Tests & prices**: government user-fee chart for government hospitals (CBC, X-ray, ECG, ultrasound, CT, MRI …), cheapest first. Source and refresh scripts: `tools/dghs-import`. |
 | Pharmacy | **All 117,274 licensed retail pharmacies from the DGDA register** in every district: name, upazila, address, licence and its end date, phone (22,042) with a Call button, otherwise Directions. Search by name/upazila/bazar; phone and 24-hour filters; team-added shops from the admin panel on top. |

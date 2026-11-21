@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.9.0 (build 21) — 2026-11-21
+**Log out really logs out**
+- **Log out** (Settings → My profile) now removes your profile and emergency contacts from the phone, so nothing of yours is shown afterwards. Before, the account was signed out but your name, number and contacts stayed on screen.
+- Your **emergency contacts are now saved with your account** (with the profile), so logging in again, on this phone or a new one, brings back both. Before logging out, the app saves your latest changes online; if that is not possible (no internet), it warns you first.
+- Asks "Log out?" before logging out. Logged in without a profile yet? The profile card shows who is logged in and a Log out button.
+
+**Delete my data deletes your account**
+- "Delete my data on this phone" is now **Delete my data**. When you are logged in, it permanently deletes your **account**, your profile, your blood donor listing (also one an admin had hidden) and your emergency contacts, online and on the phone, then the app starts again from the welcome screen. Without an account it clears the phone as before.
+- For safety, Firebase asks you to confirm it is you (password, or choose your Google account again) when you logged in more than a few minutes ago. Nothing is removed from the phone unless the online data is really gone; no internet → clear message, try again.
+- New web page to delete an account without the app: <https://joruri-bd.web.app/delete-account/> (required by Google Play), and a **privacy policy**: <https://joruri-bd.web.app/privacy/> (Settings → Privacy → Privacy policy).
+- Database rules: profiles may hold up to 5 emergency contacts; owners can always delete their own donor listing (`firebase/rules-test`, 52 checks).
+
+**Ready for Google Play**
+- New Google Play build (`joruri-bd-play.aab`, built by `release.ps1` and attached to every release): updates come from Play, so the in-app APK updater and its `REQUEST_INSTALL_PACKAGES` permission are left out (Play does not allow self-updating apps). Targets Android 16 (API 36). Step-by-step guide, store texts and Data safety answers: `PLAYSTORE.md`.
+- The release script also deploys the database rules.
+
+**Fixes**
+- Back on the Guides or Settings tab goes to Home instead of closing the app.
+
 ## 1.8.0 (build 20) — 2026-11-17
 **Log in once: accounts with e-mail and password**
 - New **Log in / Create account** screen. Create an account once with an e-mail address and a password (or Google), then just **log in**, on this phone or a new one. No more e-mail links (the free plan allowed only 5 a day for everyone). The phone stays logged in until you sign out.
