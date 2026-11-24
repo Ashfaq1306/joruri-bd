@@ -93,7 +93,7 @@ class SosStatusScreen extends ConsumerWidget {
                         ? service.openLocationSettings()
                         : service.openAppSettings();
                   },
-                  child: Text(s.openSettings),
+                  child: Text(run.locationOutcome == LocationOutcome.serviceOff ? s.turnOnLocation : s.openSettings),
                 ),
               ],
               if (location != null) ...[

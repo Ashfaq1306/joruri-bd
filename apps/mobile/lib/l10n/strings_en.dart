@@ -543,4 +543,15 @@ class StringsEn extends AppStrings {
   @override String get updatesFromPlay => 'Updates come from Google Play.';
   @override String get openPlayStore => 'Open in Google Play';
   @override String get draftDisasterBanner => 'Draft: based on government and Red Crescent guidance, not yet checked by the Department of Disaster Management. Always follow officials and CPP volunteers.';
+  @override String get locationPromptTitle => 'Turn on location';
+  @override String get locationPromptBody => 'In an emergency, SOS sends your exact location to your contacts, and Joruri BD can show the help nearest to you. Your location is read only when you use SOS or a location screen, never in the background.';
+  @override String get locationPermissionTitle => 'Allow Joruri BD to use your location';
+  @override String get locationBlockedTitle => 'Location is blocked for Joruri BD';
+  @override String get locationBlockedBody => 'Open the phone settings → Permissions → Location → "Allow only while using the app".';
+  @override String get turnOnLocation => 'Turn on location';
+  @override String get notNow => 'Not now';
+  @override String get homeLocationOff => 'Location is off: SOS cannot send where you are';
+  @override String get homeLocationNotAllowed => 'Location not allowed: SOS cannot send where you are';
+  @override String get tapToFix => 'Tap to turn it on';
+  @override String get locationIsOn => 'Location is on';
 }

@@ -543,4 +543,15 @@ class StringsBn extends AppStrings {
   @override String get updatesFromPlay => 'হালনাগাদ গুগল প্লে থেকে আসে।';
   @override String get openPlayStore => 'গুগল প্লেতে খুলুন';
   @override String get draftDisasterBanner => 'খসড়া: সরকারি ও রেড ক্রিসেন্টের নির্দেশনা অনুযায়ী লেখা, দুর্যোগ ব্যবস্থাপনা অধিদপ্তর এখনো যাচাই করেনি। সব সময় প্রশাসন ও সিপিপি স্বেচ্ছাসেবকদের নির্দেশ মানুন।';
+  @override String get locationPromptTitle => 'লোকেশন চালু করুন';
+  @override String get locationPromptBody => 'বিপদের সময় SOS আপনার সঠিক অবস্থান আপনার কাছের মানুষদের পাঠায়, আর জরুরি বিডি আপনার সবচেয়ে কাছের সাহায্য দেখাতে পারে। আপনি SOS বা লোকেশন স্ক্রিন ব্যবহার করলেই কেবল অবস্থান নেওয়া হয়, কখনো পেছনে চুপিচুপি নয়।';
+  @override String get locationPermissionTitle => 'জরুরি বিডিকে আপনার লোকেশন ব্যবহারের অনুমতি দিন';
+  @override String get locationBlockedTitle => 'জরুরি বিডির জন্য লোকেশন বন্ধ করা আছে';
+  @override String get locationBlockedBody => 'ফোনের সেটিংস খুলুন → অনুমতি (Permissions) → লোকেশন → "শুধু অ্যাপ ব্যবহারের সময় অনুমতি দিন"।';
+  @override String get turnOnLocation => 'লোকেশন চালু করুন';
+  @override String get notNow => 'এখন না';
+  @override String get homeLocationOff => 'লোকেশন বন্ধ: SOS আপনার অবস্থান পাঠাতে পারবে না';
+  @override String get homeLocationNotAllowed => 'লোকেশনের অনুমতি নেই: SOS আপনার অবস্থান পাঠাতে পারবে না';
+  @override String get tapToFix => 'চালু করতে চাপুন';
+  @override String get locationIsOn => 'লোকেশন চালু আছে';
 }

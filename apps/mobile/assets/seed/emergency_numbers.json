@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-11-17.1",
+  "contentVersion": "2026-11-24.1",
   "numbers": [
     {
       "id": "bd-999",
@@ -40,11 +40,11 @@
         "bn": "২৪ ঘণ্টা, দেশের যেকোনো স্থানের জরুরি ও আইনশৃঙ্খলা সমস্যার জন্য। অন্য নম্বর: ০১৩২০-০০১৩০০, ০১৩২০-০০১২৯৯।"
       },
       "verification": {
-        "status": "unverified",
-        "sourceName": "Dhaka Tribune (BSS), Home Ministry press release, 2 Feb 2026",
+        "status": "verified",
+        "sourceName": "Home Ministry press release, 2 Feb 2026 (BSS, Dhaka Tribune)",
         "sourceUrl": "https://www.dhakatribune.com/bangladesh/dhaka/402398/police-hq-rolls-out-24-7-control-room-mobile",
-        "checkedOn": "2026-11-04",
-        "note": "Announced by Police Headquarters through a Home Ministry press release (news report). Not yet listed on police.gov.bd."
+        "checkedOn": "2026-11-24",
+        "note": "Police Headquarters Operations Control Room, 24/7: 01320001223, 01320001300, 01320001299, announced in a Home Ministry press release (2 Feb 2026); the same lines were in the 2025 Eid control-room list. Not on police.gov.bd itself (checked 2026-11-24)."
       }
     },
     {
@@ -144,7 +144,7 @@
         "sourceName": "DGHS — Shastho Batayon 16263",
         "sourceUrl": "https://16263.dghs.gov.bd/",
         "checkedOn": "2026-11-04",
-        "note": "Official DGHS service; news in Feb 2026 reported it at risk of closure after months of unpaid salaries. Call once to confirm it answers, then mark verified."
+        "note": "Official DGHS service; news in Feb 2026 reported it at risk of closure after months of unpaid salaries, and no later news says it was paid (searched 2026-11-24). Call once to confirm it answers, then mark verified."
       }
     },
     {
@@ -271,14 +271,14 @@
         "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
       },
       "otherNumbers": [
-        "01713063067"
+        "10678"
       ],
       "verification": {
-        "status": "unverified",
-        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
-        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
-        "checkedOn": "2026-11-17",
-        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+        "status": "verified",
+        "sourceName": "Evercare Hospital Dhaka — Accident & Emergency",
+        "sourceUrl": "https://www.evercarebd.com/en/dhaka/specialities/accident-emergency",
+        "note": "Hospital website: \"Hotline: 10678, Ambulance: 01714-090000\" (checked 2026-11-24).",
+        "checkedOn": "2026-11-24"
       }
     },
     {
@@ -579,7 +579,7 @@
     },
     {
       "id": "amb-united-hospital",
-      "number": "01914001326",
+      "number": "01914001234",
       "category": "ambulance",
       "districtId": "dhaka",
       "name": {
@@ -587,8 +587,8 @@
         "bn": "ইউনাইটেড হাসপাতাল"
       },
       "address": {
-        "en": "Gulshan, Dhaka",
-        "bn": "গুলশান, ঢাকা"
+        "en": "Plot 15, Road 71, Gulshan 2, Dhaka",
+        "bn": "প্লট ১৫, রোড ৭১, গুলশান ২, ঢাকা"
       },
       "description": {
         "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
@@ -596,11 +596,11 @@
       },
       "otherNumbers": [],
       "verification": {
-        "status": "unverified",
-        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
-        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
-        "checkedOn": "2026-11-17",
-        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+        "status": "verified",
+        "sourceName": "Australian High Commission Dhaka — Information for Australians in Bangladesh (Sep 2024)",
+        "sourceUrl": "https://bangladesh.embassy.gov.au/files/daca/09102024%20Information%20for%20Australians%20in%20Bangladesh%20-%20Updated%2030%20September%202024.pdf",
+        "note": "Listed as \"Emergency +880 1914 001234\" for United Hospital, Gulshan 2 (checked 2026-11-24). The 2021 number 01914-001326 was replaced.",
+        "checkedOn": "2026-11-24"
       }
     },
     {
@@ -650,7 +650,8 @@
         "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
       },
       "otherNumbers": [
-        "01713091940"
+        "01713091940",
+        "10606"
       ],
       "verification": {
         "status": "unverified",
@@ -704,14 +705,15 @@
         "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
       },
       "otherNumbers": [
-        "01713488412"
+        "01713488412",
+        "10610"
       ],
       "verification": {
-        "status": "unverified",
-        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
-        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
-        "checkedOn": "2026-11-17",
-        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+        "status": "verified",
+        "sourceName": "Ad-din Foundation — Ambulance service",
+        "sourceUrl": "https://awmch.addinhospital.org/?p=448",
+        "note": "Ad-din ambulance table: Moghbazar 10610, 01713-488411, 01713-488412 (checked 2026-11-24).",
+        "checkedOn": "2026-11-24"
       }
     },
     {
@@ -821,13 +823,13 @@
       }
     },
     {
-      "id": "amb-sts-apollo-ctg",
-      "number": "01714162759",
+      "id": "amb-evercare-ctg",
+      "number": "01313779966",
       "category": "ambulance",
       "districtId": "chattogram",
       "name": {
-        "en": "STS Chattogram Apollo Hospital",
-        "bn": "এসটিএস চট্টগ্রাম অ্যাপোলো হাসপাতাল"
+        "en": "Evercare Hospital Chattogram (formerly Chattogram Apollo)",
+        "bn": "এভারকেয়ার হাসপাতাল চট্টগ্রাম (সাবেক চট্টগ্রাম অ্যাপোলো)"
       },
       "address": {
         "en": "3095/A O.R. Nizam Road (GEC/Golpahar), Panchlaish, Chattogram",
@@ -837,13 +839,15 @@
         "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
         "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
       },
-      "otherNumbers": [],
+      "otherNumbers": [
+        "10663"
+      ],
       "verification": {
-        "status": "unverified",
-        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
-        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
-        "checkedOn": "2026-11-17",
-        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+        "status": "verified",
+        "sourceName": "Evercare Hospital Chattogram — Accident & Emergency",
+        "sourceUrl": "https://www.evercarebd.com/chattogram/specialities/accident-emergency/",
+        "note": "Hospital website: \"Hotline: 10663, Ambulance: 01313-779966\" (checked 2026-11-24). The 2021 number 01714-162759 was replaced.",
+        "checkedOn": "2026-11-24"
       }
     },
     {
@@ -1024,11 +1028,11 @@
       },
       "otherNumbers": [],
       "verification": {
-        "status": "unverified",
-        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
-        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
-        "checkedOn": "2026-11-17",
-        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+        "status": "verified",
+        "sourceName": "Ad-din Foundation — Ambulance service",
+        "sourceUrl": "https://awmch.addinhospital.org/?p=448",
+        "note": "Ad-din ambulance table: Ad-din Akij Medical College Hospital, Khulna, 01713-488422 (checked 2026-11-24).",
+        "checkedOn": "2026-11-24"
       }
     },
     {
@@ -1076,16 +1080,16 @@
       },
       "otherNumbers": [],
       "verification": {
-        "status": "unverified",
-        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
-        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
-        "checkedOn": "2026-11-17",
-        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+        "status": "verified",
+        "sourceName": "Bangladesh Eye Hospital — branches",
+        "sourceUrl": "https://bdeyehospital.com/",
+        "note": "Hospital website lists 01799-209075 for the Khulna branch, 9/B Majid Sarani (checked 2026-11-24). Ask whether an ambulance is free.",
+        "checkedOn": "2026-11-24"
       }
     },
     {
       "id": "amb-gazi-medical",
-      "number": "01779656722",
+      "number": "01407031030",
       "category": "ambulance",
       "districtId": "khulna",
       "name": {
@@ -1100,13 +1104,16 @@
         "en": "Private or hospital ambulance. Ask the fare before it comes. In a life-threatening emergency call 999 first.",
         "bn": "বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।"
       },
-      "otherNumbers": [],
+      "otherNumbers": [
+        "01407031031",
+        "01405100100"
+      ],
       "verification": {
-        "status": "unverified",
-        "sourceName": "MedicsBD ambulance list (archived 12 Aug 2021)",
-        "sourceUrl": "https://web.archive.org/web/20210812002048/https://medicsbd.com/ambulance-info/",
-        "checkedOn": "2026-11-17",
-        "note": "From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone."
+        "status": "verified",
+        "sourceName": "Gazi Medical College — Contact",
+        "sourceUrl": "https://gmc.edu.bd/contact",
+        "note": "College website, \"Call for Emergency Hospital Services\": ambulance 01407-031030/31, hot line 01405-100100 (checked 2026-11-24). The 2021 number 01779-656722 was replaced.",
+        "checkedOn": "2026-11-24"
       }
     }
   ]

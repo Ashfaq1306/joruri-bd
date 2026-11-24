@@ -173,17 +173,24 @@ void main() {
     expect(find.text('Labaid Hospital'), findsNothing);
   });
 
-  test('bundled ambulance numbers: local, mobile numbers, unverified', () {
+  test('bundled ambulance numbers: local, mobile numbers or hotlines, verified only with a source', () {
     final ambulances = _bundledNumbers().where((n) => n.isLocal).toList();
     expect(ambulances.length, greaterThanOrEqualTo(30));
     for (final a in ambulances) {
       expect(a.category, NumberCategory.ambulance);
       expect(BdLocations.district(a.districtId!), isNotNull, reason: a.id);
-      for (final n in [a.number, ...a.otherNumbers]) {
-        expect(n, matches(RegExp(r'^01[3-9]\d{8}$')), reason: a.id);
+      expect(a.number, matches(RegExp(r'^01[3-9]\d{8}$')), reason: a.id);
+      for (final n in a.otherNumbers) {
+        expect(n, matches(RegExp(r'^(01[3-9]\d{8}|10\d{3})$')), reason: a.id);
       }
-      expect(a.verification.isVerified, isFalse);
+      if (a.verification.isVerified) {
+        expect(a.verification.sourceUrl, startsWith('https://'), reason: a.id);
+        expect(a.verification.checkedOn, isNotNull, reason: a.id);
+      }
     }
+    final verified = ambulances.where((a) => a.verification.isVerified).map((a) => a.id).toSet();
+    expect(verified, containsAll(['amb-evercare-dhaka', 'amb-evercare-ctg', 'amb-gazi-medical']));
+    expect(ambulances.where((a) => !a.verification.isVerified), isNotEmpty);
     // "Whole country" saved by the admin website is not a district.
     final national = EmergencyNumber.fromJson({
       'id': 'x', 'number': '999', 'category': 'national', 'districtId': '',
