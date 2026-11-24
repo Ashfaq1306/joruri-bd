@@ -7,6 +7,9 @@ import 'package:joruri_bd/core/logging/app_logger.dart';
 
 enum InstallStart { started, needsPermission, failed }
 
+/// Answer from Google's "Turn on device location" dialog.
+enum LocationSwitch { on, declined, unavailable }
+
 /// The app's own Android helpers (android/app/.../MainActivity.kt).
 class NativeBridge {
   NativeBridge() {
@@ -27,6 +30,21 @@ class NativeBridge {
       return await _channel.invokeMethod<String>('initialLink');
     } catch (_) {
       return null; // not Android, or an older build
+    }
+  }
+
+  /// Google's one-tap "Turn on device location" dialog (Android with
+  /// Google Play services). [LocationSwitch.unavailable] elsewhere.
+  Future<LocationSwitch> enableLocation() async {
+    try {
+      final r = await _channel.invokeMethod<String>('enableLocation');
+      return switch (r) {
+        'on' => LocationSwitch.on,
+        'declined' => LocationSwitch.declined,
+        _ => LocationSwitch.unavailable,
+      };
+    } catch (_) {
+      return LocationSwitch.unavailable; // not Android, or an older build
     }
   }
 

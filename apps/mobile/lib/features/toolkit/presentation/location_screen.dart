@@ -115,9 +115,9 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
               FilledButton(
                 onPressed: () {
                   final service = ref.read(locationServiceProvider);
-                  issue == LocationIssue.serviceOff ? service.openLocationSettings() : service.openAppSettings();
+                  issue == LocationIssue.serviceOff ? service.openLocationSettings().then((_) => _load()) : service.openAppSettings();
                 },
-                child: Text(s.openSettings),
+                child: Text(issue == LocationIssue.serviceOff ? s.turnOnLocation : s.openSettings),
               ),
           ],
           const SizedBox(height: JSpace.sm),

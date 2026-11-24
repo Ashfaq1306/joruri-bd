@@ -28,8 +28,9 @@ export const national = [
       en: '24 hours, for emergencies and law-and-order problems anywhere in the country. Other lines: 01320-001300, 01320-001299.',
       bn: '২৪ ঘণ্টা, দেশের যেকোনো স্থানের জরুরি ও আইনশৃঙ্খলা সমস্যার জন্য। অন্য নম্বর: ০১৩২০-০০১৩০০, ০১৩২০-০০১২৯৯।',
     },
-    verification: notYet({ sourceName: 'Dhaka Tribune (BSS), Home Ministry press release, 2 Feb 2026', sourceUrl: 'https://www.dhakatribune.com/bangladesh/dhaka/402398/police-hq-rolls-out-24-7-control-room-mobile' },
-      'Announced by Police Headquarters through a Home Ministry press release (news report). Not yet listed on police.gov.bd.'),
+    verification: { status: 'verified', sourceName: 'Home Ministry press release, 2 Feb 2026 (BSS, Dhaka Tribune)',
+      sourceUrl: 'https://www.dhakatribune.com/bangladesh/dhaka/402398/police-hq-rolls-out-24-7-control-room-mobile', checkedOn: '2026-11-24',
+      note: 'Police Headquarters Operations Control Room, 24/7: 01320001223, 01320001300, 01320001299, announced in a Home Ministry press release (2 Feb 2026); the same lines were in the 2025 Eid control-room list. Not on police.gov.bd itself (checked 2026-11-24).' },
   },
   {
     id: 'bd-102', number: '102', category: 'fire',
@@ -75,7 +76,7 @@ export const national = [
       bn: 'ফোনে ডাক্তারের স্বাস্থ্য পরামর্শ (ডায়াল করার পর ০ চাপুন)। স্বাস্থ্য অধিদপ্তরের সেবা। এটি অ্যাম্বুলেন্স সেবা নয়। ২০২৬ সালে সেবাটি অর্থসংকটে ছিল: কেউ না ধরলে ৯৯৯-এ কল করুন।',
     },
     verification: notYet({ sourceName: 'DGHS — Shastho Batayon 16263', sourceUrl: 'https://16263.dghs.gov.bd/' },
-      'Official DGHS service; news in Feb 2026 reported it at risk of closure after months of unpaid salaries. Call once to confirm it answers, then mark verified.'),
+      'Official DGHS service; news in Feb 2026 reported it at risk of closure after months of unpaid salaries, and no later news says it was paid (searched 2026-11-24). Call once to confirm it answers, then mark verified.'),
   },
   {
     id: 'bd-1090', number: '1090', category: 'disaster',
@@ -119,7 +120,7 @@ export const national = [
 export const numbers = [...national, ...ambulances];
 
 const file = new URL('../../apps/mobile/assets/seed/emergency_numbers.json', import.meta.url);
-fs.writeFileSync(file, JSON.stringify({ schemaVersion: 1, contentVersion: '2026-11-17.1', numbers }, null, 2) + '\n');
+fs.writeFileSync(file, JSON.stringify({ schemaVersion: 1, contentVersion: '2026-11-24.1', numbers }, null, 2) + '\n');
 console.log(`${numbers.length} numbers (${ambulances.length} ambulance services) written to the app's bundled data`);
 
 if (process.argv.includes('--publish')) {

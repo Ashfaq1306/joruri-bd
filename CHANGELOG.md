@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.10.0 (build 22) — 2026-11-24
+**Location on when you open the app (like bKash)**
+- When the app opens and the phone's **location is switched off**, Google's one-tap **"Turn on device location"** dialog appears straight away: tap **Turn on** and it's done, no searching through the settings. Phones without Google Play services open the location settings instead.
+- When Joruri BD **may not use the location**, a short screen first says why (SOS sends your exact location to your contacts; never read in the background), then Android asks. Blocked in the phone settings → it says where to allow it and opens the settings.
+- Asked again when you come back to the app after 30 minutes or more, or after changing it in the settings. **"Not now"** is respected for the rest of the session, and nothing is ever asked on the SOS, road-accident or onboarding screens. The notification question now waits until the location question is answered, so two system dialogs never stack.
+- While location is off or not allowed, Home shows an amber **"Location is off: SOS cannot send where you are"** bar; one tap fixes it.
+- On the SOS result and My location screens, **Turn on location** now uses the same one-tap dialog.
+
+**Emergency and ambulance numbers checked**
+- Every unverified number was checked online on 2026-11-24 against the hospital's own website, a government press release, or an embassy list of medical facilities. **17 of the 44 numbers are now verified** (was 9), each with its source and date in the app:
+  - Police Headquarters control room 01320-001223 (Home Ministry press release, 2 Feb 2026).
+  - Evercare Dhaka (ambulance 01714-090000, hotline 10678), Ad-din Medical College Hospital (01713-488411/12, 10610), Ad-din Akij Khulna (01713-488422), Bangladesh Eye Hospital Khulna (01799-209075).
+- **Three numbers had changed since the 2021 list and were corrected**:
+  - STS Chattogram Apollo is now **Evercare Hospital Chattogram**: ambulance 01313-779966, hotline 10663 (was 01714-162759).
+  - **Gazi Medical College Hospital**, Khulna: ambulance 01407-031030/31, hot line 01405-100100 (was 01779-656722).
+  - **United Hospital**: emergency 01914-001234 (was 01914-001326).
+- Labaid's hotline 10606 was added as another number; its ambulance mobile stays unverified.
+- 27 numbers (26 ambulance services and Shastho Batayon 16263), plus the 15 fire stations whose printed numbers were wrong, have no current official source online and still need a phone call. They keep their "not yet verified" label. Call list with a checkbox per number: `tools/police-import/numbers_to_call.md` (`node tools/police-import/call_list.mjs` rebuilds it). Mark each one verified on the admin website after calling.
+- Publish to phones that are already installed: `node tools/police-import/emergency_numbers.mjs --publish`.
+
 ## 1.9.0 (build 21) — 2026-11-21
 **Log out really logs out**
 - **Log out** (Settings → My profile) now removes your profile and emergency contacts from the phone, so nothing of yours is shown afterwards. Before, the account was signed out but your name, number and contacts stayed on screen.

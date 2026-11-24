@@ -10,6 +10,7 @@ import 'package:joruri_bd/features/alerts/presentation/home_alert_banner.dart';
 import 'package:joruri_bd/features/announcements/announcements.dart';
 import 'package:joruri_bd/features/contacts/presentation/contacts_controller.dart';
 import 'package:joruri_bd/features/home/presentation/network_pill.dart';
+import 'package:joruri_bd/features/location/location_prompt.dart';
 import 'package:joruri_bd/features/settings/presentation/settings_controller.dart';
 import 'package:joruri_bd/features/toolkit/presentation/toolkit_controllers.dart';
 import 'package:joruri_bd/features/update/update_banner.dart';
@@ -56,6 +57,7 @@ class _StandardHome extends ConsumerWidget {
             const _SosPanel(diameter: JSize.sosButton),
             const SizedBox(height: JSpace.md),
             const HomeAlertBanner(),
+            const HomeLocationBar(),
             const UpdateBanner(),
             const AnnouncementsList(),
             GridView.builder(
@@ -103,6 +105,7 @@ class _EasyHome extends ConsumerWidget {
             const _SosPanel(diameter: JSize.sosButtonEasy),
             const SizedBox(height: JSpace.md),
             const HomeAlertBanner(),
+            const HomeLocationBar(),
             const UpdateBanner(),
             const AnnouncementsList(),
             BigActionButton(

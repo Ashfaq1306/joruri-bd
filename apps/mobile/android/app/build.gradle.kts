@@ -84,5 +84,8 @@ flutter {
 dependencies {
     // FileProvider for in-app updates (MainActivity.installApk).
     implementation("androidx.core:core-ktx:1.13.1")
+    // Google's one-tap "Turn on device location" dialog (MainActivity.enableLocation).
+    // Same version geolocator_android already uses.
+    implementation("com.google.android.gms:play-services-location:21.2.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }

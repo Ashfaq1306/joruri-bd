@@ -9,8 +9,9 @@
 // so they are left out until someone confirms the current number. Obvious
 // typos were fixed (a dropped leading 0, "01713488411-12" = two numbers).
 //
-// Every entry is unverified: call once to confirm it answers, then mark it
-// verified on the admin website.
+// Entries confirmed online on 2026-11-24 are in CONFIRMED below; the rest are
+// unverified: call once to confirm it answers, then mark it verified on the
+// admin website.
 
 const SOURCE = {
   sourceName: 'MedicsBD ambulance list (archived 12 Aug 2021)',
@@ -19,13 +20,52 @@ const SOURCE = {
 const CHECKED = '2026-11-17';
 const NOTE = 'From the MedicsBD ambulance list (archived 2021-08-12; the live page had no entries on 2026-11-17). Not yet confirmed by phone.';
 
+// Checked online on 2026-11-24 against the hospital's own website or an
+// embassy list of medical facilities. These are marked verified; numbers
+// that had changed since 2021 were replaced (Evercare Chattogram, United,
+// Gazi). Hospital hotlines (10xxx) dispatch ambulances too and are added as
+// other numbers. Everything not listed here is still unverified: no current
+// official source was found, so someone must call it (numbers_to_call.md).
+const CONFIRMED_ON = '2026-11-24';
+const CONFIRMED = {
+  'evercare-dhaka': {
+    sourceName: 'Evercare Hospital Dhaka — Accident & Emergency', sourceUrl: 'https://www.evercarebd.com/en/dhaka/specialities/accident-emergency',
+    note: 'Hospital website: "Hotline: 10678, Ambulance: 01714-090000" (checked 2026-11-24).',
+  },
+  'evercare-ctg': {
+    sourceName: 'Evercare Hospital Chattogram — Accident & Emergency', sourceUrl: 'https://www.evercarebd.com/chattogram/specialities/accident-emergency/',
+    note: 'Hospital website: "Hotline: 10663, Ambulance: 01313-779966" (checked 2026-11-24). The 2021 number 01714-162759 was replaced.',
+  },
+  'ad-din-dhaka': {
+    sourceName: 'Ad-din Foundation — Ambulance service', sourceUrl: 'https://awmch.addinhospital.org/?p=448',
+    note: 'Ad-din ambulance table: Moghbazar 10610, 01713-488411, 01713-488412 (checked 2026-11-24).',
+  },
+  'ad-din-akij': {
+    sourceName: 'Ad-din Foundation — Ambulance service', sourceUrl: 'https://awmch.addinhospital.org/?p=448',
+    note: 'Ad-din ambulance table: Ad-din Akij Medical College Hospital, Khulna, 01713-488422 (checked 2026-11-24).',
+  },
+  'gazi-medical': {
+    sourceName: 'Gazi Medical College — Contact', sourceUrl: 'https://gmc.edu.bd/contact',
+    note: 'College website, "Call for Emergency Hospital Services": ambulance 01407-031030/31, hot line 01405-100100 (checked 2026-11-24). The 2021 number 01779-656722 was replaced.',
+  },
+  'bd-eye-khulna': {
+    sourceName: 'Bangladesh Eye Hospital — branches', sourceUrl: 'https://bdeyehospital.com/',
+    note: 'Hospital website lists 01799-209075 for the Khulna branch, 9/B Majid Sarani (checked 2026-11-24). Ask whether an ambulance is free.',
+  },
+  'united-hospital': {
+    sourceName: 'Australian High Commission Dhaka — Information for Australians in Bangladesh (Sep 2024)',
+    sourceUrl: 'https://bangladesh.embassy.gov.au/files/daca/09102024%20Information%20for%20Australians%20in%20Bangladesh%20-%20Updated%2030%20September%202024.pdf',
+    note: 'Listed as "Emergency +880 1914 001234" for United Hospital, Gulshan 2 (checked 2026-11-24). The 2021 number 01914-001326 was replaced.',
+  },
+};
+
 // [id, district, name en, name bn, address en, address bn, numbers...]
 const rows = [
   // Dhaka
   ['al-markazul-islami', 'dhaka', 'Al-Markazul Islami ambulance service', 'আল-মারকাজুল ইসলামী অ্যাম্বুলেন্স সার্ভিস',
     '21/17 Babar Road, Mohammadpur, Dhaka', '২১/১৭ বাবর রোড, মোহাম্মদপুর, ঢাকা', '01819732905'],
   ['evercare-dhaka', 'dhaka', 'Evercare Hospital Dhaka (formerly Apollo)', 'এভারকেয়ার হাসপাতাল ঢাকা (সাবেক অ্যাপোলো)',
-    'Plot 81, Block E, Bashundhara R/A, Dhaka', 'প্লট ৮১, ব্লক ই, বসুন্ধরা আ/এ, ঢাকা', '01714090000', '01713063067'],
+    'Plot 81, Block E, Bashundhara R/A, Dhaka', 'প্লট ৮১, ব্লক ই, বসুন্ধরা আ/এ, ঢাকা', '01714090000', '10678'],
   ['aysha-memorial', 'dhaka', 'Aysha Memorial Specialised Hospital', 'আয়শা মেমোরিয়াল স্পেশালাইজড হাসপাতাল',
     '74/G Peak Square, Mohakhali, Dhaka', '৭৪/জি পিক স্কয়ার, মহাখালী, ঢাকা', '01919372647', '01915490007'],
   ['cmh-dhaka', 'dhaka', 'CMH Dhaka, 24-hour ambulance', 'সিএমএইচ ঢাকা, ২৪ ঘণ্টা অ্যাম্বুলেন্স',
@@ -49,15 +89,15 @@ const rows = [
   ['shahabuddin-medical', 'dhaka', 'Shahabuddin Medical College Hospital', 'শাহাবুদ্দিন মেডিকেল কলেজ হাসপাতাল',
     'House 12, Road 113/A, Gulshan 2, Dhaka', 'বাড়ি ১২, রোড ১১৩/এ, গুলশান ২, ঢাকা', '01716777790', '01919777790'],
   ['united-hospital', 'dhaka', 'United Hospital', 'ইউনাইটেড হাসপাতাল',
-    'Gulshan, Dhaka', 'গুলশান, ঢাকা', '01914001326'],
+    'Plot 15, Road 71, Gulshan 2, Dhaka', 'প্লট ১৫, রোড ৭১, গুলশান ২, ঢাকা', '01914001234'],
   ['modern-ambulance', 'dhaka', 'Modern Ambulance Service', 'মডার্ন অ্যাম্বুলেন্স সার্ভিস',
     'PG Hospital gate 1, Shahbag, Dhaka', 'পিজি হাসপাতাল ১ নম্বর গেট, শাহবাগ, ঢাকা', '01711450839', '01933342273', '01924860108'],
   ['labaid-dhanmondi', 'dhaka', 'Labaid Hospital', 'ল্যাবএইড হাসপাতাল',
-    'House 6, Road 4, Dhanmondi, Dhaka', 'বাড়ি ৬, রোড ৪, ধানমন্ডি, ঢাকা', '01713330088', '01713091940'],
+    'House 6, Road 4, Dhanmondi, Dhaka', 'বাড়ি ৬, রোড ৪, ধানমন্ডি, ঢাকা', '01713330088', '01713091940', '10606'],
   ['desh-ambulance', 'dhaka', 'Desh Ambulance Service', 'দেশ অ্যাম্বুলেন্স সার্ভিস',
     '82 East Ahmed Nagar, Mirpur, Dhaka', '৮২ পূর্ব আহমেদ নগর, মিরপুর, ঢাকা', '01790509607'],
   ['ad-din-dhaka', 'dhaka', 'Ad-Din Medical College Hospital', 'আদ্-দ্বীন মেডিকেল কলেজ হাসপাতাল',
-    '2 Bara Moghbazar, Outer Circular Road, Dhaka', '২ বড় মগবাজার, আউটার সার্কুলার রোড, ঢাকা', '01713488411', '01713488412'],
+    '2 Bara Moghbazar, Outer Circular Road, Dhaka', '২ বড় মগবাজার, আউটার সার্কুলার রোড, ঢাকা', '01713488411', '01713488412', '10610'],
   ['islami-bank-mirpur', 'dhaka', 'Islami Bank Hospital Mirpur', 'ইসলামী ব্যাংক হাসপাতাল মিরপুর',
     'Plot 31, Main Road 3, Begum Rokeya Sarani, Mirpur, Dhaka', 'প্লট ৩১, মেইন রোড ৩, বেগম রোকেয়া সরণি, মিরপুর, ঢাকা', '01992346634'],
   ['24-hours-ambulance', 'dhaka', '24 Hours Ambulance', '২৪ আওয়ার্স অ্যাম্বুলেন্স',
@@ -67,8 +107,8 @@ const rows = [
     'Panchlaish, Chattogram', 'পাঁচলাইশ, চট্টগ্রাম', '01701777782'],
   ['afc-fortis-ctg', 'chattogram', 'AFC Health Fortis Heart Institute', 'এএফসি হেলথ ফর্টিস হার্ট ইনস্টিটিউট',
     '12/12 O.R. Nizam Road, Chattogram', '১২/১২ ও.আর. নিজাম রোড, চট্টগ্রাম', '01933226666'],
-  ['sts-apollo-ctg', 'chattogram', 'STS Chattogram Apollo Hospital', 'এসটিএস চট্টগ্রাম অ্যাপোলো হাসপাতাল',
-    '3095/A O.R. Nizam Road (GEC/Golpahar), Panchlaish, Chattogram', '৩০৯৫/এ ও.আর. নিজাম রোড (গোলপাহাড়), পাঁচলাইশ, চট্টগ্রাম', '01714162759'],
+  ['evercare-ctg', 'chattogram', 'Evercare Hospital Chattogram (formerly Chattogram Apollo)', 'এভারকেয়ার হাসপাতাল চট্টগ্রাম (সাবেক চট্টগ্রাম অ্যাপোলো)',
+    '3095/A O.R. Nizam Road (GEC/Golpahar), Panchlaish, Chattogram', '৩০৯৫/এ ও.আর. নিজাম রোড (গোলপাহাড়), পাঁচলাইশ, চট্টগ্রাম', '01313779966', '10663'],
   ['cmch', 'chattogram', 'Chattogram Medical College Hospital', 'চট্টগ্রাম মেডিকেল কলেজ হাসপাতাল',
     '57 K.B. Fazlul Kader Road, Panchlaish, Chattogram', '৫৭ কে.বি. ফজলুল কাদের রোড, পাঁচলাইশ, চট্টগ্রাম', '01819637685'],
   ['islami-bank-ctg', 'chattogram', 'Islami Bank Hospital Chattogram', 'ইসলামী ব্যাংক হাসপাতাল চট্টগ্রাম',
@@ -91,7 +131,7 @@ const rows = [
   ['bd-eye-khulna', 'khulna', 'Bangladesh Eye Hospital, Khulna', 'বাংলাদেশ আই হাসপাতাল, খুলনা',
     '9/B Majid Sarani, Shibbari, Khulna', '৯/বি মজিদ সরণি, শিববাড়ি, খুলনা', '01799209075'],
   ['gazi-medical', 'khulna', 'Gazi Medical College Hospital', 'গাজী মেডিকেল কলেজ হাসপাতাল',
-    '19-21 Majid Sarani, Sonadanga, Khulna', '১৯-২১ মজিদ সরণি, সোনাডাঙ্গা, খুলনা', '01779656722'],
+    '19-21 Majid Sarani, Sonadanga, Khulna', '১৯-২১ মজিদ সরণি, সোনাডাঙ্গা, খুলনা', '01407031030', '01407031031', '01405100100'],
 ];
 
 export const ambulances = rows.map(([id, districtId, en, bn, addrEn, addrBn, number, ...others]) => ({
@@ -106,13 +146,19 @@ export const ambulances = rows.map(([id, districtId, en, bn, addrEn, addrBn, num
     bn: 'বেসরকারি বা হাসপাতালের অ্যাম্বুলেন্স। আসার আগে ভাড়া জেনে নিন। জীবন-সংকটে আগে ৯৯৯-এ কল করুন।',
   },
   otherNumbers: others,
-  verification: { status: 'unverified', ...SOURCE, checkedOn: CHECKED, note: NOTE },
+  verification: CONFIRMED[id]
+    ? { status: 'verified', ...CONFIRMED[id], checkedOn: CONFIRMED_ON }
+    : { status: 'unverified', ...SOURCE, checkedOn: CHECKED, note: NOTE },
 }));
 
-// Sanity checks: every number is a mobile number, ids are unique.
+// Sanity checks: every number is a mobile number or a 5-digit hospital
+// hotline (10xxx), ids are unique, every confirmed id exists.
 for (const a of ambulances) {
   for (const n of [a.number, ...a.otherNumbers]) {
-    if (!/^01[3-9]\d{8}$/.test(n)) throw new Error(`${a.id}: bad number ${n}`);
+    if (!/^(01[3-9]\d{8}|10\d{3})$/.test(n)) throw new Error(`${a.id}: bad number ${n}`);
   }
 }
 if (new Set(ambulances.map((a) => a.id)).size !== ambulances.length) throw new Error('duplicate ambulance id');
+for (const id of Object.keys(CONFIRMED)) {
+  if (!ambulances.some((a) => a.id === `amb-${id}`)) throw new Error(`confirmed id not in list: ${id}`);
+}

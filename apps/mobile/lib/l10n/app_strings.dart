@@ -578,6 +578,19 @@ abstract class AppStrings {
   String get getReadyBefore;
   String get afterItPasses;
   String get draftDisasterBanner;
+
+  // Location on app open
+  String get locationPromptTitle;
+  String get locationPromptBody;
+  String get locationPermissionTitle;
+  String get locationBlockedTitle;
+  String get locationBlockedBody;
+  String get turnOnLocation;
+  String get notNow;
+  String get homeLocationOff;
+  String get homeLocationNotAllowed;
+  String get tapToFix;
+  String get locationIsOn;
 }
 
 class _AppStringsDelegate extends LocalizationsDelegate<AppStrings> {
