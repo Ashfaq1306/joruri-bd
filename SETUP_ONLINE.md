@@ -12,7 +12,7 @@ Everything online is **switched on** and runs on the free Firebase Spark plan:
 
 ## On a new computer
 
-1. Install Flutter, Node.js, `npm i -g firebase-tools`, GitHub CLI. Then `firebase login` and `gh auth login`.
+1. Install Flutter (**3.50.1 or newer**, stable), Node.js, `npm i -g firebase-tools`, GitHub CLI. Then `firebase login` and `gh auth login`.
 2. Get `google-services.json`:
    ```bash
    firebase apps:sdkconfig ANDROID 1:309379921602:android:748b82e2b04dfbbf4bed5b --project joruri-bd \
@@ -34,4 +34,4 @@ Never commit `google-services.json`, `key.properties` or `*.jks` (all in `.gitig
 | App: "Google sign-in is not set up" | `google-services.json` missing or old: step 2 |
 | App sign-in fails after choosing an account | The APK's signing key is not registered: step 3 (or build with the release key) |
 | Admin panel: "Not an admin" | An owner adds your Gmail on the **Admins** page |
-| Build: "Java version incompatible with Gradle" | Fixed: the project uses Gradle 9.3.1 / AGP 9.1 (works with Java 21 and 25) |
+| Build: "Java version incompatible with Gradle" | Fixed: the project uses Gradle 9.3.1 / AGP 9.1.1 (works with Java 21 and 25) |

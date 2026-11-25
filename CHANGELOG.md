@@ -20,6 +20,16 @@
 - 27 numbers (26 ambulance services and Shastho Batayon 16263), plus the 15 fire stations whose printed numbers were wrong, have no current official source online and still need a phone call. They keep their "not yet verified" label. Call list with a checkbox per number: `tools/police-import/numbers_to_call.md` (`node tools/police-import/call_list.mjs` rebuilds it). Mark each one verified on the admin website after calling.
 - Publish to phones that are already installed: `node tools/police-import/emergency_numbers.mjs --publish`.
 
+**Build**
+- Built with **Flutter 3.50.1** (Android Gradle Plugin 9.1.1, which Flutter 3.50.1 requires). Older Flutter versions cannot build this lockfile: run `flutter upgrade` first.
+
+**Release notes** (for `./tool/release.sh`):
+```bash
+./tool/release.sh \
+  "Location turns on when you open the app, with one tap. 17 emergency numbers are now verified, and 3 hospital numbers were corrected." \
+  "অ্যাপ খুললেই এক ট্যাপে লোকেশন চালু করা যায়। ১৭টি জরুরি নম্বর যাচাই করা হয়েছে এবং ৩টি হাসপাতালের নম্বর ঠিক করা হয়েছে।"
+```
+
 ## 1.9.0 (build 21) — 2026-11-21
 **Log out really logs out**
 - **Log out** (Settings → My profile) now removes your profile and emergency contacts from the phone, so nothing of yours is shown afterwards. Before, the account was signed out but your name, number and contacts stayed on screen.
