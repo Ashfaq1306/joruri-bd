@@ -4,7 +4,7 @@ Content (emergency numbers, hospitals, pharmacies, guides, announcements, donors
 
 ## One-time setup on a computer
 
-1. Flutter, Firebase CLI (`npm i -g firebase-tools`, then `firebase login`) and GitHub CLI (`gh auth login`).
+1. Flutter **3.50.1 or newer** (stable channel; `flutter upgrade` if older: the lockfile needs it), Firebase CLI (`npm i -g firebase-tools`, then `firebase login`) and GitHub CLI (`gh auth login`).
 2. **The release signing key.** Every APK people install must be signed with the same key, or Android refuses to install it as an update. The key is **not in git**. Get these two files privately from Ashfaq (USB / private Drive — never commit or post them):
    - `joruri-release.jks`
    - `key.properties`
