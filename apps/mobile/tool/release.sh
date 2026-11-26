@@ -18,6 +18,7 @@ set -euo pipefail
 mobile="$(cd "$(dirname "$0")/.." && pwd)"
 root="$(cd "$mobile/../.." && pwd)"
 repo="Ashfaq1306/joruri-bd"
+old_repo="Ashfaq1306/joruri-bd-releases"
 
 if [[ "${1:-}" != "--website-only" ]]; then
   notes="${1:-}"; notes_bn="${2:-}"
@@ -51,6 +52,10 @@ if [[ "${1:-}" != "--website-only" ]]; then
   echo "Publishing $tag to github.com/$repo ..."
   gh release create "$tag" "$stage/joruri-bd.apk" "$stage/joruri-bd-arm32.apk" \
     --repo "$repo" --title "Joruri BD $name" --notes-file "$stage/notes.md" --latest
+  # Old links to the joruri-bd-releases repository (1.0.0-1.2.0) get the newest APKs too.
+  gh release create "$tag" "$stage/joruri-bd.apk" "$stage/joruri-bd-arm32.apk" \
+    --repo "$old_repo" --title "Joruri BD $name" --notes-file "$stage/notes.md" --latest \
+    || echo "Warning: old download links (github.com/$old_repo) still give the previous version" >&2
 fi
 
 (cd "$root" && firebase deploy --only hosting --project joruri-bd)

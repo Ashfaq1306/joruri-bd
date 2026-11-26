@@ -26,6 +26,7 @@ $ErrorActionPreference = 'Stop'
 $mobile = Split-Path -Parent $PSScriptRoot
 $root = Resolve-Path (Join-Path $mobile '..\..')
 $repo = 'Ashfaq1306/joruri-bd'
+$oldRepo = 'Ashfaq1306/joruri-bd-releases'
 
 # Native tools write warnings to stderr; judge them by exit code only.
 function Run([scriptblock]$cmd, [string]$what) {
@@ -78,6 +79,12 @@ if (-not $WebsiteOnly) {
   Write-Host "Publishing $tag to github.com/$repo ..." -ForegroundColor Green
   Run { gh release create $tag (Join-Path $stage 'joruri-bd.apk') (Join-Path $stage 'joruri-bd-arm32.apk') (Join-Path $stage 'joruri-bd-play.aab') `
       --repo $repo --title "Joruri BD $name" --notes-file $bodyFile --latest } 'gh release create'
+  # 1.0.0-1.2.0 were published in the old joruri-bd-releases repository, and links to
+  # its ".../releases/latest/download/joruri-bd.apk" are still shared: give them the newest APKs too.
+  try {
+    Run { gh release create $tag (Join-Path $stage 'joruri-bd.apk') (Join-Path $stage 'joruri-bd-arm32.apk') `
+        --repo $oldRepo --title "Joruri BD $name" --notes-file $bodyFile --latest } 'copy to the old releases repository'
+  } catch { Write-Warning "Old download links (github.com/$oldRepo) still give the previous version: $_" }
 }
 
 Push-Location $root

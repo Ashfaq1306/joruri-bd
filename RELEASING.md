@@ -11,7 +11,7 @@ Content (emergency numbers, hospitals, pharmacies, guides, announcements, donors
 3. Put `key.properties` at `apps/mobile/android/key.properties` and change its `storeFile=` line to where you saved `joruri-release.jks`.
 4. `apps/mobile/android/app/google-services.json`: download with
    `firebase apps:sdkconfig ANDROID 1:309379921602:android:748b82e2b04dfbbf4bed5b --project joruri-bd -o apps/mobile/android/app/google-services.json`
-5. Publishing needs write access to `github.com/Ashfaq1306/joruri-bd` (this public repository: APKs are its GitHub releases, because Firebase's free plan does not allow hosting APK files). The old `joruri-bd-releases` repository is archived; its download links keep working for old installs.
+5. Publishing needs write access to `github.com/Ashfaq1306/joruri-bd` (this public repository: APKs are its GitHub releases, because Firebase's free plan does not allow hosting APK files). The old `joruri-bd-releases` repository (1.0.0–1.2.0) gets a copy of every new APK too, so links to its `releases/latest/download/joruri-bd.apk` still give the newest version.
 
 If you lose the key there is no way to publish updates that install over the old app: keep at least two private copies.
 
