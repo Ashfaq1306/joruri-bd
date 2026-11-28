@@ -44,11 +44,12 @@ working either way.
 ## 2. Store listing
 
 - **App name:** Joruri BD – Emergency Help (`জরুরি বিডি`)
-- **Category:** Medical (or Tools). **Contact e-mail:** your own (required by Play).
+- **Category:** Medical. **Contact e-mail:** joruribd.2026@gmail.com. **Website:** https://joruri-bd.web.app
 - **Privacy policy:** <https://joruri-bd.web.app/privacy/>
-- **App icon (512×512):** `admin/logo.png`, enlarged in any image editor if Play asks for exactly 512×512.
-- **Feature graphic (1024×500)** and **2–8 phone screenshots** are needed;
-  take screenshots of Home, SOS, Blood, Hospitals, Pharmacy and Alerts.
+- **App icon (512×512):** `playstore/icon-512.png` (from `apps/mobile/assets/images/app_icon.png`).
+- **Feature graphic (1024×500):** `playstore/feature-graphic.png`.
+- **Phone screenshots (1080×1920, 9:16):** `playstore/screenshots/1-home.png` … `8-firstaid.png`, in that order.
+  Taken on an emulator set to 1080×1920 (Play needs 16:9 or 9:16), app in English, location Dhaka.
 
 Short description (80 characters max):
 
@@ -60,7 +61,7 @@ Full description (English; add the Bangla one as a translation):
 
 > Joruri BD helps you in an emergency in Bangladesh, even with no internet.
 >
-> • SOS: one tap sends your location by SMS to the people you chose, then calls them. No contacts? It calls 999.
+> • SOS: one tap opens an SMS with your exact location to the people you chose, ready to send, then calls them. No contacts saved? It calls 999.
 > • Emergency numbers: 999, police, fire service, ambulance services by city, women and children helplines.
 > • Blood donors: find donors by blood group and district and call them.
 > • Hospitals and blood banks: all hospitals and clinics registered with DGHS, with phone numbers and government test prices.
@@ -89,21 +90,25 @@ donor list and for saving the profile.
 - On the web: <https://joruri-bd.web.app/delete-account/>
 - Both delete the account, the profile, the donor listing and the emergency contacts.
 
-**Data safety form.** Answers that match the app:
+**Data safety form.** What was entered in Play Console on 2026-11-28 (keep it in step with the app):
 
 | Data type | Collected | Shared | Why | Optional |
 | --- | --- | --- | --- | --- |
-| Name | Yes | Yes: only if the person agrees to be listed as a blood donor (shown to logged-in users) | App functionality | Yes |
-| E-mail address | Yes (account) | No | Account management | Yes (account is optional) |
-| Phone number | Yes | Yes: donor listing only, with consent | App functionality | Yes |
-| Other info: blood group, district, area | Yes | Yes: donor listing only, with consent | App functionality | Yes |
+| Name | Yes | No | App functionality, account management | Yes |
+| E-mail address | Yes (account) | No | App functionality, account management | Yes (account is optional) |
+| User IDs (Firebase account ID) | Yes | No | App functionality, account management | Yes |
+| Phone number | Yes | No | App functionality | Yes |
+| Other info: blood group, district, area | Yes | No | App functionality | Yes |
 | Contacts (emergency contacts the user types in) | Yes, when logged in | No | App functionality | Yes |
+| Device or other IDs (Firebase installation ID, for alert notifications) | Yes | No | App functionality | No (required) |
 | Location | **No** (used on the phone only; the user sends it by SMS themselves) | No | | |
-| App activity, device IDs, crash logs | No | No | | |
+| App activity, crash logs, analytics | No | No | | |
 
-- Data is encrypted in transit: **Yes** (HTTPS).
-- Users can request deletion: **Yes** (in the app and on the web page above).
-- Firebase Cloud Messaging is used for alerts by district topic; no advertising IDs.
+- None of it is processed only ephemerally; all is encrypted in transit (HTTPS).
+- Not marked as "shared": the donor listing (name, number, blood group, district) is shown to logged-in users only when the person chooses to be listed, which Google treats as a user-initiated transfer.
+- Accounts: e-mail and password, and OAuth (Google). Account deletion link: <https://joruri-bd.web.app/delete-account/>.
+- No advertising ID (Advertising ID declaration: No). Ads: No. Government app: No. Financial features: none.
+- Health apps declaration: Emergency and first aid; Healthcare services and management; Medical reference and education.
 
 **Target audience:** 13 and over (it is not a children's app).
 **Content rating:** fill in the IARC questionnaire. There is no violence,
